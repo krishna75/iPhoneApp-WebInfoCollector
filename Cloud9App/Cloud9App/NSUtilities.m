@@ -1,0 +1,164 @@
+//
+//  NSUtilities.m
+//  Cloud9App
+//
+//  Created by Krishna Sapkota on 09/03/2013.
+//  Copyright (c) 2013 Krishna Sapkota. All rights reserved.
+//
+
+#import "NSUtilities.h"
+#import <QuartzCore/QuartzCore.h>
+
+@implementation NSUtilities
+
+// creates a formatted string for the date
++ (NSMutableString *) getFormatedDate:(NSString *)date {
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
+    NSDate *formattedDate= [dateFormatter dateFromString:date];
+    
+    NSDateFormatter *prefixDateFormatter = [[NSDateFormatter alloc] init];
+    [prefixDateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+    [prefixDateFormatter setDateFormat:@"EEEE"];
+    NSString *weekDay= [prefixDateFormatter stringFromDate:formattedDate];
+    
+    [prefixDateFormatter setDateFormat:@"d"];
+    NSString *dateDay= [prefixDateFormatter stringFromDate:formattedDate];
+    
+    [prefixDateFormatter setDateFormat:@"MMMM"];
+    NSString *month=[prefixDateFormatter stringFromDate:formattedDate];
+    
+    int date_day = [dateDay  intValue];
+    NSString *suffix_string = @"|st|nd|rd|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|st|nd|rd|th|th|th|th|th|th|th|st";
+    NSArray *suffixes = [suffix_string componentsSeparatedByString: @"|"];
+    NSString *suffix = [suffixes objectAtIndex:date_day];
+    
+    return [NSMutableString stringWithFormat:@"%@, %@%@ %@", weekDay,dateDay,suffix,month];
+}
+
+// create the parent view that will hold header Label
++ (UIView *) getHeaderView:(UIImage*) logoImage forTitle:(NSString *)titleText forDetail:(NSString *)description {
+    
+    UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(10,0,300,60)] ;
+
+    // background image
+    UIGraphicsBeginImageContext(customView.frame.size);
+    [[UIImage imageNamed:@"bg_tableViewHeader.png"] drawInRect:customView.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+//    customView.backgroundColor = [UIColor colorWithPatternImage:image];
+    CGFloat nRed=51.0/255.0;
+    CGFloat nBlue=51.0/255.0;
+    CGFloat nGreen=51.0/255.0;
+    UIColor *myColor=[[UIColor alloc]initWithRed:nRed green:nBlue blue:nGreen alpha:1];
+    customView.backgroundColor = myColor;
+    
+
+    // create title label
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    titleLabel.frame = CGRectMake(70,18,200,20);
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.textAlignment = NSTextAlignmentLeft;
+    titleLabel.text =  titleText;
+
+    // create description label
+    UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    descriptionLabel.backgroundColor = [UIColor clearColor];
+    descriptionLabel.textColor = [UIColor grayColor];
+    descriptionLabel.font = [UIFont systemFontOfSize:14];
+    descriptionLabel.frame = CGRectMake(70,33,230,25);
+    descriptionLabel.textAlignment = NSTextAlignmentLeft;
+    NSString *trimmedDescription = [description stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    descriptionLabel.text = trimmedDescription;
+
+    // logo image
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:logoImage];
+    imageView.frame = CGRectMake(10,10,50,50);
+
+    [customView addSubview:imageView];
+    [customView addSubview:titleLabel];
+    [customView addSubview:descriptionLabel];
+
+    return customView;
+}
+
+// create the parent view that will hold header Label
++ (UIButton*) getBackButon {
+
+UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+UIImage *btnImg = [UIImage imageNamed:@"backButton.png"];
+[btn setBackgroundImage:btnImg forState:UIControlStateNormal];
+[btn setTitle:@"Back" forState:UIControlStateNormal];
+btn.titleLabel.font = [UIFont boldSystemFontOfSize:12];
+
+btn.frame = CGRectMake(0, 0, 50, 30);
+
+return btn;
+}
+
++ (UIImageView *) getImageViewOfUrl:(NSString *) strUrlForImage {
+    NSURL *imageURL = [NSURL URLWithString:strUrlForImage];
+    NSData  *imageData = [NSData dataWithContentsOfURL:imageURL];
+    UIImage *logoImage = [[UIImage alloc] initWithData:imageData];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:logoImage];
+    imageView.frame = CGRectMake(0, 0, 73, 73);
+    
+    return imageView;
+}
+
++ (NSString *) getToday {
+    NSDate *now = [NSDate date];
+    NSString *strDate = [[NSString alloc] initWithFormat:@"%@",now];
+    NSArray *arr = [strDate componentsSeparatedByString:@" "];
+    return [arr objectAtIndex:0];
+}
+
++ (UIView *) getBadgeLikeView: (NSString *) strToDisplay {
+    int len = strToDisplay.length * 10;
+    UIView* v = [[UIView alloc] initWithFrame:CGRectMake(50-len,2,len+10,20)] ;
+    [v.layer setCornerRadius:8];
+    [v.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [v.layer setBorderWidth:2];
+    [v.layer setShadowColor:[UIColor blackColor].CGColor];
+    [v.layer setShadowOpacity:0.8];
+    [v.layer setShadowRadius:3.0];
+    [v.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+    
+    UILabel *label = [[UILabel alloc]init];
+    label.frame = CGRectInset(v.bounds, 2, 2);
+    label.text = strToDisplay;
+    label.backgroundColor = [UIColor redColor];
+    label.textColor = [UIColor whiteColor];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    label.font=[UIFont fontWithName:@"TrebuchetMS-Bold" size:12];
+    
+    //gradient look for background
+    UIColor *colorOne = [UIColor colorWithRed:(120/255.0) green:(135/255.0) blue:(150/255.0) alpha:1.0];
+    UIColor *colorTwo = [UIColor colorWithRed:(57/255.0)  green:(79/255.0)  blue:(96/255.0)  alpha:1.0];
+    
+    NSArray *colors = [NSArray arrayWithObjects:(id)colorOne.CGColor, colorTwo.CGColor, nil];
+    NSNumber *stopOne = [NSNumber numberWithFloat:0.0];
+    NSNumber *stopTwo = [NSNumber numberWithFloat:1.0];
+//
+    NSArray *locations = [NSArray arrayWithObjects:stopOne, stopTwo, nil];
+//
+    //[CAGradientLayer layer];
+//    headerLayer.colors = colors;
+//    headerLayer.locations = locations;
+//    
+//    headerLayer.frame = label.bounds;
+//    [label.layer insertSublayer:headerLayer atIndex:0];
+    
+    [v addSubview:label];
+    
+    return v;
+}
+
+@end
+
+

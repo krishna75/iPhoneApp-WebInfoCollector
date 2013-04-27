@@ -1,0 +1,12 @@
+
+
+IMAGE SIZE
+===========
+icon :
+launch image;
+
+table cell - left image (venue logo, event image):
+table header (venue logo)  - left image:
+
+table view detail - image size :
+ 
