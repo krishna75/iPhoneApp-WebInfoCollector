@@ -23,6 +23,7 @@ if(isUserLoggedIn()) {
 	<li><a href='admin_users.php'>Admin Users</a></li>
 	<li><a href='admin_permissions.php'>Admin Permissions</a></li>
 	<li><a href='admin_pages.php'>Admin Pages</a></li>
+
 	</ul>";
 	}
 } 
@@ -37,6 +38,8 @@ else {
 	if ($emailActivation)
 	{
 	echo "<li><a href='resend-activation.php'>Resend Activation Email</a></li>";
+	echo "<li><a href='forms/addEvent.html'>forms</a></li>";
+
 	}
 	echo "</ul>";
 }
