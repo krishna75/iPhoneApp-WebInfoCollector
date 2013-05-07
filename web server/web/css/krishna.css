@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+	
+		background-image:url("../images/background/bindu.png");
+		//background-color: #E6E6FA;
+}
+
+.bodybox {  
+	margin-top:2px;
+    margin-bottom: 2px;
+    display: block;
+    width: 960px;
+    padding:20px;
+    
+    background: #ffffff;
+    border: 1px solid #fff;
+    border-radius: 0px;
+    
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.footerbox {
+	  
+  margin: 0px auto;
+    display: block;
+    width: 1000px;
+    padding:1px;
+    
+    background: #c0c0c0;
+    border: 1px solid #fff;
+    border-radius: 0px 0px 5px 5px;
+    
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.wrap {  
+    margin: 5px auto;
+    display: block;
+
+    padding:15px;
+    
+    background: #F5F5DC;
+    border: 1px solid #fff;
+    border-radius: 15px;
+    
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+
+
+.gradient {
+    /* Center Positioning */
+    width: 600px;
+    height: 600px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -300px;
+    margin-top: -300px;
+    z-index: -2;
+    
+    /* Fallback */ 
+    background-image: url(http://www.demo.amitjakhu.com/login-form/images/gradient.png); 
+    background-repeat: no-repeat; 
+    
+    /* CSS3 Gradient */
+    background-image: -webkit-gradient(radial, 0% 0%, 0% 100%, from(rgba(213,246,255,1)), to(rgba(213,246,255,0)));
+    background-image: -webkit-radial-gradient(50% 50%, 40% 40%, rgba(213,246,255,1), rgba(213,246,255,0));
+    background-image: -moz-radial-gradient(50% 50%, 50% 50%, rgba(213,246,255,1), rgba(213,246,255,0));
+    background-image: -ms-radial-gradient(50% 50%, 50% 50%, rgba(213,246,255,1), rgba(213,246,255,0));
+    background-image: -o-radial-gradient(50% 50%, 50% 50%, rgba(213,246,255,1), rgba(213,246,255,0));
+}
+
+.wrap img {
+    width: 100%;
+    margin-top: 15px;
+}
+
+p{ 
+    margin-top: 15px;
+    text-align: justify;
+}
+
+h1{
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 1px; 
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+a{
+    text-decoration: none;
+    //color: #4A4A4A !important;
+}
+
+a:hover{
+    text-decoration: underline;
+    color: #6B6B6B !important ;
+}
