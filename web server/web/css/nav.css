@@ -9,10 +9,10 @@ color: #ffffff;
 /* main menu styles */
 #nav {
     display:inline-block;
-    width:992px;
+    width:99%;
     margin:2px auto;
     padding:5px;
-    background:#9932cc	 url(../images/bg.png) repeat-x 0 -110px;
+    background:#2f2f2f	 url(../images/bg.png) repeat-x 0 -110px;
 	color: #ffffff;
 
     border-radius:0px; /*some css3*/

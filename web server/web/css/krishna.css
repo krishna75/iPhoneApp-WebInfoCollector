@@ -3,20 +3,39 @@
     padding: 0;
 }
 
-body {
-	
-		background-image:url("../images/background/bindu.png");
-		//background-color: #E6E6FA;
+#logo {
+    display:block;
+    padding-left: 250px;
+    background:url(../images/logo.png) 0 0 no-repeat;
+    background-size: 50px 50px;
+    width:100px;
+    height:50px;
+    text-indent:-5000px;
+}
+.slogan {
+    color: white;
+}
+#header {
+    background:url(../images/bg_top.jpg) 0 0 no-repeat;
 }
 
+
+body {
+   // background-color: #5f5f5f;
+}
+
+.container {
+    background-color: #0f0f0f;
+}
 .bodybox {  
 	margin-top:2px;
     margin-bottom: 2px;
     display: block;
-    width: 960px;
+
     padding:20px;
     
-    background: #ffffff;
+    background: #5f5f5f;
+    color: white;
     border: 1px solid #fff;
     border-radius: 0px;
     
