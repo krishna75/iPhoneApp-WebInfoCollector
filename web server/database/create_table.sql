@@ -1,60 +1,96 @@
 
--- VENUE AND EVENTS
-CREATE TABLE Venue (
-	id  VARCHAR(16) NOT NULL,
-	logo VARCHAR(32),
-	name VARCHAR(64),
-	address VARCHAR(64),
-	phone VARCHAR(32),
-	email VARCHAR(32),
-	web VARCHAR(32),
-	photo VARCHAR(32),
-	description VARCHAR(1000),
-	primary KEY (id)
+-- VENUE AND EVENTS --------------------------
+CREATE TABLE Venues (
+  id          INT(5) AUTO_INCREMENT,
+  logo        VARCHAR(32),
+  name        VARCHAR(64)   NOT NULL,
+  address     VARCHAR(64)   NOT NULL,
+  phone       VARCHAR(32)   NOT NULL,
+  email       VARCHAR(32)   NOT NULL,
+  web         VARCHAR(32),
+  photo       VARCHAR(32),
+  description VARCHAR(1000) NOT NULL,
+  PRIMARY KEY (id)
 );
+
 
 
 CREATE TABLE Events (
-	id  VARCHAR(16) NOT NULL,
-	date DATE,
-	title VARCHAR(64),
-	description VARCHAR(1000),
-	venue_id INT(12),
-	photo VARCHAR(16),
-	primary KEY (id)
+  id          INT(10) AUTO_INCREMENT,
+  date        DATE          NOT NULL,
+  title       VARCHAR(64)   NOT NULL,
+  description VARCHAR(1000) NOT NULL,
+  venue_id    INT(5),
+  photo       VARCHAR(16),
+  PRIMARY KEY (id),
+  FOREIGN KEY (venue_id) REFERENCES Venues (id)
 );
 
--- GENRE RELATED
+
+-- GENRE RELATED ---------------------------
 CREATE TABLE Genres (
-	id  VARCHAR(16) NOT NULL,
-	genre VARCHAR(100),
-	description VARCHAR(100),
-	photo VARCHAR(100),
-	primary KEY (id)
+  id         int(2)  NOT NULL,
+  genre       VARCHAR(100) NOT NULL,
+  description VARCHAR(100) NOT NULL,
+  photo       VARCHAR(100),
+  PRIMARY KEY (id)
 );
 
-CREATE TABlE SubGenres (
-	id  VARCHAR(16) NOT NULL,
-	genre_id  VARCHAR(16) NOT NULL,
-	subgenre VARCHAR(100),
-	description VARCHAR(100),
-	photo VARCHAR(100),
-	primary KEY (id)
+
+CREATE TABLE SubGenres (
+  id          INT(3)       NOT NULL,
+  genre_id    INT(2)       NOT NULL,
+  subgenre    VARCHAR(100) NOT NULL,
+  description VARCHAR(100) NOT NULL,
+  photo       VARCHAR(100),
+  PRIMARY KEY (id),
+  FOREIGN KEY (genre_id) REFERENCES Genres (id)
 );
+
+
 
 CREATE TABLE Genres_Events (
-	subgenre_id  VARCHAR(16) NOT NULL,
-	event_id VARCHAR(16) NOT NULL
+  id          INT(3) AUTO_INCREMENT,
+  event_id    INT(10) NOT NULL,
+  subgenre_id INT(3)  NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (event_id) REFERENCES Events (id),
+  FOREIGN KEY (subgenre_id) REFERENCES SubGenres (id)
 );
 
---  REGISTER PROMOTER AND CLIENT
-create table Promoters(
-  id  varchar (16) not null auto_increment unique,
-  username varchar (32) unique primary key ,
-  password varchar (16),
-  first_name varchar (32),
-  last_name varchar (32),
-  phone varchar (16),
-  email varchar (32),
-  address varchar (32)
+
+
+
+--  REGISTER USERS, ROLES AND PERMISSIONS --------------------
+CREATE TABLE Roles (
+  id          INT(2) AUTO_INCREMENT,
+  description VARCHAR(16) NOT NULL,
+  PRIMARY KEY (id)
 );
+
+CREATE TABLE Users (
+  id         INT(10) AUTO_INCREMENT,
+  username   VARCHAR(32) NOT NULL UNIQUE,
+  password   VARCHAR(16) NOT NULL,
+  first_name VARCHAR(32) NOT NULL,
+  last_name  VARCHAR(32) NOT NULL,
+  phone      VARCHAR(16) NOT NULL,
+  email      VARCHAR(32) NOT NULL,
+  address    VARCHAR(32),
+  role       INT(2)      NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (role) REFERENCES Roles (id)
+);
+
+CREATE TABLE Users_Venues (
+  id       INT(10) AUTO_INCREMENT,
+  user_id  INT(10) NOT NULL,
+  venue_id INT(16) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (user_id) REFERENCES Users (id),
+  FOREIGN KEY (venue_id) REFERENCES Venues (id)
+);
+
+
+
+
