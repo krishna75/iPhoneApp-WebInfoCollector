@@ -56,7 +56,7 @@
 			<textarea id="element_4" name="element_4" class="element textarea small"></textarea> 
 		</div> 
 		</li>		<li class="section_break">
-			<h3>Section Break</h3>
+			<h3>Log in details</h3>
 			<p></p>
 		</li>		<li id="li_6" >
 		<label class="description" for="element_6">New username * </label>
