@@ -26,7 +26,6 @@ CREATE TABLE Events (
   FOREIGN KEY (venue_id) REFERENCES Venues (id)
 );
 
-
 -- GENRE RELATED ---------------------------
 CREATE TABLE Genres (
   id         int(2)  NOT NULL,
@@ -71,7 +70,7 @@ CREATE TABLE Roles (
 CREATE TABLE Users (
   id         INT(10) AUTO_INCREMENT,
   username   VARCHAR(32) NOT NULL UNIQUE,
-  password   VARCHAR(16) NOT NULL,
+  password   VARCHAR(41) NOT NULL,
   first_name VARCHAR(32) NOT NULL,
   last_name  VARCHAR(32) NOT NULL,
   phone      VARCHAR(16) NOT NULL,
