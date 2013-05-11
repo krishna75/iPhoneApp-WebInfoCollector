@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS
+ DROP TABLE IF EXISTS
     users_venues,
     users,
     roles,
