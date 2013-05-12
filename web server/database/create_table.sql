@@ -70,7 +70,7 @@ CREATE TABLE Roles (
 CREATE TABLE Users (
   id         INT(10) AUTO_INCREMENT,
   username   VARCHAR(32) NOT NULL UNIQUE,
-  password   VARCHAR(41) NOT NULL,
+  password   BLOB NOT NULL,
   first_name VARCHAR(32) NOT NULL,
   last_name  VARCHAR(32) NOT NULL,
   phone      VARCHAR(16) NOT NULL,
