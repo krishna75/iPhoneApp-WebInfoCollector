@@ -1,5 +1,5 @@
 <?php
-require_once("db_connection.php");
+require_once("includes/db_connection.php");
 
 // checking if username and password are set and correct and setting session
 if (isset($_POST['username']) && isset($_POST['password'])) {
@@ -44,7 +44,6 @@ function setSession($username){
     $row = mysql_fetch_assoc($query);
 
     $_SESSION['username'] =  $row['username'];
-    $_SESSION['password'] =  $row['password'];
     $_SESSION['first_name'] =  $row['first_name'];
     $_SESSION['last_name'] =  $row['last_name'];
     $_SESSION['role'] =  $row['role'];
@@ -55,11 +54,11 @@ function setSession($username){
 
 // return error
 function returnAuthorizedPage(){
-    return header('location:authedPage.php');
+    header('location:portal.php');
 }
 
 // return error
 function returnError(){
-    return header('location:singIn.php?message=Invalid username or password');
+    header('location:signIn.php?message=Invalid username or password');
 }
 mysql_close($con);
