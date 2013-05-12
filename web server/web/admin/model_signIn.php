@@ -5,7 +5,7 @@ require_once("includes/db_connection.php");
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $authed = authorized($username, $password);
+    $authed = authorized($username, $password, $secret_key);
 
     if (! $authed) {
         returnError();
@@ -19,14 +19,14 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
 
 //check if username and password both are valid
-function authorized($username, $password){
-    $query = mysql_query("SELECT * FROM users WHERE username='$username'");
+function authorized($username, $inputPassword, $key){
+    $query = mysql_query("SELECT username, AES_DECRYPT(password,'$key') as password  FROM users WHERE username='$username'");
     $numrows = mysql_num_rows($query);
     if ($numrows!=0){
         while ($row = mysql_fetch_assoc($query)){
             $dbusername = $row['username'];
             $dbpassword = $row['password'];
-            if ($dbusername == $username && $dbpassword == $password) {
+            if ($dbusername == $username && $dbpassword == $inputPassword) {
                 return true;
             }
             else
@@ -59,6 +59,6 @@ function returnAuthorizedPage(){
 
 // return error
 function returnError(){
-    header('location:signIn.php?message=Invalid username or password');
+    header('location:signIn.php?message=Invalid username or password ');
 }
 mysql_close($con);

@@ -11,5 +11,5 @@ $db = mysql_select_db("cloudnineapp", $con);
 if (!$db){
   die('Could not connect to the database: ' . mysql_error());
  }
-  
+ $secret_key ="lankupul";
 ?>
