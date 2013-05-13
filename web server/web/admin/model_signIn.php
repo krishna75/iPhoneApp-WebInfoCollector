@@ -20,7 +20,10 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
 //check if username and password both are valid
 function authorized($username, $inputPassword, $key){
-    $query = mysql_query("SELECT username, AES_DECRYPT(password,'$key') as password  FROM users WHERE username='$username'");
+    $query = mysql_query("SELECT username, AES_DECRYPT(password,'$key') as password  FROM Users WHERE username='$username'");
+    if (!$query){
+        return false;
+    }
     $numrows = mysql_num_rows($query);
     if ($numrows!=0){
         while ($row = mysql_fetch_assoc($query)){
@@ -39,7 +42,7 @@ return false;
 //check if username and password both are valid
 function setSession($username){
     session_start();
-    $query = mysql_query("SELECT * FROM users WHERE username='$username'");
+    $query = mysql_query("SELECT * FROM Users WHERE username='$username'");
 
     $row = mysql_fetch_assoc($query);
 

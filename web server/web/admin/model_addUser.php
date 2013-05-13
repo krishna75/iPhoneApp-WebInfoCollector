@@ -22,13 +22,17 @@ $role = $_POST['role'];
 
 
 //INSERT
-$query = " INSERT INTO users (
+$query = " INSERT INTO Users (
 first_name, last_name, email, phone, address, username, password, role )  VALUES (
 '$firstName', '$lastName', '$email', '$phone', '$address', '$username', AES_ENCRYPT('$password', '$secret_key'),'$role') ";
 $result = mysql_query($query);
 
+
+
 if ($result){
     header('location:portal.php?message=success');
+}else {
+    header('location:portal.php?message=error');
 }
 
 mysql_close($con);
