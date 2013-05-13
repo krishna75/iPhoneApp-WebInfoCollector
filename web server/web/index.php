@@ -37,8 +37,8 @@
 <li><a href="events.php" id="overnav">Events</a></li>
 <li><a href="venues.php" id="landnav">Venues</a></li>
 <li><a href="genres.php" id="portnav">Preferences</a></li>
-<li><a href="contactUs.php" id="connav">Contact Us</a></li>
-<li><a href="signIn.php" id="connav">Sign In</a></li>
+<li><a href="admin/contactUs.php" id="connav">Contact Us</a></li>
+<li><a href="admin/signIn.php" id="connav">Sign In</a></li>
 </ul>
 
 </div>
@@ -101,10 +101,8 @@ Please, be patient, we are comming soon...
 
 <div id="footer">
 <p>Cloud Nine App is a part of CNAPP Ltd. Oxford, UK. <a href="contactUs.php">Contact</a></p>
-<p>Copyright � 2013 <a href="index.php">Cloud Nine App</a>. 
-</div>
+<p>Copyright &copy 2013 <a href="index.php">Cloud Nine App</a>.
 
-</div>
 
 <script src="js/urchin.js" type="text/javascript">
 </script>
@@ -112,4 +110,10 @@ Please, be patient, we are comming soon...
 _uacct = "UA-2565253-10";
 urchinTracker();
 </script>
+
+    <a title="stat counter" href="http://statcounter.com/p8942593/summary//" target="_blank"><img src="http://c.statcounter.com/8942593/0/f0161197/0/" alt="website tonight analytics" style="border:none;"></a>
+
+</div>
+
+</div>
 </body></html>
