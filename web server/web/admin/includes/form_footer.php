@@ -2,7 +2,7 @@
 
 </form>
 <div id="footer">
- &copy CNAPP Ltd.
+ &copy Cloud Nine
 </div>
 </div>
 <img id="bottom" src="images/bottom.png" alt="">
