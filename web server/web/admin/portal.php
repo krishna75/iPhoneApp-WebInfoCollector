@@ -4,6 +4,12 @@ include("includes/session.php");
     echo "Dear ".$_SESSION['first_name']." ".  $_SESSION['last_name'].",<p>
     Welcome to the portal page !!! </p>";
 
+// printing message if any
+if (!empty($_GET['message'])) {
+    $message= $_GET['message'];
+    echo "<h3>".$message." </h3>";
+}
+
     $role = $_SESSION['role'];
     if ($role <=3){
         // add event
