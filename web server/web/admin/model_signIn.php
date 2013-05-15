@@ -50,6 +50,8 @@ function setSession($username){
     $_SESSION['first_name'] =  $row['first_name'];
     $_SESSION['last_name'] =  $row['last_name'];
     $_SESSION['role'] =  $row['role'];
+    $_SESSION['start'] = time();
+    $_SESSION['expire'] = $_SESSION['start'] + (30 * 60) ;;
 }
 
 

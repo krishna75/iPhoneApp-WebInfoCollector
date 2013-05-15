@@ -8,7 +8,7 @@
  */
 
 session_start();
-if ( empty ($_SESSION)){
+if ( empty ($_SESSION) || time() > $_SESSION['expire'] ){
     header('location:signIn.php');
 }
 
