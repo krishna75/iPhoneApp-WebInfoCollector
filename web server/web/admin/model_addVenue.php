@@ -61,8 +61,7 @@ if ($logoValidated && $photoValidated) {
 }
 
 function returnMessage($page,$message){
-    echo $message;
-//    header('location:'.$page.'php?message='. $message);
+    header('location:'.$page.'.php?message='. $message);
 }
 
 mysql_close($con);
