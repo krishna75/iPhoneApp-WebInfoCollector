@@ -7,7 +7,7 @@ require_once("includes/form_header.php") ;
 ?>
 			
 		<li id="li_4" >
-            <label class="description" for="element_4">Company logo </label>
+            <label class="description" for="element_4">Company logo * </label>
             <div>
                 <input type="hidden" name="logoField" value="logo" />
                 <input id="logo" name="logo" class="element file" type="file"/>
@@ -15,26 +15,26 @@ require_once("includes/form_header.php") ;
             <p class="guidelines" id="guide_4"><small>Select a logo for the venue. Size of the company logo should be around 70 x 70 pixel</small></p>
 		</li>
         <li id="li_1" >
-            <label class="description" for="element_1">Venue Name </label>
+            <label class="description" for="element_1">Venue Name * </label>
             <div>
-                <input id="element_1" name="name" class="element text medium" type="text" maxlength="255" value="oxford venue"/>
+                <input id="element_1" name="venueName" class="element text medium" type="text" maxlength="255" value="oxford venue"/>
             </div>
             <p class="guidelines" id="guide_1"><small>Please provide the name of the venue e.g. O2 Academy</small></p>
 		</li>
         <li id="li_2" >
-            <label class="description" for="element_2">Address </label>
+            <label class="description" for="element_2">Address * </label>
             <div>
                 <textarea id="element_2" name="address" class="element textarea small"></textarea>
             </div><p class="guidelines" id="guide_2"><small>Address of the venue</small></p>
 		</li>
         <li id="li_3" >
-            <label class="description" for="element_3">Phone </label>
+            <label class="description" for="element_3">Phone *</label>
             <div>
                 <input id="element_3" name="phone" class="element text medium" type="text" maxlength="20" value=""/>
             </div><p class="guidelines" id="guide_3"><small>Phone number of the venue.</small></p>
 		</li>
         <li id="li_5" >
-		<label class="description" for="element_5">Email </label>
+		<label class="description" for="element_5">Email * </label>
             <div>
                 <input id="element_5" name="email" class="element text medium" type="text" maxlength="255" value=""/>
             </div>
@@ -53,7 +53,7 @@ require_once("includes/form_header.php") ;
             </div> <p class="guidelines" id="guide_7"><small>A photo that represent the venue e.g. front photo of the venue, or internal photo of the venue.</small></p>
 		</li>
         <li id="li_8" >
-            <label class="description" for="element_8">Description </label>
+            <label class="description" for="element_8">Description *</label>
             <div>
                 <textarea id="element_8" name="description" class="element textarea medium"></textarea>
             </div><p class="guidelines" id="guide_8"><small>Description of the venue includes what are the specialities  and prides of this venue</small></p>

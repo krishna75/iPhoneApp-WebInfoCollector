@@ -11,44 +11,58 @@ include("includes/session.php");
 require_once("includes/db_connection.php");
 require_once("includes/image_uploader.php");
 
-$venueName = "Oxford Academy";
+
+
+// get the post params
+$logo = $_POST['logoField'];
+$photo = $_POST['photoField'];
+$venueName = $_POST['venueName'];
+$address = $_POST['address'];
+$phone= $_POST['phone'];
+$email = $_POST['email'];
+$web = $_POST['web'];
+$description = $_POST['description'];
+
+//set dir and prefix
 $logoPrefix = str_replace(" ","_",$venueName)."_logo_";
 $logoDir = "../images/logo/";
-if (isset($_POST['logoField'])) {
-    $logo = $_POST['logoField'];
+$photoPrefix = str_replace(" ","_",$venueName)."_photo_";
+$photoDir = "../images/venuePhoto/";
 
+// check if the photos are valid
+$logoMessage = validateImage($logoPrefix, $logo,$logoDir,20000);
+$photoMessage = validateImage($photoPrefix, $photo,$photoDir,200000);
+$logoValidated = $logoMessage[0];
+$photoValidated = $photoMessage[0];
 
-    $logoMessage = validateImage($logoPrefix, $logo,$logoDir,50000);
-    $logoValidated = $logoMessage[0];
+if ($logoValidated && $photoValidated) {
 
-    if ($logoValidated) {
-       $message = uploadImage($logoPrefix, $logo, $logoDir);
-       echo $message;
-    }else {
-        $message = $logo.": ".$logoMessage[0] . " " . $logoMessage[1] . $logoMessage[2];
-        echo $message;
-    }
-//
-//    returnMessage($logo." ".$logoMessage[0] . " " . $logoMessage[1] . $logoMessage[2]);
+    // inserting data into mysql
+    $logoUrl = $logoDir.$logoPrefix.$_FILES[$logo]['name'];
+    $photoUrl = $photoDir.$photoPrefix.$_FILES[$photo]['name'];
+
+    $query = " INSERT INTO Venues (
+      logo,     name,         address,    phone,    email,    web,    photo,        description )  VALUES (
+    '$logoUrl', '$venueName', '$address', '$phone', '$email', '$web', '$photoUrl', '$description') ";
+    $result = mysql_query($query);
+   if ($result){
+        //uploading
+//       $logoUploadMessage = uploadImage($logoPrefix, $logo, $logoDir);
+//       $photoUploadMessage = uploadImage($photoPrefix, $photo, $photoDir);
+       returnMessage('portal', '<b>Sucess !!!</b> <br/>'.$logoUploadMessage."<br/> ".$photoUploadMessage);
+    } else {
+       returnMessage("addVenue", "<b>Error.. on adding data </b> <br/>");
+   }
+}else {
+    //error message
+    $logoErrorMessage = $logo.": ".$logoMessage[0] . " " . $logoMessage[1] . $logoMessage[2];
+    $photoErrorMessage = $photo.": ".$photoMessage[0] . " " . $photoMessage[1] . $photoMessage[2];
+    returnMessage("addVenue", "<b>Error.. on image upload </b> <br/>".$logoErrorMessage."<br/>".$photoErrorMessage."<br/>");
 }
-//if (isset($_POST['logo']) && isset($_POST['photo'])) {
-//    $logo = $_POST['logo'];
-//    $photo = $_POST['photo'];
-//    $logoMessage = validateImage($logo,$uploadBaseDir."logo/",50000);
-//    $photoMessage = validateImage($photo,$uploadBaseDir."venuePhoto/",500000);
-//    returnMessage($logoMessage[0] . " " . $logoMessage[1] . " " . $photoMessage[0] . " " . $photoMessage[1]);
-//}
 
-
-/*
- *  check valid photos
- *
- * update mysql
- *
- * update photos
- *
- *
- */
-function returnMessage($message){
-    header('location:portal.php?message='. $message);
+function returnMessage($page,$message){
+    echo $message;
+//    header('location:'.$page.'php?message='. $message);
 }
+
+mysql_close($con);
