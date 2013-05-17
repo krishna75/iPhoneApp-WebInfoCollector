@@ -6,7 +6,7 @@
  * Time: 06:35
  * To change this template use File | Settings | File Templates.
  */
-$requiredRole = 2;
+$requiredRole = 3;
 include("includes/session.php");
 require_once("includes/db_connection.php");
 require_once("includes/image_uploader.php");
