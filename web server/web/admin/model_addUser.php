@@ -27,9 +27,21 @@ first_name, last_name, email, phone, address, username, password, role )  VALUES
 $result = mysql_query($query);
 
 if ($result){
-    header('location:portal.php?message=success');
+// if it is a client associate a venue
+    $userId = mysql_insert_id();
+    $venueId = $_POST['venue'];
+
+    $query = " INSERT INTO Users_Venues (user_id, venue_id )  VALUES ('$userId', '$venueId');";
+    $result = mysql_query($query)or die(mysql_error());
+
+    returnMessage('portal','<b>Sucess !!!</b><br/> a user has been added');
 }else {
-    header('location:portal.php?message=error');
+    returnMessage('portal','<b>error...</b><br/> could not add a user <br/> '. mysql_error($con));
+}
+
+
+function returnMessage($page,$message){
+    header('location:'.$page.'.php?message='. $message);
 }
 
 mysql_close($con);
