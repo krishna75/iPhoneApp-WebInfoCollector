@@ -82,4 +82,9 @@ require_once("includes/db_connection.php");
         <input id="saveForm" class="button_text" type="submit" name="submit" value="Submit"/>
     </li>
 
+    <!-- specifies that this person is a promoter -->
+    <li>
+        <input type="hidden" name="role" value="3"/>
+    </li>
+
 <?php include("includes/form_footer.php");
