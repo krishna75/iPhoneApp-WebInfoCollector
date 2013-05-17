@@ -55,19 +55,19 @@ if ( $photoValidated) {
     $query = " INSERT INTO Genres_Events (
       event_id,   subgenre_id )  VALUES (
     '$eventId', '$genre' ); ";
-    $genreResult = mysql_query($query)or die(mysql_error());;
+    $genreResult = mysql_query($query);
 
    if ($genreResult && $eventResult){
         //uploading
        $photoUploadMessage = uploadImage($photoPrefix, $photo, $photoDir);
        returnMessage('portal', '<b>Sucess !!!</b> <br/>'.$logoUploadMessage."<br/> ".$photoUploadMessage);
     } else {
-       returnMessage("addEvent", "<b>Error.. on adding data </b> <br/>");
+       returnMessage("addEvent", "<b>Error.. on adding data </b> <br/>". mysql_error($con));
    }
 }else {
     //error message
     $photoErrorMessage = $photo.": ".$photoMessage[0] . " " . $photoMessage[1] . $photoMessage[2];
-    returnMessage("addEvent", "<b>Error.. on image upload </b> <br/>".$logoErrorMessage."<br/>".$photoErrorMessage."<br/>");
+    returnMessage("addEvent", "<b>Error.. on image upload </b> <br/>".$logoErrorMessage."<br/>".$photoErrorMessage."<br/>". mysql_error($con));
 }
 
 function returnMessage($page,$message){

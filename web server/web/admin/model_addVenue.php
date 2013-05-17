@@ -51,13 +51,13 @@ if ($logoValidated && $photoValidated) {
 //       $photoUploadMessage = uploadImage($photoPrefix, $photo, $photoDir);
        returnMessage('portal', '<b>Sucess !!!</b> <br/>'.$logoUploadMessage."<br/> ".$photoUploadMessage);
     } else {
-       returnMessage("addVenue", "<b>Error.. on adding data </b> <br/>");
+       returnMessage("addVenue", "<b>Error.. on adding data </b> <br/>". mysql_error($con));
    }
 }else {
     //error message
     $logoErrorMessage = $logo.": ".$logoMessage[0] . " " . $logoMessage[1] . $logoMessage[2];
     $photoErrorMessage = $photo.": ".$photoMessage[0] . " " . $photoMessage[1] . $photoMessage[2];
-    returnMessage("addVenue", "<b>Error.. on image upload </b> <br/>".$logoErrorMessage."<br/>".$photoErrorMessage."<br/>");
+    returnMessage("addVenue", "<b>Error.. on image upload </b> <br/>".$logoErrorMessage."<br/>".$photoErrorMessage."<br/>". mysql_error($con));
 }
 
 function returnMessage($page,$message){
