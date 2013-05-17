@@ -11,6 +11,9 @@ if (!empty($_GET['message'])) {
 }
 
     $role = $_SESSION['role'];
+    if ($role == 0){
+        $role = 999;
+    }
     if ($role <=3){
         // add event
         echo "<p><a href='addEvent.php'>add an event </a></p>";
