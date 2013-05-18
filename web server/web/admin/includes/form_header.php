@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/view.css" media="all">
     <script type="text/javascript" src="js/view.js"></script>
     <script type="text/javascript" src="js/validatious-custom.js"></script>
+    <script type="text/javascript" src="js/calendar.js"></script>
 </head>
 <body id="main_body" >
 
