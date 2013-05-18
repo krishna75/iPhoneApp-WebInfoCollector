@@ -1,6 +1,9 @@
 <?php
 $requiredRole =4;
+
 include("includes/session.php");
+$title = "Portal";
+include_once("includes/header.php");
     echo "Dear ".$_SESSION['first_name']." ".  $_SESSION['last_name'].",<p>
     Welcome to the portal page !!! </p>";
 
@@ -10,30 +13,33 @@ if (!empty($_GET['message'])) {
     echo "<h3>".$message." </h3>";
 }
 
+//sign out
+echo "<p><a href='signOut.php'>Sign Out </a></p>";
+
+
     $role = $_SESSION['role'];
     if ($role == 0){
         $role = 999;
     }
     if ($role <=3){
         // add event
-        echo "<p><a href='addEvent.php'>add an event </a></p>";
+        echo "<a href='addEvent.php' class='admin-link' >add an event </a>";
         if ($role <=2){
         //add venue
-            echo "<p><a href='addVenue.php'>add a venue </a></p>";
+            echo "<a href='addVenue.php' class='admin-link'>add a venue </a>";
         //add client
-            echo "<p><a href='addClient.php'>add a client </a></p>";
+            echo "<a href='addClient.php' class='admin-link'>add a client </a>";
         }
         if ($role == 1){
         //add promoter
-            echo "<p><a href='addPromoter.php'>add a promoter </a></p>";
+            echo "<a href='addPromoter.php' class='admin-link'>add a promoter </a>";
         //add admin
-            echo "<p><a href='addAdmin.php'>add an admin </a></p>";
+            echo "<a href='addAdmin.php' class='admin-link'>add an admin </a>";
         }
     }
 
 
-//sign out
-echo "<p><a href='signOut.php'>Sign Out </a></p>";
+
 
 
 
