@@ -501,7 +501,7 @@
         <class className="settingsController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/settingsController.h"/>
             <relationships>
-                <relationship kind="outlet" name="testLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="settingsTable" candidateClass="UITableView"/>
             </relationships>
         </class>
         <class className="venuesAndEventsController" superclassName="UITableViewController">

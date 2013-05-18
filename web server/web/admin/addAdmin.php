@@ -25,13 +25,13 @@ include("includes/form_header.php");
     </li>
 
     <li id="li_3">
-        <label class="description" for="element_3">Phone </label>
+        <label class="description" for="element_3">Phone* </label>
 		<span>
 			<input id="phone" name="phone" class="required element text" size="15" maxlength="20" value="" type="text">
 		</span>
     </li>
     <li id="li_4">
-        <label class="description" for="element_4">Address </label>
+        <label class="description" for="element_4">Address* </label>
 
         <div>
             <textarea id="address" name="address" class="required element textarea small"></textarea>
