@@ -27,10 +27,10 @@ echo "<p><a href='signOut.php'>Sign Out </a></p>";
         if ($role <=2){
         //add venue
             echo "<a href='addVenue.php' class='admin-link'>add a venue </a>";
-        //add client
-            echo "<a href='addClient.php' class='admin-link'>add a client </a>";
         }
         if ($role == 1){
+        //add client
+        echo "<a href='addClient.php' class='admin-link'>add a client </a>";
         //add promoter
             echo "<a href='addPromoter.php' class='admin-link'>add a promoter </a>";
         //add admin

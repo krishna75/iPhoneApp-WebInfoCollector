@@ -1,5 +1,5 @@
 <?php
-$requiredRole = 2;
+$requiredRole = 1;
 include("includes/session.php");
 $title = "Add Client";
 $action = "model_addUser.php";
