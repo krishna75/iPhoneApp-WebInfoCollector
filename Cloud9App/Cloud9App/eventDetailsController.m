@@ -10,7 +10,7 @@
 #import "MyJson.h"
 #import "NSUtilities.h"
 #import "BadgeManager.h"
-
+#import "AppDelegate.h"
 
 
 #define kjsonURL @"http://www.chitwan-abroad.org/cloud9/eventDetail.php?event_id="
@@ -37,8 +37,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [app AddloadingView];
     [self launchLoadData];
-    
 }
 
 #pragma mark - launchLoadData and loadData are for a new thread
@@ -52,7 +52,7 @@
     [self processJson];
     [self decorateView];
     [self displayValues];
-    }
+}
 
 // the process also has spinner or loader
 - (void)processJson {
@@ -122,8 +122,7 @@
                                      action:@selector(addToCalendar:)];
     
     self.navigationItem.rightBarButtonItem = remindButton;
-    
-
+    [app RemoveLoadingView];
 }
 
 -(void)viewWillAppear:(BOOL)animated {

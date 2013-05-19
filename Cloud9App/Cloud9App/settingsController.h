@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface settingsController : UIViewController
+@interface settingsController : UIViewController <UITableViewDelegate,UITableViewDataSource> {
+    
+    IBOutlet UITableView *settingsTable;
+    NSDictionary *settingsDict;
+}
 
-@property (nonatomic, retain) IBOutlet UILabel *testLabel;
 
 @end

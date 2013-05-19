@@ -8,9 +8,15 @@
 
 #import "settingsController.h"
 #import "MyJson.h"
+#import "KrishnaCell.h"
+#import "SettingsDetail.h"
+#import "AppDelegate.h"
+
 
 #define kjsonURL @"http://www.chitwan-abroad.org/cloud9/events.php"
-//#define kjsonURL @"http://itunes.apple.com/search?term=neil%20north&entity=software&attribute=softwareDeveloper&country=us"
+#define kTitle @"Settings"
+#define kLabelTag 999
+#define kTableBG @"bg_tableView.png"
 
 @interface settingsController ()
 
@@ -20,47 +26,124 @@
     NSMutableArray *jsonResults;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
-//    [super viewDidLoad];
-//    [self processJson];
-//    NSDictionary *eventCountDict = [jsonResults objectAtIndex:1];
-//    NSString    *day = [eventCountDict objectForKey:@"day"];
-//    NSString    *date = [eventCountDict objectForKey:@"date"];
-//    NSString    *count = [eventCountDict objectForKey:@"count"];
-//    NSMutableString *dayDate = [NSMutableString stringWithFormat:@"%@, %@",day,date];
-//
-//   
-    self.testLabel.text = @"hello";
+- (void)viewDidLoad {
+    NSArray *contactInfo = [[NSArray alloc]initWithObjects:@"Login",@"Contact us", nil];
+    NSArray *appSettings = [[NSArray alloc]initWithObjects:@"Display badges", nil];
+    settingsDict = [[NSDictionary alloc]initWithObjectsAndKeys:contactInfo,@"Contact Information",appSettings,@"Application Settings", nil];
+    settingsTable.scrollEnabled = NO;
 }
 
-- (void)processJson {
-    MyJson * json = [[MyJson alloc] init];
-    jsonResults = [json toArray:kjsonURL];
+- (void)decorateView{
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kTableBG]];
+    UISwitch *onOff = [[UISwitch alloc] initWithFrame: CGRectMake(220,192,50,40)];
+    [onOff addTarget: self action: @selector(switchBadgeDisplay:) forControlEvents: UIControlEventValueChanged];
+    [self.view addSubview: onOff];
+    if(app.setBadge == YES)
+        [onOff setOn:YES];
+    else
+        [onOff setOn:NO];
+    settingsTable.backgroundColor = [UIColor clearColor];
 }
 
-- (void)didReceiveMemoryWarning
-{
+-(void) switchBadgeDisplay:(UISwitch *)sender {
+    if(sender.on){
+        app.setBadge = YES;
+    }
+    else {
+        app.setBadge = NO;
+    }
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    
+    self.navigationController.navigationBar.topItem.title  = kTitle;
+    [self decorateView];
+    [settingsTable reloadData];
+}
+
+
+#pragma mark- sections and titles
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+ 
+    return [settingsDict count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+ 
+    if(section == 0)
+        return @"Contact Information";
+    else
+        return @"Application Settings";
+}
+
+
+#pragma mark - Table
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+ 
+    if(section == 0)
+        return [[settingsDict objectForKey:@"Contact Information"]count];
+    else
+        return [[settingsDict objectForKey:@"Application Settings"] count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    else {
+        UILabel *txtLbl = (UILabel *)[cell.contentView viewWithTag:kLabelTag];
+        [txtLbl removeFromSuperview];
+    }
+    
+    UILabel *textLabel = [[UILabel alloc]initWithFrame:CGRectMake(20,8,320,32)];
+    textLabel.font = [UIFont systemFontOfSize:18.0];
+    textLabel.textColor = [UIColor blackColor];
+    textLabel.textAlignment = UITextAlignmentLeft;
+    textLabel.backgroundColor = [UIColor clearColor];
+    textLabel.tag = kLabelTag;
+    [cell.contentView addSubview:textLabel];
+    if(indexPath.section == 0) {
+        textLabel.text = [[settingsDict objectForKey:@"Contact Information"] objectAtIndex:indexPath.row];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    else
+        textLabel.text = [[settingsDict objectForKey:@"Application Settings"] objectAtIndex:indexPath.row];
+
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if(indexPath.section == 1) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        return;
+    }
+    SettingsDetail *settingsVc = [self.storyboard instantiateViewControllerWithIdentifier:@"settingsDetail"];
+    if(indexPath.row == 0 && indexPath.section == 0)
+        settingsVc.urlString = @"http://www.cnapp.co.uk/admin/mobileWeb/signIn.html";
+    else if(indexPath.row == 1 && indexPath.section == 0)
+        settingsVc.urlString = @"http://www.cnapp.co.uk/admin/mobileWeb/contactUs.html";
+    
+    [self.navigationController pushViewController:settingsVc  animated: YES];
+}
+
+#pragma mark - memory
+- (void)didReceiveMemoryWarning {
+    
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-//- (void) loadThread(){
-//    dispatch_async(kBgQueue, ^{
-//        
-//        [self fetchedData:data];
-//        [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data waitUntilDone:YES];
-//        [self performSegueWithIdentifier:<#(NSString *)#> sender:<#(id)#>]
-//    });
-//}
-
 @end

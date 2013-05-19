@@ -118,7 +118,7 @@ return btn;
     return [arr objectAtIndex:0];
 }
 
-+ (UIView *) getBadgeLikeView: (NSString *) strToDisplay {
++ (UIView *) getBadgeLikeView: (NSString *)strToDisplay:(BOOL)show {
     int len = strToDisplay.length * 10;
     UIView* v = [[UIView alloc] initWithFrame:CGRectMake(50-len,2,len+10,20)] ;
     [v.layer setCornerRadius:8];
@@ -154,8 +154,19 @@ return btn;
 //    headerLayer.frame = label.bounds;
 //    [label.layer insertSublayer:headerLayer atIndex:0];
     
+    if(show)
+        [v setHidden:NO];
+    else
+        [v setHidden:YES];
     [v addSubview:label];
     
+    return v;
+}
+
++(UIView *)removeBadgeLikeView:(NSString *)strToDisplay {
+    int len = strToDisplay.length * 10;
+    UIView* v = [[UIView alloc] initWithFrame:CGRectMake(50-len,2,len+10,20)] ;
+    v.backgroundColor = [UIColor clearColor];
     return v;
 }
 

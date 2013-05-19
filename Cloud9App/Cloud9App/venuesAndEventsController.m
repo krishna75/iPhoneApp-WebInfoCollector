@@ -16,6 +16,7 @@
 #import "FirstJsonLoader.h"
 #import "NSUtilities.h"
 #import "BadgeManager.h"
+#import "AppDelegate.h"
 
 #define kjsonUrlVenuesAndEvents @"http://www.chitwan-abroad.org/cloud9/venuesAndEvents.php"
 #define kjsonUrlEventsOfVenue @"http://www.chitwan-abroad.org/cloud9/eventsOfAVenue.php?venue_id="
@@ -45,6 +46,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [app AddloadingView];
     [self decorateView];
     [self launchLoadData];
 }
@@ -58,6 +60,7 @@
    
     [self processJson];
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil    waitUntilDone:NO];
+    [app RemoveLoadingView];
 }
 
 // the process also has spinner or loader
@@ -149,9 +152,17 @@
     
     int newEventCount = [BadgeManager countNewEvents:eventIdList];
     if (newEventCount > 0) {
-        [cell addSubview:[NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"%i",newEventCount]]];
+        if(app.setBadge) {
+            UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"%i",newEventCount]:
+                                 app.setBadge];
+            badgeView.tag = 111;
+            [cell.contentView addSubview:badgeView];
+        }
+        else {
+            UIView *badge = [cell.contentView viewWithTag:111];
+            [badge removeFromSuperview];
+        }
     }
-    
     return cell;
 }
 

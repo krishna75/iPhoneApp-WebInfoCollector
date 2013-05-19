@@ -12,7 +12,7 @@
 
 static NSMutableDictionary *eventViewedDict = nil;
 
-@implementation BadgeManager  
+@implementation BadgeManager
     
 + (void) initialize {
     eventViewedDict = [BadgeManager readDict];

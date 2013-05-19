@@ -15,7 +15,7 @@
 #import "NSUtilities.h"
 #import "FirstJsonLoader.h"
 #import "BadgeManager.h"
-
+#import "AppDelegate.h"
 
 
 #define kjsonURL @"http://www.chitwan-abroad.org/cloud9/datesAndEvents.php"
@@ -44,14 +44,11 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
+    
     [super viewDidLoad];
     [self launchLoadData];
     [self decorateView];
-   
-    
-    
 }
 
 #pragma mark - launchLoadData and loadData are for a new thread
@@ -62,27 +59,28 @@
 - (void) loadData {
     [self processJson];
     [self.tableView reloadData];
+    [app RemoveLoadingView];
 }
 
 // the process also has spinner or loader
 - (void)processJson {
     
      //[self processBadge];
-    // the actuatl process 
+    // the actuatl process
+    [app AddloadingView];
     MyJson * json = [[MyJson alloc] init];
     jsonResults = [json toArray:kjsonURL];
 //    [self processBadge];
     
 }
 
-- (void)decorateView{
+- (void)decorateView {
     
     UIGraphicsBeginImageContext(self.view.frame.size);
     [[UIImage imageNamed:kTableBG] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
-    
 }
 
 
@@ -116,8 +114,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  
-    KrishnaCell * cell = [tableView dequeueReusableCellWithIdentifier:@"event1Cell"];
+    KrishnaCell * cell;
+    cell = nil;
+    cell = [tableView dequeueReusableCellWithIdentifier:@"event1Cell"];
     
     NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
     NSMutableString    *date = [eventCountDict objectForKey:@"date"];
@@ -130,7 +129,16 @@
     //computing and displaying new events as badge
     int newEventCount = [BadgeManager countNewEventsOfDate:date];
     if (newEventCount > 0) {
-        [cell addSubview:[NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"%i",newEventCount]]];
+        if(app.setBadge) {
+            UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"%i",newEventCount]:
+                                 app.setBadge];
+            badgeView.tag = 111;
+            [cell.contentView addSubview:badgeView];
+        }
+        else {
+            UIView *badge = [cell.contentView viewWithTag:111];
+            [badge removeFromSuperview];
+        }
     }
     return cell;
 }

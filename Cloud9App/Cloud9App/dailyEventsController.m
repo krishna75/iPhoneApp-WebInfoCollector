@@ -14,6 +14,7 @@
 #import "eventDetailsController.h"
 #import "NSUtilities.h"
 #import "BadgeManager.h"
+#import "AppDelegate.h"
 
 #define kjsonURL @"http://www.chitwan-abroad.org/cloud9/eventsOfADate.php?event_date="
 #define kTableBG @"bg_tableView.png"
@@ -42,7 +43,8 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad]; 
+    [super viewDidLoad];
+    [app AddloadingView];
     [self decorateView];
     [self launchLoadData];
 }
@@ -58,25 +60,17 @@
 - (void) loadData {    
     [self processJson];
     [self.tableView reloadData];
-
+    [app RemoveLoadingView];
 }
 
 // the process also has spinner or loader
 - (void)processJson {
     
     //loading... spinnner
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    [spinner setCenter:self.view.center];
-    [self.view addSubview:spinner];
-    [spinner startAnimating];
-    
     // the actuatl process 
     MyJson * json = [[MyJson alloc] init];
     NSString *jsonURL  = [NSString stringWithFormat:@"%@%@",kjsonURL,[_eventDict  objectForKey:@"date"]];
     jsonResults = [json toArray:jsonURL];
-    
-    [spinner stopAnimating];
-    
 }
 
 
@@ -146,9 +140,17 @@
     NSString    *date= [eventCountDict objectForKey:@"date"];
     NSMutableString *eventIdDate = [NSString stringWithFormat:@"%@:%@",eventId,date];
     if ([BadgeManager isNewEvent:eventIdDate]) {
-        [cell addSubview:[NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"new"]]];
+        if(app.setBadge) {
+            UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"new"]:
+                                 app.setBadge];
+            badgeView.tag = 111;
+            [cell.contentView addSubview:badgeView];
+        }
+        else {
+            UIView *badge = [cell.contentView viewWithTag:111];
+            [badge removeFromSuperview];
+        }
     }
-    
     return cell;
 }
 

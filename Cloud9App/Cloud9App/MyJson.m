@@ -12,8 +12,11 @@
 
 
 -(void) process {
-    
-    NSData* data = [NSData dataWithContentsOfURL: jsonURL];
+
+    NSError *error;
+    NSURLRequest* req=[NSURLRequest requestWithURL: jsonURL];
+    NSData* data=[NSURLConnection sendSynchronousRequest: req returningResponse: nil error: &error];
+    NSLog(@"error %@",[error localizedDescription]);
     [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data waitUntilDone:YES];
     
     
@@ -28,6 +31,7 @@
 
    
 }
+
 
 - (void) fetchedData: (NSData *) responseData {
     NSError* error;

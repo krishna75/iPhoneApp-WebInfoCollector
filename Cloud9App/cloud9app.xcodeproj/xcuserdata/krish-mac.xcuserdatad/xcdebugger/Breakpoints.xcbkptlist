@@ -91,7 +91,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "17"
          endingLineNumber = "17"
-         landmarkName = "+isNewEvent:"
+         landmarkName = "+countNewEvents:"
          landmarkType = "4">
       </FileBreakpoint>
       <FileBreakpoint
@@ -105,6 +105,19 @@
          startingLineNumber = "133"
          endingLineNumber = "133"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cloud9App/settingsController.m"
+         timestampString = "390638531.20064"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "44"
+         endingLineNumber = "44"
+         landmarkName = "-decorateView"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

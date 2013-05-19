@@ -14,12 +14,14 @@
 #import "eventDetailsController.h"
 #import "NSUtilities.h"
 #import "BadgeManager.h"
+#import "AppDelegate.h"
 
 #define kjsonURL @"http://www.chitwan-abroad.org/cloud9/eventsOfAVenue.php?venue_id="
 #define kTableBG @"bg_tableView.png"
 #define kCellBG @"bg_cell.png"
 #define kCellSelectedBG @"bg_cellSelected.png"
 #define kTitle @"Events"
+#define kBadgeTag 1111
 
 @interface eventsInAVenueController ()
 
@@ -31,6 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [app AddloadingView];
     [self launchLoadData];
     [self decorateView];  
 }
@@ -43,6 +46,7 @@
 - (void) loadData {
     [self processJson];
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil    waitUntilDone:NO];
+    [app RemoveLoadingView];
 }
 
 // the process also has spinner or loader
@@ -110,9 +114,17 @@
     NSString    *eventId = [eventCountDict objectForKey:@"event_id"];
     NSMutableString *eventIdDate = [NSString stringWithFormat:@"%@:%@",eventId,date];
     if ([BadgeManager isNewEvent:eventIdDate]) {
-        [cell addSubview:[NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"new"]]];
+        if(app.setBadge) {
+            UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"new"]:
+                                 app.setBadge];
+            badgeView.tag = 111;
+            [cell.contentView addSubview:badgeView];
+        }
+        else {
+            UIView *badge = [cell.contentView viewWithTag:111];
+            [badge removeFromSuperview];
+        }
     }
-    
     return cell;
 }
 

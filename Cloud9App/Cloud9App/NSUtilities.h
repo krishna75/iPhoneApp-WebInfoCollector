@@ -15,6 +15,7 @@
 + (UIButton*) getBackButon;
 + (UIImageView *) getImageViewOfUrl:(NSString *) strUrlForImage ;
 + (NSString *) getToday;
-+ (UIView *) getBadgeLikeView: (NSString *) strToDisplay;
++ (UIView *) getBadgeLikeView: (NSString *)strToDisplay:(BOOL)show ;
++(UIView *)removeBadgeLikeView:(NSString *)strToDisplay;
 
 @end

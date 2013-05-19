@@ -10,6 +10,7 @@
 
 @interface BadgeManager : NSObject
 
+
 + (void) saveDict;
 + (void) updateEvents;
 + (void) computeNewEvents;
