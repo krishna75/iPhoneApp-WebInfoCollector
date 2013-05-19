@@ -11,7 +11,7 @@
 <meta http-equiv="content-language" content="en-US">
 <meta name="copyright" content="Copyright 2013 Cloud Nine App.">
 
-<link rel="stylesheet" type="text/css" href="css/styles.css" media="screen">
+<link rel="stylesheet" type="text/css" href="../css/styles.css" media="screen">
 
 <style type="text/css"></style></head>
 
@@ -22,7 +22,7 @@
 <div id="logo_wrapper">
 
 <div id="logo">
-<img src="images/logo_text.png" alt="Cloud Nine App">
+<img src="../images/logo_text.png" alt="Cloud Nine App">
 </div>
 </div>
 
@@ -69,7 +69,7 @@ Please, be patient, we are comming soon...
 <div id="content_bottom">
 
 <div class="three">
-<img src="images/logo_cloud.png" alt="events">
+<img src="../images/logo_cloud.png" alt="events">
 <h1>Events</h1>
 <h2>Find out all the events by dates in this month in Oxford</h2>
 <br>
@@ -77,14 +77,14 @@ Please, be patient, we are comming soon...
 </div>
 
 <div class="three">
-<img src="images/logo_cloud.png" alt="venues">
+<img src="../images/logo_cloud.png" alt="venues">
 <h1>Venues</h1>
 <h2>Find out the vents by venues with in this month in Oxford</h2>
 <br>
 <a href="venue.php">find out more</a></div>
 
 <div class="three">
-<img src="images/logo_cloud.png" alt="preferences">
+<img src="../images/logo_cloud.png" alt="preferences">
 <h1>Preferences</h1>
 <h2> Find out the events by the genre of your choice</h2>
 <br><br>
@@ -104,7 +104,7 @@ Please, be patient, we are comming soon...
 <p>Copyright &copy 2013 <a href="index.php">Cloud Nine App</a>.
 
 
-<script src="js/urchin.js" type="text/javascript">
+<script src="../js/urchin.js" type="text/javascript">
 </script>
 <script type="text/javascript">
 _uacct = "UA-2565253-10";
