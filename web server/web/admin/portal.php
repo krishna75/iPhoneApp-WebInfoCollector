@@ -35,6 +35,7 @@ echo "<p><a href='signOut.php'>Sign Out </a></p>";
             echo "<a href='addPromoter.php' class='admin-link'>add a promoter </a>";
         //add admin
             echo "<a href='addAdmin.php' class='admin-link'>add an admin </a>";
+            echo "<a href='adminTasks.php' class='admin-link'>GoDaddy </a>";
         }
     }
 
