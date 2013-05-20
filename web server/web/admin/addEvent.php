@@ -10,15 +10,15 @@ require_once("includes/form_header.php") ;
     <li id="li_9">
         <label class="description" for="element_9">Date * </label>
     <span>
-        <input id="dd" name="dd" class="required element text" size="2" maxlength="2" value="" type="text"> /
+        <input title="day is required" id="date_1" name="dd" class="required element text" size="2" maxlength="2" value="" type="text"> /
         <label for="element_9_1">DD</label>
     </span>
     <span>
-        <input id="mm" name="mm" class="required element text" size="2" maxlength="2" value="" type="text"> /
+        <input title="month is required" id="date_2" name="mm" class="required element text" size="2" maxlength="2" value="" type="text"> /
         <label for="element_9_2">MM</label>
     </span>
     <span>
-        <input id="yyyy" name="yyyy" class="required element text" size="4" maxlength="4" value="" type="text">
+        <input title="year is required" id="date_3" name="yyyy" class="required element text" size="4" maxlength="4" value="" type="text">
         <label for="element_9_3">YYYY</label>
     </span>
 
@@ -27,8 +27,8 @@ require_once("includes/form_header.php") ;
     </span>
         <script type="text/javascript">
             Calendar.setup({
-                inputField: "element_9_3",
-                baseField: "element_9",
+                inputField: "date_3",
+                baseField: "date",
                 displayArea: "calendar_9",
                 button: "cal_img_9",
                 ifFormat: "%B %e, %Y",
