@@ -1,3 +1,4 @@
+<br/>
 <div id="footer_navigation">
     <ul>
         <li ><a href="../index.php">Home</a></li>

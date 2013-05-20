@@ -39,7 +39,7 @@ echo "<p><a href='signOut.php'>Sign Out </a></p>";
     }
 
 
-
+include_once("../admin/includes/footer.php");
 
 
 
