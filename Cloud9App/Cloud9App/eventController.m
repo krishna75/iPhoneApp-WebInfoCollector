@@ -18,7 +18,7 @@
 #import "AppDelegate.h"
 
 
-#define kjsonURL @"http://www.chitwan-abroad.org/cloud9/datesAndEvents.php"
+#define kjsonURL @"datesAndEvents.php"
 #define kTableBG @"bg_tableView.png"
 #define kCellBG @"bg_cell.png"
 #define kCellSelectedBG @"bg_cellSelected.png"
@@ -57,6 +57,7 @@
 }
 
 - (void) loadData {
+    [app AddloadingView];
     [self processJson];
     [self.tableView reloadData];
     [app RemoveLoadingView];
@@ -64,14 +65,8 @@
 
 // the process also has spinner or loader
 - (void)processJson {
-    
-     //[self processBadge];
-    // the actuatl process
-    [app AddloadingView];
     MyJson * json = [[MyJson alloc] init];
     jsonResults = [json toArray:kjsonURL];
-//    [self processBadge];
-    
 }
 
 - (void)decorateView {

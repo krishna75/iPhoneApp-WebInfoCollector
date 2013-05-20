@@ -16,7 +16,7 @@
 #import "BadgeManager.h"
 #import "AppDelegate.h"
 
-#define kjsonURL @"http://www.chitwan-abroad.org/cloud9/eventsOfAVenue.php?venue_id="
+#define kjsonURL @"eventsOfAVenue.php?venue_id="
 #define kTableBG @"bg_tableView.png"
 #define kCellBG @"bg_cell.png"
 #define kCellSelectedBG @"bg_cellSelected.png"

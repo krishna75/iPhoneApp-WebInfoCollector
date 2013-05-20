@@ -9,7 +9,8 @@
 #import "MyJson.h"
 
 @implementation MyJson ;
-
+    NSString *jsonHome = @"http://www.cnapp.co.uk/public/";
+//    NSString *jsonHome = @"http://www.chitwan-abroad.org/cloud9/";
 
 -(void) process {
 
@@ -41,9 +42,10 @@
 }
 
 -(NSMutableArray *) toArray:(NSString *) jsonUrlString; {
+//    NSString *completeJsonUrl = [NSString stringWithFormat:@"%@%@",jsonHome,jsonUrlString];
     
     //NSLog(@"json url inside json.m: %@", jsonUrlString);
-    jsonURL = [NSURL URLWithString: jsonUrlString];
+    jsonURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@",jsonHome,jsonUrlString]];
     [self process];
 
     return jsonResults;

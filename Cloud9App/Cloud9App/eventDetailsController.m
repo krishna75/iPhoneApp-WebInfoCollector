@@ -13,7 +13,7 @@
 #import "AppDelegate.h"
 
 
-#define kjsonURL @"http://www.chitwan-abroad.org/cloud9/eventDetail.php?event_id="
+#define kjsonURL @"eventDetail.php?event_id="
 #define kTableBG @"bg_tableView.png"
 #define kTitle @"Event"
 
