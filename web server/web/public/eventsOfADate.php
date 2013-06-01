@@ -27,7 +27,7 @@ while($row = mysql_fetch_assoc($result))
 					 "venue" => $row['venue'],
 					 "venue_id" => $row['venue_id'],
 					 "description" => $row['description'],
-					 "venue_logo" => "http://www.chitwan-abroad.org/cloud9/images/".$row['venue_logo']
+					 "venue_logo" => "http://www.cnapp.co.uk/images/logo/".$row['venue_logo']
 					 );
   }
   echo json_encode($output);
