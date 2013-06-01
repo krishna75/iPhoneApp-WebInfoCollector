@@ -15,7 +15,7 @@ while($row = mysql_fetch_assoc($result)){
         "id" => $row['id'],
         "genre" =>$row['genre'],
         "description" => $row['description'],
-        "photo" => "http://www.chitwan-abroad.org/cloud9/images/genres/".$row['photo']
+        "photo" => "http://www.cnapp.co.uk/images/genres/".$row['photo']
     );
 }
 

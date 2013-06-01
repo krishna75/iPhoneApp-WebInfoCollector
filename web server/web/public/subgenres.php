@@ -22,7 +22,7 @@ while($row = mysql_fetch_assoc($result)){
         "genre" =>$row['genre'],
         "subgenre" =>$row['subgenre'],
         "description" => $row['description'],
-        "photo" => "http://www.chitwan-abroad.org/cloud9/images/subgenres/".$row['photo']
+        "photo" => "http://www.cnapp.co.uk/images/subgenres/".$row['photo']
     );
 }
 
