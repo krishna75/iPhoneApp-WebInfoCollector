@@ -125,8 +125,7 @@
     int newEventCount = [BadgeManager countNewEventsOfDate:date];
     if (newEventCount > 0) {
         if(app.setBadge) {
-            UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"%i",newEventCount]:
-                                 app.setBadge];
+            UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"%i",newEventCount]:app.setBadge];
             badgeView.tag = 111;
             [cell.contentView addSubview:badgeView];
         }

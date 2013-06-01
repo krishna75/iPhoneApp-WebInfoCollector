@@ -9,8 +9,8 @@
 #import "FirstJsonLoader.h"
 #import "MyJson.h"
 
-#define kjsonVenueURL @"http://www.chitwan-abroad.org/cloud9/venuesAndEvents.php"
-#define kjsonEventURL @"http://www.chitwan-abroad.org/cloud9/datesAndEvents.php"
+#define kjsonVenueURL @"venuesAndEvents.php"
+#define kjsonEventURL @"datesAndEvents.php"
 
 static NSMutableArray *venues;
 static NSMutableArray *events;
@@ -25,9 +25,9 @@ static NSMutableArray  *venueDictArray;
     MyJson * json = [[MyJson alloc] init];
     venues = [json toArray:kjsonVenueURL];
     events = [json toArray:kjsonEventURL];
-    
-  
-    
+    NSLog(@" venues: url %@",kjsonVenueURL);
+    NSLog(@" venues: jsonResults %@",venues);
+
 }
 
 + (void) processVenues{

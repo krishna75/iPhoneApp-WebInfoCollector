@@ -68,10 +68,8 @@
     
     MyJson * json = [[MyJson alloc] init];
     NSString *url  = [NSString stringWithFormat:@"%@%@",kjsonURL,[_eventsDict  objectForKey:@"genre_id"]];
-    NSLog(@"url %@",url);
     NSString *urlString = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     jsonResults = [json toArray:urlString];
-    NSLog(@"jsonResults >> %@",jsonResults);
 }
 
 - (void)decorateView{

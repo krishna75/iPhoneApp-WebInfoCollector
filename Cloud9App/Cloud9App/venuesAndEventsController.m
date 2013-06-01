@@ -150,6 +150,8 @@
         [eventIdList addObject:[NSMutableString stringWithFormat:@"%@:%@",eventId,date]];   
     }
     
+    
+    //badges
     int newEventCount = [BadgeManager countNewEvents:eventIdList];
     if (newEventCount > 0) {
         if(app.setBadge) {

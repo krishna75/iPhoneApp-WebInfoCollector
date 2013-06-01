@@ -61,6 +61,7 @@
     // the actuatl process
     MyJson * json = [[MyJson alloc] init];
     NSString *jsonURL  = [NSString stringWithFormat:@"%@%@",kjsonURL,[_venueDict objectForKey:@"venue_id" ]];
+    NSLog(@"url %@",jsonURL);
     jsonResults = [json toArray:jsonURL];
     
     [spinner stopAnimating];

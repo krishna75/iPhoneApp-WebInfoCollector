@@ -303,10 +303,10 @@
 			isa = PBXGroup;
 			children = (
 				6325FF87171928730019DEDC /* preferencesController.h */,
-				6325FF88171928730019DEDC /* preferencesController.m */,
-				6325FF89171928730019DEDC /* preferencesEvents.h */,
-				6325FF8A171928730019DEDC /* preferencesEvents.m */,
 				63FF35091721925B004D7CB6 /* PrefsEventsDetail.h */,
+				6325FF89171928730019DEDC /* preferencesEvents.h */,
+				6325FF88171928730019DEDC /* preferencesController.m */,
+				6325FF8A171928730019DEDC /* preferencesEvents.m */,
 				63FF350A1721925B004D7CB6 /* PrefsEventsDetail.m */,
 			);
 			name = Preferences;
