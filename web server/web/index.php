@@ -111,7 +111,7 @@ _uacct = "UA-2565253-10";
 urchinTracker();
 </script>
 
-    <a title="stat counter" href="http://statcounter.com/p8942593/summary//" target="_blank"><img src="http://c.statcounter.com/8942593/0/f0161197/0/" alt="website tonight analytics" style="border:none;"></a>
+    <a title="stat counter" href="http://statcounter.com/p8942593/summary/" target="_blank"><img src="http://c.statcounter.com/8942593/0/f0161197/0/" alt="website tonight analytics" style="border:none;"></a>
 
 </div>
 
