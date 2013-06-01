@@ -113,6 +113,7 @@
     NSString *day = [NSString stringWithFormat:@"%@",[[jsonResults objectAtIndex:indexPath.row]
                                                       objectForKey:@"day"]];
     cell.descriptionLabel.text = [NSString stringWithFormat:@"%@,%@",date,day];
+    [cell addSubview: [NSUtilities getResizedImageViewForCell:[UIImage imageNamed:@"cell-logo.png"]]];
     return cell;
 }
 

@@ -25,8 +25,8 @@ static NSMutableArray  *venueDictArray;
     MyJson * json = [[MyJson alloc] init];
     venues = [json toArray:kjsonVenueURL];
     events = [json toArray:kjsonEventURL];
-    NSLog(@" venues: url %@",kjsonVenueURL);
-    NSLog(@" venues: jsonResults %@",venues);
+    NSLog(@"FirstJsonLoader processJson: venues: url %@",kjsonVenueURL);
+    NSLog(@"FirstJsonLoader processJson: venues: jsonResults %@",venues);
 
 }
 

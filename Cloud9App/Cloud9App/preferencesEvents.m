@@ -71,9 +71,9 @@
     MyJson * json = [[MyJson alloc] init];
     NSString *url  = [NSString stringWithFormat:@"%@%@",kjsonURL,[_eventDict  objectForKey:@"id"]];
     NSString *jsonURL = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"pref 2: jsonURL >> %@",jsonURL);
+    NSLog(@"pref 2 processJson: jsonURL >> %@",jsonURL);
     jsonResults = [json toArray:jsonURL];
-    NSLog(@"pref 2: jsonResults >> %@",jsonResults);
+    NSLog(@"pref 2 processJson: jsonResults >> %@",jsonResults);
     [self.tableView reloadData];
 }
 

@@ -61,7 +61,7 @@
     // the actuatl process
     MyJson * json = [[MyJson alloc] init];
     NSString *jsonURL  = [NSString stringWithFormat:@"%@%@",kjsonURL,[_venueDict objectForKey:@"venue_id" ]];
-    NSLog(@"url %@",jsonURL);
+    NSLog(@"Venue II processJson: url %@",jsonURL);
     jsonResults = [json toArray:jsonURL];
     
     [spinner stopAnimating];
@@ -110,6 +110,7 @@
 
     cell.titleLabel.text = eventTitle;
     cell.descriptionLabel.text = [NSUtilities getFormatedDate:date];
+    [cell addSubview: [NSUtilities getResizedImageViewForCell:[UIImage imageNamed:@"cell-logo.png"]]];
     
     //displaying new events as badge
     NSString    *eventId = [eventCountDict objectForKey:@"event_id"];
@@ -119,10 +120,10 @@
             UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"new"]:
                                  app.setBadge];
             badgeView.tag = 111;
-            [cell.contentView addSubview:badgeView];
+            [cell addSubview:badgeView];
         }
         else {
-            UIView *badge = [cell.contentView viewWithTag:111];
+            UIView *badge = [cell viewWithTag:111];
             [badge removeFromSuperview];
         }
     }

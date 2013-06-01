@@ -66,7 +66,7 @@
     
     MyJson * json = [[MyJson alloc] init];
     jsonResults = [json toArray:kjsonURL];
-    NSLog(@"pref 1: jsonResults %@",jsonResults);
+    NSLog(@"prefController processJson: jsonResults %@",jsonResults);
 }
 
 - (void)decorateView {

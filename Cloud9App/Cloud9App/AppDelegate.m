@@ -21,7 +21,7 @@
 }
 
 -(void)AddloadingView {
-    
+
     loadingView=[[UIView alloc]initWithFrame:CGRectMake(0.0,0.0,320.0,480.0)];
     loadingView.backgroundColor=[UIColor clearColor];
     loadingView.tag=kLoadingTag;

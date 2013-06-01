@@ -104,10 +104,13 @@ return btn;
     NSURL *imageURL = [NSURL URLWithString:strUrlForImage];
     NSData  *imageData = [NSData dataWithContentsOfURL:imageURL];
     UIImage *logoImage = [[UIImage alloc] initWithData:imageData];
-    
+    return [NSUtilities getResizedImageViewForCell:logoImage];
+}
+
+
++ (UIImageView *) getResizedImageViewForCell:(UIImage *) logoImage {
     UIImageView *imageView = [[UIImageView alloc] initWithImage:logoImage];
     imageView.frame = CGRectMake(0, 0, 73, 73);
-    
     return imageView;
 }
 
@@ -120,7 +123,7 @@ return btn;
 
 + (UIView *) getBadgeLikeView: (NSString *)strToDisplay:(BOOL)show {
     int len = strToDisplay.length * 10;
-    UIView* v = [[UIView alloc] initWithFrame:CGRectMake(50-len,2,len+10,20)] ;
+    UIView* v = [[UIView alloc] initWithFrame:CGRectMake(65-len,1,len+10,20)] ;
     [v.layer setCornerRadius:8];
     [v.layer setBorderColor:[UIColor whiteColor].CGColor];
     [v.layer setBorderWidth:2];
@@ -144,15 +147,8 @@ return btn;
     NSArray *colors = [NSArray arrayWithObjects:(id)colorOne.CGColor, colorTwo.CGColor, nil];
     NSNumber *stopOne = [NSNumber numberWithFloat:0.0];
     NSNumber *stopTwo = [NSNumber numberWithFloat:1.0];
-//
+    
     NSArray *locations = [NSArray arrayWithObjects:stopOne, stopTwo, nil];
-//
-    //[CAGradientLayer layer];
-//    headerLayer.colors = colors;
-//    headerLayer.locations = locations;
-//    
-//    headerLayer.frame = label.bounds;
-//    [label.layer insertSublayer:headerLayer atIndex:0];
     
     if(show)
         [v setHidden:NO];
@@ -169,6 +165,43 @@ return btn;
     v.backgroundColor = [UIColor clearColor];
     return v;
 }
+
++(UIColor*)colorWithHexString:(NSString*)hex
+{
+    NSString *cString = [[hex stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
+    
+    // String should be 6 or 8 characters
+    if ([cString length] < 6) return [UIColor grayColor];
+    
+    // strip 0X if it appears
+    if ([cString hasPrefix:@"0X"]) cString = [cString substringFromIndex:2];
+    
+    if ([cString length] != 6) return  [UIColor grayColor];
+    
+    // Separate into r, g, b substrings
+    NSRange range;
+    range.location = 0;
+    range.length = 2;
+    NSString *rString = [cString substringWithRange:range];
+    
+    range.location = 2;
+    NSString *gString = [cString substringWithRange:range];
+    
+    range.location = 4;
+    NSString *bString = [cString substringWithRange:range];
+    
+    // Scan values
+    unsigned int r, g, b;
+    [[NSScanner scannerWithString:rString] scanHexInt:&r];
+    [[NSScanner scannerWithString:gString] scanHexInt:&g];
+    [[NSScanner scannerWithString:bString] scanHexInt:&b];
+    
+    return [UIColor colorWithRed:((float) r / 255.0f)
+                           green:((float) g / 255.0f)
+                            blue:((float) b / 255.0f)
+                           alpha:1.0f];
+} 
+
 
 @end
 

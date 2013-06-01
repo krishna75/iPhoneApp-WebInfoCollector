@@ -14,8 +14,10 @@
 + (UIView *) getHeaderView:(UIImage *) logoImage forTitle:(NSString *)titleText forDetail:(NSString *)description;
 + (UIButton*) getBackButon;
 + (UIImageView *) getImageViewOfUrl:(NSString *) strUrlForImage ;
++ (UIImageView *) getResizedImageViewForCell:(UIImage *) logoImage;
 + (NSString *) getToday;
 + (UIView *) getBadgeLikeView: (NSString *)strToDisplay:(BOOL)show ;
 +(UIView *)removeBadgeLikeView:(NSString *)strToDisplay;
++(UIColor*)colorWithHexString:(NSString*)hex;
 
 @end

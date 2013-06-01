@@ -16,7 +16,7 @@ static NSMutableDictionary *eventViewedDict = nil;
     
 + (void) initialize {
     eventViewedDict = [BadgeManager readDict];
-    NSLog(@" total dict sizeread from file , %i", eventViewedDict.allKeys.count );
+    NSLog(@"BadgeManager initialize: total dict size read from file , %i", eventViewedDict.allKeys.count );
     if (!eventViewedDict){
         eventViewedDict = [[NSMutableDictionary alloc]init];
     }
@@ -28,9 +28,9 @@ static NSMutableDictionary *eventViewedDict = nil;
 + (void) updateEvents {
     [BadgeManager removePastEvents:eventViewedDict];
     MyJson *json = [[MyJson alloc] init];
-    NSArray *jsonResults = [json toArray:@"http://www.chitwan-abroad.org/cloud9/eventsForBadgeManager.php"];
+    NSArray *jsonResults = [json toArray:@"eventsForBadgeManager.php"];
     
-    NSLog(@"size of the json results: %i", [jsonResults count]);
+    NSLog(@"BadgeManager updateEvents: size of the json results: %i", [jsonResults count]);
        for (int i= 0; i< jsonResults.count; i++) {
             NSMutableDictionary *eventCountDict = [jsonResults objectAtIndex:i];
             NSMutableString    *eventId = [eventCountDict objectForKey:@"id"];
@@ -42,7 +42,7 @@ static NSMutableDictionary *eventViewedDict = nil;
     
        }
     
-    NSLog(@" total dict size , %i", eventViewedDict.allKeys.count );
+    NSLog(@"BadgeManager updateEvents: total dict size , %i", eventViewedDict.allKeys.count );
     [BadgeManager computeNewEvents];
 }
 
@@ -63,7 +63,7 @@ static NSMutableDictionary *eventViewedDict = nil;
 
 + (void) addViewedEvent: (NSMutableString *) eventId onDate: (NSMutableString *) date {
     NSMutableString *eventKey = [NSString stringWithFormat:@"%@:%@",eventId,date];
-    NSLog(@"%@", eventKey);
+    NSLog(@"BadgeManager addViewedEvent: %@", eventKey);
     for (int i = 0; i< [eventViewedDict count]; i++) {
         if ([eventViewedDict.allKeys[i] isEqual: eventKey]){
             [eventViewedDict setObject:@"VIEWED" forKey:eventKey];
@@ -88,7 +88,7 @@ static NSMutableDictionary *eventViewedDict = nil;
 
 + (Boolean) isNewEvent: (NSMutableString *) eventId {
     NSMutableString *value = [eventViewedDict objectForKey:eventId];
-    NSLog(@"value = %@",value);
+    NSLog(@"BadgeManager isNewEvent: value = %@",value);
     if ([value isEqual: @"VIEWED"]){
         return FALSE;
     } else {

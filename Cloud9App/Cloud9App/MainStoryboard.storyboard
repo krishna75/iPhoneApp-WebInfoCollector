@@ -158,39 +158,6 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell opaque="NO" alpha="0.60000002384185791" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="event1Cell" rowHeight="73" id="7Ep-Vy-eJX" customClass="KrishnaCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="73"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="72"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5bR-s3-eGF">
-                                            <rect key="frame" x="88" y="13" width="206" height="34"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wXJ-D7-sRg">
-                                            <rect key="frame" x="88" y="31" width="212" height="31"/>
-                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon.png" id="Mtf-4p-iRd">
-                                            <rect key="frame" x="0.5" y="1" width="59" height="72"/>
-                                        </imageView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <connections>
-                                    <outlet property="cellImage" destination="Mtf-4p-iRd" id="1jB-bE-Uct"/>
-                                    <outlet property="descriptionLabel" destination="wXJ-D7-sRg" id="kZo-Om-MGy"/>
-                                    <outlet property="titleLabel" destination="5bR-s3-eGF" id="3zv-1b-Z0m"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="vOs-nA-ia0" id="Abb-uL-A77"/>
                             <outlet property="delegate" destination="vOs-nA-ia0" id="l3e-yu-ty6"/>
@@ -436,13 +403,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="afE-fX-Zq0">
-                                            <rect key="frame" x="10" y="7" width="273" height="34"/>
+                                            <rect key="frame" x="77" y="4" width="201" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="akj-jM-Fwy">
-                                            <rect key="frame" x="10" y="26" width="299" height="31"/>
+                                            <rect key="frame" x="77" y="26" width="209" height="31"/>
                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -586,13 +553,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hg4-4O-W8m">
-                                            <rect key="frame" x="10" y="7" width="273" height="34"/>
+                                            <rect key="frame" x="77" y="7" width="211" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uU5-55-odJ">
-                                            <rect key="frame" x="10" y="29" width="299" height="31"/>
+                                            <rect key="frame" x="77" y="29" width="299" height="33"/>
                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -655,7 +622,6 @@
         <image name="city.png" width="23" height="27"/>
         <image name="cog.png" width="26" height="26"/>
         <image name="first.png" width="30" height="30"/>
-        <image name="icon.png" width="57" height="57"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

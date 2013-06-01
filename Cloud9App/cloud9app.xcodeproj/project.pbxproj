@@ -113,6 +113,8 @@
 		4EA4FB9016EB96F000F9A66C /* FirstJsonLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA4FB8F16EB96F000F9A66C /* FirstJsonLoader.m */; };
 		4EACC92016F5345E00EE41B3 /* -568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EACC91F16F5345E00EE41B3 /* -568h@2x.png */; };
 		4EAEAD9D17037881006AE83F /* BadgeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAEAD9C17037881006AE83F /* BadgeManager.m */; };
+		4EAF2523175A6F8B00FC3A4E /* cell-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EAF2522175A6F8B00FC3A4E /* cell-logo.png */; };
+		4EAF2526175A86D200FC3A4E /* KSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF2525175A86D200FC3A4E /* KSCell.m */; };
 		4ED55A1016D13C7D00D1F02D /* eventController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED55A0F16D13C7D00D1F02D /* eventController.m */; };
 		4ED55A1316D159B700D1F02D /* KrishnaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED55A1216D159B700D1F02D /* KrishnaCell.m */; };
 		4EEBFC3416DC581700DA5C0A /* HeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEBFC3316DC581700DA5C0A /* HeaderCell.m */; };
@@ -202,6 +204,9 @@
 		4EACC91F16F5345E00EE41B3 /* -568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "-568h@2x.png"; sourceTree = "<group>"; };
 		4EAEAD9B17037881006AE83F /* BadgeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgeManager.h; sourceTree = "<group>"; };
 		4EAEAD9C17037881006AE83F /* BadgeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgeManager.m; sourceTree = "<group>"; };
+		4EAF2522175A6F8B00FC3A4E /* cell-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cell-logo.png"; path = "Cloud9App/cell-logo.png"; sourceTree = "<group>"; };
+		4EAF2524175A86D200FC3A4E /* KSCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSCell.h; sourceTree = "<group>"; };
+		4EAF2525175A86D200FC3A4E /* KSCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSCell.m; sourceTree = "<group>"; };
 		4ED55A0E16D13C7D00D1F02D /* eventController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eventController.h; sourceTree = "<group>"; };
 		4ED55A0F16D13C7D00D1F02D /* eventController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eventController.m; sourceTree = "<group>"; };
 		4ED55A1116D159B700D1F02D /* KrishnaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KrishnaCell.h; sourceTree = "<group>"; };
@@ -374,6 +379,8 @@
 				4EA4FB8F16EB96F000F9A66C /* FirstJsonLoader.m */,
 				4EAEAD9B17037881006AE83F /* BadgeManager.h */,
 				4EAEAD9C17037881006AE83F /* BadgeManager.m */,
+				4EAF2524175A86D200FC3A4E /* KSCell.h */,
+				4EAF2525175A86D200FC3A4E /* KSCell.m */,
 			);
 			name = "Reusable Files";
 			sourceTree = "<group>";
@@ -401,6 +408,7 @@
 		4E874E0C16D1218E00CFDA27 = {
 			isa = PBXGroup;
 			children = (
+				4EAF2522175A6F8B00FC3A4E /* cell-logo.png */,
 				6325FF9017192A5B0019DEDC /* QuartzCore.framework */,
 				4EACC91F16F5345E00EE41B3 /* -568h@2x.png */,
 				4E9F501716E94724009A9D1B /* icon_retina.png */,
@@ -607,6 +615,7 @@
 				63A91988171887CF00997F70 /* bg_cellSelected.png in Resources */,
 				63A9198A171887E400997F70 /* bg_cell.png in Resources */,
 				6325FF8F1719288D0019DEDC /* MainStoryboard.storyboard in Resources */,
+				4EAF2523175A6F8B00FC3A4E /* cell-logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -736,6 +745,7 @@
 				6325FF8C171928730019DEDC /* preferencesEvents.m in Sources */,
 				63FF350B1721925B004D7CB6 /* PrefsEventsDetail.m in Sources */,
 				632BEB7F17304F9000BACAF2 /* SettingsDetail.m in Sources */,
+				4EAF2526175A86D200FC3A4E /* KSCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -144,10 +144,10 @@
             UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"new"]:
                                  app.setBadge];
             badgeView.tag = 111;
-            [cell.contentView addSubview:badgeView];
+            [cell addSubview:badgeView];
         }
         else {
-            UIView *badge = [cell.contentView viewWithTag:111];
+            UIView *badge = [cell viewWithTag:111];
             [badge removeFromSuperview];
         }
     }

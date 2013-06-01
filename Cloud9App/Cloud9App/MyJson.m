@@ -16,7 +16,10 @@
     NSError *error;
     NSURLRequest* req=[NSURLRequest requestWithURL: jsonURL];
     NSData* data=[NSURLConnection sendSynchronousRequest: req returningResponse: nil error: &error];
-    NSLog(@"error %@",[error localizedDescription]);
+    if (error != NULL) {
+        NSLog(@"MyJson process: error %@",[error localizedDescription]);
+    }
+    
     [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data waitUntilDone:YES];
 }
 

@@ -16,6 +16,7 @@
 #import "FirstJsonLoader.h"
 #import "BadgeManager.h"
 #import "AppDelegate.h"
+#import "KSCell.h"
 
 
 #define kjsonURL @"datesAndEvents.php"
@@ -109,9 +110,17 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    KrishnaCell * cell;
-    cell = nil;
-    cell = [tableView dequeueReusableCellWithIdentifier:@"event1Cell"];
+    
+    KSCell *cell;
+    static NSString *CellIdentifier = @"eventCell1";
+    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[KSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier ] ;
+    }
+    
+//    KrishnaCell * cell;
+//    cell = nil;
+//    cell = [tableView dequeueReusableCellWithIdentifier:@"event1Cell"];
     
     NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
     NSMutableString    *date = [eventCountDict objectForKey:@"date"];
@@ -120,17 +129,20 @@
 
     cell.titleLabel.text = [NSUtilities getFormatedDate:date];
     cell.descriptionLabel.text = countDetail;
+    cell.moreLabel.text = countDetail;
+    [cell addSubview: [NSUtilities getResizedImageViewForCell:[UIImage imageNamed:@"cell-logo.png"]]];
     
     //computing and displaying new events as badge
     int newEventCount = [BadgeManager countNewEventsOfDate:date];
     if (newEventCount > 0) {
         if(app.setBadge) {
-            UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"%i",newEventCount]:app.setBadge];
+            UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"%i",newEventCount]:
+                                 app.setBadge];
             badgeView.tag = 111;
-            [cell.contentView addSubview:badgeView];
+            [cell addSubview:badgeView];
         }
         else {
-            UIView *badge = [cell.contentView viewWithTag:111];
+            UIView *badge = [cell viewWithTag:111];
             [badge removeFromSuperview];
         }
     }
