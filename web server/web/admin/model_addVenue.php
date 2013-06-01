@@ -47,8 +47,8 @@ if ($logoValidated && $photoValidated) {
     $result = mysql_query($query);
    if ($result){
         //uploading
-//       $logoUploadMessage = uploadImage($logoPrefix, $logo, $logoDir);
-//       $photoUploadMessage = uploadImage($photoPrefix, $photo, $photoDir);
+       $logoUploadMessage = uploadImage($logoPrefix, $logo, $logoDir);
+       $photoUploadMessage = uploadImage($photoPrefix, $photo, $photoDir);
        returnMessage('portal', '<b>Sucess !!!</b> <br/>'.$logoUploadMessage."<br/> ".$photoUploadMessage);
     } else {
        returnMessage("addVenue", "<b>Error.. on adding data </b> <br/>". mysql_error($con));
