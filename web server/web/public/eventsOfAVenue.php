@@ -13,7 +13,7 @@ $result = mysql_query("SELECT
 						DATE_FORMAT(date, '%W') as day,
 						e.title AS event_title
 						
-						FROM Venue AS v LEFT JOIN Events AS e ON v.id = e.venue_id 
+						FROM Venues AS v LEFT JOIN Events AS e ON v.id = e.venue_id
 						WHERE v.id = '$venue_id' AND date>= '$today' AND date<='$oneMonthLater' 
 
 						ORDER BY date ASC

@@ -13,7 +13,7 @@ if (!$db)
   die('Could not connect to the database: ' . mysql_error());
   }
 
-$result = mysql_query("SELECT * FROM Venue where id=$id;");
+$result = mysql_query("SELECT * FROM Venues where id=$id;");
 
 while($row = mysql_fetch_assoc($result)){
    //echo $row['name'] . " -- " . $row['address']."<img src='http://www.chitwan-abroad.org/cloud9/images/".$row['logo']. "'/>";

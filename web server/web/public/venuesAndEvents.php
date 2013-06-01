@@ -9,7 +9,7 @@ $result = mysql_query("SELECT
 						v.logo as logo,
 						COUNT(e.id) as quantity
 						
-						FROM Venue AS v LEFT JOIN Events AS e ON v.id = e.venue_id 
+						FROM Venues AS v LEFT JOIN Events AS e ON v.id = e.venue_id
 						WHERE date>= '$today' AND date<='$oneMonthLater'
 						GROUP BY venue_id
 						ORDER BY name ASC

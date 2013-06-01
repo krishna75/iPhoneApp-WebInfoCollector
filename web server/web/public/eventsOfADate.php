@@ -15,7 +15,7 @@ $result = mysql_query("SELECT
 						e.description AS description,
 						v.logo as venue_logo
 						
-						FROM Venue AS v LEFT JOIN Events AS e ON v.id = e.venue_id 
+						FROM Venues AS v LEFT JOIN Events AS e ON v.id = e.venue_id
 						WHERE e.date = '$event_date';");
 
 while($row = mysql_fetch_assoc($result))
