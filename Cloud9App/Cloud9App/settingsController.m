@@ -8,7 +8,6 @@
 
 #import "settingsController.h"
 #import "MyJson.h"
-#import "KrishnaCell.h"
 #import "SettingsDetail.h"
 #import "AppDelegate.h"
 

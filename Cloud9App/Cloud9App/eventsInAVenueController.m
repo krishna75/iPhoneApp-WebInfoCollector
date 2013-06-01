@@ -9,12 +9,12 @@
 #import "eventsInAVenueController.h"
 
 #import <QuartzCore/QuartzCore.h>
-#import "KrishnaCell.h"
 #import "MyJson.h"
 #import "eventDetailsController.h"
 #import "NSUtilities.h"
 #import "BadgeManager.h"
 #import "AppDelegate.h"
+#import "KSCell.h"
 
 #define kjsonURL @"eventsOfAVenue.php?venue_id="
 #define kTableBG @"bg_tableView.png"
@@ -102,7 +102,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    KrishnaCell * cell = [tableView dequeueReusableCellWithIdentifier:@"venue2Cell"];
+    static NSString *CellIdentifier = @"venueCell2";
+    KSCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[KSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier ] ;
+    }
     
     NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
     NSString    *date = [eventCountDict objectForKey:@"date"];
@@ -143,9 +147,13 @@
 // header for the table view controller
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    UIImage *logoImage = [_venueDict objectForKey:@"logo"];
     NSString *title =  [_venueDict objectForKey:@"name"];
     NSString *description = [_venueDict objectForKey:@"address"];
+    
+    NSString *logo = [_venueDict objectForKey:@"logo"];
+    NSURL *imageURL = [NSURL URLWithString:logo];
+    NSData  *imageData = [NSData dataWithContentsOfURL:imageURL];
+    UIImage *logoImage = [[UIImage alloc] initWithData:imageData];
     
     return [NSUtilities getHeaderView:logoImage forTitle:title forDetail:description];
 }

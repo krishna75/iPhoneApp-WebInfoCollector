@@ -8,12 +8,12 @@
 
 #import "PrefsEventsDetail.h"
 #import <QuartzCore/QuartzCore.h>
-#import "KrishnaCell.h"
 #import "MyJson.h"
 #import "eventDetailsController.h"
 #import "NSUtilities.h"
 #import "BadgeManager.h"
 #import "AppDelegate.h"
+#import "KSCell.h"
 
 #define kjsonURL @"eventsOfGenre.php?subgenre_id="
 #define kTableBG @"bg_tableView.png"
@@ -105,7 +105,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    KrishnaCell * cell = [tableView dequeueReusableCellWithIdentifier:@"prefseventCell"];
+    static NSString *CellIdentifier = @"PrefCell1";
+    KSCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[KSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier ] ;
+    }
     
     cell.titleLabel.text=[NSString stringWithFormat:@"%@",[[jsonResults objectAtIndex:indexPath.row] objectForKey:@"event_title"]];
     NSString *date = [NSString stringWithFormat:@"%@",[[jsonResults objectAtIndex:indexPath.row]
@@ -131,7 +135,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     NSString *title = [NSString stringWithFormat:@"%@",self.header];
-    return [NSUtilities getHeaderView:nil forTitle:title forDetail:title];
+    return [NSUtilities getHeaderView:nil forTitle:title forDetail:@" "];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

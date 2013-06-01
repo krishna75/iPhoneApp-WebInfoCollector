@@ -8,6 +8,7 @@
 
 #import "FirstJsonLoader.h"
 #import "MyJson.h"
+#import "NSUtilities.h"
 
 #define kjsonVenueURL @"venuesAndEvents.php"
 #define kjsonEventURL @"datesAndEvents.php"
@@ -46,9 +47,6 @@ static NSMutableArray  *venueDictArray;
         NSMutableString *countDetail = [NSMutableString stringWithFormat:@"%@ Event(s)",quantity];
         
         NSMutableString *logo = [jsonDict objectForKey:@"logo"];
-        NSURL *imageURL = [NSURL URLWithString:logo];
-        NSData  *imageData = [NSData dataWithContentsOfURL:imageURL];
-        UIImage *logoImage = [[UIImage alloc] initWithData:imageData];
         
         //create a new dictionary of processed values
         NSMutableDictionary *eventDict = [[NSMutableDictionary alloc] init];
@@ -56,7 +54,7 @@ static NSMutableArray  *venueDictArray;
         [eventDict setObject:name forKey:@"name"];
         [eventDict setObject:address forKey:@"address"];
         [eventDict setObject:countDetail forKey:@"countDetail"];
-        [eventDict setObject:logoImage forKey:@"logoImage"];
+        [eventDict setObject:logo forKey:@"logo"];
         
         [venueDictArray addObject:eventDict];
         

@@ -95,10 +95,6 @@
 		4EA1D1B91709C18100D624E5 /* Default-568h@2x.png in Sources */ = {isa = PBXBuildFile; fileRef = 4E874E2E16D1218E00CFDA27 /* Default-568h@2x.png */; };
 		4EA1D1BA1709C18100D624E5 /* MyJson.h in Sources */ = {isa = PBXBuildFile; fileRef = 4E13541516D7902300578F16 /* MyJson.h */; };
 		4EA1D1BB1709C18100D624E5 /* MyJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E13541616D7902300578F16 /* MyJson.m */; };
-		4EA1D1BC1709C18100D624E5 /* KrishnaCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 4ED55A1116D159B700D1F02D /* KrishnaCell.h */; };
-		4EA1D1BD1709C18100D624E5 /* KrishnaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED55A1216D159B700D1F02D /* KrishnaCell.m */; };
-		4EA1D1BE1709C18100D624E5 /* HeaderCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 4EEBFC3216DC581700DA5C0A /* HeaderCell.h */; };
-		4EA1D1BF1709C18100D624E5 /* HeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEBFC3316DC581700DA5C0A /* HeaderCell.m */; };
 		4EA1D1C01709C18100D624E5 /* NSUtilities.h in Sources */ = {isa = PBXBuildFile; fileRef = 4EA4FB8B16EB743300F9A66C /* NSUtilities.h */; };
 		4EA1D1C11709C18100D624E5 /* NSUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA4FB8C16EB743300F9A66C /* NSUtilities.m */; };
 		4EA1D1C21709C1FE00D624E5 /* FirstJsonLoader.h in Sources */ = {isa = PBXBuildFile; fileRef = 4EA4FB8E16EB96F000F9A66C /* FirstJsonLoader.h */; };
@@ -116,8 +112,6 @@
 		4EAF2523175A6F8B00FC3A4E /* cell-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EAF2522175A6F8B00FC3A4E /* cell-logo.png */; };
 		4EAF2526175A86D200FC3A4E /* KSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF2525175A86D200FC3A4E /* KSCell.m */; };
 		4ED55A1016D13C7D00D1F02D /* eventController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED55A0F16D13C7D00D1F02D /* eventController.m */; };
-		4ED55A1316D159B700D1F02D /* KrishnaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED55A1216D159B700D1F02D /* KrishnaCell.m */; };
-		4EEBFC3416DC581700DA5C0A /* HeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEBFC3316DC581700DA5C0A /* HeaderCell.m */; };
 		6325FF8B171928730019DEDC /* preferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6325FF88171928730019DEDC /* preferencesController.m */; };
 		6325FF8C171928730019DEDC /* preferencesEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 6325FF8A171928730019DEDC /* preferencesEvents.m */; };
 		6325FF8F1719288D0019DEDC /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6325FF8E1719288D0019DEDC /* MainStoryboard.storyboard */; };
@@ -209,10 +203,6 @@
 		4EAF2525175A86D200FC3A4E /* KSCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSCell.m; sourceTree = "<group>"; };
 		4ED55A0E16D13C7D00D1F02D /* eventController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eventController.h; sourceTree = "<group>"; };
 		4ED55A0F16D13C7D00D1F02D /* eventController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eventController.m; sourceTree = "<group>"; };
-		4ED55A1116D159B700D1F02D /* KrishnaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KrishnaCell.h; sourceTree = "<group>"; };
-		4ED55A1216D159B700D1F02D /* KrishnaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KrishnaCell.m; sourceTree = "<group>"; };
-		4EEBFC3216DC581700DA5C0A /* HeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderCell.h; sourceTree = "<group>"; };
-		4EEBFC3316DC581700DA5C0A /* HeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderCell.m; sourceTree = "<group>"; };
 		6325FF87171928730019DEDC /* preferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = preferencesController.h; sourceTree = "<group>"; };
 		6325FF88171928730019DEDC /* preferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = preferencesController.m; sourceTree = "<group>"; };
 		6325FF89171928730019DEDC /* preferencesEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = preferencesEvents.h; sourceTree = "<group>"; };
@@ -369,10 +359,6 @@
 			children = (
 				4E13541516D7902300578F16 /* MyJson.h */,
 				4E13541616D7902300578F16 /* MyJson.m */,
-				4ED55A1116D159B700D1F02D /* KrishnaCell.h */,
-				4ED55A1216D159B700D1F02D /* KrishnaCell.m */,
-				4EEBFC3216DC581700DA5C0A /* HeaderCell.h */,
-				4EEBFC3316DC581700DA5C0A /* HeaderCell.m */,
 				4EA4FB8B16EB743300F9A66C /* NSUtilities.h */,
 				4EA4FB8C16EB743300F9A66C /* NSUtilities.m */,
 				4EA4FB8E16EB96F000F9A66C /* FirstJsonLoader.h */,
@@ -711,10 +697,6 @@
 				4EA1D1B91709C18100D624E5 /* Default-568h@2x.png in Sources */,
 				4EA1D1BA1709C18100D624E5 /* MyJson.h in Sources */,
 				4EA1D1BB1709C18100D624E5 /* MyJson.m in Sources */,
-				4EA1D1BC1709C18100D624E5 /* KrishnaCell.h in Sources */,
-				4EA1D1BD1709C18100D624E5 /* KrishnaCell.m in Sources */,
-				4EA1D1BE1709C18100D624E5 /* HeaderCell.h in Sources */,
-				4EA1D1BF1709C18100D624E5 /* HeaderCell.m in Sources */,
 				4EA1D1C01709C18100D624E5 /* NSUtilities.h in Sources */,
 				4EA1D1C11709C18100D624E5 /* NSUtilities.m in Sources */,
 				4EA1D1871709C0A100D624E5 /* BadgeManager.h in Sources */,
@@ -730,14 +712,12 @@
 				4E874E2516D1218E00CFDA27 /* main.m in Sources */,
 				4E874E2916D1218E00CFDA27 /* AppDelegate.m in Sources */,
 				4ED55A1016D13C7D00D1F02D /* eventController.m in Sources */,
-				4ED55A1316D159B700D1F02D /* KrishnaCell.m in Sources */,
 				4E6F3FB816D62E1C0004098A /* settingsController.m in Sources */,
 				4E13541716D7902300578F16 /* MyJson.m in Sources */,
 				4E57D12116D8B97500506E44 /* dailyEventsController.m in Sources */,
 				4E57D12416D8C37400506E44 /* eventDetailsController.m in Sources */,
 				4E9E2D5816DA10C100F0E661 /* venuesAndEventsController.m in Sources */,
 				4E9E2D5B16DA10DF00F0E661 /* eventsInAVenueController.m in Sources */,
-				4EEBFC3416DC581700DA5C0A /* HeaderCell.m in Sources */,
 				4EA4FB8D16EB743300F9A66C /* NSUtilities.m in Sources */,
 				4EA4FB9016EB96F000F9A66C /* FirstJsonLoader.m in Sources */,
 				4EAEAD9D17037881006AE83F /* BadgeManager.m in Sources */,

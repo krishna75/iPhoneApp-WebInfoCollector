@@ -8,7 +8,6 @@
 
 #import "preferencesController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "KrishnaCell.h"
 #import "MyJson.h"
 #import "dailyEventsController.h"
 #import "NSUtilities.h"
@@ -16,6 +15,7 @@
 #import "BadgeManager.h"
 #import "AppDelegate.h"
 #import "preferencesEvents.h"
+#import "KSCell.h"
 
 #define kjsonURL @"genres.php"
 #define kTableBG @"bg_tableView.png"
@@ -109,8 +109,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
-    KrishnaCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"PrefCell1";
+    KSCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[KSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier ] ;
+    }
     
     NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
     NSMutableString    *genre = [eventCountDict objectForKey:@"genre"];

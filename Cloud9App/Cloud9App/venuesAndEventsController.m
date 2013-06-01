@@ -7,16 +7,14 @@
 //
 
 #import "venuesAndEventsController.h"
-
 #import <QuartzCore/QuartzCore.h>
-//#import "SVProgressHUD.h"
-#import "KrishnaCell.h"
 #import "MyJson.h"
 #import "eventsInAVenueController.h"
 #import "FirstJsonLoader.h"
 #import "NSUtilities.h"
 #import "BadgeManager.h"
 #import "AppDelegate.h"
+#import "KSCell.h"
 
 #define kjsonUrlVenuesAndEvents @"venuesAndEvents.php"
 #define kjsonUrlEventsOfVenue @"eventsOfAVenue.php?venue_id="
@@ -129,14 +127,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    KrishnaCell * cell = [tableView dequeueReusableCellWithIdentifier:@"venue1Cell"];
+    static NSString *CellIdentifier = @"venueCell1";
+    KSCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[KSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier ] ;
+    }
     
     NSDictionary *eventDict = [eventDictArray objectAtIndex:indexPath.row];
     
     cell.titleLabel.text = [eventDict objectForKey:@"name"];
-    cell.subTitleLabel.text = [eventDict objectForKey:@"address"];
+    cell.moreLabel.text = [eventDict objectForKey:@"address"];
     cell.descriptionLabel.text = [eventDict objectForKey:@"countDetail"];
-    cell.cellImage.image = [eventDict objectForKey:@"logoImage"];
+    [cell addSubview: [NSUtilities getImageViewOfUrl:[eventDict objectForKey:@"logo"]]];
     
     // displaying events as a badge
     NSMutableArray *eventIdList = [[NSMutableArray alloc] init];
@@ -185,13 +187,13 @@
     NSString *venueId = [eventCountDict objectForKey:@"venue_id"];
     NSString    *venueName = [eventCountDict objectForKey:@"name"];
     NSString    *venueAddress = [eventCountDict objectForKey:@"address"];
-    UIImage *logoImage = [eventCountDict objectForKey:@"logoImage"];
+    UIImage *logo = [eventCountDict objectForKey:@"logo"];
     
     NSMutableDictionary *venueDict = [[NSMutableDictionary alloc] init];
     [venueDict setObject:venueId forKey:@"venue_id"];
     [venueDict setObject:venueName forKey:@"name"];
     [venueDict setObject:venueAddress forKey:@"address"];
-    [venueDict setObject:logoImage forKey:@"logo"];
+    [venueDict setObject:logo forKey:@"logo"];
     
     
     eventsInAVenueController *nextController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventsInAVenue"];

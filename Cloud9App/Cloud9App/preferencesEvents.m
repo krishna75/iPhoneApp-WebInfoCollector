@@ -8,7 +8,6 @@
 
 #import "preferencesEvents.h"
 #import <QuartzCore/QuartzCore.h>
-#import "KrishnaCell.h"
 #import "MyJson.h"
 #import "dailyEventsController.h"
 #import "NSUtilities.h"
@@ -16,6 +15,7 @@
 #import "BadgeManager.h"
 #import "AppDelegate.h"
 #import "PrefsEventsDetail.h"
+#import "KSCell.h"
 
 
 #define kjsonURL @"subgenres.php?genre_id="
@@ -117,8 +117,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"prefEventCell";
-    KrishnaCell * cell = (KrishnaCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"PrefCell2";
+    KSCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[KSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier ] ;
+    }
+    
     NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
     cell.titleLabel.text = [NSString stringWithFormat:@"%@",[eventCountDict valueForKey:@"subgenre"]];
     cell.descriptionLabel.text = [NSString stringWithFormat:@"%@",[eventCountDict valueForKey:@"description"]];

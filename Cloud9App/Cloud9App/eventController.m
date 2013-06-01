@@ -9,7 +9,6 @@
 #import "eventController.h"
 
 #import <QuartzCore/QuartzCore.h>
-#import "KrishnaCell.h"
 #import "MyJson.h"
 #import "dailyEventsController.h"
 #import "NSUtilities.h"
@@ -111,16 +110,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    KSCell *cell;
+    
     static NSString *CellIdentifier = @"eventCell1";
-    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    KSCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[KSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier ] ;
     }
     
-//    KrishnaCell * cell;
-//    cell = nil;
-//    cell = [tableView dequeueReusableCellWithIdentifier:@"event1Cell"];
     
     NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
     NSMutableString    *date = [eventCountDict objectForKey:@"date"];

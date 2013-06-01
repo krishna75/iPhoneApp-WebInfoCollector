@@ -9,12 +9,12 @@
 #import "dailyEventsController.h"
 
 #import <QuartzCore/QuartzCore.h>
-#import "KrishnaCell.h"
 #import "MyJson.h"
 #import "eventDetailsController.h"
 #import "NSUtilities.h"
 #import "BadgeManager.h"
 #import "AppDelegate.h"
+#import "KSCell.h"
 
 #define kjsonURL @"eventsOfADate.php?event_date="
 #define kTableBG @"bg_tableView.png"
@@ -124,7 +124,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    KrishnaCell * cell = [tableView dequeueReusableCellWithIdentifier:@"event2Cell"];
+    static NSString *CellIdentifier = @"eventCell2";
+    KSCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[KSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier ] ;
+    }
     
     NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
     NSString    *eventTitle = [eventCountDict objectForKey:@"title"];

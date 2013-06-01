@@ -18,6 +18,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
+                
         // create title label
         titleLabel = [[UILabel alloc]init];
         titleLabel.font = [UIFont systemFontOfSize:18];
@@ -51,7 +52,12 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.bounds= CGRectMake(0,0,320.0f,73.0f);
+    // background image
+    UIGraphicsBeginImageContext(self.frame.size);
+    [[UIImage imageNamed:@"bg_cell.png"] drawInRect:self.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
     
     CGRect contentRect = self.contentView.bounds;
     CGFloat boundsX = contentRect.origin.x;
@@ -59,13 +65,13 @@
     frame= CGRectMake(boundsX+10 ,0, 50, 50);
     imageView.frame = frame;
     
-    frame= CGRectMake(boundsX+80 ,5, 200, 25);
+    frame= CGRectMake(boundsX+80 ,5, 250, 25);
     titleLabel.frame = frame;
     
-    frame= CGRectMake(boundsX+80 ,30, 100, 15);
+    frame= CGRectMake(boundsX+80 ,30, 250, 15);
     descriptionLabel.frame = frame;
     
-    frame= CGRectMake(boundsX+80 ,45, 100, 15);
+    frame= CGRectMake(boundsX+80 ,45, 250, 15);
     moreLabel.frame = frame;
 }
 
