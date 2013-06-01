@@ -66,7 +66,7 @@
     
     MyJson * json = [[MyJson alloc] init];
     jsonResults = [json toArray:kjsonURL];
-    NSLog(@"jsonResults %@",jsonResults);
+    NSLog(@"pref 1: jsonResults %@",jsonResults);
 }
 
 - (void)decorateView {
@@ -138,7 +138,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    NSMutableString *title = [NSString stringWithFormat:@"%@",@"General"];
+    NSMutableString *title = [NSString stringWithFormat:@"%@",@"Genres"];
     return [NSUtilities getHeaderView:NULL forTitle:title forDetail:nil];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
