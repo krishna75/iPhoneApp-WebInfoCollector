@@ -21,7 +21,7 @@ while($row = mysql_fetch_assoc($result)){
 					 "name" =>$row['name'],
 					 "address" => $row['address'],
 					 "quantity" =>$row['quantity'],
-					 "logo" => "http://www.chitwan-abroad.org/cloud9/images/".$row['logo']
+					 "logo" => "http://www.cnapp.co.uk/images/logo/".$row['logo']
 					 );
   }
 
