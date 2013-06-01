@@ -38,8 +38,8 @@ $photoValidated = $photoMessage[0];
 if ($logoValidated && $photoValidated) {
 
     // inserting data into mysql
-    $logoUrl = $logoDir.$logoPrefix.$_FILES[$logo]['name'];
-    $photoUrl = $photoDir.$photoPrefix.$_FILES[$photo]['name'];
+    $logoUrl =$logoPrefix.$_FILES[$logo]['name'];
+    $photoUrl = $photoPrefix.$_FILES[$photo]['name'];
 
     $query = " INSERT INTO Venues (
       logo,     name,         address,    phone,    email,    web,    photo,        description )  VALUES (

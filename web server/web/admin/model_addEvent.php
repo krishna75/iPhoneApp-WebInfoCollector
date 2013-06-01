@@ -35,7 +35,7 @@ $photoValidated = $photoMessage[0];
 if ( $photoValidated) {
 
     // inserting data into mysql
-    $photoUrl = $photoDir.$photoPrefix.$_FILES[$photo]['name'];
+    $photoUrl = $photoPrefix.$_FILES[$photo]['name'];
 
     $query = " INSERT INTO Events (
       date,   title,   description,    venue_id,    photo )  VALUES (
