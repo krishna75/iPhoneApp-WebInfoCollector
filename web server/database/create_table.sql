@@ -2,13 +2,13 @@
 -- VENUE AND EVENTS --------------------------
 CREATE TABLE Venues (
   id          INT(5) AUTO_INCREMENT,
-  logo        VARCHAR(32),
+  logo        VARCHAR(100),
   name        VARCHAR(64)   NOT NULL,
   address     VARCHAR(64)   NOT NULL,
   phone       VARCHAR(32)   NOT NULL,
   email       VARCHAR(32)   NOT NULL,
   web         VARCHAR(32),
-  photo       VARCHAR(32),
+  photo       VARCHAR(100),
   description VARCHAR(1000) NOT NULL,
   PRIMARY KEY (id)
 );
@@ -21,7 +21,7 @@ CREATE TABLE Events (
   title       VARCHAR(64)   NOT NULL,
   description VARCHAR(1000) NOT NULL,
   venue_id    INT(5),
-  photo       VARCHAR(16),
+  photo       VARCHAR(100),
   PRIMARY KEY (id),
   FOREIGN KEY (venue_id) REFERENCES Venues (id)
 );
