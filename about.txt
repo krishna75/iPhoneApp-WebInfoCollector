@@ -2,7 +2,7 @@
 
 IMAGE SIZE
 ===========
-icon :
+icon : 73 x 73
 launch image;
 
 table cell - left image (venue logo, event image):

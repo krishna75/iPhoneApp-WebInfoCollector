@@ -16,3 +16,5 @@ profile
 *.moved-aside
 DerivedData
 .idea/
+UserInterfaceState.xcuserstate
+db_connection.php
