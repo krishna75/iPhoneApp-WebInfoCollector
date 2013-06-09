@@ -15,6 +15,7 @@
 #import "BadgeManager.h"
 #import "AppDelegate.h"
 #import "KSCell.h"
+#import "KSSettings.h"
 
 #define kjsonUrlVenuesAndEvents @"venuesAndEvents.php"
 #define kjsonUrlEventsOfVenue @"eventsOfAVenue.php?venue_id="
@@ -152,7 +153,6 @@
         [eventIdList addObject:[NSMutableString stringWithFormat:@"%@:%@",eventId,date]];   
     }
     
-    
     //badges
     int newEventCount = [BadgeManager countNewEvents:eventIdList];
     if (newEventCount > 0) {
@@ -168,6 +168,11 @@
         }
     }
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [KSSettings tableCellHeight]; 
 }
 
 - (void) tableView:(UITableViewCell *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {

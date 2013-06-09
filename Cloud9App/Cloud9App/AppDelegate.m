@@ -12,15 +12,18 @@
 
 @implementation AppDelegate
 @synthesize setBadge;
-@synthesize dummyDataUsed;
+ 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+
 {
+    
     // Override point for customization after application launch.
     return YES;
 }
 
 -(void)AddloadingView {
+    
 
     loadingView=[[UIView alloc]initWithFrame:CGRectMake(0.0,0.0,320.0,480.0)];
     loadingView.backgroundColor=[UIColor clearColor];

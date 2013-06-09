@@ -16,6 +16,7 @@
 #import "AppDelegate.h"
 #import "PrefsEventsDetail.h"
 #import "KSCell.h"
+#import "KSSettings.h"
 
 
 #define kjsonURL @"subgenres.php?genre_id="
@@ -129,6 +130,12 @@
     [cell addSubview: [NSUtilities getImageViewOfUrl:[eventCountDict objectForKey:@"photo"]]];
     return cell;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [KSSettings tableCellHeight];
+}
+
+
 
 - (void) tableView:(UITableViewCell *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     

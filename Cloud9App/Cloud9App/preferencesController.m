@@ -16,6 +16,7 @@
 #import "AppDelegate.h"
 #import "preferencesEvents.h"
 #import "KSCell.h"
+#import "KSSettings.h"
 
 #define kjsonURL @"genres.php"
 #define kTableBG @"bg_tableView.png"
@@ -138,6 +139,11 @@
     nextController.eventDict = [eventCountDict mutableCopy];
     [self.navigationController pushViewController:nextController  animated: NO];
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [KSSettings tableCellHeight];
+}
+
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     

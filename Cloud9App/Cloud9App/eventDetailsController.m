@@ -11,6 +11,7 @@
 #import "NSUtilities.h"
 #import "BadgeManager.h"
 #import "AppDelegate.h"
+#import "KSSettings.h"
 
 
 #define kjsonURL @"eventDetail.php?event_id="

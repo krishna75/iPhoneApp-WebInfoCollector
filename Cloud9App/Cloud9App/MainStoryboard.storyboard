@@ -160,7 +160,7 @@
                     </items>
                 </navigationBar>
             </objects>
-            <point key="canvasLocation" x="64" y="-1492"/>
+            <point key="canvasLocation" x="-55" y="-1508"/>
         </scene>
         <!--Daily Events Controller - Events-->
         <scene sceneID="BsK-WW-9h9">
@@ -333,50 +333,6 @@
         <image name="cog.png" width="26" height="26"/>
         <image name="first.png" width="30" height="30"/>
     </resources>
-    <classes>
-        <class className="PrefsEventsDetail" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrefsEventsDetail.h"/>
-        </class>
-        <class className="SettingsDetail" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsDetail.h"/>
-            <relationships>
-                <relationship kind="outlet" name="settingsWeb" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="dailyEventsController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/dailyEventsController.h"/>
-        </class>
-        <class className="eventController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/eventController.h"/>
-        </class>
-        <class className="eventDetailsController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/eventDetailsController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="eventImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="subTitleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="eventsInAVenueController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/eventsInAVenueController.h"/>
-        </class>
-        <class className="preferencesController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/preferencesController.h"/>
-        </class>
-        <class className="preferencesEvents" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/preferencesEvents.h"/>
-        </class>
-        <class className="settingsController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/settingsController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="settingsTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="venuesAndEventsController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/venuesAndEventsController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

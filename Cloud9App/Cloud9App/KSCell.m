@@ -51,6 +51,7 @@
 }
 
 - (void)layoutSubviews {
+        
     [super layoutSubviews];
     // background image
     UIGraphicsBeginImageContext(self.frame.size);

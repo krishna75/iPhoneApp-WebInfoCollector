@@ -15,6 +15,7 @@
 #import "BadgeManager.h"
 #import "AppDelegate.h"
 #import "KSCell.h"
+#import "KSSettings.h"
 
 #define kjsonURL @"eventsOfADate.php?event_date="
 #define kTableBG @"bg_tableView.png"
@@ -157,6 +158,12 @@
     }
     return cell;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [KSSettings tableCellHeight];
+}
+
+
 
 - (void) tableView:(UITableViewCell *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     

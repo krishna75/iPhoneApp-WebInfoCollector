@@ -14,6 +14,7 @@
 #import "BadgeManager.h"
 #import "AppDelegate.h"
 #import "KSCell.h"
+#import "KSSettings.h"
 
 #define kjsonURL @"eventsOfGenre.php?subgenre_id="
 #define kTableBG @"bg_tableView.png"
@@ -130,6 +131,13 @@
     cell.selectedBackgroundView = selBGView;
     
 }
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [KSSettings tableCellHeight];
+}
+
+
 
 // header for the table view controller
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

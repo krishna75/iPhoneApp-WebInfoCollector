@@ -16,7 +16,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic,assign) BOOL setBadge;
-@property (nonatomic,assign) BOOL dummyDataUsed;
 -(void)RemoveLoadingView;
 -(void)AddloadingView ;
 
