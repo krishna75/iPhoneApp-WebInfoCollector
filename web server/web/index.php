@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <title>Cloud Nine App</title>
-
+<link rel="shortcut icon" href="Http://www.cnapp.co.uk/Images/idea 3.png"/>
 
 <meta name="description" content="Cloud Nine App.">
 <meta name="keywords" content="app, cloud, nine, oxford, night, club, disco, music, dance, floor">
@@ -11,7 +11,7 @@
 <meta http-equiv="content-language" content="en-US">
 <meta name="copyright" content="Copyright 2013 Cloud Nine App.">
 
-<link rel="stylesheet" type="text/css" href="../css/styles.css" media="screen">
+<link rel="stylesheet" type="text/css" href="css/styles.css" media="screen">
 
 <style type="text/css"></style></head>
 
@@ -22,7 +22,7 @@
 <div id="logo_wrapper">
 
 <div id="logo">
-<img src="../images/logo_text.png" alt="Cloud Nine App">
+<img src="images/logo_text.png" alt="Cloud Nine App">
 </div>
 </div>
 
@@ -33,7 +33,8 @@
 <div id="navigation">
 
 <ul id="navlist">
-<li><a href="index.php" id="homenav">Home</a></li>
+<li><a href="index.php" id="home-nav">Home</a></li>
+<li><a href="Info.php" id="infonav">Info</a></li>
 <li><a href="events.php" id="overnav">Events</a></li>
 <li><a href="venues.php" id="landnav">Venues</a></li>
 <li><a href="genres.php" id="portnav">Preferences</a></li>
@@ -45,9 +46,11 @@
 
 <div id="quote">
 
-<h5>"Lets get started in here ..."</h5>
+<a href="http://www.facebook.com/Cnapps"><img src="images/icon-fb.png"/> </a> 
+<a href="https://twitter.com/Cloudnineapp"><img src="images/icon-tw.png"/> </a> 
 
-</div>
+
+</div> 
 
 </div>
 
@@ -55,9 +58,9 @@
 
 <div id="content">
 <h1>Welcome to Cloud Nine </h1>
-<h2>Clubbing App - Get Informed </h2>
+<h2>The Clubbing App - Get Informed </h2>
 <p>
-This app will bring the up-to-date information about the events and venues in Oxford. You will be one touch away from setting the reminder of the event you like and it will remind you just on the day. 
+This app will bring you live up-to-date information about the events and venues in Oxford. You will be one touch away from setting the reminder of the event you like and it will remind you on the day. 
 </p>
 <p>
 Please, be patient, we are comming soon...
@@ -69,26 +72,28 @@ Please, be patient, we are comming soon...
 <div id="content_bottom">
 
 <div class="three">
-<img src="../images/logo_cloud.png" alt="events">
-<h1>Events</h1>
-<h2>Find out all the events by dates in this month in Oxford</h2>
-<br>
-<a href="event.php">find out more</a>
+    <img src="images/events-animation.gif" alt="events">
+    <h1>Events</h1>
+    <h2>Find out all the events by dates in this month in Oxford</h2>
+    <br>
+    <a href="event.php">find out more</a>
 </div>
 
 <div class="three">
-<img src="../images/logo_cloud.png" alt="venues">
-<h1>Venues</h1>
-<h2>Find out the vents by venues with in this month in Oxford</h2>
-<br>
-<a href="venue.php">find out more</a></div>
+    <img src="images/venues-animation.gif" alt="venues">
+    <h1>Venues</h1>
+    <h2>Find out the events by venues with in this month in Oxford</h2>
+    <br>
+    <a href="venue.php">find out more</a>
+</div>
 
 <div class="three">
-<img src="../images/logo_cloud.png" alt="preferences">
-<h1>Preferences</h1>
-<h2> Find out the events by the genre of your choice</h2>
-<br><br>
-<a href="genre.php">find out more</a></div>
+    <img src="images/preferences-animation.gif" alt="preferences">
+    <h1>Preferences</h1>
+    <h2> Find out the events by the genre of your choice</h2>
+    <br>
+    <a href="genre.php">find out more</a>
+</div>
 </div>
 
 </div>
@@ -100,20 +105,23 @@ Please, be patient, we are comming soon...
 <div id="footer_wrapper">
 
 <div id="footer">
-<p>Cloud Nine App is a part of CNAPP Ltd. Oxford, UK. <a href="contactUs.php">Contact</a></p>
-<p>Copyright &copy 2013 <a href="index.php">Cloud Nine App</a>.
+<p>Cloud Nine App is a part of CNAPP Ltd. Oxford, UK. <a href="contactUs.php">Contact Us</a></p>
+<p>Copyright & copy 2013 <a href="index.php">Cloud Nine App</a>.
 
 
-<script src="../js/urchin.js" type="text/javascript">
+<script src="js/urchin.js" type="text/javascript">
 </script>
 <script type="text/javascript">
 _uacct = "UA-2565253-10";
 urchinTracker();
 </script>
 
-    <a title="stat counter" href="http://statcounter.com/p8942593/summary/" target="_blank"><img src="http://c.statcounter.com/8942593/0/f0161197/0/" alt="website tonight analytics" style="border:none;"></a>
+    <a title="stat counter" href="http://statcounter.com/p8942593/summary//" target="_blank"><img src="http://c.statcounter.com/8942593/0/f0161197/0/" alt="website tonight analytics" style="border:none;"></a>
+
+   
 
 </div>
 
 </div>
-</body></html>
+</body>
+</html>
