@@ -36,7 +36,8 @@
     [super viewDidLoad];
     [app AddloadingView];
     [self launchLoadData];
-    [self decorateView];  
+    [self decorateView];
+    [self addRefreshing];
 }
 #pragma mark - launchLoadData and loadData are for a new thread
 -(void)launchLoadData {
@@ -82,6 +83,17 @@
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:image];
 }
 
+- (void) addRefreshing {
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh)forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refreshControl;
+}
+
+- (void)refresh {
+    [self launchLoadData];
+    [self.refreshControl endRefreshing];
+}
+
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.topItem.title  = kTitle;
@@ -122,8 +134,7 @@
     NSMutableString *eventIdDate = [NSString stringWithFormat:@"%@:%@",eventId,date];
     if ([BadgeManager isNewEvent:eventIdDate]) {
         if(app.setBadge) {
-            UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"new"]:
-                                 app.setBadge];
+            UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"new"] showHide:app.setBadge];
             badgeView.tag = 111;
             [cell addSubview:badgeView];
         }

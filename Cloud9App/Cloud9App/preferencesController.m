@@ -48,6 +48,7 @@
     [app AddloadingView];
     [self launchLoadData];
     [self decorateView];
+    [self addRefreshing];
 }
 
 -(void)launchLoadData {
@@ -77,6 +78,17 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+}
+
+- (void) addRefreshing {
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh)forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refreshControl;
+}
+
+- (void)refresh {
+    [self launchLoadData];
+    [self.refreshControl endRefreshing];
 }
 
 -(void)viewWillAppear:(BOOL)animated {

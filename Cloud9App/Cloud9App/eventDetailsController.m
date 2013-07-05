@@ -102,7 +102,7 @@
     self.eventImageView.image = eventImage;
  
     // description label is created programmatically
-    CGRect descFrame = CGRectMake(12, 330, 290, 600);
+    CGRect descFrame = CGRectMake(12, 360, 290, 600);
     UILabel *descLabel = [[UILabel alloc] initWithFrame:descFrame];
     descLabel.textColor = [UIColor whiteColor];
     descLabel.backgroundColor = [UIColor clearColor];
@@ -113,7 +113,16 @@
     [descLabel setNumberOfLines:0];
     [descLabel sizeToFit];
     
+    
+    // adding voucher button
     [self.view    addSubview:descLabel ];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button addTarget:self action:@selector(voucherAction) forControlEvents:UIControlEventTouchDown];
+    [button setTitle:@"Voucher" forState:UIControlStateNormal];
+    button.frame = CGRectMake(80.0, 320.0, 160.0, 35.0);
+    [self.view addSubview:button];
+    
+    
     
     // Remind me button
     UIBarButtonItem *remindButton = [[UIBarButtonItem alloc]
@@ -272,6 +281,12 @@
 -(void)goBack{
     
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)voucherAction {
+    UIViewController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"voucher"];
+    [self.navigationController pushViewController:nextViewController animated: NO];
+    
 }
 
 @end

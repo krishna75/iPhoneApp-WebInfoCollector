@@ -48,6 +48,7 @@
     [app AddloadingView];
     [self decorateView];
     [self launchLoadData];
+    [self addRefreshing];
 }
 
 #pragma mark - launchLoadData and loadData are for a new thread
@@ -66,8 +67,6 @@
 - (void)processJson {
 
     //loading... spinnner
-    //[SVProgressHUD showProgress:0 status:@"Loading"];
-    
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [spinner setCenter:self.view.center];
     
@@ -81,8 +80,6 @@
     eventDictArray = [FirstJsonLoader getVenues];
 
     [spinner stopAnimating];
-    //[SVProgressHUD dismiss];
-   
 }
 
 - (void)decorateView{
@@ -94,6 +91,17 @@
     UIGraphicsEndImageContext();
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
    
+}
+
+- (void) addRefreshing {
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh)forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refreshControl;
+}
+
+- (void)refresh {
+    [self launchLoadData];
+    [self.refreshControl endRefreshing];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -157,8 +165,7 @@
     int newEventCount = [BadgeManager countNewEvents:eventIdList];
     if (newEventCount > 0) {
         if(app.setBadge) {
-            UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"%i",newEventCount]:
-                                 app.setBadge];
+            UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"%i",newEventCount] showHide:app.setBadge];
             badgeView.tag = 111;
             [cell.contentView addSubview:badgeView];
         }

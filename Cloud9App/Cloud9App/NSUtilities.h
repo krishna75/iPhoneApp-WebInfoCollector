@@ -16,7 +16,7 @@
 + (UIImageView *) getImageViewOfUrl:(NSString *) strUrlForImage ;
 + (UIImageView *) getResizedImageViewForCell:(UIImage *) logoImage;
 + (NSString *) getToday;
-+ (UIView *) getBadgeLikeView: (NSString *)strToDisplay:(BOOL)show ;
++ (UIView *) getBadgeLikeView: (NSString *)strToDisplay showHide:(BOOL)show ;
 +(UIView *)removeBadgeLikeView:(NSString *)strToDisplay;
 +(UIColor*)colorWithHexString:(NSString*)hex;
 

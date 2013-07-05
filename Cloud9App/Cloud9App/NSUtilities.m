@@ -46,7 +46,6 @@
     // background image
     UIGraphicsBeginImageContext(customView.frame.size);
     [[UIImage imageNamed:@"bg_tableViewHeader.png"] drawInRect:customView.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
 //    customView.backgroundColor = [UIColor colorWithPatternImage:image];
     CGFloat nRed=51.0/255.0;
@@ -121,7 +120,7 @@ return btn;
     return [arr objectAtIndex:0];
 }
 
-+ (UIView *) getBadgeLikeView: (NSString *)strToDisplay:(BOOL)show {
++ (UIView *) getBadgeLikeView: (NSString *)strToDisplay showHide:(BOOL)show {
     int len = strToDisplay.length * 10;
     UIView* v = [[UIView alloc] initWithFrame:CGRectMake(65-len,1,len+10,20)] ;
     [v.layer setCornerRadius:8];

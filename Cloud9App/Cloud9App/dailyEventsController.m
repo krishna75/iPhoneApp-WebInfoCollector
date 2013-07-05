@@ -62,6 +62,7 @@
     [self processJson];
     [self.tableView reloadData];
     [app RemoveLoadingView];
+    [self addRefreshing];
 }
 
 // the process also has spinner or loader
@@ -87,6 +88,17 @@
     UIGraphicsEndImageContext();
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
     
+}
+
+- (void) addRefreshing {
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh)forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refreshControl;
+}
+
+- (void)refresh {
+    [self launchLoadData];
+    [self.refreshControl endRefreshing];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -146,8 +158,7 @@
     NSMutableString *eventIdDate = [NSString stringWithFormat:@"%@:%@",eventId,date];
     if ([BadgeManager isNewEvent:eventIdDate]) {
         if(app.setBadge) {
-            UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"new"]:
-                                 app.setBadge];
+            UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"new"] showHide:app.setBadge];
             badgeView.tag = 111;
             [cell addSubview:badgeView];
         }

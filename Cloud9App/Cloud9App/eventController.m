@@ -18,7 +18,6 @@
 #import "KSCell.h"
 #import "KSSettings.h"
 
-
 #define kjsonURL @"datesAndEvents.php"
 #define kTableBG @"bg_tableView.png"
 #define kCellBG @"bg_cell.png"
@@ -50,6 +49,8 @@
     [super viewDidLoad];
     [self launchLoadData];
     [self decorateView];
+    [self addRefreshing];
+    
 }
 
 #pragma mark - launchLoadData and loadData are for a new thread
@@ -77,6 +78,17 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+}
+
+- (void) addRefreshing {
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh)forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refreshControl;
+}
+
+- (void)refresh {
+    [self launchLoadData];
+    [self.refreshControl endRefreshing];
 }
 
 
@@ -118,7 +130,6 @@
         cell = [[KSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier ] ;
     }
     
-    
     NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
     NSMutableString    *date = [eventCountDict objectForKey:@"date"];
     NSString    *count = [eventCountDict objectForKey:@"quantity"];
@@ -126,15 +137,13 @@
 
     cell.titleLabel.text = [NSUtilities getFormatedDate:date];
     cell.descriptionLabel.text = countDetail;
-    cell.moreLabel.text = countDetail;
     [cell addSubview: [NSUtilities getResizedImageViewForCell:[UIImage imageNamed:@"cell-logo.png"]]];
     
     //computing and displaying new events as badge
     int newEventCount = [BadgeManager countNewEventsOfDate:date];
     if (newEventCount > 0) {
         if(app.setBadge) {
-            UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"%i",newEventCount]:
-                                 app.setBadge];
+            UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"%i",newEventCount] showHide:app.setBadge];
             badgeView.tag = 111;
             [cell addSubview:badgeView];
         }
