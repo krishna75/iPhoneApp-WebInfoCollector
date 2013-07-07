@@ -15,8 +15,9 @@
     foreach($parsed_json  as $event) {
         $image_url ="http://www.cnapp.co.uk/images/logo.png" ;
         $title =$event->date;;
-        $subtitle = $event->quantity." events";
+        $subtitle = $event->quantity." event(s)";
         $description = $event->day;
+        $link_page ="eventsInDay.php?date=".$event->date;
         include "includes/cell.php";
     }
 ?>

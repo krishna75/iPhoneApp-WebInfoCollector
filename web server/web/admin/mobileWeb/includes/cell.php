@@ -1,13 +1,8 @@
-<?php
-/**
- * Created by JetBrains PhpStorm.
- * User: Krishna
- * Date: 07/07/13
- * Time: 22:05
- * To change this template use File | Settings | File Templates.
- */
 
-echo "<div class='cell'>";
+
+
+<div class="cell" onclick="window.location='<?php echo $link_page; ?>'">
+<?php
     echo "<div class='cell-image'>";
         echo "<img src='".$image_url."' alt='venue logo' height='70' width='70'/>";
     echo "</div>";

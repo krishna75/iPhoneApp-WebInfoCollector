@@ -13,9 +13,10 @@
 <?php
     foreach($parsed_json  as $venue) {
         $image_url = $venue->logo ;
-        $title =$venue->name;;
+        $title =$venue->name;
         $subtitle = $venue->address;
         $description = "this is sample description";
+        $link_page="eventsInVenue.php?venue=".$venue->venue_id;
         include "includes/cell.php";
     }
 ?>
