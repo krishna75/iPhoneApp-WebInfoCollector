@@ -1,16 +1,17 @@
 body {
     font-family: arial;
 }
-.span12{
+.cell{
+
     background: darkslategray;
     border: 2px solid #c0c0c0;
-    height: 30px;
+    height: 75px;
     text-align: left;
-    padding: 15px 15px 5px 15px;
     color: #ffffff;
     margin: 1px;
     border-radius: 10px;
     box-shadow: 3px 3px 10px black;
+    padding : 1px 1px 5px 5px;;
 
     background-image: linear-gradient(bottom, rgb(29,31,36) 2%, rgb(101,104,110) 56%, rgb(124,129,138) 78%);
     background-image: -o-linear-gradient(bottom, rgb(29,31,36) 2%, rgb(101,104,110) 56%, rgb(124,129,138) 78%);
@@ -26,4 +27,52 @@ body {
         color-stop(0.56, rgb(101,104,110)),
         color-stop(0.78, rgb(124,129,138))
     );
+}
+
+.cell-image {
+    float: left;
+    background: gray;
+    border: 2px solid #c0c0c0;
+    height: 70px;
+    width: 70px;
+    border-radius: 2px;
+    box-shadow: 3px 3px 10px black;
+    padding : 1px 1px 1px 1px;
+}
+
+.cell-title {
+    display: block ;
+    position:absolute;
+    font-size: 20px;
+    margin-left: 100px;
+    margin-top:10px;
+    font-family: georgia;
+    font-weight: bold;
+}
+.cell-subtitle {
+    display: block ;
+    position: absolute;
+    margin-left: 100px;
+    margin-top: 35px;
+    font-size:12px;
+}
+
+.cell-description{
+    display: block ;
+    position: absolute;
+    margin-left: 100px;
+    margin-top: 50px;
+    font-size:14px;
+}
+.cell-next {
+    float: right;
+    background: gray;
+    border: 2px solid #c0c0c0;
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+    box-shadow: 3px 3px 10px black;
+    padding : 1px 1px 1px 1px;
+    margin-top: 25px;
+    margin-right:2px;
 }
