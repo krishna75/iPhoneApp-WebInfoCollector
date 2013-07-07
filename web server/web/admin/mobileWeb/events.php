@@ -7,15 +7,19 @@
 <body>
 <h1>Events</h1>
 <?php
-$json_string =    file_get_contents("http://cnapp.co.uk/public/datesAndEvents.php");
-$parsed_json = json_decode($json_string);
+    $json_string =    file_get_contents("http://cnapp.co.uk/public/datesAndEvents.php");
+    $parsed_json = json_decode($json_string);
 ?>
 
-<div class="row">
-    <?php
+<?php
     foreach($parsed_json  as $event) {
-        echo "<div class='span12'>".$event->date ." ".$event->day." ".$event->quantity."</div>";
-    } ?>
-</div>
+        $image_url ="" ;
+        $title =$event->date;;
+        $subtitle = $event->quantity." events";
+        $description = $event->day;
+        include "includes/cell.php";
+    }
+?>
+
 </body>
 </html>
