@@ -66,13 +66,13 @@ body {
 }
 .cell-next {
     float: right;
-    background: gray;
-    border: 2px solid #c0c0c0;
-    height: 20px;
-    width: 20px;
-    border-radius: 20px;
-    box-shadow: 3px 3px 10px black;
-    padding : 1px 1px 1px 1px;
-    margin-top: 25px;
+    background-image: url('arrow_right_round.png');
+    background-size: contain;
+
+    height: 40px;
+    width: 40px;
+
+    margin-top: 20px;
     margin-right:2px;
+
 }

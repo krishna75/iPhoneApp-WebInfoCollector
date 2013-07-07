@@ -27,8 +27,7 @@ echo $parsed_json;
             echo "<div class='cell-description'>";
                 echo  "this is sample description";
             echo "</div>";
-            echo "<div class='cell-next'>";
-                echo ">>";
+            echo "<div class='cell-next'/>";
             echo "</div>";
         echo "</div>";
     } ?>
