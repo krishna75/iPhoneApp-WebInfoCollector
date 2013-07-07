@@ -11,25 +11,14 @@ $json_string =    file_get_contents("http://cnapp.co.uk/public/venuesAndEvents.p
 $parsed_json = json_decode($json_string);
 echo $parsed_json;
 ?>
-
-
-    <?php
-    foreach($parsed_json  as $venue) {
-        echo "<div class='cell'>";
-            echo "<div class='cell-image'>";
-            echo "</div>";
-            echo "<div class='cell-title'>";
-                echo $venue->name;
-            echo "</div>";
-            echo "<div class='cell-subtitle'>";
-                echo $venue->address;
-            echo "</div>";
-            echo "<div class='cell-description'>";
-                echo  "this is sample description";
-            echo "</div>";
-            echo "<div class='cell-next'/> </div>";
-        echo "</div>";
-    } ?>
+<?php
+foreach($parsed_json  as $venue) {
+    $image_url ="" ;
+    $title =$venue->name;;
+    $subtitle = $venue->address;
+    $description = "this is sample description";
+    include "includes/cell.php";
+} ?>
 
 </body>
 </html>
