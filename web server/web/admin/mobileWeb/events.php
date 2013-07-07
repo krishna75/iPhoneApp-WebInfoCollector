@@ -13,7 +13,7 @@
 
 <?php
     foreach($parsed_json  as $event) {
-        $image_url ="" ;
+        $image_url ="http://www.cnapp.co.uk/images/logo.png" ;
         $title =$event->date;;
         $subtitle = $event->quantity." events";
         $description = $event->day;

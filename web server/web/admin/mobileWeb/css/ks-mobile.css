@@ -2,7 +2,7 @@ body {
     font-family: arial;
 }
 .cell{
-
+    min-width: 300px;
     background: darkslategray;
     border: 2px solid #c0c0c0;
     height: 75px;
@@ -41,6 +41,7 @@ body {
 }
 
 .cell-title {
+    min-width: 375px;
     display: block ;
     position:absolute;
     font-size: 20px;
@@ -50,6 +51,7 @@ body {
     font-weight: bold;
 }
 .cell-subtitle {
+    min-width: 300px;
     display: block ;
     position: absolute;
     margin-left: 100px;
@@ -58,6 +60,7 @@ body {
 }
 
 .cell-description{
+    min-width: 300px;
     display: block ;
     position: absolute;
     margin-left: 100px;

@@ -12,7 +12,7 @@
 ?>
 <?php
     foreach($parsed_json  as $venue) {
-        $image_url ="" ;
+        $image_url = $venue->logo ;
         $title =$venue->name;;
         $subtitle = $venue->address;
         $description = "this is sample description";
