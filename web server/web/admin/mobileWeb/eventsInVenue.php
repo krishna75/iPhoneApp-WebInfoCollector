@@ -18,7 +18,7 @@ $parsed_json = json_decode($json_string);
 $header_image_url = "" ;
 $header_title = $parsed_json[0]->venue_name;
 $header_subtitle = $parsed_json[0]->venue_address;
-$header_description= "There is some description coming..";
+$header_description= "";
 include "includes/header-cell.php";
 
 foreach($parsed_json  as $event) {
