@@ -85,7 +85,7 @@ body {
 /* header - cell */
 .header-cell {
     background : #333333;
-    height: 75px;
+    height: 80px;
     weidth: 375px;
     color: white;
     border : none;
@@ -111,14 +111,14 @@ body {
     display:block;
     position: absolute;
     margin-left: 100px;
-    margin-top: 30px;
+    margin-top: 35px;
 }
 
 .header-cell-description{
     display:block;
     position: absolute;
     margin-left: 100px;
-    margin-top: 50px;
+    margin-top: 55px;
     font-size: 12px;
 }
 

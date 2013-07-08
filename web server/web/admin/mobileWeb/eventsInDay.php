@@ -14,7 +14,12 @@
 $event_date = $_GET["event_date"];
 $json_string =    file_get_contents("http://cnapp.co.uk/public/eventsOfADate.php?event_date=".$event_date);
 $parsed_json = json_decode($json_string);
-echo "<h1>".$parsed_json[0]->date." ".$parsed_json[0]->day." </h1>";
+
+$header_image_url = "" ;
+$header_title = $parsed_json[0]->date;
+$header_subtitle = $parsed_json[0]->day;
+$header_description= "There is some description coming..";
+include "includes/header-cell.php";
 foreach($parsed_json  as $event) {
     $image_url =$event->venue_logo ;
     $title =$event->title;;
