@@ -21,13 +21,12 @@ $header_subtitle = $parsed_json[0]->venue_address;
 $header_description= "There is some description coming..";
 include "includes/header-cell.php";
 
-
-//foreach($parsed_json  as $event) {
-//    $image_url =$event->venue_logo ;
-//    $title =$event->title;;
-//    $subtitle = $event->venue;
-//
-//    $link_page ="eventDetail.php?event_id=".$event->id;
-//    include "includes/cell.php";
-//}
+foreach($parsed_json  as $event) {
+    $image_url ="http://www.cnapp.co.uk/images/logo.png" ; ;
+    $title =$event->event_title;;
+    $subtitle = $event->date;
+    $description = $event->day;
+    $link_page ="eventDetail.php?event_id=".$event->event_id;
+    include "includes/cell.php";
+}
 ?>
