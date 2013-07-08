@@ -5,18 +5,17 @@
     <link rel="stylesheet" href="css/ks-mobile.css"/>
 </head>
 <body>
-<h1>Venues</h1>
 <?php
     $json_string =    file_get_contents("http://cnapp.co.uk/public/venuesAndEvents.php");
     $parsed_json = json_decode($json_string);
-?>
-<?php
+    $header_title = "Venues";
+    include "includes/header-cell.php";
     foreach($parsed_json  as $venue) {
         $image_url = $venue->logo ;
         $title =$venue->name;
         $subtitle = $venue->address;
         $description = "this is sample description";
-        $link_page="eventsInVenue.php?venue=".$venue->venue_id;
+        $link_page="eventsInVenue.php?venue_id=".$venue->venue_id;
         include "includes/cell.php";
     }
 ?>
