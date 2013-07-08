@@ -1,7 +1,8 @@
 body {
     font-family: arial;
 }
-.cell{
+.cell {
+
     min-width: 300px;
     background: darkslategray;
     border: 2px solid #c0c0c0;
@@ -44,7 +45,7 @@ body {
     min-width: 375px;
     display: block ;
     position:absolute;
-    font-size: 20px;
+    font-size: 16px;
     margin-left: 100px;
     margin-top:10px;
     font-family: georgia;
@@ -79,3 +80,45 @@ body {
     margin-right:2px;
 
 }
+
+
+/* header - cell */
+.header-cell {
+    background : #333333;
+    height: 75px;
+    weidth: 375px;
+    color: white;
+    border : none;
+}
+.header-cell-image {
+    float: left;
+    height: 75px;
+    width: 75px;
+
+}
+
+.header-cell-title{
+    display:block;
+    position: absolute;
+    margin-left: 100px;
+    margin-top: 10px;
+    font-family: georgia;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.header-cell-subtitle{
+    display:block;
+    position: absolute;
+    margin-left: 100px;
+    margin-top: 30px;
+}
+
+.header-cell-description{
+    display:block;
+    position: absolute;
+    margin-left: 100px;
+    margin-top: 50px;
+    font-size: 12px;
+}
+
