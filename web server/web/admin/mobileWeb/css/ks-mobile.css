@@ -152,3 +152,8 @@ body {
     text-align: left;
 }
 
+.iframe-view {
+    width:600px;
+    height: 500px;
+}
+
