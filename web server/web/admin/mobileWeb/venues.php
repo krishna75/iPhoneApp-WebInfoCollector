@@ -14,7 +14,7 @@
         $image_url = $venue->logo ;
         $title =$venue->name;
         $subtitle = $venue->address;
-        $description = "this is sample description";
+        $description = "";
         $link_page="eventsInVenue.php?venue_id=".$venue->venue_id;
         include "includes/cell.php";
     }

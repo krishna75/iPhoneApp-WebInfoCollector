@@ -17,7 +17,7 @@
         $title =$event->date;;
         $subtitle = $event->quantity." event(s)";
         $description = $event->day;
-        $link_page ="eventsInDay.php?event_date=".$event->date;
+        $link_page = getenv('MOBILE_WEB')."eventsInDay.php?event_date=".$event->date;
         include "includes/cell.php";
     }
 ?>
