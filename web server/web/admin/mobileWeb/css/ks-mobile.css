@@ -152,8 +152,12 @@ body {
     text-align: left;
 }
 
-.iframe-view {
+.iframe-mobile-view {
     width:600px;
     height: 500px;
+}
+.iframe-form-view {
+    width:700px;
+    height: 800px;
 }
 
