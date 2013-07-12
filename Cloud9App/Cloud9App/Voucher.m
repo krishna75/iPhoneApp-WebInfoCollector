@@ -9,6 +9,7 @@
 #import "Voucher.h"
 #import "KSBackgroundLayer.h"
 
+
 @interface Voucher ()
 
 @end
@@ -57,12 +58,30 @@
     
     for(symbol in results){
         
-        NSString *upcString = symbol.data;
+        NSString *qrString = symbol.data;
+        NSData *qrData = [qrString dataUsingEncoding:NSUTF8StringEncoding];
+        NSError* error;
+        NSDictionary* qrDict = [NSJSONSerialization JSONObjectWithData:qrData options:kNilOptions error:&error];
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Scanned UPC" message:[NSString stringWithFormat:@"The UPC read was: %@", upcString] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        NSString *id = [qrDict objectForKey:@"id"];
+        NSString *type = [qrDict objectForKey:@"type"];
+        NSString *action= [qrDict objectForKey:@"action"];
         
+    
+        NSString *combined = [NSString stringWithFormat:@" Scanned: id= %@,  type=%@,  action=%@", id, type, action];
+        NSLog(combined);
+        
+        if (id!=nil && type!=nil && action!=nil){
+
+        // if id and type and action ok, then show view update the database
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!!!" message:[NSString stringWithFormat:@"Thank you for using  CNAPP voucher"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];
-        
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!!" message:[NSString stringWithFormat:@"Wrong QR Code"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+            [alert show];
+        }
+    
         [reader dismissModalViewControllerAnimated: YES];
         
     }
