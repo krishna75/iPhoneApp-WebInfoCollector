@@ -68,7 +68,7 @@
 - (void) imagePickerController: (UIImagePickerController*) reader didFinishPickingMediaWithInfo: (NSDictionary*) info
 {
     id<NSFastEnumeration> results = [info objectForKey: ZBarReaderControllerResults];
-    
+
     ZBarSymbol *symbol = nil;
     
     for(symbol in results){
@@ -92,10 +92,9 @@
             // updating the voucher used
             KSJson * json = [[KSJson alloc] init];
             NSString *url =  @"model_addVoucher.php?user_id=cloudnineapp-voucher&password=App@Cloud9&event_id=";
-            NSString *event_id = @"10" ;
-            NSString *jsonURL  = [url stringByAppendingString:event_id];
+            NSString *jsonURL  = [url stringByAppendingString:_event_id];
             NSLog(@"voucher url = %@" ,jsonURL);
-            NSMutableArray *jsonResults =[json toArray:jsonURL];
+            [json toArray:jsonURL];
 
             // showing confirmation pop up
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!!!" message:[NSString stringWithFormat:@"Thank you for using  CNAPP voucher"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];

@@ -11,9 +11,10 @@
 
 @interface Voucher : UIViewController <ZBarReaderDelegate> {
     IBOutlet UIButton *scanButton;
-    
+    NSString *event_id;
 }
 
+@property (retain, nonatomic) NSString *event_id;
 @property (nonatomic, retain) IBOutlet UIButton *scanButton;
 
 -(IBAction) scanButtonPress:sender;

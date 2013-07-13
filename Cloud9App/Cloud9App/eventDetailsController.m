@@ -12,6 +12,7 @@
 #import "KSBadgeManager.h"
 #import "AppDelegate.h"
 #import "KSSettings.h"
+#import "Voucher.h"
 
 
 #define kjsonURL @"eventDetail.php?event_id="
@@ -112,10 +113,10 @@
     // Tell the label to use an unlimited number of lines
     [descLabel setNumberOfLines:0];
     [descLabel sizeToFit];
-    
-    
-    // adding voucher button
     [self.view    addSubview:descLabel ];
+
+
+    // adding voucher button
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button addTarget:self action:@selector(voucherAction) forControlEvents:UIControlEventTouchDown];
     [button setTitle:@"Voucher" forState:UIControlStateNormal];
@@ -284,7 +285,8 @@
 }
 
 - (void)voucherAction {
-    UIViewController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"voucher"];
+    Voucher *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"voucher"];
+    nextViewController.event_id  = [eventDetailDict objectForKey:@"id"];;
     [self.navigationController pushViewController:nextViewController animated: NO];
     
 }
