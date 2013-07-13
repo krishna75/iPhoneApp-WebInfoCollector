@@ -7,6 +7,9 @@
 //
 
 #import "Voucher.h"
+#import "KSJson.h"
+
+
 
 
 @interface Voucher ()
@@ -14,7 +17,7 @@
 @end
 
 
-                                                                                                            i
+
 @implementation Voucher
 
 @synthesize scanButton;
@@ -80,16 +83,23 @@
         NSString *action= [qrDict objectForKey:@"action"];
         
     
-        NSString *combined = [NSString stringWithFormat:@" Scanned: id= %@,  type=%@,  action=%@", id, type, action];
+        NSString *combined = [NSString stringWithFormat:@" Scanned: id=%@,  type=%@,  action=%@", id, type, action];
         NSLog(@"combined qr variables =  %@",combined);
-        
-        if (id!=nil && type!=nil && action!=nil){
 
         // if id and type and action ok, then show view  as success and update the database
-        //
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!!!" message:[NSString stringWithFormat:@"Thank you for using  CNAPP voucher"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-        [alert show];
+        if ([id isEqualToString:@"cnapp"] && [type isEqualToString:@"voucher" ] && [action isEqualToString:@"cancel"]){
+
+            // updating the voucher used
+            KSJson * json = [[KSJson alloc] init];
+            NSString *url =  @"model_addVoucher.php?user_id=cloudnineapp-voucher&password=App@Cloud9&event_id=";
+            NSString *event_id = @"10" ;
+            NSString *jsonURL  = [url stringByAppendingString:event_id];
+            NSLog(@"voucher url = %@" ,jsonURL);
+            NSMutableArray *jsonResults =[json toArray:jsonURL];
+
+            // showing confirmation pop up
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!!!" message:[NSString stringWithFormat:@"Thank you for using  CNAPP voucher"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+            [alert show];
         } else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!!" message:[NSString stringWithFormat:@"Wrong QR Code"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
             [alert show];
