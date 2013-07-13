@@ -90,6 +90,17 @@ CREATE TABLE Users_Venues (
   FOREIGN KEY (venue_id) REFERENCES Venues (id)
 );
 
+-- Voucher ---------------------------------
+CREATE TABLE Vouchers (
+  id          INT(10) AUTO_INCREMENT,
+  event_id INT(10) NOT NULL,
+  count INT(5) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (event_id) REFERENCES Events(id)
+);
+
+
+
 
 
 
