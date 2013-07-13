@@ -1,15 +1,15 @@
 //
-//  NSUtilities.m
+//  KSUtilities.m
 //  Cloud9App
 //
 //  Created by Krishna Sapkota on 09/03/2013.
 //  Copyright (c) 2013 Krishna Sapkota. All rights reserved.
 //
 
-#import "NSUtilities.h"
+#import "KSUtilities.h"
 #import <QuartzCore/QuartzCore.h>
 
-@implementation NSUtilities
+@implementation KSUtilities
 
 // creates a formatted string for the date
 + (NSMutableString *) getFormatedDate:(NSString *)date {
@@ -103,7 +103,7 @@ return btn;
     NSURL *imageURL = [NSURL URLWithString:strUrlForImage];
     NSData  *imageData = [NSData dataWithContentsOfURL:imageURL];
     UIImage *logoImage = [[UIImage alloc] initWithData:imageData];
-    return [NSUtilities getResizedImageViewForCell:logoImage];
+    return [KSUtilities getResizedImageViewForCell:logoImage];
 }
 
 

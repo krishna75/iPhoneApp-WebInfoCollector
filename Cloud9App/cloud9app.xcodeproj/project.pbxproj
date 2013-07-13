@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4E13541716D7902300578F16 /* MyJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E13541616D7902300578F16 /* MyJson.m */; };
+		4E13541716D7902300578F16 /* KSJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E13541616D7902300578F16 /* KSJson.m */; };
 		4E17A0BB16D2F2010019C015 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E17A0BA16D2F2010019C015 /* home.png */; };
 		4E57D12116D8B97500506E44 /* dailyEventsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57D12016D8B97500506E44 /* dailyEventsController.m */; };
 		4E57D12416D8C37400506E44 /* eventDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57D12316D8C37400506E44 /* eventDetailsController.m */; };
@@ -49,8 +49,8 @@
 		4E9F501616E945EE009A9D1B /* launch_image4.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9F501516E945EE009A9D1B /* launch_image4.png */; };
 		4E9F501816E94724009A9D1B /* icon_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9F501716E94724009A9D1B /* icon_retina.png */; };
 		4EA0BA3716F5B1C5002BD0CE /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EA0BA3616F5B1C5002BD0CE /* backButton.png */; };
-		4EA1D1861709C02800D624E5 /* BadgeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAEAD9C17037881006AE83F /* BadgeManager.m */; };
-		4EA1D1871709C0A100D624E5 /* BadgeManager.h in Sources */ = {isa = PBXBuildFile; fileRef = 4EAEAD9B17037881006AE83F /* BadgeManager.h */; };
+		4EA1D1861709C02800D624E5 /* KSBadgeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAEAD9C17037881006AE83F /* KSBadgeManager.m */; };
+		4EA1D1871709C0A100D624E5 /* KSBadgeManager.h in Sources */ = {isa = PBXBuildFile; fileRef = 4EAEAD9B17037881006AE83F /* KSBadgeManager.h */; };
 		4EA1D1881709C18100D624E5 /* -568h@2x.png in Sources */ = {isa = PBXBuildFile; fileRef = 4EACC91F16F5345E00EE41B3 /* -568h@2x.png */; };
 		4EA1D1891709C18100D624E5 /* icon_retina.png in Sources */ = {isa = PBXBuildFile; fileRef = 4E9F501716E94724009A9D1B /* icon_retina.png */; };
 		4EA1D18A1709C18100D624E5 /* Default-568h@2x.png in Sources */ = {isa = PBXBuildFile; fileRef = 4E9F501316E9448C009A9D1B /* Default-568h@2x.png */; };
@@ -93,10 +93,10 @@
 		4EA1D1B71709C18100D624E5 /* Default.png in Sources */ = {isa = PBXBuildFile; fileRef = 4E874E2A16D1218E00CFDA27 /* Default.png */; };
 		4EA1D1B81709C18100D624E5 /* Default@2x.png in Sources */ = {isa = PBXBuildFile; fileRef = 4E874E2C16D1218E00CFDA27 /* Default@2x.png */; };
 		4EA1D1B91709C18100D624E5 /* Default-568h@2x.png in Sources */ = {isa = PBXBuildFile; fileRef = 4E874E2E16D1218E00CFDA27 /* Default-568h@2x.png */; };
-		4EA1D1BA1709C18100D624E5 /* MyJson.h in Sources */ = {isa = PBXBuildFile; fileRef = 4E13541516D7902300578F16 /* MyJson.h */; };
-		4EA1D1BB1709C18100D624E5 /* MyJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E13541616D7902300578F16 /* MyJson.m */; };
-		4EA1D1C01709C18100D624E5 /* NSUtilities.h in Sources */ = {isa = PBXBuildFile; fileRef = 4EA4FB8B16EB743300F9A66C /* NSUtilities.h */; };
-		4EA1D1C11709C18100D624E5 /* NSUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA4FB8C16EB743300F9A66C /* NSUtilities.m */; };
+		4EA1D1BA1709C18100D624E5 /* KSJson.h in Sources */ = {isa = PBXBuildFile; fileRef = 4E13541516D7902300578F16 /* KSJson.h */; };
+		4EA1D1BB1709C18100D624E5 /* KSJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E13541616D7902300578F16 /* KSJson.m */; };
+		4EA1D1C01709C18100D624E5 /* KSUtilities.h in Sources */ = {isa = PBXBuildFile; fileRef = 4EA4FB8B16EB743300F9A66C /* KSUtilities.h */; };
+		4EA1D1C11709C18100D624E5 /* KSUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA4FB8C16EB743300F9A66C /* KSUtilities.m */; };
 		4EA1D1C21709C1FE00D624E5 /* FirstJsonLoader.h in Sources */ = {isa = PBXBuildFile; fileRef = 4EA4FB8E16EB96F000F9A66C /* FirstJsonLoader.h */; };
 		4EA1D1C31709C1FE00D624E5 /* FirstJsonLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA4FB8F16EB96F000F9A66C /* FirstJsonLoader.m */; };
 		4EA1D1C71709C1FE00D624E5 /* MyAppLogicTests.h in Sources */ = {isa = PBXBuildFile; fileRef = 4E85AD64170955B300C1FBBD /* MyAppLogicTests.h */; };
@@ -105,10 +105,10 @@
 		4EA1D1CA1709C21C00D624E5 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7556F516ECDDF00094A33A /* EventKit.framework */; };
 		4EA1D1CB1709C29E00D624E5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E874E1C16D1218E00CFDA27 /* CoreGraphics.framework */; };
 		4EA1D1CC1709C2AF00D624E5 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7556F616ECDDF00094A33A /* EventKitUI.framework */; };
-		4EA4FB8D16EB743300F9A66C /* NSUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA4FB8C16EB743300F9A66C /* NSUtilities.m */; };
+		4EA4FB8D16EB743300F9A66C /* KSUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA4FB8C16EB743300F9A66C /* KSUtilities.m */; };
 		4EA4FB9016EB96F000F9A66C /* FirstJsonLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA4FB8F16EB96F000F9A66C /* FirstJsonLoader.m */; };
 		4EACC92016F5345E00EE41B3 /* -568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EACC91F16F5345E00EE41B3 /* -568h@2x.png */; };
-		4EAEAD9D17037881006AE83F /* BadgeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAEAD9C17037881006AE83F /* BadgeManager.m */; };
+		4EAEAD9D17037881006AE83F /* KSBadgeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAEAD9C17037881006AE83F /* KSBadgeManager.m */; };
 		4EAF2523175A6F8B00FC3A4E /* cell-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EAF2522175A6F8B00FC3A4E /* cell-logo.png */; };
 		4EAF2526175A86D200FC3A4E /* KSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF2525175A86D200FC3A4E /* KSCell.m */; };
 		4EB35EEF17651F7A00086A97 /* KSSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB35EEE17651F7A00086A97 /* KSSettings.m */; };
@@ -146,8 +146,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4E13541516D7902300578F16 /* MyJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyJson.h; sourceTree = "<group>"; };
-		4E13541616D7902300578F16 /* MyJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyJson.m; sourceTree = "<group>"; };
+		4E13541516D7902300578F16 /* KSJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSJson.h; sourceTree = "<group>"; };
+		4E13541616D7902300578F16 /* KSJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSJson.m; sourceTree = "<group>"; };
 		4E17A0BA16D2F2010019C015 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		4E57D11F16D8B97500506E44 /* dailyEventsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dailyEventsController.h; sourceTree = "<group>"; };
 		4E57D12016D8B97500506E44 /* dailyEventsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dailyEventsController.m; sourceTree = "<group>"; };
@@ -202,13 +202,13 @@
 		4E9F501516E945EE009A9D1B /* launch_image4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_image4.png; sourceTree = "<group>"; };
 		4E9F501716E94724009A9D1B /* icon_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_retina.png; path = ../icon_retina.png; sourceTree = "<group>"; };
 		4EA0BA3616F5B1C5002BD0CE /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButton.png; sourceTree = "<group>"; };
-		4EA4FB8B16EB743300F9A66C /* NSUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSUtilities.h; sourceTree = "<group>"; };
-		4EA4FB8C16EB743300F9A66C /* NSUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSUtilities.m; sourceTree = "<group>"; };
+		4EA4FB8B16EB743300F9A66C /* KSUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSUtilities.h; sourceTree = "<group>"; };
+		4EA4FB8C16EB743300F9A66C /* KSUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSUtilities.m; sourceTree = "<group>"; };
 		4EA4FB8E16EB96F000F9A66C /* FirstJsonLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstJsonLoader.h; sourceTree = "<group>"; };
 		4EA4FB8F16EB96F000F9A66C /* FirstJsonLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstJsonLoader.m; sourceTree = "<group>"; };
 		4EACC91F16F5345E00EE41B3 /* -568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "-568h@2x.png"; path = "../-568h@2x.png"; sourceTree = "<group>"; };
-		4EAEAD9B17037881006AE83F /* BadgeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgeManager.h; sourceTree = "<group>"; };
-		4EAEAD9C17037881006AE83F /* BadgeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgeManager.m; sourceTree = "<group>"; };
+		4EAEAD9B17037881006AE83F /* KSBadgeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSBadgeManager.h; sourceTree = "<group>"; };
+		4EAEAD9C17037881006AE83F /* KSBadgeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSBadgeManager.m; sourceTree = "<group>"; };
 		4EAF2522175A6F8B00FC3A4E /* cell-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-logo.png"; sourceTree = "<group>"; };
 		4EAF2524175A86D200FC3A4E /* KSCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSCell.h; sourceTree = "<group>"; };
 		4EAF2525175A86D200FC3A4E /* KSCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSCell.m; sourceTree = "<group>"; };
@@ -407,14 +407,14 @@
 		4E6F3FB216D622F30004098A /* Reusable Files */ = {
 			isa = PBXGroup;
 			children = (
-				4E13541516D7902300578F16 /* MyJson.h */,
-				4E13541616D7902300578F16 /* MyJson.m */,
-				4EA4FB8B16EB743300F9A66C /* NSUtilities.h */,
-				4EA4FB8C16EB743300F9A66C /* NSUtilities.m */,
+				4E13541516D7902300578F16 /* KSJson.h */,
+				4E13541616D7902300578F16 /* KSJson.m */,
+				4EA4FB8B16EB743300F9A66C /* KSUtilities.h */,
+				4EA4FB8C16EB743300F9A66C /* KSUtilities.m */,
 				4EA4FB8E16EB96F000F9A66C /* FirstJsonLoader.h */,
 				4EA4FB8F16EB96F000F9A66C /* FirstJsonLoader.m */,
-				4EAEAD9B17037881006AE83F /* BadgeManager.h */,
-				4EAEAD9C17037881006AE83F /* BadgeManager.m */,
+				4EAEAD9B17037881006AE83F /* KSBadgeManager.h */,
+				4EAEAD9C17037881006AE83F /* KSBadgeManager.m */,
 				4EAF2524175A86D200FC3A4E /* KSCell.h */,
 				4EAF2525175A86D200FC3A4E /* KSCell.m */,
 				4EB35EED17651F7A00086A97 /* KSSettings.h */,
@@ -830,12 +830,12 @@
 				4EA1D1B71709C18100D624E5 /* Default.png in Sources */,
 				4EA1D1B81709C18100D624E5 /* Default@2x.png in Sources */,
 				4EA1D1B91709C18100D624E5 /* Default-568h@2x.png in Sources */,
-				4EA1D1BA1709C18100D624E5 /* MyJson.h in Sources */,
-				4EA1D1BB1709C18100D624E5 /* MyJson.m in Sources */,
-				4EA1D1C01709C18100D624E5 /* NSUtilities.h in Sources */,
-				4EA1D1C11709C18100D624E5 /* NSUtilities.m in Sources */,
-				4EA1D1871709C0A100D624E5 /* BadgeManager.h in Sources */,
-				4EA1D1861709C02800D624E5 /* BadgeManager.m in Sources */,
+				4EA1D1BA1709C18100D624E5 /* KSJson.h in Sources */,
+				4EA1D1BB1709C18100D624E5 /* KSJson.m in Sources */,
+				4EA1D1C01709C18100D624E5 /* KSUtilities.h in Sources */,
+				4EA1D1C11709C18100D624E5 /* KSUtilities.m in Sources */,
+				4EA1D1871709C0A100D624E5 /* KSBadgeManager.h in Sources */,
+				4EA1D1861709C02800D624E5 /* KSBadgeManager.m in Sources */,
 				4E85AD66170955B300C1FBBD /* MyAppLogicTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -848,14 +848,14 @@
 				4E874E2916D1218E00CFDA27 /* AppDelegate.m in Sources */,
 				4ED55A1016D13C7D00D1F02D /* eventController.m in Sources */,
 				4E6F3FB816D62E1C0004098A /* settingsController.m in Sources */,
-				4E13541716D7902300578F16 /* MyJson.m in Sources */,
+				4E13541716D7902300578F16 /* KSJson.m in Sources */,
 				4E57D12116D8B97500506E44 /* dailyEventsController.m in Sources */,
 				4E57D12416D8C37400506E44 /* eventDetailsController.m in Sources */,
 				4E9E2D5816DA10C100F0E661 /* venuesAndEventsController.m in Sources */,
 				4E9E2D5B16DA10DF00F0E661 /* eventsInAVenueController.m in Sources */,
-				4EA4FB8D16EB743300F9A66C /* NSUtilities.m in Sources */,
+				4EA4FB8D16EB743300F9A66C /* KSUtilities.m in Sources */,
 				4EA4FB9016EB96F000F9A66C /* FirstJsonLoader.m in Sources */,
-				4EAEAD9D17037881006AE83F /* BadgeManager.m in Sources */,
+				4EAEAD9D17037881006AE83F /* KSBadgeManager.m in Sources */,
 				6325FF8B171928730019DEDC /* preferencesController.m in Sources */,
 				6325FF8C171928730019DEDC /* preferencesEvents.m in Sources */,
 				63FF350B1721925B004D7CB6 /* PrefsEventsDetail.m in Sources */,

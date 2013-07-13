@@ -8,11 +8,11 @@
 
 #import "venuesAndEventsController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "MyJson.h"
+#import "KSJson.h"
 #import "eventsInAVenueController.h"
 #import "FirstJsonLoader.h"
-#import "NSUtilities.h"
-#import "BadgeManager.h"
+#import "KSUtilities.h"
+#import "KSBadgeManager.h"
 #import "AppDelegate.h"
 #import "KSCell.h"
 #import "KSSettings.h"
@@ -147,11 +147,11 @@
     cell.titleLabel.text = [eventDict objectForKey:@"name"];
     cell.moreLabel.text = [eventDict objectForKey:@"address"];
     cell.descriptionLabel.text = [eventDict objectForKey:@"countDetail"];
-    [cell addSubview: [NSUtilities getImageViewOfUrl:[eventDict objectForKey:@"logo"]]];
+    [cell addSubview: [KSUtilities getImageViewOfUrl:[eventDict objectForKey:@"logo"]]];
     
     // displaying events as a badge
     NSMutableArray *eventIdList = [[NSMutableArray alloc] init];
-    MyJson * json = [[MyJson alloc] init];
+    KSJson * json = [[KSJson alloc] init];
     NSString *jsonURL  = [NSString stringWithFormat:@"%@%@",kjsonUrlEventsOfVenue,[eventDict objectForKey:@"venue_id" ]];
     NSMutableArray *eventsForBadge = [json toArray:jsonURL];
     for (int i = 0; i < [eventsForBadge count]; i++) {
@@ -162,10 +162,10 @@
     }
     
     //badges
-    int newEventCount = [BadgeManager countNewEvents:eventIdList];
+    int newEventCount = [KSBadgeManager countNewEvents:eventIdList];
     if (newEventCount > 0) {
         if(app.setBadge) {
-            UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"%i",newEventCount] showHide:app.setBadge];
+            UIView *badgeView = [KSUtilities getBadgeLikeView:[NSString stringWithFormat:@"%i", newEventCount] showHide:app.setBadge];
             badgeView.tag = 111;
             [cell.contentView addSubview:badgeView];
         }

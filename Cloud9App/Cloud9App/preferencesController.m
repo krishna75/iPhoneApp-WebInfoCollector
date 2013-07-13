@@ -8,11 +8,11 @@
 
 #import "preferencesController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "MyJson.h"
+#import "KSJson.h"
 #import "dailyEventsController.h"
-#import "NSUtilities.h"
+#import "KSUtilities.h"
 #import "FirstJsonLoader.h"
-#import "BadgeManager.h"
+#import "KSBadgeManager.h"
 #import "AppDelegate.h"
 #import "preferencesEvents.h"
 #import "KSCell.h"
@@ -66,7 +66,7 @@
 // the process also has spinner or loader
 - (void)processJson {
     
-    MyJson * json = [[MyJson alloc] init];
+    KSJson * json = [[KSJson alloc] init];
     jsonResults = [json toArray:kjsonURL];
     NSLog(@"prefController processJson: jsonResults %@",jsonResults);
 }
@@ -132,7 +132,7 @@
     NSMutableString    *genre = [eventCountDict objectForKey:@"genre"];
     cell.titleLabel.text = [NSString stringWithFormat:@"%@", genre];
     cell.descriptionLabel.text = [NSString stringWithFormat:@"%@",[eventCountDict objectForKey:@"description"]];
-    [cell addSubview: [NSUtilities getImageViewOfUrl:[eventCountDict objectForKey:@"photo"]]];
+    [cell addSubview: [KSUtilities getImageViewOfUrl:[eventCountDict objectForKey:@"photo"]]];
     return cell;
 }
 
@@ -160,7 +160,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     NSMutableString *title = [NSString stringWithFormat:@"%@",@"Genres"];
-    return [NSUtilities getHeaderView:NULL forTitle:title forDetail:nil];
+    return [KSUtilities getHeaderView:NULL forTitle:title forDetail:nil];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     

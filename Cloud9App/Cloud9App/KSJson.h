@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MyJson : NSObject {
+@interface KSJson : NSObject {
     NSMutableArray *jsonResults;
     NSURL *jsonURL;
 }

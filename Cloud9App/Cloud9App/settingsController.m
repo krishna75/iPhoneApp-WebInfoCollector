@@ -7,7 +7,7 @@
 //
 
 #import "settingsController.h"
-#import "MyJson.h"
+#import "KSJson.h"
 #import "SettingsDetail.h"
 #import "AppDelegate.h"
 

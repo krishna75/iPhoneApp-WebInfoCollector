@@ -7,7 +7,6 @@
 //
 
 #import "Voucher.h"
-#import "KSBackgroundLayer.h"
 
 
 @interface Voucher ()
@@ -23,9 +22,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//	CAGradientLayer *bgLayer = [KSBackgroundLayer greyGradient];
-//    bgLayer.frame = self.view.bounds;
-//    [self.view.layer insertSublayer:bgLayer atIndex:0];
+
+//    create voucher description
+    NSString *description = @"If you present this voucher to the venue, you will be able to get 5% discount. Please note that it  can be used only once.";
+    CGRect descFrame = CGRectMake(12, 200, 290, 350);
+    UILabel *descLabel = [[UILabel alloc] initWithFrame:descFrame];
+    descLabel.textColor = [UIColor whiteColor];
+    descLabel.backgroundColor = [UIColor clearColor];
+    [descLabel setFont:[UIFont fontWithName:@"American Typewriter" size:16]];
+    descLabel.text = description;
+    [descLabel setNumberOfLines:0];
+    [descLabel sizeToFit];
+    
+    
+    // adding voucher button
+    [self.view    addSubview:descLabel ];
+    
 }
 
 - (void)viewDidUnload
@@ -69,11 +81,12 @@
         
     
         NSString *combined = [NSString stringWithFormat:@" Scanned: id= %@,  type=%@,  action=%@", id, type, action];
-        NSLog(combined);
+        NSLog(@"combined qr variables =  %@",combined);
         
         if (id!=nil && type!=nil && action!=nil){
 
-        // if id and type and action ok, then show view update the database
+        // if id and type and action ok, then show view  as success and update the database
+        //
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!!!" message:[NSString stringWithFormat:@"Thank you for using  CNAPP voucher"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];

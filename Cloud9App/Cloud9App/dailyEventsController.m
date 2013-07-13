@@ -9,10 +9,10 @@
 #import "dailyEventsController.h"
 
 #import <QuartzCore/QuartzCore.h>
-#import "MyJson.h"
+#import "KSJson.h"
 #import "eventDetailsController.h"
-#import "NSUtilities.h"
-#import "BadgeManager.h"
+#import "KSUtilities.h"
+#import "KSBadgeManager.h"
 #import "AppDelegate.h"
 #import "KSCell.h"
 #import "KSSettings.h"
@@ -70,7 +70,7 @@
     
     //loading... spinnner
     // the actuatl process 
-    MyJson * json = [[MyJson alloc] init];
+    KSJson * json = [[KSJson alloc] init];
     NSString *jsonURL  = [NSString stringWithFormat:@"%@%@",kjsonURL,[_eventDict  objectForKey:@"date"]];
     jsonResults = [json toArray:jsonURL];
 }
@@ -150,15 +150,15 @@
     
     cell.titleLabel.text = eventTitle;
     cell.descriptionLabel.text = venue;
-    [cell addSubview: [NSUtilities getImageViewOfUrl:logo]];
+    [cell addSubview: [KSUtilities getImageViewOfUrl:logo]];
     
     //displaying new events as badge
     NSString    *eventId = [eventCountDict objectForKey:@"id"];
     NSString    *date= [eventCountDict objectForKey:@"date"];
     NSMutableString *eventIdDate = [NSString stringWithFormat:@"%@:%@",eventId,date];
-    if ([BadgeManager isNewEvent:eventIdDate]) {
+    if ([KSBadgeManager isNewEvent:eventIdDate]) {
         if(app.setBadge) {
-            UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"new"] showHide:app.setBadge];
+            UIView *badgeView = [KSUtilities getBadgeLikeView:[NSString stringWithFormat:@"new"] showHide:app.setBadge];
             badgeView.tag = 111;
             [cell addSubview:badgeView];
         }
@@ -193,7 +193,7 @@
     NSMutableString *title = [_eventDict objectForKey:@"formattedDate"];
     NSMutableString *description = [_eventDict objectForKey:@"countDetail"];
     
-    return [NSUtilities getHeaderView:NULL forTitle:title forDetail:description];
+    return [KSUtilities getHeaderView:NULL forTitle:title forDetail:description];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -217,7 +217,7 @@
 
 #pragma mark - Back button;
 -(void) setBackButton {
-    UIButton *btn = [NSUtilities getBackButon];
+    UIButton *btn = [KSUtilities getBackButon];
     [btn addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
 }

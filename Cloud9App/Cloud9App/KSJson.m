@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Krishna Sapkota. All rights reserved.
 //
 
-#import "MyJson.h"
+#import "KSJson.h"
 
-@implementation MyJson ;
+@implementation KSJson;
     NSString *jsonHome = @"http://www.cnapp.co.uk/public/";
 
 -(void) process {
@@ -17,7 +17,7 @@
     NSURLRequest* req=[NSURLRequest requestWithURL: jsonURL];
     NSData* data=[NSURLConnection sendSynchronousRequest: req returningResponse: nil error: &error];
     if (error != NULL) {
-        NSLog(@"MyJson process: error %@",[error localizedDescription]);
+        NSLog(@"KSJson process: error %@",[error localizedDescription]);
     }
     
     [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data waitUntilDone:YES];

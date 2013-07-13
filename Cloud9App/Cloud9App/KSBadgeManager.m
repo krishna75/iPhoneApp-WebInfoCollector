@@ -1,36 +1,36 @@
 //
-//  BadgeManager.m
+//  KSBadgeManager.m
 //  Cloud9App
 //
 //  Created by Krishna Sapkota on 27/03/2013.
 //  Copyright (c) 2013 Krishna Sapkota. All rights reserved.
 //
 
-#import "BadgeManager.h"
-#import "MyJson.h"
-#import "NSUtilities.h"
+#import "KSBadgeManager.h"
+#import "KSJson.h"
+#import "KSUtilities.h"
 
 static NSMutableDictionary *eventViewedDict = nil;
 
-@implementation BadgeManager
+@implementation KSBadgeManager
     
 + (void) initialize {
-    eventViewedDict = [BadgeManager readDict];
-    NSLog(@"BadgeManager initialize: total dict size read from file , %i", eventViewedDict.allKeys.count );
+    eventViewedDict = [KSBadgeManager readDict];
+    NSLog(@"KSBadgeManager initialize: total dict size read from file , %i", eventViewedDict.allKeys.count );
     if (!eventViewedDict){
         eventViewedDict = [[NSMutableDictionary alloc]init];
     }
-    [BadgeManager updateEvents];
+    [KSBadgeManager updateEvents];
 }
 
 
 
 + (void) updateEvents {
-    [BadgeManager removePastEvents:eventViewedDict];
-    MyJson *json = [[MyJson alloc] init];
+    [KSBadgeManager removePastEvents:eventViewedDict];
+    KSJson *json = [[KSJson alloc] init];
     NSArray *jsonResults = [json toArray:@"eventsForBadgeManager.php"];
     
-    NSLog(@"BadgeManager updateEvents: size of the json results: %i", [jsonResults count]);
+    NSLog(@"KSBadgeManager updateEvents: size of the json results: %i", [jsonResults count]);
        for (int i= 0; i< jsonResults.count; i++) {
             NSMutableDictionary *eventCountDict = [jsonResults objectAtIndex:i];
             NSMutableString    *eventId = [eventCountDict objectForKey:@"id"];
@@ -42,8 +42,8 @@ static NSMutableDictionary *eventViewedDict = nil;
     
        }
     
-    NSLog(@"BadgeManager updateEvents: total dict size , %i", eventViewedDict.allKeys.count );
-    [BadgeManager computeNewEvents];
+    NSLog(@"KSBadgeManager updateEvents: total dict size , %i", eventViewedDict.allKeys.count );
+    [KSBadgeManager computeNewEvents];
 }
 
 
@@ -55,7 +55,7 @@ static NSMutableDictionary *eventViewedDict = nil;
         }
     }
   [UIApplication sharedApplication].applicationIconBadgeNumber = newEventCount;
-    [BadgeManager saveDict: eventViewedDict];
+    [KSBadgeManager saveDict:eventViewedDict];
 }
 
 
@@ -63,14 +63,14 @@ static NSMutableDictionary *eventViewedDict = nil;
 
 + (void) addViewedEvent: (NSMutableString *) eventId onDate: (NSMutableString *) date {
     NSMutableString *eventKey = [NSString stringWithFormat:@"%@:%@",eventId,date];
-    NSLog(@"BadgeManager addViewedEvent: %@", eventKey);
+    NSLog(@"KSBadgeManager addViewedEvent: %@", eventKey);
     for (int i = 0; i< [eventViewedDict count]; i++) {
         if ([eventViewedDict.allKeys[i] isEqual: eventKey]){
             [eventViewedDict setObject:@"VIEWED" forKey:eventKey];
         }
     }
     
-    [BadgeManager computeNewEvents];
+    [KSBadgeManager computeNewEvents];
 }
 
 
@@ -79,7 +79,7 @@ static NSMutableDictionary *eventViewedDict = nil;
     int newEventCount = 0;
     for (int i = 0; i< [eventIds  count]; i++) {
         NSMutableString *eventId = [eventIds objectAtIndex:i];
-        if ([BadgeManager isNewEvent:eventId]){
+        if ([KSBadgeManager isNewEvent:eventId]){
             newEventCount++;
         }
     }
@@ -88,7 +88,7 @@ static NSMutableDictionary *eventViewedDict = nil;
 
 + (Boolean) isNewEvent: (NSMutableString *) eventId {
     NSMutableString *value = [eventViewedDict objectForKey:eventId];
-    NSLog(@"BadgeManager isNewEvent: value = %@",value);
+    NSLog(@"KSBadgeManager isNewEvent: value = %@",value);
     if ([value isEqual: @"VIEWED"]){
         return FALSE;
     } else {
@@ -98,7 +98,7 @@ static NSMutableDictionary *eventViewedDict = nil;
 
 
 + (int) countNewEventsOfDate:(NSMutableString *) date {
-    return [BadgeManager countNewEvents:[BadgeManager listEventsOfDate:date]];
+    return [KSBadgeManager countNewEvents:[KSBadgeManager listEventsOfDate:date]];
 }
 
 
@@ -118,7 +118,7 @@ static NSMutableDictionary *eventViewedDict = nil;
     for (int i = 0; i< [eventDictionary.allKeys  count]; i++) {
         NSMutableString *eventKey = [eventDictionary.allKeys objectAtIndex:i];
         NSMutableString *date =  [[eventKey  componentsSeparatedByString:@":"] objectAtIndex:1];
-        if ([BadgeManager isPastDate:date]){
+        if ([KSBadgeManager isPastDate:date]){
             [eventDictionary removeObjectForKey:eventKey];
         }
     }
@@ -132,7 +132,7 @@ static NSMutableDictionary *eventViewedDict = nil;
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *date = [formatter dateFromString:timeDateString];
     
-    NSString *timeTodayString = [NSString stringWithFormat:@"%@ 00:00:00",[NSUtilities getToday]];
+    NSString *timeTodayString = [NSString stringWithFormat:@"%@ 00:00:00",[KSUtilities getToday]];
     NSDate *today = [formatter dateFromString:timeTodayString];
     
     NSComparisonResult result = [date compare:today];

@@ -7,7 +7,7 @@
 //
 
 #import "KSCell.h"
-#import "NSUtilities.h"
+#import "KSUtilities.h"
 
 @implementation KSCell
 
@@ -22,21 +22,21 @@
         // create title label
         titleLabel = [[UILabel alloc]init];
         titleLabel.font = [UIFont systemFontOfSize:18];
-        titleLabel.textColor = [NSUtilities colorWithHexString:@"FFFFFF"];
+        titleLabel.textColor = [KSUtilities colorWithHexString:@"FFFFFF"];
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.textAlignment = NSTextAlignmentLeft;
         
         // create description label
         descriptionLabel = [[UILabel alloc]init];
         descriptionLabel.backgroundColor = [UIColor clearColor];
-        descriptionLabel.textColor = [NSUtilities colorWithHexString:@"C8C8C1"];
+        descriptionLabel.textColor = [KSUtilities colorWithHexString:@"C8C8C1"];
         descriptionLabel.font = [UIFont fontWithName:@"Helvetica" size:12];
         descriptionLabel.textAlignment = NSTextAlignmentLeft;
         
         // create description label
         moreLabel = [[UILabel alloc]init];
         moreLabel.backgroundColor = [UIColor clearColor];
-        moreLabel.textColor = [NSUtilities colorWithHexString:@"C9C9C1"];
+        moreLabel.textColor = [KSUtilities colorWithHexString:@"C9C9C1"];
         moreLabel.font = [UIFont fontWithName:@"Helvetica" size:10];
         moreLabel.textAlignment = NSTextAlignmentLeft;
 

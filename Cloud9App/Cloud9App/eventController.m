@@ -9,11 +9,11 @@
 #import "eventController.h"
 
 #import <QuartzCore/QuartzCore.h>
-#import "MyJson.h"
+#import "KSJson.h"
 #import "dailyEventsController.h"
-#import "NSUtilities.h"
+#import "KSUtilities.h"
 #import "FirstJsonLoader.h"
-#import "BadgeManager.h"
+#import "KSBadgeManager.h"
 #import "AppDelegate.h"
 #import "KSCell.h"
 #import "KSSettings.h"
@@ -67,7 +67,7 @@
 
 // the process also has spinner or loader
 - (void)processJson {
-    MyJson * json = [[MyJson alloc] init];
+    KSJson * json = [[KSJson alloc] init];
     jsonResults = [json toArray:kjsonURL];
 }
 
@@ -135,15 +135,15 @@
     NSString    *count = [eventCountDict objectForKey:@"quantity"];
     NSMutableString *countDetail = [NSMutableString stringWithFormat:@"%@ Events",count];
 
-    cell.titleLabel.text = [NSUtilities getFormatedDate:date];
+    cell.titleLabel.text = [KSUtilities getFormatedDate:date];
     cell.descriptionLabel.text = countDetail;
-    [cell addSubview: [NSUtilities getResizedImageViewForCell:[UIImage imageNamed:@"cell-logo.png"]]];
+    [cell addSubview: [KSUtilities getResizedImageViewForCell:[UIImage imageNamed:@"cell-logo.png"]]];
     
     //computing and displaying new events as badge
-    int newEventCount = [BadgeManager countNewEventsOfDate:date];
+    int newEventCount = [KSBadgeManager countNewEventsOfDate:date];
     if (newEventCount > 0) {
         if(app.setBadge) {
-            UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"%i",newEventCount] showHide:app.setBadge];
+            UIView *badgeView = [KSUtilities getBadgeLikeView:[NSString stringWithFormat:@"%i", newEventCount] showHide:app.setBadge];
             badgeView.tag = 111;
             [cell addSubview:badgeView];
         }
@@ -177,7 +177,7 @@
     NSString    *date = [eventCountDict objectForKey:@"date"];
     NSString    *count = [eventCountDict objectForKey:@"quantity"];
     NSMutableString *countDetail = [NSMutableString stringWithFormat:@"%@ Events",count];
-    NSMutableString    *formattedDate = [NSUtilities getFormatedDate:date];
+    NSMutableString    *formattedDate = [KSUtilities getFormatedDate:date];
     
     NSMutableDictionary *eventDict = [[NSMutableDictionary alloc]init];
     [eventDict setObject:date forKey:@"date"];

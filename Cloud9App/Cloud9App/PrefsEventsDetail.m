@@ -8,10 +8,10 @@
 
 #import "PrefsEventsDetail.h"
 #import <QuartzCore/QuartzCore.h>
-#import "MyJson.h"
+#import "KSJson.h"
 #import "eventDetailsController.h"
-#import "NSUtilities.h"
-#import "BadgeManager.h"
+#import "KSUtilities.h"
+#import "KSBadgeManager.h"
 #import "AppDelegate.h"
 #import "KSCell.h"
 #import "KSSettings.h"
@@ -68,7 +68,7 @@
 // the process also has spinner or loader
 - (void)processJson {
     
-    MyJson * json = [[MyJson alloc] init];
+    KSJson * json = [[KSJson alloc] init];
     NSString *url  = [NSString stringWithFormat:@"%@%@",kjsonURL,[_eventsDict  objectForKey:@"genre_id"]];
     NSString *urlString = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     jsonResults = [json toArray:urlString];
@@ -130,7 +130,7 @@
     NSString *day = [NSString stringWithFormat:@"%@",[[jsonResults objectAtIndex:indexPath.row]
                                                       objectForKey:@"day"]];
     cell.descriptionLabel.text = [NSString stringWithFormat:@"%@,%@",date,day];
-    [cell addSubview: [NSUtilities getResizedImageViewForCell:[UIImage imageNamed:@"cell-logo.png"]]];
+    [cell addSubview: [KSUtilities getResizedImageViewForCell:[UIImage imageNamed:@"cell-logo.png"]]];
     return cell;
 }
 
@@ -155,7 +155,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     NSString *title = [NSString stringWithFormat:@"%@",self.header];
-    return [NSUtilities getHeaderView:nil forTitle:title forDetail:@" "];
+    return [KSUtilities getHeaderView:nil forTitle:title forDetail:@" "];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -179,7 +179,7 @@
 
 #pragma mark - Back button;
 -(void) setBackButton {
-    UIButton *btn = [NSUtilities getBackButon];
+    UIButton *btn = [KSUtilities getBackButon];
     [btn addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
 }

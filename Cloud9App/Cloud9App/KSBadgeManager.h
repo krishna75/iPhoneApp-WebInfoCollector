@@ -1,5 +1,5 @@
 //
-//  BadgeManager.h
+//  KSBadgeManager.h
 //  Cloud9App
 //
 //  Created by Krishna Sapkota on 27/03/2013.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BadgeManager : NSObject
+@interface KSBadgeManager : NSObject
 
 
 + (void) saveDict;

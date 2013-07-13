@@ -7,9 +7,9 @@
 //
 
 #import "eventDetailsController.h"
-#import "MyJson.h"
-#import "NSUtilities.h"
-#import "BadgeManager.h"
+#import "KSJson.h"
+#import "KSUtilities.h"
+#import "KSBadgeManager.h"
 #import "AppDelegate.h"
 #import "KSSettings.h"
 
@@ -59,7 +59,7 @@
 - (void)processJson {
     
     // the actuatl process 
-    MyJson * json = [[MyJson alloc] init];
+    KSJson * json = [[KSJson alloc] init];
     NSString *jsonURL  = [NSString stringWithFormat:@"%@%@",kjsonURL,_eventId];
     NSMutableArray *jsonResults = [json toArray:jsonURL];
     eventDetailDict = [jsonResults objectAtIndex:0];
@@ -86,7 +86,7 @@
     NSString *title = [eventDetailDict objectForKey:@"title"];
     NSString *venue = [eventDetailDict objectForKey:@"venue"];
     NSString *date = [eventDetailDict objectForKey:@"date"];
-    NSString *dateDetail = [NSUtilities getFormatedDate:date];
+    NSString *dateDetail = [KSUtilities getFormatedDate:date];
     NSString *description = [eventDetailDict objectForKey:@"description"];
     NSString *subTitle = [NSString stringWithFormat:@"Date: %@\rVenue: %@",dateDetail,venue];
     
@@ -94,7 +94,7 @@
     NSData  *imageData = [NSData dataWithContentsOfURL:imageURL];
     UIImage *eventImage = [[UIImage alloc] initWithData:imageData];
     
-    [BadgeManager addViewedEvent:eventId onDate:date];
+    [KSBadgeManager addViewedEvent:eventId onDate:date];
     
     // setting values
     self.titleLabel.text = title;
@@ -273,7 +273,7 @@
 
 #pragma mark - Back button;
 -(void) setBackButton {
-    UIButton *btn = [NSUtilities getBackButon];
+    UIButton *btn = [KSUtilities getBackButon];
     [btn addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
 }

@@ -9,10 +9,10 @@
 #import "eventsInAVenueController.h"
 
 #import <QuartzCore/QuartzCore.h>
-#import "MyJson.h"
+#import "KSJson.h"
 #import "eventDetailsController.h"
-#import "NSUtilities.h"
-#import "BadgeManager.h"
+#import "KSUtilities.h"
+#import "KSBadgeManager.h"
 #import "AppDelegate.h"
 #import "KSCell.h"
 #import "KSSettings.h"
@@ -61,7 +61,7 @@
     [spinner startAnimating];
     
     // the actuatl process
-    MyJson * json = [[MyJson alloc] init];
+    KSJson * json = [[KSJson alloc] init];
     NSString *jsonURL  = [NSString stringWithFormat:@"%@%@",kjsonURL,[_venueDict objectForKey:@"venue_id" ]];
     NSLog(@"Venue II processJson: url %@",jsonURL);
     jsonResults = [json toArray:jsonURL];
@@ -126,15 +126,15 @@
     NSString    *eventTitle = [eventCountDict objectForKey:@"event_title"];
 
     cell.titleLabel.text = eventTitle;
-    cell.descriptionLabel.text = [NSUtilities getFormatedDate:date];
-    [cell addSubview: [NSUtilities getResizedImageViewForCell:[UIImage imageNamed:@"cell-logo.png"]]];
+    cell.descriptionLabel.text = [KSUtilities getFormatedDate:date];
+    [cell addSubview: [KSUtilities getResizedImageViewForCell:[UIImage imageNamed:@"cell-logo.png"]]];
     
     //displaying new events as badge
     NSString    *eventId = [eventCountDict objectForKey:@"event_id"];
     NSMutableString *eventIdDate = [NSString stringWithFormat:@"%@:%@",eventId,date];
-    if ([BadgeManager isNewEvent:eventIdDate]) {
+    if ([KSBadgeManager isNewEvent:eventIdDate]) {
         if(app.setBadge) {
-            UIView *badgeView = [NSUtilities getBadgeLikeView:[NSString stringWithFormat:@"new"] showHide:app.setBadge];
+            UIView *badgeView = [KSUtilities getBadgeLikeView:[NSString stringWithFormat:@"new"] showHide:app.setBadge];
             badgeView.tag = 111;
             [cell addSubview:badgeView];
         }
@@ -171,7 +171,7 @@
     NSData  *imageData = [NSData dataWithContentsOfURL:imageURL];
     UIImage *logoImage = [[UIImage alloc] initWithData:imageData];
     
-    return [NSUtilities getHeaderView:logoImage forTitle:title forDetail:description];
+    return [KSUtilities getHeaderView:logoImage forTitle:title forDetail:description];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -194,7 +194,7 @@
 
 #pragma mark - Back button;
 -(void) setBackButton {
-    UIButton *btn = [NSUtilities getBackButon];
+    UIButton *btn = [KSUtilities getBackButon];
     [btn addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
 }

@@ -7,8 +7,8 @@
 //
 
 #import "MyAppLogicTests.h"
-#import "BadgeManager.h"
-#import "NSUtilities.h"
+#import "KSBadgeManager.h"
+#import "KSUtilities.h"
 
 @implementation MyAppLogicTests
 
@@ -27,14 +27,14 @@
 }
 
 - (void) testInitialisation {
-    [BadgeManager initialize];
+    [KSBadgeManager initialize];
 }
 
 
 
 - (void) testPassedDate {
-    STAssertTrue([BadgeManager isPastDate:@"2013-03-25"], @"the date must be passed date");
-    STAssertFalse([BadgeManager isPastDate:@"2013-04-30"], @"the date must be future date");
+    STAssertTrue([KSBadgeManager isPastDate:@"2013-03-25"], @"the date must be passed date");
+    STAssertFalse([KSBadgeManager isPastDate:@"2013-04-30"], @"the date must be future date");
 }
 
 - (void) testRemovingPastEvents {
@@ -43,17 +43,17 @@
     [eventDict setObject:@"UNVIEWED" forKeyedSubscript:@"event_1:2013-04-25"];
     
     STAssertTrue([eventDict count]== 2, nil);
-    [BadgeManager removePastEvents:eventDict]; 
+    [KSBadgeManager removePastEvents:eventDict];
     STAssertTrue([eventDict count]== 1, nil);
 }
 
 - (void) testIsNewEvent {
     
     NSMutableString *eventId = [NSMutableString stringWithFormat:@"11:2013-04-25"];
-    STAssertTrue([BadgeManager isNewEvent:eventId], @"the event should be new (unviewed) event");
+    STAssertTrue([KSBadgeManager isNewEvent:eventId], @"the event should be new (unviewed) event");
     
-    [BadgeManager addViewedEvent:@"11" onDate:@"2013-04-25"];
-    STAssertFalse([BadgeManager isNewEvent:eventId], @"the event should be old (viewed) event");
+    [KSBadgeManager addViewedEvent:@"11" onDate:@"2013-04-25"];
+    STAssertFalse([KSBadgeManager isNewEvent:eventId], @"the event should be old (viewed) event");
 }
 
 - (void) testCountNewEvents {
@@ -65,17 +65,17 @@
     [eventIds  addObject:@"9:2013-04-25"];
     [eventIds  addObject:@"11:2013-04-25"];
     
-    int newEventCount = [BadgeManager countNewEvents:eventIds];
+    int newEventCount = [KSBadgeManager countNewEvents:eventIds];
     STAssertEquals(6, newEventCount, @"must be 6 new events");
     
-    [BadgeManager addViewedEvent:@"11" onDate:@"2013-04-25"];
-    newEventCount = [BadgeManager countNewEvents:eventIds];
+    [KSBadgeManager addViewedEvent:@"11" onDate:@"2013-04-25"];
+    newEventCount = [KSBadgeManager countNewEvents:eventIds];
     STAssertEquals(5, newEventCount, @"must be 5 new events");
     
 }
 
 - (void) testCountNewEventsOfDate {
-    int newEventCount = [BadgeManager countNewEventsOfDate:@"2013-04-28"];
+    int newEventCount = [KSBadgeManager countNewEventsOfDate:@"2013-04-28"];
     STAssertEquals(6, newEventCount, @"must be 6 new events");
 }
 
