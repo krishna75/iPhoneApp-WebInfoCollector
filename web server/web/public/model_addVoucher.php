@@ -1,12 +1,14 @@
 <?php
 //$requiredRole = 3;
 //include("includes/session.php");
-require_once("includes/db_connection.php");
+require_once("db_connection.php");
+include("utilities.php");
 
 // get the post params
 $event_id = $_GET['event_id'];
 $user_id = $_GET['user_id'];
 $password = $_GET['password'];
+$json_count = 0;
 
 if ($user_id != "cloudnineapp-voucher" || $password !="App@Cloud9" ){
     echo "permission denied";
@@ -29,10 +31,13 @@ if ($user_id != "cloudnineapp-voucher" || $password !="App@Cloud9" ){
         // if event id exists, get count, add one, and update the row
         {
             $count ++;
-            echo $count;
             $query = "UPDATE Vouchers SET event_id = $event_id,count=$count WHERE event_id='$event_id';";
             $insertResult = mysql_query($query) or die(mysql_error());
+            $json_count = $count;
         }
     }
 }
+
+$arr = array('count'=>$json_count);
+echo json_encode($arr);
 mysql_close($con);
