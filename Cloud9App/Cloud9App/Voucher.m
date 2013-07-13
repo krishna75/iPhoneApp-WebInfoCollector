@@ -14,7 +14,7 @@
 @end
 
 
-
+                                                                                                            i
 @implementation Voucher
 
 @synthesize scanButton;
