@@ -24,7 +24,6 @@
 #define kCellBG @"bg_cell.png"
 #define kCellSelectedBG @"bg_cellSelected.png"
 #define kTitle @"Preferences"
-#define kBackButton @"backButton.png"
 
 @interface preferencesEvents ()
 

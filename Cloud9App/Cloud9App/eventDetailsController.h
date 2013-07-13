@@ -21,7 +21,6 @@
 @property (retain, nonatomic) IBOutlet UIImageView  *eventImageView;
 
 - (void) addToCalendar:(id) sender;
-- (void) processCalendar;
 //- (IBAction) createEvent;
 
 @end
