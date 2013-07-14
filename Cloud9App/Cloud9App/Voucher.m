@@ -21,6 +21,9 @@
 @implementation Voucher
 
 @synthesize scanButton;
+Boolean used = false;
+UIButton *scanButton;
+UILabel *usedLabel;
 
 - (void)viewDidLoad
 {
@@ -36,12 +39,39 @@
     descLabel.text = description;
     [descLabel setNumberOfLines:0];
     [descLabel sizeToFit];
-    
-    
-    // adding voucher button
     [self.view    addSubview:descLabel ];
-    
+
+
+    // adding scan button
+    // adding voucher button
+    if (!used){
+        [self addScanButton];
+    } else {
+        [self addUsedLabel] ;
+    }
+
 }
+
+- (void) addScanButton {
+        scanButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [scanButton addTarget:self action:@selector(scanButtonPress:) forControlEvents:UIControlEventTouchDown];
+        [scanButton setTitle:@"Scan QR Code" forState:UIControlStateNormal];
+        scanButton.frame = CGRectMake(30.0, 300.0, 260.0, 50.0);
+        [self.view addSubview:scanButton];
+}
+
+-(void) addUsedLabel{
+        NSString *usedText = @"Voucher Used !!!.";
+        CGRect usedFrame = CGRectMake(80, 300, 160, 50);
+        usedLabel = [[UILabel alloc] initWithFrame:usedFrame];
+        usedLabel.textColor = [UIColor yellowColor];
+        usedLabel.backgroundColor = [UIColor clearColor];
+        [usedLabel setFont:[UIFont fontWithName:@"American Typewriter" size:25]];
+        usedLabel.text = usedText;
+        [usedLabel setNumberOfLines:0];
+        [usedLabel sizeToFit];
+        [self.view    addSubview:usedLabel ];
+    }
 
 - (void)viewDidUnload
 {
@@ -99,6 +129,10 @@
             // showing confirmation pop up
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!!!" message:[NSString stringWithFormat:@"Thank you for using  CNAPP voucher"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
             [alert show];
+
+            used = true;
+            [scanButton removeFromSuperview];
+            [self addUsedLabel];
         } else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!!" message:[NSString stringWithFormat:@"Wrong QR Code"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
             [alert show];
