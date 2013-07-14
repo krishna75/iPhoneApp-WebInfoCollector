@@ -270,7 +270,7 @@
 
 
 - (void) eventViewController:(EKEventViewController *)controller didCompleteWithAction:(EKEventViewAction)action {
-        }
+}
 
 #pragma mark - Back button;
 -(void) setBackButton {
@@ -280,7 +280,6 @@
 }
 
 -(void)goBack{
-    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -288,7 +287,6 @@
     Voucher *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"voucher"];
     nextViewController.event_id  = [eventDetailDict objectForKey:@"id"];;
     [self.navigationController pushViewController:nextViewController animated: NO];
-    
 }
 
 @end

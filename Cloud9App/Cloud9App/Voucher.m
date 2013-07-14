@@ -24,6 +24,7 @@
 Boolean used = false;
 UIButton *scanButton;
 UILabel *usedLabel;
+NSString *usedFile = @"/Users/Shared/voucherUsed.plist";
 
 - (void)viewDidLoad
 {
@@ -41,9 +42,9 @@ UILabel *usedLabel;
     [descLabel sizeToFit];
     [self.view    addSubview:descLabel ];
 
+    used = [self isUsed:_event_id];
+    NSLog (@"event id=%@, used=%d", _event_id,used);
 
-    // adding scan button
-    // adding voucher button
     if (!used){
         [self addScanButton];
     } else {
@@ -133,6 +134,7 @@ UILabel *usedLabel;
             used = true;
             [scanButton removeFromSuperview];
             [self addUsedLabel];
+            [self addUsed:_event_id];
         } else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!!" message:[NSString stringWithFormat:@"Wrong QR Code"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
             [alert show];
@@ -143,6 +145,58 @@ UILabel *usedLabel;
     }
     
     
+}
+
+
+- (NSDictionary *) readDict {
+    NSString *fiePath = [self getFilePath];
+    NSLog (@"%@",fiePath);
+    if ([NSDictionary dictionaryWithContentsOfURL:[NSURL fileURLWithPath:fiePath]] !=nil) {
+        return   [NSDictionary dictionaryWithContentsOfURL:[NSURL fileURLWithPath:fiePath]];
+    } else{
+        return  nil;
+    }
+}
+
+- (void) writeDict: (NSDictionary *)existingDict {
+    NSString *error;
+    NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:existingDict  format:NSPropertyListXMLFormat_v1_0 errorDescription:&error];
+    if(plistData) {
+        [plistData writeToFile:[self getFilePath] atomically:YES];
+    } else {
+        NSLog(error);
+    }
+}
+
+
+
+
+- (Boolean) isUsed:(NSString *)eventId {
+    NSDictionary *voucherDict = [self readDict];
+    if (voucherDict != nil) {
+        Boolean eventUsed = (Boolean) [voucherDict objectForKey:eventId];
+        return eventUsed;
+    }  else {
+      return NO;
+    }
+}
+
+- (void) addUsed: (NSString *)eventId {
+    NSDictionary *voucherDict = [self readDict];
+    NSMutableDictionary *mutableVoucherDict = [voucherDict mutableCopy];
+    if (mutableVoucherDict == nil) {
+        mutableVoucherDict= [NSMutableDictionary dictionary];
+    }
+    [mutableVoucherDict setObject:@YES forKey:eventId];
+    voucherDict = [NSMutableDictionary dictionaryWithDictionary:mutableVoucherDict];
+    [self writeDict:voucherDict];
+}
+
+- (NSString *) getFilePath {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    NSString *filePath = [basePath stringByAppendingPathComponent:@"voucher.plist"];
+    return filePath;
 }
 
 @end
