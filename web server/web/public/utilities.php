@@ -21,5 +21,14 @@ function today(){
  $date =  new DateTime();
  return (String) $date->format('Y-m-d');
 }
+
+function containsDate($date,$assocArray, $field){
+    foreach (array_values($assocArray) as $value){
+        if ($date == $value[$field]){
+            return true;
+        }
+    }
+    return false;
+}
   
 ?>

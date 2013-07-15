@@ -25,6 +25,19 @@ while($row = mysql_fetch_assoc($result)){
 					 );
   }
 
+foreach ($jsonResult as $value){
+for($i = 0; $i < 30; $i++){
+        $date = mktime(0,0,0,date("m"),date("d")+$i,date("Y"));
+        $aDate= date("Y-m-d", $date);
+
+
+        if (!containsDate($aDate,$jsonResult,'date')){
+            $value = array("date"=>$aDate,"day"=>date("D",$aDate),"count"=>"0");
+            array_push($jsonResult, $value);
+        }
+    }
+}
+
 echo json_encode($jsonResult);
 //echo json_encode($formatedJsonResult);
 

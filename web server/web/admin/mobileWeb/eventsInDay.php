@@ -13,19 +13,22 @@
 
 $event_date = $_GET["event_date"];
 $json_string =    file_get_contents("http://cnapp.co.uk/public/eventsOfADate.php?event_date=".$event_date);
-$parsed_json = json_decode($json_string);
+if ( is_null($json_string) ){
+}else{
+    $parsed_json = json_decode($json_string);
 
-$header_image_url = "" ;
-$header_title = $parsed_json[0]->date;
-$header_subtitle = $parsed_json[0]->day;
-$header_description= "";
-include "includes/header-cell.php";
-foreach($parsed_json  as $event) {
-    $image_url =$event->venue_logo ;
-    $title =$event->title;;
-    $subtitle = $event->venue;
+    $header_image_url = "" ;
+    $header_title = $parsed_json[0]->date;
+    $header_subtitle = $parsed_json[0]->day;
+    $header_description= "";
+    include "includes/header-cell.php";
+    foreach($parsed_json  as $event) {
+        $image_url =$event->venue_logo ;
+        $title =$event->title;;
+        $subtitle = $event->venue;
 
-    $link_page ="eventDetail.php?event_id=".$event->id;
-    include "includes/cell.php";
+        $link_page ="eventDetail.php?event_id=".$event->id;
+        include "includes/cell.php";
+    }
 }
 ?>
