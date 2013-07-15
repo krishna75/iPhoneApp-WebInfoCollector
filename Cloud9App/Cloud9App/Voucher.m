@@ -8,6 +8,7 @@
 
 #import "Voucher.h"
 #import "KSJson.h"
+#define kTitle @"Voucher"
 
 
 
@@ -33,6 +34,7 @@ NSString *voucherDescription;
     [super viewDidLoad];
     eventId = [eventDetailDict objectForKey:@"id"];
     voucherDescription = [eventDetailDict objectForKey:@"voucher_desc"];
+    self.navigationController.topViewController.title  = kTitle;
 
 //    create voucher description
     NSString *description = @"If you present this voucher to the venue, you will be able to get 5% discount. Please note that it  can be used only once.";

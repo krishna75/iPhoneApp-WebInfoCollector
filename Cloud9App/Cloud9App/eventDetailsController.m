@@ -17,7 +17,7 @@
 
 #define kjsonURL @"eventDetail.php?event_id="
 #define kTableBG @"bg_tableView.png"
-#define kTitle @"Event"
+#define kTitle @"Event Details"
 
 @interface eventDetailsController ()
 

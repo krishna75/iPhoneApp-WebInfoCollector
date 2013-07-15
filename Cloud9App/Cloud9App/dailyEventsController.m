@@ -21,7 +21,7 @@
 #define kTableBG @"bg_tableView.png"
 #define kCellBG @"bg_cell.png"
 #define kCellSelectedBG @"bg_cellSelected.png"
-#define kTitle @"Events"
+#define kTitle @"Events in a Date"
 
 @interface dailyEventsController ()
 
@@ -66,9 +66,6 @@
 
 // the process also has spinner or loader
 - (void)processJson {
-    
-    //loading... spinnner
-    // the actuatl process 
     KSJson * json = [[KSJson alloc] init];
     NSString *jsonURL  = [NSString stringWithFormat:@"%@%@",kjsonURL,[_eventDict  objectForKey:@"date"]];
     jsonResults = [json toArray:jsonURL];
@@ -115,22 +112,17 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-    // Return the number of rows in the section.
     return [jsonResults count];
 }
 

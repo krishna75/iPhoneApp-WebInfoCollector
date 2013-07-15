@@ -21,7 +21,7 @@
 #define kTableBG @"bg_tableView.png"
 #define kCellBG @"bg_cell.png"
 #define kCellSelectedBG @"bg_cellSelected.png"
-#define kTitle @"Events"
+#define kTitle @"Events in a Venue"
 #define kBadgeTag 1111
 
 @interface eventsInAVenueController ()
@@ -73,7 +73,7 @@
 - (void)decorateView{
     
     [self setBackButton];
-    //self.navigationController.topViewController.title  = kTitle;
+    self.navigationController.topViewController.title  = kTitle;
     
     //tableview background image
     UIGraphicsBeginImageContext(self.tableView.frame.size);
