@@ -285,7 +285,7 @@
 
 - (void)voucherAction {
     Voucher *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"voucher"];
-    nextViewController.event_id  = [eventDetailDict objectForKey:@"id"];;
+    nextViewController.eventDetailDict = eventDetailDict;
     [self.navigationController pushViewController:nextViewController animated: NO];
 }
 

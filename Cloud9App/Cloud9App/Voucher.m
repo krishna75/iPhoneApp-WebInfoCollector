@@ -21,14 +21,18 @@
 @implementation Voucher
 
 @synthesize scanButton;
+@synthesize eventDetailDict;
 Boolean used = false;
-UIButton *scanButton;
 UILabel *usedLabel;
-NSString *usedFile = @"/Users/Shared/voucherUsed.plist";
+NSString *eventId ;
+NSString *voucherDescription;
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    eventId = [eventDetailDict objectForKey:@"id"];
+    voucherDescription = [eventDetailDict objectForKey:@"voucher_desc"];
 
 //    create voucher description
     NSString *description = @"If you present this voucher to the venue, you will be able to get 5% discount. Please note that it  can be used only once.";
@@ -38,12 +42,14 @@ NSString *usedFile = @"/Users/Shared/voucherUsed.plist";
     descLabel.backgroundColor = [UIColor clearColor];
     [descLabel setFont:[UIFont fontWithName:@"American Typewriter" size:16]];
     descLabel.text = description;
+//    descLabel.text = voucherDescription;   //todo activate it after discussing with Ramzy
+
     [descLabel setNumberOfLines:0];
     [descLabel sizeToFit];
     [self.view    addSubview:descLabel ];
 
-    used = [self isUsed:_event_id];
-    NSLog (@"event id=%@, used=%d", _event_id,used);
+    used = [self isUsed:eventId];
+    NSLog (@"event id=%@, used=%d", eventId,used);
 
     if (!used){
         [self addScanButton];
@@ -79,6 +85,8 @@ NSString *usedFile = @"/Users/Shared/voucherUsed.plist";
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
+
+#pragma mark Barcode Reader (ZBarReader)
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -123,7 +131,7 @@ NSString *usedFile = @"/Users/Shared/voucherUsed.plist";
             // updating the voucher used
             KSJson * json = [[KSJson alloc] init];
             NSString *url =  @"model_addVoucher.php?user_id=cloudnineapp-voucher&password=App@Cloud9&event_id=";
-            NSString *jsonURL  = [url stringByAppendingString:_event_id];
+            NSString *jsonURL  = [url stringByAppendingString:eventId];
             NSLog(@"voucher url = %@" ,jsonURL);
             [json toArray:jsonURL];
 
@@ -134,7 +142,7 @@ NSString *usedFile = @"/Users/Shared/voucherUsed.plist";
             used = true;
             [scanButton removeFromSuperview];
             [self addUsedLabel];
-            [self addUsed:_event_id];
+            [self addUsed:eventId];
         } else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!!" message:[NSString stringWithFormat:@"Wrong QR Code"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
             [alert show];
@@ -147,7 +155,7 @@ NSString *usedFile = @"/Users/Shared/voucherUsed.plist";
     
 }
 
-
+#pragma mark PLIST related
 - (NSDictionary *) readDict {
     NSString *fiePath = [self getFilePath];
     NSLog (@"%@",fiePath);
@@ -167,8 +175,6 @@ NSString *usedFile = @"/Users/Shared/voucherUsed.plist";
         NSLog(error);
     }
 }
-
-
 
 
 - (Boolean) isUsed:(NSString *)eventId {
