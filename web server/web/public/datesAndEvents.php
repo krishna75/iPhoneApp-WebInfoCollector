@@ -25,6 +25,8 @@ while($row = mysql_fetch_assoc($result)){
 					 );
   }
 
+
+// including all the days in 30days  in the result
 foreach ($jsonResult as $value){
 for($i = 0; $i < 30; $i++){
         $date = mktime(0,0,0,date("m"),date("d")+$i,date("Y"));
@@ -38,8 +40,17 @@ for($i = 0; $i < 30; $i++){
     }
 }
 
+// sorting the result using date
+usort($jsonResult,function ($a,$b){
+    $t1 = strtotime($a["date"]);
+    $t2 = strtotime($b["date"]);
+    if ($t1 == $t2) {
+        return 0;
+    }
+    return ($t1 < $t2) ? -1 : 1;
+});
+
 echo json_encode($jsonResult);
-//echo json_encode($formatedJsonResult);
 
 mysql_close($con);
 ?>
