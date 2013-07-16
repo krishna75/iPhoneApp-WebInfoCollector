@@ -21,6 +21,7 @@ $yyyy = $_POST['yyyy'];
 $date = $yyyy . '/' . $mm . '/' . $dd;
 $title = $_POST['title'];
 $description = $_POST['description'];
+$voucher = $_POST['voucher'];
 $genre = $_POST['genre'];
 $venue = $_POST['venue'];
 echo $date;
@@ -38,8 +39,8 @@ if ( $photoValidated) {
     $photoUrl = $photoPrefix.$_FILES[$photo]['name'];
 
     $query = " INSERT INTO Events (
-      date,   title,   description,    venue_id,    photo )  VALUES (
-    STR_TO_DATE('$date', '%Y/%m/%d'), '$title', '$description', '$venue',  '$photoUrl'); ";
+      date,   title,   description,voucher,    venue_id,    photo )  VALUES (
+    STR_TO_DATE('$date', '%Y/%m/%d'), '$title', '$description','$voucher', '$venue',  '$photoUrl'); ";
     $eventResult = mysql_query($query) or die(mysql_error());
 
     //    get event id (select id from events where title = $title)

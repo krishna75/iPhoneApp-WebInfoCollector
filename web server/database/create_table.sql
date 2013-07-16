@@ -20,6 +20,7 @@ CREATE TABLE Events (
   date        DATE          NOT NULL,
   title       VARCHAR(64)   NOT NULL,
   description VARCHAR(1000) NOT NULL,
+  voucher VARCHAR(1000) NOT NULL,
   venue_id    INT(5),
   photo       VARCHAR(100),
   PRIMARY KEY (id),

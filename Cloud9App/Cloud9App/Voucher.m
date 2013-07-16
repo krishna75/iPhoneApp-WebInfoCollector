@@ -33,7 +33,7 @@ NSString *voucherDescription;
 {
     [super viewDidLoad];
     eventId = [eventDetailDict objectForKey:@"id"];
-    voucherDescription = [eventDetailDict objectForKey:@"voucher_desc"];
+    voucherDescription = [eventDetailDict objectForKey:@"voucher"];
     self.navigationController.topViewController.title  = kTitle;
 
 //    create voucher description
@@ -44,7 +44,7 @@ NSString *voucherDescription;
     descLabel.backgroundColor = [UIColor clearColor];
     [descLabel setFont:[UIFont fontWithName:@"American Typewriter" size:16]];
     descLabel.text = description;
-//    descLabel.text = voucherDescription;   //todo activate it after discussing with Ramzy
+    descLabel.text = voucherDescription;   //todo activate it after discussing with Ramzy
 
     [descLabel setNumberOfLines:0];
     [descLabel sizeToFit];

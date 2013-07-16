@@ -90,7 +90,16 @@ require_once("includes/form_header.php") ;
             <small>It is the genre of the event. Please select one from the drop down list.</small>
         </p>
     </li>
+    <li id="li_11">
+        <label class="description" for="element_11">Voucher* </label>
 
+        <div>
+            <textarea id="voucher" name="voucher" class="required element textarea medium"></textarea>
+        </div>
+        <p class="guidelines" id="guide_8">
+            <small>Voucher for promotion: e.g. 10% discount with this voucher</small>
+        </p>
+    </li>
     <!-- if it is a client it is disabled -->
     <li id="venueSelector">
         <label class="description" for="element_10">Venue </label>
