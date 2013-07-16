@@ -133,7 +133,8 @@
     NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
     NSMutableString    *date = [eventCountDict objectForKey:@"date"];
     NSString    *count = [eventCountDict objectForKey:@"quantity"];
-    NSMutableString *countDetail = [NSMutableString stringWithFormat:@"%@ Events",count];
+    if (count == nil) {count = @"No" ; }
+    NSMutableString *countDetail = [NSMutableString stringWithFormat:@"%@ Event(s)",count];
 
     cell.titleLabel.text = [KSUtilities getFormatedDate:date];
     cell.descriptionLabel.text = countDetail;
@@ -176,7 +177,8 @@
     NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
     NSString    *date = [eventCountDict objectForKey:@"date"];
     NSString    *count = [eventCountDict objectForKey:@"quantity"];
-    NSMutableString *countDetail = [NSMutableString stringWithFormat:@"%@ Events",count];
+    if (count == nil) {count = @"No" ; }
+    NSMutableString *countDetail = [NSMutableString stringWithFormat:@"%@ Event(s)",count];
     NSMutableString    *formattedDate = [KSUtilities getFormatedDate:date];
     
     NSMutableDictionary *eventDict = [[NSMutableDictionary alloc]init];
