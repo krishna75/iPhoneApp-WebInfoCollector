@@ -13,10 +13,10 @@
 
 $event_date = $_GET["event_date"];
 $json_string =    file_get_contents("http://cnapp.co.uk/public/eventsOfADate.php?event_date=".$event_date);
-if ( is_null($json_string) ){
-}else{
-    $parsed_json = json_decode($json_string);
+$parsed_json = json_decode($json_string);
 
+// only create view if the json has some results
+if (count($parsed_json)>0){
     $header_image_url = "" ;
     $header_title = $parsed_json[0]->date;
     $header_subtitle = $parsed_json[0]->day;
