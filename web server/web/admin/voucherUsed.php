@@ -43,7 +43,7 @@ if ($role ==3){
 						;";
 
     $result = mysql_query($query) or die(mysql_error());
-    echo "<table border='1'>";
+    echo "<table class='tableSorter table zebra-stripped'>";
     echo "<thead><tr>";
     echo "<th>Date</th><th>Day</th><th>Event</th><th>Voucher</th><th>Used</th>";
     echo "</tr></thead>";
@@ -81,10 +81,10 @@ if ($role == 1){
 						;";
 
     $result = mysql_query($query) or die(mysql_error());
-    echo "<table border='1'>";
+    echo "<table  class='table table-hover'>";
     echo "<thead><tr>";
     echo "<th>Venue</th><th>Date</th><th>Day</th><th>Event</th><th>Voucher</th><th>Used</th>";
-    echo "</tr></thead>";
+    echo "</tr></thead><tbody>";
 
     while($row = mysql_fetch_assoc($result)){
         echo "<tr>";
@@ -96,7 +96,7 @@ if ($role == 1){
             echo "<td>".$row['count']."</td>";
         echo "</tr>";
     }
-    echo "</table>";
+    echo "</tbody></table>";
 
 }
 
