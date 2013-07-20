@@ -24,6 +24,7 @@ echo "<p><a href='signOut.php'>Sign Out </a></p>";
     if ($role <=3){
         // add event
         echo "<a href='addEvent.php' class='admin-link' >add an event </a>";
+        echo "<a href='voucherUsed.php' class='admin-link' >see used vouchers </a>";
         if ($role <=2){
         //add venue
             echo "<a href='addVenue.php' class='admin-link'>add a venue </a>";
