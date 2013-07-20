@@ -1,4 +1,21 @@
 
+iPhone size = width:640 height:960
+
+1. topbar = 35 x 640
+2. table cell = 75 x 640
+3. bottom selector = 55 x 640
+4. header on the second page = 60 x 640
+5. event-details (final event) background = 1500 x 640 
+(no fixed height, but usually exceeds the iPhone height, currently using background colour)
+6. background of voucher page = 960 x 640
+
+additional
+===========
+icons in the cell = 73 x 73
+
+
+
+
 
 IMAGE SIZE
 ===========
