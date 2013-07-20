@@ -19,19 +19,19 @@
                     </tabBar>
                     <connections>
                         <segue destination="vOs-nA-ia0" kind="relationship" relationship="viewControllers" id="8e3-G5-vzT"/>
-                        <segue destination="j8q-d3-av7" kind="relationship" relationship="viewControllers" id="rDU-aH-bex"/>
-                        <segue destination="P3M-9o-WBK" kind="relationship" relationship="viewControllers" id="vmC-eZ-h4j"/>
-                        <segue destination="9rZ-FP-3aN" kind="relationship" relationship="viewControllers" id="vp4-Qi-QEK"/>
+                        <segue destination="j8q-d3-av7" kind="relationship" relationship="viewControllers" id="dIl-Fm-WB6"/>
+                        <segue destination="P3M-9o-WBK" kind="relationship" relationship="viewControllers" id="XMD-0s-qFE"/>
+                        <segue destination="9rZ-FP-3aN" kind="relationship" relationship="viewControllers" id="Qv6-7O-w5z"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-577" y="-2240"/>
+            <point key="canvasLocation" x="-621" y="-2228"/>
         </scene>
         <!--Settings Controller - Settings-->
         <scene sceneID="Auw-hy-CWp">
             <objects>
-                <viewController storyboardIdentifier="settings" title="Settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9rZ-FP-3aN" customClass="settingsController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9rZ-FP-3aN" customClass="settingsController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R6G-8X-MgE">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -58,12 +58,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4mO-Vl-grQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="64" y="-800"/>
+            <point key="canvasLocation" x="70" y="-962"/>
         </scene>
-        <!--Venues And Events Controller - Venues-->
+        <!--Venues And Events Controller - Venues and Events-->
         <scene sceneID="He2-nT-5NW">
             <objects>
-                <tableViewController storyboardIdentifier="venuesAndEvents" title="Venues" useStoryboardIdentifierAsRestorationIdentifier="YES" id="j8q-d3-av7" customClass="venuesAndEventsController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="venues" useStoryboardIdentifierAsRestorationIdentifier="YES" id="j8q-d3-av7" customClass="venuesAndEventsController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" id="yi9-nR-c8y">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -129,10 +129,10 @@
             </objects>
             <point key="canvasLocation" x="74" y="-2955"/>
         </scene>
-        <!--Preferences Controller - Venues-->
+        <!--Preferences Controller - Preferences-->
         <scene sceneID="J74-UE-vHW">
             <objects>
-                <tableViewController storyboardIdentifier="prefs" title="Venues" id="P3M-9o-WBK" customClass="preferencesController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="prefs" id="P3M-9o-WBK" customClass="preferencesController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="68" sectionHeaderHeight="22" sectionFooterHeight="22" id="kHF-WD-XSQ">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -160,7 +160,7 @@
                     </items>
                 </navigationBar>
             </objects>
-            <point key="canvasLocation" x="-55" y="-1508"/>
+            <point key="canvasLocation" x="74" y="-1600"/>
         </scene>
         <!--Daily Events Controller - Events-->
         <scene sceneID="BsK-WW-9h9">
@@ -180,7 +180,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cJ2-X5-ftm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="450" y="-2971"/>
+            <point key="canvasLocation" x="419" y="-2949"/>
         </scene>
         <!--Event Details Controller - Event Details-->
         <scene sceneID="KUO-V5-1yA">
@@ -233,7 +233,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rMB-4E-Dsb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="850" y="-3007"/>
+            <point key="canvasLocation" x="784" y="-2949"/>
         </scene>
         <!--Voucher-->
         <scene sceneID="tFA-By-cfT">
@@ -259,7 +259,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rm5-wg-BvR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1240" y="-2993"/>
+            <point key="canvasLocation" x="1144" y="-2941"/>
         </scene>
         <!--Events InA Venue Controller - Events-->
         <scene sceneID="Pj4-Kq-UZX">
@@ -279,7 +279,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BqL-DI-HFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="606" y="-2263"/>
+            <point key="canvasLocation" x="430" y="-2195"/>
         </scene>
         <!--Preferences Events - Events-->
         <scene sceneID="sMV-pQ-smi">
@@ -299,7 +299,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nwg-nn-Afg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="460" y="-1492"/>
+            <point key="canvasLocation" x="423" y="-1600"/>
         </scene>
         <!--Prefs Events Detail - Events-->
         <scene sceneID="nGU-L4-lon">
@@ -319,7 +319,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WUj-au-Ssr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="900" y="-1492"/>
+            <point key="canvasLocation" x="775" y="-1590"/>
         </scene>
         <!--Settings Detail - Settings-->
         <scene sceneID="fza-IT-kFI">
@@ -349,7 +349,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ENK-PV-hBf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="419" y="-800"/>
+            <point key="canvasLocation" x="419" y="-950"/>
         </scene>
     </scenes>
     <resources>
