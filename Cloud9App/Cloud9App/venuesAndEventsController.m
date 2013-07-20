@@ -44,8 +44,8 @@
 {
     [super viewDidLoad];
     [app AddloadingView];
-    [self decorateView];
     [self launchLoadData];
+    [self decorateView];
     [self addRefreshing];
 
 }
@@ -56,7 +56,6 @@
 }
 
 - (void) loadData {
-
     [self processJson];
     [self.tableView reloadData];
     [app RemoveLoadingView];
@@ -64,21 +63,8 @@
 
 // the process also has spinner or loader
 - (void)processJson {
-
-    //loading... spinnner
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    [spinner setCenter:self.view.center];
-    
-    [spinner setBackgroundColor:[UIColor darkGrayColor]];
-    [self.view addSubview:spinner];
-    
-    [spinner startAnimating];
-
-    // the actuatl process (carried out in a separate file)
     [FirstJsonLoader procesJson];
     eventDictArray = [FirstJsonLoader getVenues];
-
-    [spinner stopAnimating];
 }
 
 - (void)decorateView{
@@ -105,7 +91,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationController.topViewController.title  = @"Venues";
+    self.navigationController.navigationBar.topItem.title  = @"Venues";
     [self.tableView reloadData];
 }
 
