@@ -7,7 +7,6 @@
 //
 
 #import "venuesAndEventsController.h"
-#import <QuartzCore/QuartzCore.h>
 #import "KSJson.h"
 #import "eventsInAVenueController.h"
 #import "FirstJsonLoader.h"

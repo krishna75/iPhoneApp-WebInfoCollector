@@ -52,12 +52,12 @@
 }
 
 -(void)launchLoadData {
-    
+
     [NSThread detachNewThreadSelector:@selector(loadData) toTarget:self withObject:nil];
 }
 
 - (void) loadData {
-    
+
     [self processJson];
     [self.tableView reloadData];
     [app RemoveLoadingView];

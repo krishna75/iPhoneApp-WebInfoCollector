@@ -45,12 +45,10 @@
 }
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     [self launchLoadData];
     [self decorateView];
     [self addRefreshing];
-    
 }
 
 #pragma mark - launchLoadData and loadData are for a new thread
@@ -72,7 +70,6 @@
 }
 
 - (void)decorateView {
-    
     UIGraphicsBeginImageContext(self.view.frame.size);
     [[UIImage imageNamed:kTableBG] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
