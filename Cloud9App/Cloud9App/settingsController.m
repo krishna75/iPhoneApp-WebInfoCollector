@@ -63,7 +63,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     
-    self.navigationController.navigationBar.topItem.title  = kTitle;
+    self.navigationController.navigationBar.topItem.title  = @"Settings";
     [self decorateView];
     [settingsTable reloadData];
 }

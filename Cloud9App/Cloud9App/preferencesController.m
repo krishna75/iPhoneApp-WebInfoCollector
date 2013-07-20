@@ -92,9 +92,8 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.topItem.title  = kTitle;
+    self.navigationController.navigationBar.topItem.title  = @"Preferences";
     [self.tableView reloadData];
 }
 

@@ -17,12 +17,10 @@
 #import "KSCell.h"
 #import "KSSettings.h"
 
-#define kjsonUrlVenuesAndEvents @"venuesAndEvents.php"
 #define kjsonUrlEventsOfVenue @"eventsOfAVenue.php?venue_id="
 #define kTableBG @"bg_tableView.png"
 #define kCellBG @"bg_cell.png"
 #define kCellSelectedBG @"bg_cellSelected.png"
-#define kTitle @"Venues"
 
 
 @interface venuesAndEventsController ()
@@ -49,6 +47,7 @@
     [self decorateView];
     [self launchLoadData];
     [self addRefreshing];
+
 }
 
 #pragma mark - launchLoadData and loadData are for a new thread
@@ -57,9 +56,9 @@
 }
 
 - (void) loadData {
-   
+
     [self processJson];
-    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil    waitUntilDone:NO];
+    [self.tableView reloadData];
     [app RemoveLoadingView];
 }
 
@@ -106,12 +105,13 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationController.topViewController.title  = kTitle;
+    self.navigationController.topViewController.title  = @"Venues";
     [self.tableView reloadData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
-    //self.navigationController.topViewController.title  = @"Back";
+
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
