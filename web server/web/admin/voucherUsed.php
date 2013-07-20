@@ -20,17 +20,12 @@ if (!empty($_GET['message'])) {
 $role = $_SESSION['role'];
 $user_id = $_SESSION['username'];
 
-echo "username=".$user_id." role=".$role."<br/>";
+//echo "username=".$user_id." role=".$role."<br/>";
 if ($role ==3){
 
 }
 if ($role == 1){
- echo "welcome";
-
-
-
-    $event_date = $_GET["2013/08/04"];
-
+ echo "Vouchers Used";
     $query = "SELECT
 						name as venue,
 						date,
@@ -49,28 +44,23 @@ if ($role == 1){
 
 						;";
 
-
-
-//    $query = mysql_query("SELECT
-//						v.name AS venue,
-//						e.date AS date,
-//						DATE_FORMAT(date, '%W') as day,
-//						e.title AS event,
-//						FROM Venues AS v LEFT JOIN Events AS e ON v.id = e.venue_id
-//						ORDER BY date ASC
-//						;");
-
-//    $query = mysql_query("SELECT * FROM Events;");
-//
     $result = mysql_query($query) or die(mysql_error());
+    echo "<table border='1'>";
+    echo "<thead><tr>";
+    echo "<th>Venue</th><th>Date</th><th>Day</th><th>Event</th><th>Voucher</th><th>Used</th>";
+    echo "</tr></thead>";
+
     while($row = mysql_fetch_assoc($result)){
-        echo $row['venue'].", ";
-        echo $row['date'].", ";
-        echo $row['day'].", ";
-        echo $row['event'].", ";
-        echo $row['voucher'].", ";
-        echo $row['count'].", ";
+        echo "<tr>";
+            echo "<td>".$row['venue']."</td>";
+            echo "<td>".$row['date']."</td>";
+            echo "<td>".$row['day']."</td>";
+            echo "<td>".$row['event']."</td>";
+            echo "<td>".$row['voucher']."</td>";
+            echo "<td>".$row['count']."</td>";
+        echo "</tr>";
     }
+    echo "</table>";
 
 }
 
