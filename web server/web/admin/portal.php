@@ -14,7 +14,8 @@ if (!empty($_GET['message'])) {
 }
 
 //sign out
-echo "<p><a href='signOut.php'>Sign Out </a></p>";
+
+echo "<div class='admin-link'><a href='signOut.php.php'  >sign out </a></div>";
 
 
     $role = $_SESSION['role'];
@@ -23,20 +24,20 @@ echo "<p><a href='signOut.php'>Sign Out </a></p>";
     }
     if ($role <=3){
         // add event
-        echo "<a href='addEvent.php' class='admin-link' >add an event </a>";
-        echo "<a href='voucherUsed.php' class='admin-link' >see used vouchers </a>";
+        echo "<div class='admin-link'><a href='addEvent.php'  >add an event </a></div>";
+        echo "<div class='admin-link'><a href='voucherUsed.php' ' >see used vouchers </a></div>";
         if ($role <=2){
         //add venue
-            echo "<a href='addVenue.php' class='admin-link'>add a venue </a>";
+            echo "<div class='admin-link'><a href='addVenue.php' >add a venue </a></div>";
         }
         if ($role == 1){
         //add client
-        echo "<a href='addClient.php' class='admin-link'>add a client </a>";
+        echo "<div class='admin-link'><a href='addClient.php' >add a client </a></div>";
         //add promoter
-            echo "<a href='addPromoter.php' class='admin-link'>add a promoter </a>";
+            echo "<div class='admin-link'><a href='addPromoter.php'>add a promoter </a></div>";
         //add admin
-            echo "<a href='addAdmin.php' class='admin-link'>add an admin </a>";
-            echo "<a href='adminTasks.php' class='admin-link'>GoDaddy </a>";
+            echo "<div class='admin-link'><a href='addAdmin.php' >add an admin </a></div>";
+            echo "<div class='admin-link'><a href='adminTasks.php' >GoDaddy </a></div>";
         }
     }
 

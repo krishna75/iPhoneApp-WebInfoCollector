@@ -1,16 +1,42 @@
+body {
+    background-image: url("../images/disco.jpg");
+}
+
+.content {
+    background-color: #d59392;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70";
+    filter: alpha(opacity=70);
+    opacity:.7;
+    width:100%;
+    height:100%;
+}
 .admin-link{
-    background-color: lightgray;
+    background-color: #080808;
     display:block;
-    height: 30px;
-    width: 300px;
-    border: 3px solid silver;
-    border-radius: 15px;
+    height: 20px;
+    width: 150px;
+    border: 1px solid black;
+    border-radius: 5px;
     box-shadow: 0 10px 10px darkgray ;
-    padding:20px;
+    padding:5px;
     text-decoration:  none;
-    font-size: 30px;
-    font-family:Verdana;
+    font-size: 15px;
+    font-family:GEORGIA;
     float: left;
+    margin: 2px;
+}
+
+.admin-link a:link {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.admin-link a:visited {
+    text-decoration: none;
+    color: #f89406;
+}
+.admin-link a:hover {
+    text-decoration: underline;
+    color: #33eeee;
 }
 
 /* footer */

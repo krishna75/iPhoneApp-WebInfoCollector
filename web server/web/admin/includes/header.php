@@ -19,3 +19,4 @@
 </script>
 </head>
 <body id="main_body" >
+<div class ="content">

@@ -19,7 +19,12 @@ if (!empty($_GET['message'])) {
 //identify role and username
 $role = $_SESSION['role'];
 $user_id = $_SESSION['username'];
-
+echo "<br/>";
+echo "<h2> Voucher Used </h2>";
+echo "<div class='admin-link'><a href='portal.php'> << back to portal </a></div>";
+echo "<br/>";
+echo "<br/>";
+echo "<br/>";
 
 //echo "username=".$user_id." role=".$role."<br/>";
 if ($role ==3){
