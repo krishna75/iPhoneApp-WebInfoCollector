@@ -18,27 +18,27 @@ Please, be patient, we are comming soon...
 <div id="content_bottom">
 
 <div class="three">
-    <img src="images/events-animation.gif" alt="events">
+    <a href="events.php"><img src="images/events-animation.gif" alt="events"></a>
     <h1>Events</h1>
     <h2>Find out all the events by dates in this month in Oxford</h2>
     <br>
-    <a href="event.php">find out more</a>
+    <a href="events.php">find out more</a>
 </div>
 
 <div class="three">
-    <img src="images/venues-animation.gif" alt="venues">
+    <a href="venues.php"><img src="images/venues-animation.gif" alt="venues"></a>
     <h1>Venues</h1>
     <h2>Find out the events by venues with in this month in Oxford</h2>
     <br>
-    <a href="venue.php">find out more</a>
+    <a href="venues.php">find out more</a>
 </div>
 
 <div class="three">
-    <img src="images/preferences-animation.gif" alt="preferences">
+    <a href="genres.php"><img src="images/preferences-animation.gif" alt="preferences"></a>
     <h1>Preferences</h1>
     <h2> Find out the events by the genre of your choice</h2>
     <br>
-    <a href="genre.php">find out more</a>
+    <a href="genres.php">find out more</a>
 </div>
 </div>
 
