@@ -4,40 +4,40 @@ body {
 .cell {
 
     min-width: 300px;
-    background: darkslategray;
-    border: 2px solid #c0c0c0;
+    background: #000000;
+    border: 1px solid #555555;
     height: 75px;
     text-align: left;
     color: #ffffff;
     margin: 1px;
-    border-radius: 10px;
+    border-radius: 1px;
     box-shadow: 3px 3px 10px black;
     padding : 1px 1px 5px 5px;;
 
-    background-image: linear-gradient(bottom, rgb(29,31,36) 2%, rgb(101,104,110) 56%, rgb(124,129,138) 78%);
-    background-image: -o-linear-gradient(bottom, rgb(29,31,36) 2%, rgb(101,104,110) 56%, rgb(124,129,138) 78%);
-    background-image: -moz-linear-gradient(bottom, rgb(29,31,36) 2%, rgb(101,104,110) 56%, rgb(124,129,138) 78%);
-    background-image: -webkit-linear-gradient(bottom, rgb(29,31,36) 2%, rgb(101,104,110) 56%, rgb(124,129,138) 78%);
-    background-image: -ms-linear-gradient(bottom, rgb(29,31,36) 2%, rgb(101,104,110) 56%, rgb(124,129,138) 78%);
+    /*background-image: linear-gradient(bottom, rgb(29,31,36) 2%, rgb(101,104,110) 56%, rgb(124,129,138) 78%);*/
+    /*background-image: -o-linear-gradient(bottom, rgb(29,31,36) 2%, rgb(101,104,110) 56%, rgb(124,129,138) 78%);*/
+    /*background-image: -moz-linear-gradient(bottom, rgb(29,31,36) 2%, rgb(101,104,110) 56%, rgb(124,129,138) 78%);*/
+    /*background-image: -webkit-linear-gradient(bottom, rgb(29,31,36) 2%, rgb(101,104,110) 56%, rgb(124,129,138) 78%);*/
+    /*background-image: -ms-linear-gradient(bottom, rgb(29,31,36) 2%, rgb(101,104,110) 56%, rgb(124,129,138) 78%);*/
 
-    background-image: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        color-stop(0.02, rgb(29,31,36)),
-        color-stop(0.56, rgb(101,104,110)),
-        color-stop(0.78, rgb(124,129,138))
-    );
+    /*background-image: -webkit-gradient(*/
+        /*linear,*/
+        /*left bottom,*/
+        /*left top,*/
+        /*color-stop(0.02, rgb(29,31,36)),*/
+        /*color-stop(0.56, rgb(101,104,110)),*/
+        /*color-stop(0.78, rgb(124,129,138))*/
+    /*);*/
 }
 
 .cell-image {
     float: left;
     background: gray;
-    border: 2px solid #c0c0c0;
+    /*border: 2px solid #c0c0c0;*/
     height: 70px;
     width: 70px;
-    border-radius: 2px;
-    box-shadow: 3px 3px 10px black;
+    /*border-radius: 1px;*/
+    /*box-shadow: 3px 3px 10px black;*/
     padding : 1px 1px 1px 1px;
 }
 
@@ -50,6 +50,7 @@ body {
     font-family: georgia;
     font-size: 16px;
     font-weight: bold;
+    color:yellowgreen;
 }
 .cell-subtitle {
     min-width: 300px;
@@ -84,7 +85,7 @@ body {
 
 /* header - cell */
 .header-cell {
-    background : #333333;
+    background : #000000;
     height: 80px;
     weidth: 375px;
     color: white;

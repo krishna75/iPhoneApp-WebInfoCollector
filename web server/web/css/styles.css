@@ -1,6 +1,7 @@
 
 body {
-	background-color: #181818;
+	/*background-color: #181818;*/
+    background-image:url("../images/dark-repeat-bg.jpg");
 	margin: 0;
 	padding: 0;
 	border: 0;
