@@ -8,8 +8,13 @@ $title = "Used Vouchers";
 include_once("includes/header.php");
 require_once("includes/db_connection.php");
 include("../public/utilities.php");
-
-
+?>
+<style>
+th {
+    background: darkgray url("../images/sort-arrows.gif") no-repeat right;
+}
+</style>
+<?php
 // printing message if any
 if (!empty($_GET['message'])) {
     $message= $_GET['message'];
