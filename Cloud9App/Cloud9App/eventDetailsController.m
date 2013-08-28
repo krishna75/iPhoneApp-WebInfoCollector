@@ -9,6 +9,7 @@
 #import "eventDetailsController.h"
 #import "KSJson.h"
 #import "KSUtilities.h"
+#import "KSGuiUtilities.h"
 #import "KSBadgeManager.h"
 #import "AppDelegate.h"
 #import "KSSettings.h"
@@ -128,11 +129,27 @@
 
 
     // adding voucher button
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button addTarget:self action:@selector(voucherAction) forControlEvents:UIControlEventTouchDown];
-    [button setTitle:@"Voucher" forState:UIControlStateNormal];
-    button.frame = CGRectMake(80.0, 320.0, 160.0, 35.0);
+//    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    [button addTarget:self action:@selector(voucherAction) forControlEvents:UIControlEventTouchDown];
+//    [button setTitle:@"Voucher" forState:UIControlStateNormal];
+//    button.frame = CGRectMake(80.0, 320.0, 160.0, 35.0);
+//    [self.view addSubview:button];
+    
+    UIImage *buttonBackground = [UIImage imageNamed:@"coupon.png"];
+    UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"coupon.png"];
+    
+    CGRect frame = CGRectMake(80.0, 320.0, 160.0, 35.0);
+    UIButton *button = [KSGuiUtilities buttonWithTitle:@"Voucher"
+                                                target:self
+                                              selector:@selector(scanButtonPress:)
+                                                 frame:frame
+                                                 image:buttonBackground
+                                          imagePressed:buttonBackgroundPressed
+                                         darkTextColor:YES];
+    
     [self.view addSubview:button];
+    
+    
     
     
     
