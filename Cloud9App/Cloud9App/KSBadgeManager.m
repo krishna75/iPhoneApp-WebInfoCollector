@@ -88,7 +88,6 @@ static NSMutableDictionary *eventViewedDict = nil;
 
 + (Boolean) isNewEvent: (NSMutableString *) eventId {
     NSMutableString *value = [eventViewedDict objectForKey:eventId];
-    NSLog(@"KSBadgeManager isNewEvent: value = %@",value);
     if ([value isEqual: @"VIEWED"]){
         return FALSE;
     } else {

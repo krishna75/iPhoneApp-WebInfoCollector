@@ -8,6 +8,7 @@
 
 #import "Voucher.h"
 #import "KSJson.h"
+#import "KSGuiUtilities.h"
 #define kTitle @"Voucher"
 
 
@@ -38,11 +39,11 @@ NSString *voucherDescription;
 
 //    create voucher description
     NSString *description = @"If you present this voucher to the venue, you will be able to get 5% discount. Please note that it  can be used only once.";
-    CGRect descFrame = CGRectMake(12, 200, 290, 350);
+    CGRect descFrame = CGRectMake(12, 300, 290, 350);
     UILabel *descLabel = [[UILabel alloc] initWithFrame:descFrame];
     descLabel.textColor = [UIColor whiteColor];
     descLabel.backgroundColor = [UIColor clearColor];
-    [descLabel setFont:[UIFont fontWithName:@"American Typewriter" size:16]];
+    [descLabel setFont:[UIFont fontWithName:@"Harabara" size:16]];
     descLabel.text = description;
     descLabel.text = voucherDescription;   //todo activate it after discussing with Ramzy
 
@@ -51,7 +52,6 @@ NSString *voucherDescription;
     [self.view    addSubview:descLabel ];
 
     used = [self isUsed:eventId];
-    NSLog (@"event id=%@, used=%d", eventId,used);
 
     if (!used){
         [self addScanButton];
@@ -62,16 +62,24 @@ NSString *voucherDescription;
 }
 
 - (void) addScanButton {
-        scanButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [scanButton addTarget:self action:@selector(scanButtonPress:) forControlEvents:UIControlEventTouchDown];
-        [scanButton setTitle:@"Scan QR Code" forState:UIControlStateNormal];
-        scanButton.frame = CGRectMake(30.0, 300.0, 260.0, 50.0);
-        [self.view addSubview:scanButton];
+    UIImage *buttonBackground = [UIImage imageNamed:@"camera-lens.png"];
+    UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"camera-lens-pressed.png"];
+    
+    CGRect frame = CGRectMake(50.0, 100.0, 200.0, 200.0);
+    UIButton *button = [KSGuiUtilities buttonWithTitle:@""
+                                                   target:self
+                                                 selector:@selector(scanButtonPress:)
+                                                    frame:frame
+                                                    image:buttonBackground
+                                             imagePressed:buttonBackgroundPressed
+                                            darkTextColor:YES];
+    
+    [self.view addSubview:button];
 }
 
 -(void) addUsedLabel{
         NSString *usedText = @"Voucher Used !!!.";
-        CGRect usedFrame = CGRectMake(80, 300, 160, 50);
+        CGRect usedFrame = CGRectMake(80, 150, 160, 50);
         usedLabel = [[UILabel alloc] initWithFrame:usedFrame];
         usedLabel.textColor = [UIColor yellowColor];
         usedLabel.backgroundColor = [UIColor clearColor];

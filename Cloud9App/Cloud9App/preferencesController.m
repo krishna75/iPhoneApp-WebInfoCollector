@@ -68,7 +68,6 @@
     
     KSJson * json = [[KSJson alloc] init];
     jsonResults = [json toArray:kjsonURL];
-    NSLog(@"prefController processJson: jsonResults %@",jsonResults);
 }
 
 - (void)decorateView {

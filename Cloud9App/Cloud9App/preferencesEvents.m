@@ -72,9 +72,8 @@
     KSJson * json = [[KSJson alloc] init];
     NSString *url  = [NSString stringWithFormat:@"%@%@",kjsonURL,[_eventDict  objectForKey:@"id"]];
     NSString *jsonURL = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"pref 2 processJson: jsonURL >> %@",jsonURL);
     jsonResults = [json toArray:jsonURL];
-    NSLog(@"pref 2 processJson: jsonResults >> %@",jsonResults);
+    
     [self.tableView reloadData];
 }
 
