@@ -34,6 +34,13 @@
     
     NSMutableArray *jsonResults;
 }
+//
+//- (void)drawRect:(CGRect)rect {
+//    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
+//        UIImage *image = [UIImage imageNamed:@"bg_top_nav.png"];
+//        [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+//    }
+//}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -91,6 +98,10 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+//    UIImage *backgroundImage = [UIImage imageNamed:@"bg_top_nav.png"];
+//    [self.navigationController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
+//    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_top_nav.png"]];
+//    [self.navigationController.navigationBar  insertSubview:backgroundView atIndex:5];
     self.navigationController.navigationBar.topItem.title  = kTitle;
     [self.tableView reloadData];
 }

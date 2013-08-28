@@ -59,19 +59,19 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
 
-    
+
     CGRect contentRect = self.contentView.bounds;
     CGFloat boundsX = contentRect.origin.x;
     CGRect frame;
     frame= CGRectMake(boundsX+10 ,0, 50, 50);
     imageView.frame = frame;
-    
+
     frame= CGRectMake(boundsX+80 ,5, 250, 25);
     titleLabel.frame = frame;
-    
+
     frame= CGRectMake(boundsX+80 ,30, 250, 15);
     descriptionLabel.frame = frame;
-    
+
     frame= CGRectMake(boundsX+80 ,45, 250, 15);
     moreLabel.frame = frame;
 }
