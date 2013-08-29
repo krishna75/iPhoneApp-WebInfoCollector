@@ -2,7 +2,7 @@
 require_once("db_connection.php");
 include("utilities.php");
 
-$subgenre_id = $_GET["subgenre_id"];
+$genre_id = $_GET["genre_id"];
  
 $result = mysql_query("SELECT 
 
@@ -11,12 +11,12 @@ $result = mysql_query("SELECT
 						DATE_FORMAT(date, '%W') as day,
 						e.title AS event_title
 						
-						FROM SubGenres AS sg
-						INNER JOIN Genres_Events AS ge ON ge.subgenre_id = sg.id
+						FROM Genres AS g
+						INNER JOIN Genres_Events AS ge ON ge.genre_id = g.id
 						INNER JOIN Events AS e ON ge.event_id = e.id
 
 						
-						WHERE ge.subgenre_id = '$subgenre_id' AND date>= '$today' AND date<='$oneMonthLater'
+						WHERE ge.genre_id = '$genre_id' AND date>= '$today' AND date<='$oneMonthLater'
 
 						ORDER BY date ASC
 						;");

@@ -10,6 +10,7 @@
 
 @interface PrefsEventsDetail : UITableViewController
 
+
 @property (retain, nonatomic) NSMutableDictionary *eventsDict;
 @property (nonatomic,retain) NSString *header;
 

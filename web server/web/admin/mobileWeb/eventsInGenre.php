@@ -7,10 +7,10 @@
 <body>
 
 <?php
-    $subgenre_id = $_GET["subgenre_id"];
-    $json_string =    file_get_contents("http://cnapp.co.uk/public/eventsOfGenre.php?subgenre_id=".$subgenre_id);
+    $genre_id = $_GET["genre_id"];
+    $json_string =    file_get_contents("http://cnapp.co.uk/public/eventsOfGenre.php?genre_id=".$genre_id);
     $parsed_json = json_decode($json_string);
-    $header_title = "Events of Subgenre";
+    $header_title = "Events of Genre";
     include "includes/header-cell.php";
 if ($parsed_json != null){
     foreach($parsed_json  as $event) {

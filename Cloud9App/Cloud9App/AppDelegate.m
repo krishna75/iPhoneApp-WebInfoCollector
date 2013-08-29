@@ -18,10 +18,13 @@
 
 {
     
+    UIImage *navBackgroundImage = [UIImage imageNamed:@"bg_top_nav.png"];
+    [[UINavigationBar appearance] setBackgroundImage:navBackgroundImage forBarMetrics:UIBarMetricsDefault];
+    
     // Override point for customization after application launch.
 
-    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:10.0/256.0 green:10.0/256.0 blue:10.0/256.0 alpha:1.0]];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
+//    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:10.0/256.0 green:10.0/256.0 blue:10.0/256.0 alpha:1.0]];
+//    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
     
     
 ////    UINavigationBar *navBar = [[self navigationController] navigationBar];
@@ -31,6 +34,8 @@
 //    [[UINavigationBar appearance] setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
     return YES;
 }
+
+
 
 -(void)AddloadingView {
     

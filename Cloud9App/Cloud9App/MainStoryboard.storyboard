@@ -129,10 +129,10 @@
             </objects>
             <point key="canvasLocation" x="74" y="-2955"/>
         </scene>
-        <!--Preferences Controller - Preferences-->
+        <!--Preferences Controller - Genres-->
         <scene sceneID="J74-UE-vHW">
             <objects>
-                <tableViewController storyboardIdentifier="prefs" id="P3M-9o-WBK" customClass="preferencesController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="genres" id="P3M-9o-WBK" customClass="preferencesController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="68" sectionHeaderHeight="22" sectionFooterHeight="22" id="kHF-WD-XSQ">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -143,7 +143,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Preferences" image="first.png" id="vhS-uN-mQL"/>
-                    <navigationItem key="navigationItem" title="Preferences" id="yhs-Pr-mlv"/>
+                    <navigationItem key="navigationItem" title="Genres" id="yhs-Pr-mlv"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NDs-ew-OVe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -292,7 +292,7 @@
         <!--Preferences Events - Events-->
         <scene sceneID="sMV-pQ-smi">
             <objects>
-                <tableViewController storyboardIdentifier="prefEvents" id="cYZ-iw-E9g" customClass="preferencesEvents" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="subgenres" id="cYZ-iw-E9g" customClass="preferencesEvents" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="68" sectionHeaderHeight="22" sectionFooterHeight="22" id="nnq-6b-hO5">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -312,7 +312,7 @@
         <!--Prefs Events Detail - Events-->
         <scene sceneID="nGU-L4-lon">
             <objects>
-                <tableViewController storyboardIdentifier="PrefsEventDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EJC-ga-JMd" customClass="PrefsEventsDetail" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="eventsInGenre" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EJC-ga-JMd" customClass="PrefsEventsDetail" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="73" sectionHeaderHeight="22" sectionFooterHeight="22" id="boV-uo-j29">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

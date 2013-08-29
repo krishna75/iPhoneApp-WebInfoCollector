@@ -17,7 +17,7 @@
         $title =$event->genre;;
         $subtitle = $event->description;
         $description = "";
-        $link_page ="subgenres.php?genre_id=".$event->id;
+        $link_page ="eventsInGenre.php?genre_id=".$event->id;
         include "includes/cell.php";
     }
 ?>

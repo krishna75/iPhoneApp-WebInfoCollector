@@ -14,7 +14,7 @@
 #import "FirstJsonLoader.h"
 #import "KSBadgeManager.h"
 #import "AppDelegate.h"
-#import "preferencesEvents.h"
+#import "PrefsEventsDetail.h"
 #import "KSCell.h"
 #import "KSSettings.h"
 
@@ -145,8 +145,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
-    preferencesEvents *nextController = [self.storyboard instantiateViewControllerWithIdentifier:@"prefEvents"];
-    nextController.eventDict = [eventCountDict mutableCopy];
+    PrefsEventsDetail *nextController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventsInGenre"];
+    nextController.eventsDict = [eventCountDict mutableCopy];
+    nextController.header = [eventCountDict objectForKey:@"genre"];
     [self.navigationController pushViewController:nextController  animated: NO];
 }
 

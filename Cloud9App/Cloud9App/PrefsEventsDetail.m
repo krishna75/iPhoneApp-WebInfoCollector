@@ -16,7 +16,7 @@
 #import "KSCell.h"
 #import "KSSettings.h"
 
-#define kjsonURL @"eventsOfGenre.php?subgenre_id="
+#define kjsonURL @"eventsOfGenre.php?genre_id="
 #define kTableBG @"bg_tableView.png"
 #define kCellBG @"bg_cell.png"
 #define kCellSelectedBG @"bg_cellSelected.png"
@@ -69,7 +69,8 @@
 - (void)processJson {
     
     KSJson * json = [[KSJson alloc] init];
-    NSString *url  = [NSString stringWithFormat:@"%@%@",kjsonURL,[_eventsDict  objectForKey:@"genre_id"]];
+    NSString *url  = [NSString stringWithFormat:@"%@%@",kjsonURL,[_eventsDict  objectForKey:@"id"]];
+    NSLog(@"eventsInGenre: %@",url);
     NSString *urlString = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     jsonResults = [json toArray:urlString];
 }
