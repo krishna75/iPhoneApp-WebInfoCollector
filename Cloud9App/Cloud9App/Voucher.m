@@ -27,6 +27,7 @@
 Boolean used = false;
 UILabel *usedLabel;
 NSString *eventId ;
+NSString *venueId ;
 NSString *voucherDescription;
 
 
@@ -34,6 +35,7 @@ NSString *voucherDescription;
 {
     [super viewDidLoad];
     eventId = [eventDetailDict objectForKey:@"id"];
+    venueId = [eventDetailDict objectForKey:@"venue_id"];
     voucherDescription = [eventDetailDict objectForKey:@"voucher"];
     self.navigationController.topViewController.title  = kTitle;
 
@@ -66,7 +68,7 @@ NSString *voucherDescription;
     UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"camera-lens-pressed.png"];
     
     CGRect frame = CGRectMake(50.0, 100.0, 200.0, 200.0);
-    UIButton *button = [KSGuiUtilities buttonWithTitle:@""
+    scanButton = [KSGuiUtilities buttonWithTitle:@""
                                                    target:self
                                                  selector:@selector(scanButtonPress:)
                                                     frame:frame
@@ -74,7 +76,7 @@ NSString *voucherDescription;
                                              imagePressed:buttonBackgroundPressed
                                             darkTextColor:YES];
     
-    [self.view addSubview:button];
+    [self.view addSubview:scanButton];
 }
 
 -(void) addUsedLabel{
@@ -130,13 +132,17 @@ NSString *voucherDescription;
         NSString *id = [qrDict objectForKey:@"id"];
         NSString *type = [qrDict objectForKey:@"type"];
         NSString *action= [qrDict objectForKey:@"action"];
+        NSString *venue= [qrDict objectForKey:@"venue"];
         
     
-        NSString *combined = [NSString stringWithFormat:@" Scanned: id=%@,  type=%@,  action=%@", id, type, action];
-        NSLog(@"combined qr variables =  %@",combined);
+        NSString *combined = [NSString stringWithFormat:@" Scanned: id=%@,  type=%@,  action=%@, venue=%@", id, type, action, venue];
+        NSLog(@"voucher: combined qr variables =  %@",combined);
 
         // if id and type and action ok, then show view  as success and update the database
-        if ([id isEqualToString:@"cnapp"] && [type isEqualToString:@"voucher" ] && [action isEqualToString:@"cancel"]){
+        if ([id isEqualToString:@"cnapp"]
+            && [type isEqualToString:@"voucher" ]
+            && [venue isEqualToString:venueId ]
+            && [action isEqualToString:@"cancel"]){
 
             // updating the voucher used
             KSJson * json = [[KSJson alloc] init];

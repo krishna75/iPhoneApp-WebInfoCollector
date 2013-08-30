@@ -72,17 +72,17 @@
     
     [self setBackButton];
     
-//    UIGraphicsBeginImageContext(self.view.frame.size);
-//    [[UIImage imageNamed:kTableBG] drawInRect:self.view.bounds];
-//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    self.view.backgroundColor = [UIColor  colorWithRed:(24/255.0) green:(24/255.0) blue:(24/255.0) alpha:1];
-
     UIGraphicsBeginImageContext(self.view.frame.size);
     [[UIImage imageNamed:kTableBG] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    self.view.backgroundColor = [UIColor colorWithPatternImage:image];UIGraphicsBeginImageContext(self.view.frame.size);
+    self.view.backgroundColor = [UIColor  colorWithRed:(24/255.0) green:(24/255.0) blue:(24/255.0) alpha:1];
+
+//    UIGraphicsBeginImageContext(self.view.frame.size);
+//    [[UIImage imageNamed:kTableBG] drawInRect:self.view.bounds];
+//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    self.view.backgroundColor = [UIColor colorWithPatternImage:image];UIGraphicsBeginImageContext(self.view.frame.size);
 //    [[UIImage imageNamed:kTableBG] drawInRect:self.view.bounds];
 //    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
 //    UIGraphicsEndImageContext();
@@ -141,7 +141,7 @@
     CGRect frame = CGRectMake(80.0, 320.0, 160.0, 35.0);
     UIButton *button = [KSGuiUtilities buttonWithTitle:@"Voucher"
                                                 target:self
-                                              selector:@selector(scanButtonPress:)
+                                              selector:@selector(voucherAction)
                                                  frame:frame
                                                  image:buttonBackground
                                           imagePressed:buttonBackgroundPressed
