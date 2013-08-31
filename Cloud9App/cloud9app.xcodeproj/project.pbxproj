@@ -116,6 +116,7 @@
 		9716929717D268E3001E48C9 /* tabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9716929617D268E3001E48C9 /* tabBarController.m */; };
 		9716929917D2864A001E48C9 /* darkButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9716929817D2864A001E48C9 /* darkButton.png */; };
 		9716929B17D28A69001E48C9 /* buttonRemindMe.png in Resources */ = {isa = PBXBuildFile; fileRef = 9716929A17D28A69001E48C9 /* buttonRemindMe.png */; };
+		9716929F17D297E6001E48C9 /* calendar_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 9716929E17D297E6001E48C9 /* calendar_empty.png */; };
 		97169343178609C100D7B646 /* KSBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97169342178609C100D7B646 /* KSBackgroundLayer.m */; };
 		972BBE8A17CE8F2D00A68128 /* coupon.png in Resources */ = {isa = PBXBuildFile; fileRef = 972BBE8917CE8F2D00A68128 /* coupon.png */; };
 		972BBE8D17CE955100A68128 /* KSGuiUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 972BBE8C17CE955100A68128 /* KSGuiUtilities.m */; };
@@ -235,6 +236,7 @@
 		9716929617D268E3001E48C9 /* tabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tabBarController.m; sourceTree = "<group>"; };
 		9716929817D2864A001E48C9 /* darkButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkButton.png; sourceTree = "<group>"; };
 		9716929A17D28A69001E48C9 /* buttonRemindMe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonRemindMe.png; sourceTree = "<group>"; };
+		9716929E17D297E6001E48C9 /* calendar_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar_empty.png; sourceTree = "<group>"; };
 		97169341178609C100D7B646 /* KSBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSBackgroundLayer.h; sourceTree = "<group>"; };
 		97169342178609C100D7B646 /* KSBackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSBackgroundLayer.m; sourceTree = "<group>"; };
 		972BBE8917CE8F2D00A68128 /* coupon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coupon.png; sourceTree = "<group>"; };
@@ -537,6 +539,7 @@
 		4ED55A0116D12EC900D1F02D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9716929E17D297E6001E48C9 /* calendar_empty.png */,
 				9716929A17D28A69001E48C9 /* buttonRemindMe.png */,
 				9716929817D2864A001E48C9 /* darkButton.png */,
 				972BBE9017CE9FD300A68128 /* camera-lens-pressed.png */,
@@ -772,6 +775,7 @@
 				972BBE9317CE9FD300A68128 /* camera-lens.png in Resources */,
 				9716929917D2864A001E48C9 /* darkButton.png in Resources */,
 				9716929B17D28A69001E48C9 /* buttonRemindMe.png in Resources */,
+				9716929F17D297E6001E48C9 /* calendar_empty.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

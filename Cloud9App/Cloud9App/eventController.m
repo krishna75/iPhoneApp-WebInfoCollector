@@ -142,7 +142,9 @@
 
     cell.titleLabel.text = [KSUtilities getFormatedDate:date];
     cell.descriptionLabel.text = countDetail;
-    [cell addSubview: [KSUtilities getResizedImageViewForCell:[UIImage imageNamed:@"cell-logo.png"]]];
+
+    NSArray *dateArray = [KSUtilities getDateComponents:date];
+    [cell addSubview: [KSUtilities getCalendar:[dateArray objectAtIndex:2] forDay:[dateArray objectAtIndex:1]]];
     
     //computing and displaying new events as badge
     int newEventCount = [KSBadgeManager countNewEventsOfDate:date];

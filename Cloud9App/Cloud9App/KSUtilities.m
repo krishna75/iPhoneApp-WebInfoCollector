@@ -38,6 +38,26 @@
     return [NSMutableString stringWithFormat:@"%@, %@%@ %@", weekDay,dateDay,suffix,month];
 }
 
++ (NSArray *)getDateComponents:(NSString *) date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+
+    NSDate *formattedDate= [dateFormatter dateFromString:date];
+
+    NSDateFormatter *prefixDateFormatter = [[NSDateFormatter alloc] init];
+    [prefixDateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+    [prefixDateFormatter setDateFormat:@"EEEE"];
+    NSString *weekDay= [prefixDateFormatter stringFromDate:formattedDate];
+
+    [prefixDateFormatter setDateFormat:@"d"];
+    NSString *dateDay= [prefixDateFormatter stringFromDate:formattedDate];
+
+    [prefixDateFormatter setDateFormat:@"MMMM"];
+    NSString *month=[prefixDateFormatter stringFromDate:formattedDate];
+
+    return @[weekDay,dateDay,month] ;
+}
+
 // create the parent view that will hold header Label
 + (UIView *) getHeaderView:(UIImage*) logoImage forTitle:(NSString *)titleText forDetail:(NSString *)description {
     
@@ -98,6 +118,29 @@ btn.titleLabel.font = [UIFont fontWithName:@"Harabara"size:12] ;
 btn.frame = CGRectMake(0, 0, 60, 35);
 
 return btn;
+}
+
++ (UIImageView *) getCalendar:(NSString *) month forDay:(NSString *)day {
+    UIImage *calendarImage = [UIImage imageNamed:@"calendar_empty.png"];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:calendarImage];
+    imageView.frame = CGRectMake(0, 0, 73, 73);
+
+    UILabel *monthLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 8, 65, 15)] ;
+    monthLabel.backgroundColor = [UIColor clearColor];
+    monthLabel.textColor = [UIColor whiteColor];
+    monthLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
+    monthLabel.text = month;
+    [imageView addSubview:monthLabel];
+
+
+    UILabel *dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 30, 50, 45)] ;
+    dayLabel.backgroundColor = [UIColor clearColor];
+    dayLabel.textColor = [UIColor blackColor];
+    dayLabel.font = [UIFont fontWithName:@"Marion-Bold" size:40.0];
+    dayLabel.text = day;
+    [imageView addSubview:dayLabel];
+
+    return imageView;
 }
 
 + (UIImageView *) getImageViewOfUrl:(NSString *) strUrlForImage {

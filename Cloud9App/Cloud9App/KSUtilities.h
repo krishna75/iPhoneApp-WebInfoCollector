@@ -19,5 +19,7 @@
 + (UIView *) getBadgeLikeView: (NSString *)strToDisplay showHide:(BOOL)show ;
 +(UIView *)removeBadgeLikeView:(NSString *)strToDisplay;
 +(UIColor*)colorWithHexString:(NSString*)hex;
++ (UIImageView *) getCalendar:(NSString *) month forDay:(NSString *)day;
++ (NSArray *)getDateComponents:(NSString *) date;
 
 @end
