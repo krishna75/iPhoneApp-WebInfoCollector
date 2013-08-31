@@ -25,7 +25,13 @@
     button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     
     [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+
+
+    if (darkTextColor) {
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    }  else {
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }
     
     UIImage *newImage = [image stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
     [button setBackgroundImage:newImage forState:UIControlStateNormal];

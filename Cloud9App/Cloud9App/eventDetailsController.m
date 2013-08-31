@@ -77,17 +77,6 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.view.backgroundColor = [UIColor  colorWithRed:(24/255.0) green:(24/255.0) blue:(24/255.0) alpha:1];
-
-//    UIGraphicsBeginImageContext(self.view.frame.size);
-//    [[UIImage imageNamed:kTableBG] drawInRect:self.view.bounds];
-//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    self.view.backgroundColor = [UIColor colorWithPatternImage:image];UIGraphicsBeginImageContext(self.view.frame.size);
-//    [[UIImage imageNamed:kTableBG] drawInRect:self.view.bounds];
-//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
-
     
 }
 
@@ -126,14 +115,6 @@
     [descLabel setNumberOfLines:0];
     [descLabel sizeToFit];
     [self.view    addSubview:descLabel ];
-
-
-    // adding voucher button
-//    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    [button addTarget:self action:@selector(voucherAction) forControlEvents:UIControlEventTouchDown];
-//    [button setTitle:@"Voucher" forState:UIControlStateNormal];
-//    button.frame = CGRectMake(80.0, 320.0, 160.0, 35.0);
-//    [self.view addSubview:button];
     
     UIImage *buttonBackground = [UIImage imageNamed:@"coupon.png"];
     UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"coupon.png"];
@@ -148,19 +129,31 @@
                                          darkTextColor:YES];
     
     [self.view addSubview:button];
-    
-    
-    
+
+
+
+    UIImage *btnRemindMe = [UIImage imageNamed:@"buttonRemindMe.png"];
+    CGRect frame1= CGRectMake(200.0, 5.0, 100.0, 35.0);
+    UIButton *remindButton = [KSGuiUtilities buttonWithTitle:@""
+                                                target:self
+                                              selector:@selector(addToCalendar:)
+                                                 frame:frame1
+                                                 image:btnRemindMe
+                                          imagePressed:btnRemindMe
+                                         darkTextColor:NO];
     
     
     // Remind me button
-    UIBarButtonItem *remindButton = [[UIBarButtonItem alloc]
-                                     initWithTitle:@"Remind Me"
-                                     style:UIBarButtonItemStylePlain
-                                     target:self
-                                     action:@selector(addToCalendar:)];
+//    UIBarButtonItem *remindButton = [[UIBarButtonItem alloc]
+//            initWithTitle:@"Remind Me"
+//                    style:UIBarButtonItemStylePlain
+//                   target:self
+//                   action:@selector(addToCalendar:)];
+//    [remindButton setBackgroundImage:buttonDarkBackground ];
+
+    UIBarButtonItem *remindButtonItem = [[UIBarButtonItem alloc] initWithCustomView:remindButton];
     
-    self.navigationItem.rightBarButtonItem = remindButton;
+    self.navigationItem.rightBarButtonItem = remindButtonItem;
     [app RemoveLoadingView];
 }
 
@@ -170,7 +163,6 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
-    //self.navigationController.topViewController.title  = @"Back";
 }
 
 

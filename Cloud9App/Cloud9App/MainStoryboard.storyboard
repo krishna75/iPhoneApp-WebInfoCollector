@@ -9,13 +9,12 @@
         <!--Tab Bar Controller-->
         <scene sceneID="15">
             <objects>
-                <tabBarController storyboardIdentifier="root" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="root" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4" customClass="tabBarController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Y2K-5j-Ilj"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5">
                         <rect key="frame" x="0.0" y="431" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="vOs-nA-ia0" kind="relationship" relationship="viewControllers" id="8e3-G5-vzT"/>
@@ -368,6 +367,60 @@
         <image name="coupon.png" width="194" height="107"/>
         <image name="first.png" width="30" height="30"/>
     </resources>
+    <classes>
+        <class className="PrefsEventsDetail" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrefsEventsDetail.h"/>
+        </class>
+        <class className="SettingsDetail" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsDetail.h"/>
+            <relationships>
+                <relationship kind="outlet" name="settingsWeb" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="Voucher" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Voucher.h"/>
+            <relationships>
+                <relationship kind="action" name="scanButtonPress:"/>
+                <relationship kind="outlet" name="scanButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="dailyEventsController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/dailyEventsController.h"/>
+        </class>
+        <class className="eventController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/eventController.h"/>
+        </class>
+        <class className="eventDetailsController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/eventDetailsController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="eventImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="subTitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="eventsInAVenueController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/eventsInAVenueController.h"/>
+        </class>
+        <class className="preferencesController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/preferencesController.h"/>
+        </class>
+        <class className="preferencesEvents" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/preferencesEvents.h"/>
+        </class>
+        <class className="settingsController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/settingsController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="settingsTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="tabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/tabBarController.h"/>
+        </class>
+        <class className="venuesAndEventsController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/venuesAndEventsController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

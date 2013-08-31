@@ -113,6 +113,9 @@
 		63A919841718879400997F70 /* loader.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A919831718879400997F70 /* loader.png */; };
 		63A91988171887CF00997F70 /* bg_cellSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A91987171887CF00997F70 /* bg_cellSelected.png */; };
 		63FF350B1721925B004D7CB6 /* PrefsEventsDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FF350A1721925B004D7CB6 /* PrefsEventsDetail.m */; };
+		9716929717D268E3001E48C9 /* tabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9716929617D268E3001E48C9 /* tabBarController.m */; };
+		9716929917D2864A001E48C9 /* darkButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9716929817D2864A001E48C9 /* darkButton.png */; };
+		9716929B17D28A69001E48C9 /* buttonRemindMe.png in Resources */ = {isa = PBXBuildFile; fileRef = 9716929A17D28A69001E48C9 /* buttonRemindMe.png */; };
 		97169343178609C100D7B646 /* KSBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97169342178609C100D7B646 /* KSBackgroundLayer.m */; };
 		972BBE8A17CE8F2D00A68128 /* coupon.png in Resources */ = {isa = PBXBuildFile; fileRef = 972BBE8917CE8F2D00A68128 /* coupon.png */; };
 		972BBE8D17CE955100A68128 /* KSGuiUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 972BBE8C17CE955100A68128 /* KSGuiUtilities.m */; };
@@ -228,6 +231,10 @@
 		63A91987171887CF00997F70 /* bg_cellSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_cellSelected.png; sourceTree = "<group>"; };
 		63FF35091721925B004D7CB6 /* PrefsEventsDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefsEventsDetail.h; sourceTree = "<group>"; };
 		63FF350A1721925B004D7CB6 /* PrefsEventsDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefsEventsDetail.m; sourceTree = "<group>"; };
+		9716929517D268E3001E48C9 /* tabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tabBarController.h; sourceTree = "<group>"; };
+		9716929617D268E3001E48C9 /* tabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tabBarController.m; sourceTree = "<group>"; };
+		9716929817D2864A001E48C9 /* darkButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkButton.png; sourceTree = "<group>"; };
+		9716929A17D28A69001E48C9 /* buttonRemindMe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonRemindMe.png; sourceTree = "<group>"; };
 		97169341178609C100D7B646 /* KSBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSBackgroundLayer.h; sourceTree = "<group>"; };
 		97169342178609C100D7B646 /* KSBackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSBackgroundLayer.m; sourceTree = "<group>"; };
 		972BBE8917CE8F2D00A68128 /* coupon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coupon.png; sourceTree = "<group>"; };
@@ -327,6 +334,8 @@
 				4E57D11A16D8B70400506E44 /* Preferences */,
 				97B8698D1784CB1B002FF0EA /* Voucher */,
 				4E57D11B16D8B71000506E44 /* Settings */,
+				9716929517D268E3001E48C9 /* tabBarController.h */,
+				9716929617D268E3001E48C9 /* tabBarController.m */,
 			);
 			name = "App Classes";
 			sourceTree = "<group>";
@@ -528,6 +537,8 @@
 		4ED55A0116D12EC900D1F02D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9716929A17D28A69001E48C9 /* buttonRemindMe.png */,
+				9716929817D2864A001E48C9 /* darkButton.png */,
 				972BBE9017CE9FD300A68128 /* camera-lens-pressed.png */,
 				972BBE9117CE9FD300A68128 /* camera-lens.png */,
 				972BBE8917CE8F2D00A68128 /* coupon.png */,
@@ -759,6 +770,8 @@
 				972BBE8A17CE8F2D00A68128 /* coupon.png in Resources */,
 				972BBE9217CE9FD300A68128 /* camera-lens-pressed.png in Resources */,
 				972BBE9317CE9FD300A68128 /* camera-lens.png in Resources */,
+				9716929917D2864A001E48C9 /* darkButton.png in Resources */,
+				9716929B17D28A69001E48C9 /* buttonRemindMe.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -884,6 +897,7 @@
 				97B869901784CB8D002FF0EA /* Voucher.m in Sources */,
 				97169343178609C100D7B646 /* KSBackgroundLayer.m in Sources */,
 				972BBE8D17CE955100A68128 /* KSGuiUtilities.m in Sources */,
+				9716929717D268E3001E48C9 /* tabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

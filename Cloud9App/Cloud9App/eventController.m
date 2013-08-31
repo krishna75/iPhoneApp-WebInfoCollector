@@ -33,20 +33,15 @@
 @implementation eventController {
     
     NSMutableArray *jsonResults;
+
+
 }
-//
-//- (void)drawRect:(CGRect)rect {
-//    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
-//        UIImage *image = [UIImage imageNamed:@"bg_top_nav.png"];
-//        [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-//    }
-//}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -98,10 +93,11 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    UIImage *backgroundImage = [UIImage imageNamed:@"bg_top_nav.png"];
-//    [self.navigationController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
-//    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_top_nav.png"]];
-//    [self.navigationController.navigationBar  insertSubview:backgroundView atIndex:5];
+//   the line below sets the font and size of the whole application. this has to be in the event controller since this is the first view controller.
+//    [[UILabel appearance] setFont:[UIFont fontWithName:@"Harabara" size:6.0]];
+
+    UIImage *backgroundImage = [UIImage imageNamed:@"bg_top_nav.png"];
+    [self.navigationController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.topItem.title  = kTitle;
     [self.tableView reloadData];
 }

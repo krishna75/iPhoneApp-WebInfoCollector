@@ -93,8 +93,9 @@ UIImage *btnImg = [UIImage imageNamed:@"backButton.png"];
 [btn setBackgroundImage:btnImg forState:UIControlStateNormal];
 [btn setTitle:@"Back" forState:UIControlStateNormal];
 btn.titleLabel.font = [UIFont boldSystemFontOfSize:12];
+btn.titleLabel.font = [UIFont fontWithName:@"Harabara"size:12] ;
 
-btn.frame = CGRectMake(0, 0, 50, 30);
+btn.frame = CGRectMake(0, 0, 60, 35);
 
 return btn;
 }
