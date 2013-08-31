@@ -60,7 +60,7 @@
 // the process also has spinner or loader
 - (void)processJson {
     
-    // the actuatl process 
+    // the actual process
     KSJson * json = [[KSJson alloc] init];
     NSString *jsonURL  = [NSString stringWithFormat:@"%@%@",kjsonURL,_eventId];
     NSMutableArray *jsonResults = [json toArray:jsonURL];
@@ -115,10 +115,10 @@
     [descLabel setNumberOfLines:0];
     [descLabel sizeToFit];
     [self.view    addSubview:descLabel ];
-    
+
+    // adding the voucher button
     UIImage *buttonBackground = [UIImage imageNamed:@"coupon.png"];
     UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"coupon.png"];
-    
     CGRect frame = CGRectMake(80.0, 320.0, 160.0, 35.0);
     UIButton *button = [KSGuiUtilities buttonWithTitle:@"Voucher"
                                                 target:self
@@ -131,7 +131,7 @@
     [self.view addSubview:button];
 
 
-
+    // adding reminder button
     UIImage *btnRemindMe = [UIImage imageNamed:@"buttonRemindMe.png"];
     CGRect frame1= CGRectMake(200.0, 5.0, 100.0, 35.0);
     UIButton *remindButton = [KSGuiUtilities buttonWithTitle:@""
@@ -141,16 +141,6 @@
                                                  image:btnRemindMe
                                           imagePressed:btnRemindMe
                                          darkTextColor:NO];
-    
-    
-    // Remind me button
-//    UIBarButtonItem *remindButton = [[UIBarButtonItem alloc]
-//            initWithTitle:@"Remind Me"
-//                    style:UIBarButtonItemStylePlain
-//                   target:self
-//                   action:@selector(addToCalendar:)];
-//    [remindButton setBackgroundImage:buttonDarkBackground ];
-
     UIBarButtonItem *remindButtonItem = [[UIBarButtonItem alloc] initWithCustomView:remindButton];
     
     self.navigationItem.rightBarButtonItem = remindButtonItem;

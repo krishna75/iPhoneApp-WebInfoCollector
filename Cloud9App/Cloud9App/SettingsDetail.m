@@ -8,6 +8,7 @@
 
 #import "SettingsDetail.h"
 #import "AppDelegate.h"
+#import "KSUtilities.h"
 
 @interface SettingsDetail ()
 
@@ -26,6 +27,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    [self setBackButton];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -46,6 +48,18 @@
 - (void)didReceiveMemoryWarning {
     
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark - Back button;
+-(void) setBackButton {
+    UIButton *btn = [KSUtilities getBackButon];
+    [btn addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+}
+
+-(void)goBack{
+
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

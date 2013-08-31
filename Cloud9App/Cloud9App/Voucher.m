@@ -9,6 +9,8 @@
 #import "Voucher.h"
 #import "KSJson.h"
 #import "KSGuiUtilities.h"
+#import "KSUtilities.h"
+
 #define kTitle @"Voucher"
 
 
@@ -34,6 +36,7 @@ NSString *voucherDescription;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setBackButton];
     eventId = [eventDetailDict objectForKey:@"id"];
     venueId = [eventDetailDict objectForKey:@"venue_id"];
     voucherDescription = [eventDetailDict objectForKey:@"voucher"];
@@ -219,6 +222,18 @@ NSString *voucherDescription;
     NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
     NSString *filePath = [basePath stringByAppendingPathComponent:@"voucher.plist"];
     return filePath;
+}
+
+#pragma mark - Back button;
+-(void) setBackButton {
+    UIButton *btn = [KSUtilities getBackButon];
+    [btn addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+}
+
+-(void)goBack{
+
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
