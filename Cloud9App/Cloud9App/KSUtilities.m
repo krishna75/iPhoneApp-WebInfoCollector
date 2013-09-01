@@ -138,7 +138,7 @@ UIImage *btnImg = [UIImage imageNamed:@"backButton.png"];
 btn.titleLabel.font = [UIFont boldSystemFontOfSize:12];
 btn.titleLabel.font = [UIFont fontWithName:kDefaultFont size:12] ;
 
-btn.frame = CGRectMake(0, 0, 60, 35);
+btn.frame = CGRectMake(0, 0, 45, 25);
 
 return btn;
 }

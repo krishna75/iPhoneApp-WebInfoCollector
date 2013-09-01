@@ -7,6 +7,7 @@
 //
 
 #import "KSGuiUtilities.h"
+#import "KSUtilities.h"
 
 
 @implementation KSGuiUtilities
@@ -25,6 +26,7 @@
     button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     
     [button setTitle:title forState:UIControlStateNormal];
+    [button.titleLabel setFont:[UIFont fontWithName:[KSUtilities getDefaultFont] size:12]];
 
 
     if (darkTextColor) {

@@ -106,9 +106,9 @@
     // description label is created programmatically
     CGRect descFrame = CGRectMake(12, 360, 290, 600);
     UILabel *descLabel = [[UILabel alloc] initWithFrame:descFrame];
-    descLabel.textColor = [UIColor whiteColor];
+    descLabel.textColor = [UIColor lightGrayColor];
     descLabel.backgroundColor = [UIColor clearColor];
-    [descLabel setFont:[UIFont fontWithName:@"American Typewriter" size:14]];
+   [descLabel setFont:[UIFont fontWithName:@"Helvetica" size:14]];
     descLabel.text = description;
     
     // Tell the label to use an unlimited number of lines
@@ -117,10 +117,10 @@
     [self.view    addSubview:descLabel ];
 
     // adding the voucher button
-    UIImage *buttonBackground = [UIImage imageNamed:@"coupon.png"];
-    UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"coupon.png"];
-    CGRect frame = CGRectMake(80.0, 320.0, 160.0, 35.0);
-    UIButton *button = [KSGuiUtilities buttonWithTitle:@"Voucher"
+    UIImage *buttonBackground = [UIImage imageNamed:@"buttonVoucher.png"];
+    UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"buttonVoucher.png"];
+    CGRect frame = CGRectMake(100.0, 320.0, 100.0, 35.0);
+    UIButton *button = [KSGuiUtilities buttonWithTitle:@""
                                                 target:self
                                               selector:@selector(voucherAction)
                                                  frame:frame
@@ -133,8 +133,8 @@
 
     // adding reminder button
     UIImage *btnRemindMe = [UIImage imageNamed:@"buttonRemindMe.png"];
-    CGRect frame1= CGRectMake(200.0, 5.0, 100.0, 35.0);
-    UIButton *remindButton = [KSGuiUtilities buttonWithTitle:@""
+    CGRect frame1= CGRectMake(200.0, 5.0, 80.0, 25.0);
+    UIButton *remindButton = [KSGuiUtilities buttonWithTitle:@"Remind Me"
                                                 target:self
                                               selector:@selector(addToCalendar:)
                                                  frame:frame1

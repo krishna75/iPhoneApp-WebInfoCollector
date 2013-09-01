@@ -67,10 +67,10 @@ NSString *voucherDescription;
 }
 
 - (void) addScanButton {
-    UIImage *buttonBackground = [UIImage imageNamed:@"camera-lens.png"];
-    UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"camera-lens-pressed.png"];
+    UIImage *buttonBackground = [UIImage imageNamed:@"buttonScan.png"];
+    UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"buttonScan.png"];
     
-    CGRect frame = CGRectMake(50.0, 100.0, 200.0, 200.0);
+    CGRect frame = CGRectMake(115.0, 390.0, 100.0, 35.0);
     scanButton = [KSGuiUtilities buttonWithTitle:@""
                                                    target:self
                                                  selector:@selector(scanButtonPress:)
