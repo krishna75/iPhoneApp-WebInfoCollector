@@ -140,10 +140,11 @@
     if (count == nil) {count = @"No" ; }
     NSMutableString *countDetail = [NSMutableString stringWithFormat:@"%@ Event(s)",count];
 
-    cell.titleLabel.text = countDetail;
 
     NSArray *dateArray = [KSUtilities getDateComponents:date];
-    [cell addSubview: [KSUtilities getCalendar:[dateArray objectAtIndex:2] forDay:[dateArray objectAtIndex:1]]];
+    cell.titleLabel.text = [dateArray objectAtIndex:0];
+    cell.descriptionLabel.text = countDetail;
+    [cell addSubview: [KSUtilities getCalendar:@"SEP" forDay:[dateArray objectAtIndex:1]]];
     
     //computing and displaying new events as badge
     int newEventCount = [KSBadgeManager countNewEventsOfDate:date];

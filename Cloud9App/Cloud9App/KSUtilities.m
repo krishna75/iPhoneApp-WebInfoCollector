@@ -72,13 +72,14 @@
     UIGraphicsBeginImageContext(customView.frame.size);
     UIImage *bgImage = [UIImage imageNamed:@"table_header.png"];
     UIImageView *imageView1 = [[UIImageView alloc] initWithImage:bgImage];
+//    UIImageView *imageView1 = [[UIImageView alloc] init];
     [customView addSubview:imageView1];
-    UIGraphicsEndImageContext();
-    CGFloat nRed=51.0/255.0;
-    CGFloat nBlue=51.0/255.0;
-    CGFloat nGreen=51.0/255.0;
-    UIColor *myColor=[[UIColor alloc]initWithRed:nRed green:nBlue blue:nGreen alpha:1];
-    customView.backgroundColor = myColor;
+//    UIGraphicsEndImageContext();
+//    CGFloat nRed=51.0/255.0;
+//    CGFloat nBlue=51.0/255.0;
+//    CGFloat nGreen=51.0/255.0;
+//    UIColor *myColor=[[UIColor alloc]initWithRed:nRed green:nBlue blue:nGreen alpha:1];
+//    customView.backgroundColor = myColor;
     
 
     // create title label
@@ -127,14 +128,21 @@ return btn;
 }
 
 + (UIImageView *) getCalendar:(NSString *) month forDay:(NSString *)day {
-    UIImage *calendarImage = [UIImage imageNamed:@"calendar_empty.png"];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:calendarImage];
+//    UIImage *calendarImage = [UIImage imageNamed:@"calendar_empty.png"];
+//    UIImageView *imageView = [[UIImageView alloc] initWithImage:calendarImage];
+    UIImageView *imageView = [[UIImageView alloc] init];
+
     imageView.frame = CGRectMake(0, 0, 73, 73);
 
     UILabel *monthLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, 70, 15)] ;
     monthLabel.backgroundColor = [UIColor clearColor];
-    monthLabel.textColor = [UIColor whiteColor];
-    monthLabel.font = [UIFont fontWithName:kDefaultFont size:12.0];
+    CGFloat nRed=0.0/255.0;
+    CGFloat nBlue=128.0/255.0;
+    CGFloat nGreen=255.0/255.0;
+    UIColor *myColor=[[UIColor alloc]initWithRed:nRed green:nBlue blue:nGreen alpha:1];
+
+    monthLabel.textColor = myColor;
+    monthLabel.font = [UIFont fontWithName:kDefaultFont size:16.0];
     monthLabel.textAlignment = NSTextAlignmentCenter;
     monthLabel.text = month;
     [imageView addSubview:monthLabel];
