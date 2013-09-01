@@ -94,7 +94,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 //   the line below sets the font and size of the whole application. this has to be in the event controller since this is the first view controller.
-//    [[UILabel appearance] setFont:[UIFont fontWithName:@"Harabara" size:6.0]];
+//    [[UILabel appearance] setFont:[UIFont fontWithName:[KSUtilities getDefaultFont] size:12.0]];
 
     UIImage *backgroundImage = [UIImage imageNamed:@"bg_top_nav.png"];
     [self.navigationController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
@@ -140,8 +140,7 @@
     if (count == nil) {count = @"No" ; }
     NSMutableString *countDetail = [NSMutableString stringWithFormat:@"%@ Event(s)",count];
 
-    cell.titleLabel.text = [KSUtilities getFormatedDate:date];
-    cell.descriptionLabel.text = countDetail;
+    cell.titleLabel.text = countDetail;
 
     NSArray *dateArray = [KSUtilities getDateComponents:date];
     [cell addSubview: [KSUtilities getCalendar:[dateArray objectAtIndex:2] forDay:[dateArray objectAtIndex:1]]];

@@ -8,8 +8,13 @@
 
 #import "KSUtilities.h"
 #import <QuartzCore/QuartzCore.h>
+#define kDefaultFont @"American Typewriter"
 
 @implementation KSUtilities
+
++ (NSString *) getDefaultFont{
+    return kDefaultFont;
+}
 
 // creates a formatted string for the date
 + (NSMutableString *) getFormatedDate:(NSString *)date {
@@ -65,9 +70,10 @@
 
     // background image
     UIGraphicsBeginImageContext(customView.frame.size);
-    [[UIImage imageNamed:@"bg_tableViewHeader.png"] drawInRect:customView.bounds];
+    UIImage *bgImage = [UIImage imageNamed:@"table_header.png"];
+    UIImageView *imageView1 = [[UIImageView alloc] initWithImage:bgImage];
+    [customView addSubview:imageView1];
     UIGraphicsEndImageContext();
-//    customView.backgroundColor = [UIColor colorWithPatternImage:image];
     CGFloat nRed=51.0/255.0;
     CGFloat nBlue=51.0/255.0;
     CGFloat nGreen=51.0/255.0;
@@ -106,14 +112,14 @@
 }
 
 // create the parent view that will hold header Label
-+ (UIButton*) getBackButon {
++ (UIButton*)getBackButton {
 
 UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
 UIImage *btnImg = [UIImage imageNamed:@"backButton.png"];
 [btn setBackgroundImage:btnImg forState:UIControlStateNormal];
 [btn setTitle:@"Back" forState:UIControlStateNormal];
 btn.titleLabel.font = [UIFont boldSystemFontOfSize:12];
-btn.titleLabel.font = [UIFont fontWithName:@"Harabara"size:12] ;
+btn.titleLabel.font = [UIFont fontWithName:kDefaultFont size:12] ;
 
 btn.frame = CGRectMake(0, 0, 60, 35);
 
@@ -125,18 +131,20 @@ return btn;
     UIImageView *imageView = [[UIImageView alloc] initWithImage:calendarImage];
     imageView.frame = CGRectMake(0, 0, 73, 73);
 
-    UILabel *monthLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 8, 65, 15)] ;
+    UILabel *monthLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, 70, 15)] ;
     monthLabel.backgroundColor = [UIColor clearColor];
     monthLabel.textColor = [UIColor whiteColor];
-    monthLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
+    monthLabel.font = [UIFont fontWithName:kDefaultFont size:12.0];
+    monthLabel.textAlignment = NSTextAlignmentCenter;
     monthLabel.text = month;
     [imageView addSubview:monthLabel];
 
 
-    UILabel *dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 30, 50, 45)] ;
+    UILabel *dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 70, 45)] ;
     dayLabel.backgroundColor = [UIColor clearColor];
     dayLabel.textColor = [UIColor blackColor];
-    dayLabel.font = [UIFont fontWithName:@"Marion-Bold" size:40.0];
+    dayLabel.font = [UIFont fontWithName:kDefaultFont size:40.0];
+    dayLabel.textAlignment = NSTextAlignmentCenter;
     dayLabel.text = day;
     [imageView addSubview:dayLabel];
 
@@ -181,7 +189,7 @@ return btn;
     label.backgroundColor = [UIColor redColor];
     label.textColor = [UIColor whiteColor];
     [label setTextAlignment:NSTextAlignmentCenter];
-    label.font=[UIFont fontWithName:@"TrebuchetMS-Bold" size:12];
+    label.font=[UIFont fontWithName:kDefaultFont size:12];
     
     //gradient look for background
     UIColor *colorOne = [UIColor colorWithRed:(120/255.0) green:(135/255.0) blue:(150/255.0) alpha:1.0];

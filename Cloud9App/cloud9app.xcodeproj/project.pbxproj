@@ -106,7 +106,6 @@
 		4EB35EEF17651F7A00086A97 /* KSSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB35EEE17651F7A00086A97 /* KSSettings.m */; };
 		4ED55A1016D13C7D00D1F02D /* eventController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED55A0F16D13C7D00D1F02D /* eventController.m */; };
 		6325FF8B171928730019DEDC /* preferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6325FF88171928730019DEDC /* preferencesController.m */; };
-		6325FF8C171928730019DEDC /* preferencesEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 6325FF8A171928730019DEDC /* preferencesEvents.m */; };
 		6325FF8F1719288D0019DEDC /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6325FF8E1719288D0019DEDC /* MainStoryboard.storyboard */; };
 		6325FF9117192A5B0019DEDC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6325FF9017192A5B0019DEDC /* QuartzCore.framework */; };
 		632BEB7F17304F9000BACAF2 /* SettingsDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 632BEB7E17304F9000BACAF2 /* SettingsDetail.m */; };
@@ -117,6 +116,7 @@
 		9716929917D2864A001E48C9 /* darkButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9716929817D2864A001E48C9 /* darkButton.png */; };
 		9716929B17D28A69001E48C9 /* buttonRemindMe.png in Resources */ = {isa = PBXBuildFile; fileRef = 9716929A17D28A69001E48C9 /* buttonRemindMe.png */; };
 		9716929F17D297E6001E48C9 /* calendar_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 9716929E17D297E6001E48C9 /* calendar_empty.png */; };
+		971692A417D3849B001E48C9 /* Harabara.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 971692A317D3849B001E48C9 /* Harabara.ttf */; };
 		97169343178609C100D7B646 /* KSBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97169342178609C100D7B646 /* KSBackgroundLayer.m */; };
 		972BBE8A17CE8F2D00A68128 /* coupon.png in Resources */ = {isa = PBXBuildFile; fileRef = 972BBE8917CE8F2D00A68128 /* coupon.png */; };
 		972BBE8D17CE955100A68128 /* KSGuiUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 972BBE8C17CE955100A68128 /* KSGuiUtilities.m */; };
@@ -139,7 +139,11 @@
 		97B869B91784CC79002FF0EA /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 97B869B41784CC79002FF0EA /* zbar-help.html */; };
 		97B869BA1784CC79002FF0EA /* zbar-helpicons.png in Resources */ = {isa = PBXBuildFile; fileRef = 97B869B51784CC79002FF0EA /* zbar-helpicons.png */; };
 		97B869BB1784CC79002FF0EA /* zbar-samples.png in Resources */ = {isa = PBXBuildFile; fileRef = 97B869B61784CC79002FF0EA /* zbar-samples.png */; };
+		97F1ECBE17D386460011C391 /* Harabara.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 971692A317D3849B001E48C9 /* Harabara.ttf */; };
+		97F1ECC017D38C0A0011C391 /* Newchester.otf in Resources */ = {isa = PBXBuildFile; fileRef = 97F1ECBF17D38C0A0011C391 /* Newchester.otf */; };
+		BD2DE01593AD9F85091E88DD /* table_cell_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = BD2DED6E474CC728A6726D47 /* table_cell_bg.png */; };
 		BD2DE10CA1E663A80C07739E /* bg_event_detail.png in Resources */ = {isa = PBXBuildFile; fileRef = BD2DEC87BC77CDA95C111498 /* bg_event_detail.png */; };
+		BD2DED2F95F1C27A7B37C072 /* table_header.png in Resources */ = {isa = PBXBuildFile; fileRef = BD2DE6FBD4DA6DB5F7D8A018 /* table_header.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -222,8 +226,6 @@
 		4ED55A0F16D13C7D00D1F02D /* eventController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eventController.m; sourceTree = "<group>"; };
 		6325FF87171928730019DEDC /* preferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = preferencesController.h; sourceTree = "<group>"; };
 		6325FF88171928730019DEDC /* preferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = preferencesController.m; sourceTree = "<group>"; };
-		6325FF89171928730019DEDC /* preferencesEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = preferencesEvents.h; sourceTree = "<group>"; };
-		6325FF8A171928730019DEDC /* preferencesEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = preferencesEvents.m; sourceTree = "<group>"; };
 		6325FF8E1719288D0019DEDC /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		6325FF9017192A5B0019DEDC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		632BEB7D17304F9000BACAF2 /* SettingsDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsDetail.h; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 		9716929817D2864A001E48C9 /* darkButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkButton.png; sourceTree = "<group>"; };
 		9716929A17D28A69001E48C9 /* buttonRemindMe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonRemindMe.png; sourceTree = "<group>"; };
 		9716929E17D297E6001E48C9 /* calendar_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar_empty.png; sourceTree = "<group>"; };
+		971692A317D3849B001E48C9 /* Harabara.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Harabara.ttf; sourceTree = "<group>"; };
 		97169341178609C100D7B646 /* KSBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSBackgroundLayer.h; sourceTree = "<group>"; };
 		97169342178609C100D7B646 /* KSBackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSBackgroundLayer.m; sourceTree = "<group>"; };
 		972BBE8917CE8F2D00A68128 /* coupon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coupon.png; sourceTree = "<group>"; };
@@ -280,7 +283,10 @@
 		97B869B41784CC79002FF0EA /* zbar-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "zbar-help.html"; sourceTree = "<group>"; };
 		97B869B51784CC79002FF0EA /* zbar-helpicons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-helpicons.png"; sourceTree = "<group>"; };
 		97B869B61784CC79002FF0EA /* zbar-samples.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-samples.png"; sourceTree = "<group>"; };
+		97F1ECBF17D38C0A0011C391 /* Newchester.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Newchester.otf; sourceTree = "<group>"; };
+		BD2DE6FBD4DA6DB5F7D8A018 /* table_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = table_header.png; sourceTree = "<group>"; };
 		BD2DEC87BC77CDA95C111498 /* bg_event_detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_event_detail.png; sourceTree = "<group>"; };
+		BD2DED6E474CC728A6726D47 /* table_cell_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = table_cell_bg.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -371,9 +377,7 @@
 			children = (
 				6325FF87171928730019DEDC /* preferencesController.h */,
 				63FF35091721925B004D7CB6 /* PrefsEventsDetail.h */,
-				6325FF89171928730019DEDC /* preferencesEvents.h */,
 				6325FF88171928730019DEDC /* preferencesController.m */,
-				6325FF8A171928730019DEDC /* preferencesEvents.m */,
 				63FF350A1721925B004D7CB6 /* PrefsEventsDetail.m */,
 			);
 			name = Preferences;
@@ -509,6 +513,7 @@
 		4E874E1E16D1218E00CFDA27 /* Cloud9App */ = {
 			isa = PBXGroup;
 			children = (
+				971692A217D38470001E48C9 /* fonts */,
 				97AE6F3317AD6E630069E971 /* cloud9_icon.png */,
 				97AE6F3117AD6E1C0069E971 /* cloud9_icon.png */,
 				4E874E2716D1218E00CFDA27 /* AppDelegate.h */,
@@ -561,8 +566,19 @@
 				4E6F3FB116D622740004098A /* wall papers */,
 				4E6F3FB016D622400004098A /* Launch */,
 				4E6F3FAF16D621990004098A /* icons */,
+				BD2DE6FBD4DA6DB5F7D8A018 /* table_header.png */,
+				BD2DED6E474CC728A6726D47 /* table_cell_bg.png */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		971692A217D38470001E48C9 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				97F1ECBF17D38C0A0011C391 /* Newchester.otf */,
+				971692A317D3849B001E48C9 /* Harabara.ttf */,
+			);
+			name = fonts;
 			sourceTree = "<group>";
 		};
 		97B8698D1784CB1B002FF0EA /* Voucher */ = {
@@ -744,6 +760,8 @@
 				4E874E4016D1218E00CFDA27 /* second@2x.png in Resources */,
 				4E8962BB16D2D06400AD417C /* calendar.png in Resources */,
 				4E8962BC16D2D06400AD417C /* city.png in Resources */,
+				97F1ECC017D38C0A0011C391 /* Newchester.otf in Resources */,
+				97F1ECBE17D386460011C391 /* Harabara.ttf in Resources */,
 				4E8962C016D2DC7300AD417C /* cog.png in Resources */,
 				4E17A0BB16D2F2010019C015 /* home.png in Resources */,
 				4E9F4FA516E92414009A9D1B /* icon-568h@2x.png in Resources */,
@@ -776,6 +794,8 @@
 				9716929917D2864A001E48C9 /* darkButton.png in Resources */,
 				9716929B17D28A69001E48C9 /* buttonRemindMe.png in Resources */,
 				9716929F17D297E6001E48C9 /* calendar_empty.png in Resources */,
+				BD2DED2F95F1C27A7B37C072 /* table_header.png in Resources */,
+				BD2DE01593AD9F85091E88DD /* table_cell_bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -783,6 +803,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				971692A417D3849B001E48C9 /* Harabara.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -893,7 +914,6 @@
 				4EA4FB9016EB96F000F9A66C /* FirstJsonLoader.m in Sources */,
 				4EAEAD9D17037881006AE83F /* KSBadgeManager.m in Sources */,
 				6325FF8B171928730019DEDC /* preferencesController.m in Sources */,
-				6325FF8C171928730019DEDC /* preferencesEvents.m in Sources */,
 				63FF350B1721925B004D7CB6 /* PrefsEventsDetail.m in Sources */,
 				632BEB7F17304F9000BACAF2 /* SettingsDetail.m in Sources */,
 				4EAF2526175A86D200FC3A4E /* KSCell.m in Sources */,

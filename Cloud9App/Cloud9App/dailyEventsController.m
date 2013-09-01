@@ -208,7 +208,7 @@
 
 #pragma mark - Back button;
 -(void) setBackButton {
-    UIButton *btn = [KSUtilities getBackButon];
+    UIButton *btn = [KSUtilities getBackButton];
     [btn addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
 }

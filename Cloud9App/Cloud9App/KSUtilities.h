@@ -10,9 +10,10 @@
 
 @interface KSUtilities : NSObject
 
++ (NSString *) getDefaultFont;
 + (NSMutableString *) getFormatedDate:(NSString *)date ;
 + (UIView *) getHeaderView:(UIImage *) logoImage forTitle:(NSString *)titleText forDetail:(NSString *)description;
-+ (UIButton*) getBackButon;
++ (UIButton*)getBackButton;
 + (UIImageView *) getImageViewOfUrl:(NSString *) strUrlForImage ;
 + (UIImageView *) getResizedImageViewForCell:(UIImage *) logoImage;
 + (NSString *) getToday;

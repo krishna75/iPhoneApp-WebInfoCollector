@@ -126,8 +126,8 @@
     NSString    *eventTitle = [eventCountDict objectForKey:@"event_title"];
 
     cell.titleLabel.text = eventTitle;
-    cell.descriptionLabel.text = [KSUtilities getFormatedDate:date];
-    [cell addSubview: [KSUtilities getResizedImageViewForCell:[UIImage imageNamed:@"cell-logo.png"]]];
+    NSArray *dateArray = [KSUtilities getDateComponents:date];
+   [cell addSubview: [KSUtilities getCalendar:[dateArray objectAtIndex:2] forDay:[dateArray objectAtIndex:1]]];
     
     //displaying new events as badge
     NSString    *eventId = [eventCountDict objectForKey:@"event_id"];
@@ -194,7 +194,7 @@
 
 #pragma mark - Back button;
 -(void) setBackButton {
-    UIButton *btn = [KSUtilities getBackButon];
+    UIButton *btn = [KSUtilities getBackButton];
     [btn addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
 }

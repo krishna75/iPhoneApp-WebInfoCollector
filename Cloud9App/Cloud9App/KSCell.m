@@ -21,7 +21,7 @@
                 
         // create title label
         titleLabel = [[UILabel alloc]init];
-        titleLabel.font = [UIFont systemFontOfSize:18];
+        titleLabel.font = [UIFont fontWithName:[KSUtilities getDefaultFont] size:18];
         titleLabel.textColor = [KSUtilities colorWithHexString:@"FFFFFF"];
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.textAlignment = NSTextAlignmentLeft;
@@ -30,14 +30,14 @@
         descriptionLabel = [[UILabel alloc]init];
         descriptionLabel.backgroundColor = [UIColor clearColor];
         descriptionLabel.textColor = [KSUtilities colorWithHexString:@"C8C8C1"];
-        descriptionLabel.font = [UIFont fontWithName:@"Helvetica" size:12];
+        descriptionLabel.font = [UIFont fontWithName:[KSUtilities getDefaultFont] size:12];
         descriptionLabel.textAlignment = NSTextAlignmentLeft;
         
         // create description label
         moreLabel = [[UILabel alloc]init];
         moreLabel.backgroundColor = [UIColor clearColor];
         moreLabel.textColor = [KSUtilities colorWithHexString:@"C9C9C1"];
-        moreLabel.font = [UIFont fontWithName:@"Helvetica" size:10];
+        moreLabel.font = [UIFont fontWithName:[KSUtilities getDefaultFont] size:10];
         moreLabel.textAlignment = NSTextAlignmentLeft;
 
         imageView = [[UIImageView alloc]init];
@@ -53,12 +53,9 @@
 - (void)layoutSubviews {
         
     [super layoutSubviews];
-    // background image
-    UIGraphicsBeginImageContext(self.frame.size);
-    [[UIImage imageNamed:@"bg_cell.png"] drawInRect:self.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-
+    UIImage *calendarImage = [UIImage imageNamed:@"table_cell_bg.png"];
+    UIImageView *imageView1 = [[UIImageView alloc] initWithImage:calendarImage];
+    self.backgroundView = imageView1;
 
     CGRect contentRect = self.contentView.bounds;
     CGFloat boundsX = contentRect.origin.x;

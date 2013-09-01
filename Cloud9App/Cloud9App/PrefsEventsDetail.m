@@ -130,8 +130,9 @@
                                                        objectForKey:@"date"]];
     NSString *day = [NSString stringWithFormat:@"%@",[[jsonResults objectAtIndex:indexPath.row]
                                                       objectForKey:@"day"]];
-    cell.descriptionLabel.text = [NSString stringWithFormat:@"%@,%@",date,day];
-    [cell addSubview: [KSUtilities getResizedImageViewForCell:[UIImage imageNamed:@"cell-logo.png"]]];
+
+    NSArray *dateArray = [KSUtilities getDateComponents:date];
+    [cell addSubview: [KSUtilities getCalendar:[dateArray objectAtIndex:2] forDay:[dateArray objectAtIndex:1]]];
     return cell;
 }
 
@@ -180,7 +181,7 @@
 
 #pragma mark - Back button;
 -(void) setBackButton {
-    UIButton *btn = [KSUtilities getBackButon];
+    UIButton *btn = [KSUtilities getBackButton];
     [btn addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
 }
