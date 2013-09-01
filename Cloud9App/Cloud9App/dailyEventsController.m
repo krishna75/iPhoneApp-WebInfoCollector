@@ -180,9 +180,10 @@
 #pragma mark - Table header for the view
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
-    NSMutableString *title = [_eventDict objectForKey:@"formattedDate"];
-    NSMutableString *description = [_eventDict objectForKey:@"countDetail"];
+    NSDictionary *dateDict =[KSUtilities getDateDict:[_eventDict objectForKey:@"date"]] ;
+    NSMutableString *title = [dateDict objectForKey:@"longMonth"];
+    NSString *description = [NSString stringWithFormat:@"%@%@ %@",[dateDict objectForKey:@"dateDay"],[
+            dateDict objectForKey:@"suffix"], [dateDict objectForKey:@"weekDay"]];
     
     return [KSUtilities getHeaderView:NULL forTitle:title forDetail:description];
 }

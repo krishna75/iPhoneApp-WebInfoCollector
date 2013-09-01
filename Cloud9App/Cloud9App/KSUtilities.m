@@ -74,7 +74,7 @@
 
     [prefixDateFormatter setDateFormat:@"MMMM"];
     NSString *longMonth=[prefixDateFormatter stringFromDate:formattedDate];
-    [dateDict setObject:longMonth forKey:@"longtMonth"];
+    [dateDict setObject:longMonth forKey:@"longMonth"];
 
     return dateDict ;
 }
@@ -102,7 +102,7 @@
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titleLabel.font = [UIFont boldSystemFontOfSize:18];
     titleLabel.frame = CGRectMake(70,18,200,20);
-    titleLabel.textColor = [UIColor blackColor];
+    titleLabel.textColor = [UIColor colorWithRed:(0/255.0) green:(128/255.0) blue:(255/255.0) alpha:1.0];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textAlignment = NSTextAlignmentLeft;
     titleLabel.text =  titleText;
