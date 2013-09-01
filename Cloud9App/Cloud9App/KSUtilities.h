@@ -21,6 +21,6 @@
 +(UIView *)removeBadgeLikeView:(NSString *)strToDisplay;
 +(UIColor*)colorWithHexString:(NSString*)hex;
 + (UIImageView *) getCalendar:(NSString *) month forDay:(NSString *)day;
-+ (NSArray *)getDateComponents:(NSString *) date;
++ (NSDictionary *)getDateDict:(NSString *) date;
 
 @end

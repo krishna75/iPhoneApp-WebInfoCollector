@@ -131,8 +131,8 @@
     NSString *day = [NSString stringWithFormat:@"%@",[[jsonResults objectAtIndex:indexPath.row]
                                                       objectForKey:@"day"]];
 
-    NSArray *dateArray = [KSUtilities getDateComponents:date];
-    [cell addSubview: [KSUtilities getCalendar:[dateArray objectAtIndex:2] forDay:[dateArray objectAtIndex:1]]];
+    NSDictionary *dateDict = [KSUtilities getDateDict:date];
+    [cell addSubview: [KSUtilities getCalendar:[dateDict objectForKey:@"shortMonth"] forDay:[dateDict objectForKey:@"dateDay"]]];
     return cell;
 }
 

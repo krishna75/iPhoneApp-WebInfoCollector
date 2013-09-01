@@ -141,10 +141,10 @@
     NSMutableString *countDetail = [NSMutableString stringWithFormat:@"%@ Event(s)",count];
 
 
-    NSArray *dateArray = [KSUtilities getDateComponents:date];
-    cell.titleLabel.text = [dateArray objectAtIndex:0];
+    NSDictionary *dateDict = [KSUtilities getDateDict:date];
+    cell.titleLabel.text = [dateDict objectForKey:@"weekDay"];
     cell.descriptionLabel.text = countDetail;
-    [cell addSubview: [KSUtilities getCalendar:@"SEP" forDay:[dateArray objectAtIndex:1]]];
+    [cell addSubview: [KSUtilities getCalendar:[dateDict objectForKey:@"shortMonth"] forDay:[dateDict objectForKey:@"dateDay"]]];
     
     //computing and displaying new events as badge
     int newEventCount = [KSBadgeManager countNewEventsOfDate:date];

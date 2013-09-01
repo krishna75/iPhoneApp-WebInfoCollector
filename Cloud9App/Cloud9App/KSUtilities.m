@@ -8,7 +8,7 @@
 
 #import "KSUtilities.h"
 #import <QuartzCore/QuartzCore.h>
-#define kDefaultFont @"American Typewriter"
+#define kDefaultFont @"Helvetica"
 
 @implementation KSUtilities
 
@@ -43,7 +43,10 @@
     return [NSMutableString stringWithFormat:@"%@, %@%@ %@", weekDay,dateDay,suffix,month];
 }
 
-+ (NSArray *)getDateComponents:(NSString *) date {
++ (NSDictionary *)getDateDict:(NSString *) date {
+
+    NSMutableDictionary *dateDict = [[NSMutableDictionary alloc]init];
+
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
 
@@ -53,14 +56,27 @@
     [prefixDateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
     [prefixDateFormatter setDateFormat:@"EEEE"];
     NSString *weekDay= [prefixDateFormatter stringFromDate:formattedDate];
+    [dateDict setObject:weekDay forKey:@"weekDay"];
 
     [prefixDateFormatter setDateFormat:@"d"];
     NSString *dateDay= [prefixDateFormatter stringFromDate:formattedDate];
+    [dateDict setObject:dateDay forKey:@"dateDay"];
+
+    int date_day = [dateDay  intValue];
+    NSString *suffix_string = @"|st|nd|rd|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|st|nd|rd|th|th|th|th|th|th|th|st";
+    NSArray *suffixes = [suffix_string componentsSeparatedByString: @"|"];
+    NSString *suffix = [suffixes objectAtIndex:date_day];
+    [dateDict setObject:suffix forKey:@"suffix"];
+
+    [prefixDateFormatter setDateFormat:@"MMM"];
+    NSString *shortMonth =[prefixDateFormatter stringFromDate:formattedDate];
+    [dateDict setObject:[shortMonth uppercaseString] forKey:@"shortMonth"];
 
     [prefixDateFormatter setDateFormat:@"MMMM"];
-    NSString *month=[prefixDateFormatter stringFromDate:formattedDate];
+    NSString *longMonth=[prefixDateFormatter stringFromDate:formattedDate];
+    [dateDict setObject:longMonth forKey:@"longtMonth"];
 
-    return @[weekDay,dateDay,month] ;
+    return dateDict ;
 }
 
 // create the parent view that will hold header Label
