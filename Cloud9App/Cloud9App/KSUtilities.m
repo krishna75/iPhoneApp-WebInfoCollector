@@ -85,7 +85,7 @@
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titleLabel.font = [UIFont boldSystemFontOfSize:18];
     titleLabel.frame = CGRectMake(70,18,200,20);
-    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.textColor = [UIColor blackColor];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textAlignment = NSTextAlignmentLeft;
     titleLabel.text =  titleText;
@@ -93,7 +93,7 @@
     // create description label
     UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     descriptionLabel.backgroundColor = [UIColor clearColor];
-    descriptionLabel.textColor = [UIColor grayColor];
+    descriptionLabel.textColor = [UIColor blackColor];
     descriptionLabel.font = [UIFont systemFontOfSize:14];
     descriptionLabel.frame = CGRectMake(70,33,230,25);
     descriptionLabel.textAlignment = NSTextAlignmentLeft;

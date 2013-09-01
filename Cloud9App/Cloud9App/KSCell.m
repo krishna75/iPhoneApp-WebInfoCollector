@@ -53,7 +53,7 @@
 - (void)layoutSubviews {
         
     [super layoutSubviews];
-    UIImage *calendarImage = [UIImage imageNamed:@"table_cell_bg.png"];
+    UIImage *calendarImage = [UIImage imageNamed:@"bg_table_cell.png"];
     UIImageView *imageView1 = [[UIImageView alloc] initWithImage:calendarImage];
     self.backgroundView = imageView1;
 
