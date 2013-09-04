@@ -33,18 +33,31 @@ NSString *venueId ;
 NSString *voucherDescription;
 
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self setBackButton];
+    self.navigationController.topViewController.title  = kTitle;
+
     eventId = [eventDetailDict objectForKey:@"id"];
     venueId = [eventDetailDict objectForKey:@"venue_id"];
     voucherDescription = [eventDetailDict objectForKey:@"voucher"];
-    self.navigationController.topViewController.title  = kTitle;
+
+
+    NSURL *voucherPhotoUrl = [NSURL URLWithString:[eventDetailDict objectForKey:@"voucher_photo"]];
+    NSData  *imageData = [NSData dataWithContentsOfURL:voucherPhotoUrl];
+    UIImage *voucherPhoto = [[UIImage alloc] initWithData:imageData];
+    NSLog (@"Voucher url:%@",voucherPhotoUrl);
+
+    CGRect voucherPhotoFrame = CGRectMake(5, 120, 310, 200);
+    UIImageView *voucherView = [[UIImageView alloc] initWithFrame:voucherPhotoFrame] ;
+    [voucherView setImage:voucherPhoto];
+    [self.view addSubview:voucherView ];
 
 //    create voucher description
-    NSString *description = @"If you present this voucher to the venue, you will be able to get 5% discount. Please note that it  can be used only once.";
-    CGRect descFrame = CGRectMake(12, 300, 290, 350);
+            NSString * description = @"If you present this voucher to the venue, you will be able to get 5% discount. Please note that it  can be used only once.";
+    CGRect descFrame = CGRectMake(12, 330, 290, 350);
     UILabel *descLabel = [[UILabel alloc] initWithFrame:descFrame];
     descLabel.textColor = [UIColor whiteColor];
     descLabel.backgroundColor = [UIColor clearColor];

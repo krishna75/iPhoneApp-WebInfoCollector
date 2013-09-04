@@ -13,6 +13,7 @@ $result = mysql_query("SELECT
 						v.id as venue_id,
 						e.description AS description,
 						e.voucher AS voucher,
+						e.voucher_photo as voucher_photo,
 						e.photo AS photo
 						
 						FROM Venues AS v LEFT JOIN Events AS e ON v.id = e.venue_id
@@ -28,6 +29,7 @@ while($row = mysql_fetch_assoc($result)){
 					 "venue_id" => $row['venue_id'],
 					 "description" => $row['description'],
 					 "voucher" => $row['voucher'],
+                     "voucher_photo" => "http://www.cnapp.co.uk/images/voucherPhoto/".$row['voucher_photo'],
 					 "photo" => "http://www.cnapp.co.uk/images/eventPhoto/".$row['photo']
 					 );
   }
