@@ -88,21 +88,13 @@
     UIGraphicsBeginImageContext(customView.frame.size);
     UIImage *bgImage = [UIImage imageNamed:@"table_header.png"];
     UIImageView *imageView1 = [[UIImageView alloc] initWithImage:bgImage];
-//    UIImageView *imageView1 = [[UIImageView alloc] init];
     [customView addSubview:imageView1];
-//    UIGraphicsEndImageContext();
-//    CGFloat nRed=51.0/255.0;
-//    CGFloat nBlue=51.0/255.0;
-//    CGFloat nGreen=51.0/255.0;
-//    UIColor *myColor=[[UIColor alloc]initWithRed:nRed green:nBlue blue:nGreen alpha:1];
-//    customView.backgroundColor = myColor;
-    
 
     // create title label
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titleLabel.font = [UIFont boldSystemFontOfSize:18];
     titleLabel.frame = CGRectMake(70,18,200,20);
-    titleLabel.textColor = [UIColor colorWithRed:(0/255.0) green:(128/255.0) blue:(255/255.0) alpha:1.0];
+    titleLabel.textColor = [self colorWithHexString:@"FF8330"];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textAlignment = NSTextAlignmentLeft;
     titleLabel.text =  titleText;
@@ -110,7 +102,7 @@
     // create description label
     UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     descriptionLabel.backgroundColor = [UIColor clearColor];
-    descriptionLabel.textColor = [UIColor blackColor];
+    descriptionLabel.textColor = [self colorWithHexString:@"5E5E5E"];
     descriptionLabel.font = [UIFont systemFontOfSize:14];
     descriptionLabel.frame = CGRectMake(70,33,230,25);
     descriptionLabel.textAlignment = NSTextAlignmentLeft;
@@ -144,20 +136,15 @@ return btn;
 }
 
 + (UIImageView *) getCalendar:(NSString *) month forDay:(NSString *)day {
-//    UIImage *calendarImage = [UIImage imageNamed:@"calendar_empty.png"];
-//    UIImageView *imageView = [[UIImageView alloc] initWithImage:calendarImage];
-    UIImageView *imageView = [[UIImageView alloc] init];
+    UIImage *calendarImage = [UIImage imageNamed:@"calendar_empty.png"];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:calendarImage];
+//    UIImageView *imageView = [[UIImageView alloc] init];
 
     imageView.frame = CGRectMake(0, 0, 73, 73);
 
     UILabel *monthLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, 70, 15)] ;
     monthLabel.backgroundColor = [UIColor clearColor];
-    CGFloat nRed=0.0/255.0;
-    CGFloat nBlue=128.0/255.0;
-    CGFloat nGreen=255.0/255.0;
-    UIColor *myColor=[[UIColor alloc]initWithRed:nRed green:nBlue blue:nGreen alpha:1];
-
-    monthLabel.textColor = myColor;
+    monthLabel.textColor = [self colorWithHexString:@"FF8330"];
     monthLabel.font = [UIFont fontWithName:kDefaultFont size:16.0];
     monthLabel.textAlignment = NSTextAlignmentCenter;
     monthLabel.text = month;
@@ -166,7 +153,7 @@ return btn;
 
     UILabel *dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 70, 45)] ;
     dayLabel.backgroundColor = [UIColor clearColor];
-    dayLabel.textColor = [UIColor blackColor];
+    dayLabel.textColor = [self colorWithHexString:@"5E5E5E"];
     dayLabel.font = [UIFont fontWithName:kDefaultFont size:40.0];
     dayLabel.textAlignment = NSTextAlignmentCenter;
     dayLabel.text = day;
