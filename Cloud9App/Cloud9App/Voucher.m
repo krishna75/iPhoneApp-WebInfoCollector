@@ -27,10 +27,12 @@
 @synthesize scanButton;
 @synthesize eventDetailDict;
 Boolean used = false;
-UILabel *usedLabel;
+Boolean active = false;
+UILabel *warningLabel;
 NSString *eventId ;
 NSString *venueId ;
 NSString *voucherDescription;
+NSString *date;
 
 
 
@@ -43,6 +45,7 @@ NSString *voucherDescription;
     eventId = [eventDetailDict objectForKey:@"id"];
     venueId = [eventDetailDict objectForKey:@"venue_id"];
     voucherDescription = [eventDetailDict objectForKey:@"voucher"];
+    date = [eventDetailDict objectForKey:@"date"];
 
 
     NSURL *voucherPhotoUrl = [NSURL URLWithString:[eventDetailDict objectForKey:@"voucher_photo"]];
@@ -56,7 +59,7 @@ NSString *voucherDescription;
     [self.view addSubview:voucherView ];
 
 //    create voucher description
-            NSString * description = @"If you present this voucher to the venue, you will be able to get 5% discount. Please note that it  can be used only once.";
+    NSString * description = @"If you present this voucher to the venue, you will be able to get 5% discount. Please note that it  can be used only once.";
     CGRect descFrame = CGRectMake(12, 330, 290, 350);
     UILabel *descLabel = [[UILabel alloc] initWithFrame:descFrame];
     descLabel.textColor = [UIColor whiteColor];
@@ -71,10 +74,23 @@ NSString *voucherDescription;
 
     used = [self isUsed:eventId];
 
-    if (!used){
-        [self addScanButton];
+    NSDate *today = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+    [dateFormat setDateFormat:@"YYYY-MM-dd"];
+    NSString *todayString = [dateFormat stringFromDate:today];
+    if ([date isEqualToString:todayString]) {
+        active = true;
+        NSLog(@"date now =%@", todayString);
     } else {
-        [self addUsedLabel] ;
+        active = false;
+    }
+
+    if (!used && active){
+        [self addScanButton];
+    } else if (used && active) {
+        [self addWarningLabel:@"Voucher used !!! "] ;
+    } else {
+        [self addWarningLabel:[NSString stringWithFormat:@"Voucher valid on %@",date] ];
     }
 
 }
@@ -95,17 +111,16 @@ NSString *voucherDescription;
     [self.view addSubview:scanButton];
 }
 
--(void) addUsedLabel{
-        NSString *usedText = @"Voucher Used !!!.";
-        CGRect usedFrame = CGRectMake(80, 150, 160, 50);
-        usedLabel = [[UILabel alloc] initWithFrame:usedFrame];
-        usedLabel.textColor = [UIColor yellowColor];
-        usedLabel.backgroundColor = [UIColor clearColor];
-        [usedLabel setFont:[UIFont fontWithName:@"American Typewriter" size:25]];
-        usedLabel.text = usedText;
-        [usedLabel setNumberOfLines:0];
-        [usedLabel sizeToFit];
-        [self.view    addSubview:usedLabel ];
+-(void)addWarningLabel:(NSString *)text {
+        CGRect usedFrame = CGRectMake(10, 390, 300, 35);
+        warningLabel = [[UILabel alloc] initWithFrame:usedFrame];
+        warningLabel.textColor = [UIColor yellowColor];
+        warningLabel.backgroundColor = [UIColor clearColor];
+        [warningLabel setFont:[UIFont fontWithName:@"American Typewriter" size:16]];
+        warningLabel.text = text;
+        [warningLabel setTextAlignment:NSTextAlignmentCenter];
+        [warningLabel setNumberOfLines:0];
+    [self.view addSubview:warningLabel];
     }
 
 - (void)viewDidUnload
@@ -173,7 +188,7 @@ NSString *voucherDescription;
 
             used = true;
             [scanButton removeFromSuperview];
-            [self addUsedLabel];
+            [self addWarningLabel:@"Voucher used !!!"];
             [self addUsed:eventId];
         } else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!!" message:[NSString stringWithFormat:@"Wrong QR Code"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
