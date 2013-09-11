@@ -11,8 +11,6 @@ include("includes/session.php");
 require_once("includes/db_connection.php");
 require_once("includes/image_uploader.php");
 
-
-
 // get the post params
 $photo = $_POST['photoField'];
 $dd = $_POST['dd'];
@@ -22,11 +20,11 @@ $date = $yyyy . '/' . $mm . '/' . $dd;
 $title = $_POST['title'];
 $description = $_POST['description'];
 $voucher = $_POST['voucher'];
-$genre = $_POST['genre'];
+$genres = $_POST['genres'];
 $venue = $_POST['venue'];
-echo $date;
-//set dir and prefix for photo
-$photoPrefix = str_replace(" ","_",$title)."_photo_";
+
+//set dir and prefix for photo{}
+$photoPrefix = str_replace(" ", "_", $title) . "_photo_";
 $photoDir = "../images/eventPhoto/";
 
 // check if the photo is valid
@@ -48,20 +46,22 @@ if ( $photoValidated) {
     $eventIdResult = mysql_query($query) or die(mysql_error());
     $eventId = "";
     while($row = mysql_fetch_assoc($eventIdResult)){
-        echo "<option value='".$row['id']."' >".$row['subgenre']."</option>";
+        echo "<option value='".$row['id']."' >".$row['genre']."</option>";
         $eventId = $row['id'];
     }
 
     // set genres
-    $query = " INSERT INTO Genres_Events (
-      event_id,   subgenre_id )  VALUES (
-    '$eventId', '$genre' ); ";
-    $genreResult = mysql_query($query);
+    foreach ($genres as $genre){
+        $query = " INSERT INTO Genres_Events (
+          event_id,   genre_id )  VALUES (
+        '$eventId', '$genre' ); ";
+        $genreResult = mysql_query($query);
+    }
 
    if ($genreResult && $eventResult){
         //uploading
        $photoUploadMessage = uploadImage($photoPrefix, $photo, $photoDir);
-       returnMessage('portal', '<b>Sucess !!!</b> <br/>'.$logoUploadMessage."<br/> ".$photoUploadMessage);
+       returnMessage('portal', '<b>Success !!!</b> <br/>'.$logoUploadMessage."<br/> ".$photoUploadMessage);
     } else {
        returnMessage("addEvent", "<b>Error.. on adding data </b> <br/>". mysql_error($con));
    }
@@ -72,6 +72,7 @@ if ( $photoValidated) {
 }
 
 function returnMessage($page,$message){
+  $message = "<div style='background-color:yellow; padding:10px;'>".$message."</div>";
    echo $message;
 //    header('location:'.$page.'.php?message='. $message);
 }

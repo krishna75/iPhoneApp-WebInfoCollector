@@ -75,19 +75,23 @@ require_once("includes/form_header.php") ;
     <li id="li_10">
         <label class="description" for="element_10">Genre* </label>
 
-        <div>
-            <select class="required element select medium" id="genre" name="genre">
-                <option value="" selected="selected"></option>
+        <div style="width:500px">
+
                 <?php
-                $result = mysql_query("SELECT * FROM SubGenres;") or die(mysql_error());
-                while ($row = mysql_fetch_assoc($result)) {
-                    echo "<option value='" . $row['id'] . "' >" . $row['subgenre'] . "</option>";
-                }
-                ?>
+                $result = mysql_query("SELECT * FROM Genres;") or die(mysql_error());
+                $count = 1;
+                while ($row = mysql_fetch_assoc($result)): ?>
+                    <input type="checkbox" name="genres[]" value="<?php echo $row['id']; ?>" /> <?php echo  $row['genre']; ?> &nbsp;
+                    <?php
+                        if ($count % 6 == 0){
+                            echo "<br/>";
+                        }
+                    ?>
+               <?php  $count ++;  endwhile;?>
             </select>
         </div>
         <p class="guidelines" id="guide_10">
-            <small>It is the genre of the event. Please select one from the drop down list.</small>
+            <small>Please select related genres.</small>
         </p>
     </li>
     <li id="li_11">

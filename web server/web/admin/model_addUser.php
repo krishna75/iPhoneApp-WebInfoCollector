@@ -34,7 +34,7 @@ if ($result){
     $query = " INSERT INTO Users_Venues (user_id, venue_id )  VALUES ('$userId', '$venueId');";
     $result = mysql_query($query)or die(mysql_error());
 
-    returnMessage('portal','<b>Sucess !!!</b><br/> a user has been added');
+    returnMessage('portal','<b>Success !!!</b><br/> a user has been added');
 }else {
     returnMessage('portal','<b>error...</b><br/> could not add a user <br/> '. mysql_error($con));
 }
