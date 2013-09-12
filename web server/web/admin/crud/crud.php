@@ -45,7 +45,7 @@ if (!$preferences_loaded) {
     include "../config.php";
     include "../includes/session.php";
 
-
+    echo "<div class='admin-link'><a href='../portal.php'> << back to portal </a></div>";
 
     ?>
     <style>

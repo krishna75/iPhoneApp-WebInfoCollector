@@ -44,6 +44,8 @@ if (!$preferences_loaded) {
     $table = "Events";
     $venue_id = $_GET['venue_id'];
     $title = $table;
+
+    echo "<div class='admin-link'><a href='../portal.php'> << back to portal </a></div>";
     ?>
     <style>
         th {
