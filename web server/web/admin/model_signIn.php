@@ -47,6 +47,7 @@ function setSession($username){
     $row = mysql_fetch_assoc($query);
 
     $_SESSION['username'] =  $row['username'];
+    $_SESSION['user_id'] =  $row['id'];
     $_SESSION['first_name'] =  $row['first_name'];
     $_SESSION['last_name'] =  $row['last_name'];
     $_SESSION['role'] =  $row['role'];

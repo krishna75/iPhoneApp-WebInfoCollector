@@ -131,11 +131,12 @@ require_once("includes/form_header.php") ;
         <div>
             <select class="required element select medium" id="venue" name="venue">
                 <?php
+                $userId = $_SESSION['user_id'];
                 if ($_SESSION['role'] == "3") {
                     $result = mysql_query("SELECT v.id as id,v.name as name
                     FROM Venues as v left join ( Users_Venues as uv)
                     ON (v.id=uv.venue_id)
-                    WHERE uv.user_id='15';") or die(mysql_error());
+                    WHERE uv.user_id='$userId';") or die(mysql_error());
 
                     $venueId = mysql_result($result, 0, "id");
                     $venueName = mysql_result($result, 0, "name");
