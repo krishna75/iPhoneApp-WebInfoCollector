@@ -71,7 +71,7 @@ require_once("includes/form_header.php") ;
 
         <div>
             <input type="hidden" name="photoField" value="photo"/>
-            <input id="photo" name="photo" class="required element file" type="file" onblur="checkEventPhoto()"/>
+            <input id="photo" name="photo" class="required element file" type="file""/>
         </div>
         <p class="guidelines" id="guide_7">
             <small>If you have a poster of the event please upload it here. The ideal size of the poster would be 200 x
@@ -101,9 +101,22 @@ require_once("includes/form_header.php") ;
             <small>Please select related genres.</small>
         </p>
     </li>
+
     <li id="li_11">
         <label class="description" for="element_11">Voucher* </label>
+        <p> Provide either a voucher image or voucher text </p>
+        <div>
+            <input type="hidden" name="voucherPhotoField" value="voucherPhoto"/>
+            <input id="voucherPhoto" name="voucherPhoto" class="required element file" type="file""/>
 
+        </div>
+        <p class="guidelines" id="guide_11">
+            <small>If you have a voucher photo of the event please upload it here. The ideal size of the image would be 200 x
+                300 pixel
+            </small>
+        </p>
+    </li>
+    <li id="li_11.2">
         <div>
             <textarea id="voucher" name="voucher" class="required element textarea medium"></textarea>
         </div>
