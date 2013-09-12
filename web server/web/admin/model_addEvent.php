@@ -33,7 +33,20 @@ $photoValidated = $photoMessage[0];
 $response_success = 0;
 $response_message="";
 
-if ( $photoValidated) {
+$duplicateEvent = false;
+$query = " SELECT * FROM Events WHERE date='$date' AND venue_id='$venue'; ";
+$result = mysql_query($query) or die(mysql_error());
+if(mysql_fetch_array($result) == true){
+ $duplicateEvent = true;
+} else {
+ $duplicateEvent = false;
+}
+
+if ($duplicateEvent){
+    $response_success = 0;
+    $response_message = "Duplicate Event ...This event already exists ";
+
+} else if ( $photoValidated) {
 
     // inserting data into mysql
     $photoUrl = $photoPrefix.$_FILES[$photo]['name'];
