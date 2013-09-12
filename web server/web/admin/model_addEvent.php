@@ -24,7 +24,7 @@ $genres = $_POST['genres'];
 $venue = $_POST['venue'];
 
 //set dir and prefix for photo{}
-$photoPrefix = str_replace(" ", "_", $title) . "_photo_";
+$photoPrefix = str_replace(" ", "_", $title) . "_photo_".$dd.$mm.$yyyy."_";
 $photoDir = "../images/eventPhoto/";
 
 // check if the photo is valid
@@ -39,8 +39,8 @@ if ( $photoValidated) {
     $photoUrl = $photoPrefix.$_FILES[$photo]['name'];
 
     $query = " INSERT INTO Events (
-      date,   title,   description,voucher,    venue_id,    photo )  VALUES (
-    STR_TO_DATE('$date', '%Y/%m/%d'), '$title', '$description','$voucher', '$venue',  '$photoUrl'); ";
+      date,   title,   description,voucher,    venue_id,    photo , added)  VALUES (
+    STR_TO_DATE('$date', '%Y/%m/%d'), '$title', '$description','$voucher', '$venue',  '$photoUrl', CONVERT_TZ( UTC_TIMESTAMP(), 'UTC', 'Europe/London' )); ";
     $eventResult = mysql_query($query) or die(mysql_error());
 
     //    get event id (select id from events where title = $title)
@@ -48,7 +48,6 @@ if ( $photoValidated) {
     $eventIdResult = mysql_query($query) or die(mysql_error());
     $eventId = "";
     while($row = mysql_fetch_assoc($eventIdResult)){
-        echo "<option value='".$row['id']."' >".$row['genre']."</option>";
         $eventId = $row['id'];
     }
 

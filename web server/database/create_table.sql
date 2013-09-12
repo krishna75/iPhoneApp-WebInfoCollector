@@ -23,6 +23,7 @@ CREATE TABLE Events (
   voucher VARCHAR(1000) NOT NULL,
   venue_id    INT(5),
   photo       VARCHAR(100),
+  added DATETIME,
   PRIMARY KEY (id),
   FOREIGN KEY (venue_id) REFERENCES Venues (id)
 );

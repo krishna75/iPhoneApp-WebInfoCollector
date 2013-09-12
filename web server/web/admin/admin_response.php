@@ -4,7 +4,7 @@
         $success = false;
         $message = "";
         if (!empty($_GET['success'])&& !empty($_GET['message'])) {
-            if ( $_GET['success']=='1') { $success = true;}
+            if ( $_GET['success']==1) { $success = true;}
             $message = $_GET['message'];
         }
 
