@@ -7,6 +7,13 @@ $action = "model_addEvent.php";
 require_once("includes/form_header.php") ;
 ?>
 
+    <script>
+        $('#krishna').click(function(){
+           alert ("something new") ;
+        });
+
+    </script>
+ <div id="krishna" >testing only</div>
     <li id="li_9">
         <label class="description" for="element_9">Date * </label>
     <span>
@@ -64,7 +71,7 @@ require_once("includes/form_header.php") ;
 
         <div>
             <input type="hidden" name="photoField" value="photo"/>
-            <input id="photo" name="photo" class="required element file" type="file"/>
+            <input id="photo" name="photo" class="required element file" type="file" onblur="checkEventPhoto()"/>
         </div>
         <p class="guidelines" id="guide_7">
             <small>If you have a poster of the event please upload it here. The ideal size of the poster would be 200 x

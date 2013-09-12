@@ -24,4 +24,5 @@ $emailMessage= "<center><h3>CLOUD NINE - Website Visitor's Message </h3></center
 </table>
 ";
 mail($toEmail,$emailSubject,$emailMessage,"From:$fromEmail\r\nReply-to: $fromEmail\r\nContent-type: text/html; charset=us-ascii");
-header ("location:response.php");
+$message= "<h2> Success !!!</h2> <p>Your enquiry has been sent to the cloud nine team. You will be contacted shortly if needed. ";
+header('location:public_response.php?message='. $message);

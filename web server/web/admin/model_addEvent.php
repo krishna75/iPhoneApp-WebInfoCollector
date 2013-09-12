@@ -30,6 +30,8 @@ $photoDir = "../images/eventPhoto/";
 // check if the photo is valid
 $photoMessage = validateImage($photoPrefix, $photo,$photoDir,200000);
 $photoValidated = $photoMessage[0];
+$response_success = 0;
+$response_message="";
 
 if ( $photoValidated) {
 
@@ -61,20 +63,20 @@ if ( $photoValidated) {
    if ($genreResult && $eventResult){
         //uploading
        $photoUploadMessage = uploadImage($photoPrefix, $photo, $photoDir);
-       returnMessage('portal', '<b>Success !!!</b> <br/>'.$logoUploadMessage."<br/> ".$photoUploadMessage);
+       $response_success = 1;
+       $response_message = $logoUploadMessage."<br/> ".$photoUploadMessage;
     } else {
-       returnMessage("addEvent", "<b>Error.. on adding data </b> <br/>". mysql_error($con));
+      $response_success = 0;
+      $response_message = "<b>Error.. on adding data </b> <br/>". mysql_error($con);
    }
 }else {
     //error message
     $photoErrorMessage = $photo.": ".$photoMessage[0] . " " . $photoMessage[1] . $photoMessage[2];
-    returnMessage("addEvent", "<b>Error.. on image upload </b> <br/>".$logoErrorMessage."<br/>".$photoErrorMessage."<br/>". mysql_error($con));
+    $response_success = 0;
+    $response_message = "<b>Error.. on image upload </b> <br/>".$logoErrorMessage."<br/>".$photoErrorMessage."<br/>". mysql_error($con);
 }
 
-function returnMessage($page,$message){
-  $message = "<div style='background-color:yellow; padding:10px;'>".$message."</div>";
-   echo $message;
-//    header('location:'.$page.'.php?message='. $message);
-}
 
+
+header('location:admin_response.php?success='.$response_success.',&message='. $response_message);
 mysql_close($con);
