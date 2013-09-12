@@ -72,8 +72,8 @@ if ($duplicateEvent){
 } else {
 
     // inserting data into mysql
-    $photoUrl = $photoPrefix.$_FILES[$photo]['name'];
-    $voucherPhotoUrl = $voucherPhotoPrefix.$_FILES[$voucher_photo]['name'];
+    $photoUrl =  $filename = $photoPrefix. preg_replace('!\s+!', '_', $_FILES[$photo]['name']);
+    $voucherPhotoUrl = $voucherPhotoPrefix.preg_replace('!\s+!', '_',$_FILES[$voucher_photo]['name']);
 
     $query = " INSERT INTO Events (
       date,   title,   description,voucher,voucher_photo,    venue_id,    photo ,   added)  VALUES (
@@ -110,6 +110,6 @@ if ($duplicateEvent){
 
 
 
-$response_message .= "<br/>log: <br/>".$log;
+//$response_message .= "<br/>log: <br/>".$log;
 header('location:admin_response.php?success='.$response_success.',&message='. $response_message);
 mysql_close($con);

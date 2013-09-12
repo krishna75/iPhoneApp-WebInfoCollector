@@ -29,17 +29,25 @@ $logoDir = "../images/logo/";
 $photoPrefix = str_replace(" ","_",$venueName)."_photo_";
 $photoDir = "../images/venuePhoto/";
 
+$response_success = 0;
+$response_message="";
+
 // check if the photos are valid
 $logoMessage = validateImage($logoPrefix, $logo,$logoDir,20000);
 $photoMessage = validateImage($photoPrefix, $photo,$photoDir,200000);
 $logoValidated = $logoMessage[0];
 $photoValidated = $photoMessage[0];
 
-if ($logoValidated && $photoValidated) {
+if ( !$logoValidated && !$photoValidated) {
+    $logoErrorMessage = $logo.": ".$logoMessage[0] . " " . $logoMessage[1] . $logoMessage[2];
+    $photoErrorMessage = $photo.": ".$photoMessage[0] . " " . $photoMessage[1] . $photoMessage[2];
+    $response_success = 0;
+    $response_message =  "<b>Error.. on image upload </b> <br/>".$logoErrorMessage."<br/>".$photoErrorMessage."<br/>". mysql_error($con);
+} else {
 
     // inserting data into mysql
-    $logoUrl =$logoPrefix.$_FILES[$logo]['name'];
-    $photoUrl = $photoPrefix.$_FILES[$photo]['name'];
+    $logoUrl =$logoPrefix.preg_replace('!\s+!', '_',$_FILES[$logo]['name']);
+    $photoUrl = $photoPrefix.preg_replace('!\s+!', '_',$_FILES[$photo]['name']);
 
     $query = " INSERT INTO Venues (
       logo,     name,         address,    phone,    email,    web,    photo,        description )  VALUES (
@@ -49,19 +57,13 @@ if ($logoValidated && $photoValidated) {
         //uploading
        $logoUploadMessage = uploadImage($logoPrefix, $logo, $logoDir);
        $photoUploadMessage = uploadImage($photoPrefix, $photo, $photoDir);
-       returnMessage('portal', '<b>Success !!!</b> <br/>'.$logoUploadMessage."<br/> ".$photoUploadMessage);
+       $response_success = 1;
+       $response_message = '<b>Success !!!</b> <br/>'.$logoUploadMessage."<br/> ".$photoUploadMessage;
     } else {
-       returnMessage("addVenue", "<b>Error.. on adding data </b> <br/>". mysql_error($con));
+       $response_success = 0;
+       $response_message= "<b>Error.. on adding data </b> <br/>". mysql_error($con);
    }
-}else {
-    //error message
-    $logoErrorMessage = $logo.": ".$logoMessage[0] . " " . $logoMessage[1] . $logoMessage[2];
-    $photoErrorMessage = $photo.": ".$photoMessage[0] . " " . $photoMessage[1] . $photoMessage[2];
-    returnMessage("addVenue", "<b>Error.. on image upload </b> <br/>".$logoErrorMessage."<br/>".$photoErrorMessage."<br/>". mysql_error($con));
 }
 
-function returnMessage($page,$message){
-    header('location:'.$page.'.php?message='. $message);
-}
-
+header('location:admin_response.php?success='.$response_success.',&message='. $response_message);
 mysql_close($con);
