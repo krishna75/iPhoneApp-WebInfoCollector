@@ -29,15 +29,19 @@ echo "<div class='admin-link'><a href='signOut.php.php'  >sign out </a></div>";
         if ($role <=2){
         //add venue
             echo "<div class='admin-link'><a href='addVenue.php' >add a venue </a></div>";
+            echo "<div class='admin-link'><a href='crud/crud.php?access=21285&table=Venues' >edit venues </a></div>";
+            echo "<div class='admin-link'><a href='crud/crud.php?access=21285&table=Events'' >edit events </a></div>";
         }
         if ($role == 1){
         //add client
         echo "<div class='admin-link'><a href='addClient.php' >add a client </a></div>";
+
         //add promoter
             echo "<div class='admin-link'><a href='addPromoter.php'>add a promoter </a></div>";
         //add admin
             echo "<div class='admin-link'><a href='addAdmin.php' >add an admin </a></div>";
-            echo "<div class='admin-link'><a href='adminTasks.php' >GoDaddy </a></div>";
+            echo "<div class='admin-link'><a href='crud/crud.php?access=21285&table=Users' >edit users </a></div>";
+            echo "<div class='admin-link'><a href='adminTasks.php'  >GoDaddy </a></div>";
         }
     }
 

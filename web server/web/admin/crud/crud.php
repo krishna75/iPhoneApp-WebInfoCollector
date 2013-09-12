@@ -1,4 +1,6 @@
 <?php
+$requiredRole =1;
+$table = $_POST['table'];
 
 //http://sourceforge.net/projects/phpmysqlezedit
 //
@@ -41,15 +43,11 @@ if (!$preferences_loaded) {
     include_once("../includes/header.php");
     include("../../public/utilities.php");
     include "../config.php";
-    $table = "Events";
-    $title = $table;
+    include "../includes/session.php";
+
+
+
     ?>
-    <script>
-        $(document).ready(function() {
-            // call the tablesorter plugin
-            $("table").tablesorter();
-        });
-    </script>
     <style>
         th {
         background: darkgray url("../../images/sort-arrows.gif") no-repeat right;
@@ -67,7 +65,7 @@ if (!$preferences_loaded) {
     $can_add = '1';
     $can_mod = '1';
     $can_del = '1';
-    $url = 'http://www.yahoo.com';
+    $url = 'www.cnapp.co.uk/404.php';
     ////Options: Uncomment to activate:
     ////lock to a specific table:
     //$tablelock = "table";
@@ -102,7 +100,7 @@ if($has_access == '1') {
         $_SESSION['limit']=$limit;
     }
 
-   echo  "<h2>".$title."</h2>";
+
 
 //Load table names for dropdown
         $DB1 = new mysqli($hostname,  $dbuser, $dbpassword, $dbname);
@@ -205,6 +203,7 @@ if($has_access == '1') {
             <? echo $table_options; ?></select>
 <? }
     //Then show the rest whether $tablelock is set or not
+print ("<h2>".$_SESSION['table']."</h2>");
 ?>
     Records to View: <INPUT type=text name='limit' size="3" value="<? echo $_SESSION['limit']; ?>" />
     Table Search: <INPUT type=text name='search' size="30" value="<? echo $_POST['search']; ?>" />

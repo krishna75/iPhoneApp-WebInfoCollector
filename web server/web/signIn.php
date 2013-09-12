@@ -4,7 +4,7 @@
 
 <div id="content">
 
-    <iframe class="iframe-form-view" src="http://www.cnapp.co.uk/admin/signIn.php">
+    <iframe class="iframe-form-view resizable" src="http://www.cnapp.co.uk/admin/signIn.php">
         <p>Your browser does not support iframes.</p>
     </iframe>
 </div>

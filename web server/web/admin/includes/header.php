@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../../admin/css/view.css" media="all">
     <link rel="stylesheet" type="text/css" href= "../../admin/css/krishna.css" media="all">
     <link rel="stylesheet" type="text/css" href= "../../css/bootstrap.css" media="all">
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/start/jquery-ui.css" rel="stylesheet"/>
     <script type="text/javascript" src="../../admin/js/validatious-custom.js"></script>
     <script type="text/javascript" src="../../admin/js/calendar.js"></script>
     <script type="text/javascript" src="../../js/jquery.js"></script>
@@ -16,6 +17,11 @@
         // call the tablesorter plugin
         $("table").tablesorter();
     });
+
+    $( ".resizable" ).resizable({
+        animate: true, animateEasing: 'swing', animateDuration: 500
+    });
+
 </script>
 </head>
 <body id="main_body" >
