@@ -71,3 +71,19 @@ body {
     color: #fff;
     background-color: lightgray;
 }
+
+.button-small{
+    background-color: #080808;
+    display:block;
+    height: 20px;
+    width: 50px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px darkgray ;
+    padding:5px;
+    text-decoration:  none;
+    font-size: 15px;
+    font-family:GEORGIA;
+    float: left;
+    margin: 2px;
+}

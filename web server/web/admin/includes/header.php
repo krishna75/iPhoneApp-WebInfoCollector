@@ -10,7 +10,7 @@
     <script type="text/javascript" src="../../admin/js/calendar.js"></script>
     <script type="text/javascript" src="../../js/jquery.js"></script>
     <script type="text/javascript" src="../../js/jquery.tablesorter.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap.js.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap.js"></script>
 <script>
     $(document).ready(function() {
         // call the tablesorter plugin

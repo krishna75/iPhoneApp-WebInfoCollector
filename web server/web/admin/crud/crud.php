@@ -38,16 +38,32 @@ if (!$preferences_loaded) {
     //Sample content for that file is included in the readme.txt file
 
     //Access code to use page: (change to a number, crud.php?access=21285 or you will see just a blank page)
-    include "config.php";
+    include_once("../includes/header.php");
+    include("../../public/utilities.php");
+    include "../config.php";
+    $table = "Events";
+    $title = $table;
+    ?>
+    <script>
+        $(document).ready(function() {
+            // call the tablesorter plugin
+            $("table").tablesorter();
+        });
+    </script>
+    <style>
+        th {
+        background: darkgray url("../../images/sort-arrows.gif") no-repeat right;
+        }
+    </style>
+
+   <?php
     $access=21285;
     $hostname = $host;
     $dbuser = $username;
     $dbpassword = $password;
     $dbname = $db;
-    $table = "Events";
+
     $limit = "50";
-    $title = "php/MySQL EZ Edit";
-    $greeting = "php/MySQL EZ Edit -- Published by Poundteam.com";
     $can_add = '1';
     $can_mod = '1';
     $can_del = '1';
@@ -70,8 +86,7 @@ if($_GET['access']==$access) {
 if($_SESSION['has_access']==true) {
     $has_access = '1'; 
 }
-?><html><head><title><? echo $title; ?></title></head><body><?
-echo "<h2>$greeting</h2>";
+
 if($has_access == '1') {
 //uncomment the following line if you placed your credentials in the following configuration file:
    // require_once('/etc/PTutilities.conf');
@@ -86,6 +101,8 @@ if($has_access == '1') {
     } else {
         $_SESSION['limit']=$limit;
     }
+
+   echo  "<h2>".$title."</h2>";
 
 //Load table names for dropdown
         $DB1 = new mysqli($hostname,  $dbuser, $dbpassword, $dbname);
@@ -346,8 +363,8 @@ if($has_access == '1') {
         if ($can_add=='1') {
             $addstring="<a href='{$_SERVER['PHP_SELF']}?action=add&table=$table&limit=$limit'>Add</a>";
         }
-        print('<br>'."\n".'<table width='.$width.'% align="center">'."\n");
-        print("   <tr><th colspan=$num_fields>View Table $table&nbsp;$addstring</th></tr>\n   <tr><th><b>Del</b></th><th><b>Mod</b></th>\n");
+        print("<br/> <table class='tableSorter table zebra-stripped'>");
+        print("<thead><tr><th>Delete</th><th>Modify</th>");
 
         while ($i < $num_fields) {
 
@@ -357,22 +374,21 @@ if($has_access == '1') {
             $fields_array[]=$meta->name;
 
             //Display column headers in upper case
-            print('      <th><b>'.strtoupper($fields_array[$i]).'</b></th>'."\n");
-
+            print("<th>".strtoupper($fields_array[$i])."</th>");
             $i=$i+1;
         }
 
-        print('   </tr>');
+        print('</tr></thead>');
 
 
         //Get values for each row and column
         while($row=mysql_fetch_row($result)) {
             if ($can_delete) {
                 if ($can_del == '1') {
-                    $delstring="<a href='{$_SERVER['PHP_SELF']}?action=del&table=$table&col=$first_column&rec=$row[0]&limit=$limit'>X</a>";
+                    $delstring="<div class='button-small'><a href='{$_SERVER['PHP_SELF']}?action=del&table=$table&col=$first_column&rec=$row[0]&limit=$limit'>delete</a></div>";
                 }
                 if ($can_mod == '1') {
-                    $modstring="<a href='{$_SERVER['PHP_SELF']}?action=mod&table=$table&col=$first_column&rec=$row[0]&limit=$limit'>O</a>";
+                    $modstring="<div class='button-small'><a href='{$_SERVER['PHP_SELF']}?action=mod&table=$table&col=$first_column&rec=$row[0]&limit=$limit'>edit</a></div>";
                 }
                 print("   <tr><td>$delstring</td><td>$modstring</td>");
             } else {
@@ -390,7 +406,7 @@ if($has_access == '1') {
         print('</table>');
     }
     if($debug=='phpinfo'){ phpinfo(); }
-    ?></body></html>
+    ?>
 
     <?
 } else {
@@ -430,5 +446,7 @@ function searchString($search) {
     }
     return $string;
 }
+
+include_once("../includes/footer.php")
 
 ?>
