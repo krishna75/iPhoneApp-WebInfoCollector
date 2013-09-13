@@ -6,22 +6,61 @@
     <link rel="stylesheet" type="text/css" href="../../admin/css/view.css" media="all">
     <link rel="stylesheet" type="text/css" href= "../../admin/css/krishna.css" media="all">
     <link rel="stylesheet" type="text/css" href= "../../css/bootstrap.css" media="all">
+    <link rel="stylesheet" type="text/css" href= "../../css/datePicker.css" media="all">
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/start/jquery-ui.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="../../js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap.js"></script>
     <script type="text/javascript" src="../../admin/js/validatious-custom.js"></script>
     <script type="text/javascript" src="../../admin/js/calendar.js"></script>
-    <script type="text/javascript" src="../../js/jquery.js"></script>
     <script type="text/javascript" src="../../js/jquery.tablesorter.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../js/date.js"></script>
+    <script type="text/javascript" src="../../js/jquery.datePicker.js"></script>
 <script>
     $(document).ready(function() {
         // call the tablesorter plugin
         $("table").tablesorter();
     });
 
-    $( ".resizable" ).resizable({
-        animate: true, animateEasing: 'swing', animateDuration: 500
-    });
+    $(function()
+    {
+        $('.date-pick')
+            .datePicker(
+            {
+                createButton:false,
+                displayClose:true,
+                closeOnSelect:false,
+                selectMultiple:true
+            }
+        )
+            .bind(
+            'click',
+            function()
+            {
+                $(this).dpDisplay();
+                this.blur();
+                return false;
+            }
+        )
+            .bind(
+            'dateSelected',
+            function(e, selectedDate, $td, state)
+            {
+                console.log('You ' + (state ? '' : 'un') // wrap
+                    + 'selected ' + selectedDate);
 
+            }
+        )
+            .bind(
+            'dpClosed',
+            function(e, selectedDates)
+            {
+                console.log('You closed the date picker and the ' // wrap
+                    + 'currently selected dates are:');
+                console.log(selectedDates);
+            }
+        );
+    });
 </script>
 </head>
 <body id="main_body" >
