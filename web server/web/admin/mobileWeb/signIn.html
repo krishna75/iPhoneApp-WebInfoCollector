@@ -6,7 +6,9 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <title></title>
-  <link rel="stylesheet" href="https://d10ajoocuyu32n.cloudfront.net/mobile/1.3.1/jquery.mobile-1.3.1.min.css">
+
+    <link rel="stylesheet" type="text/css" href= "../../admin/css/krishna.css" media="all">
+    <link rel="stylesheet" href="https://d10ajoocuyu32n.cloudfront.net/mobile/1.3.1/jquery.mobile-1.3.1.min.css">
   
   <!-- Extra Codiqa features -->
   <link rel="stylesheet" href="codiqa.ext.css">
@@ -26,19 +28,21 @@
         <h2>
             Sign In
         </h2>
-        <div data-role="fieldcontain">
-            <label for="textinput1">
-                Username
-            </label>
-            <input name="username" id="textinput1" placeholder="" value="" type="text">
-        </div>
-        <div data-role="fieldcontain">
-            <label for="textinput2">
-                password
-            </label>
-            <input name="password" id="textinput2" placeholder="" value="" type="password">
-        </div>
-        <input type="submit" data-theme="a" value="Submit">
+        <form enctype="multipart/form-data" id="form_626766" class="appnitro validate" method="post" action="../../admin/model_signIn.php">
+            <div data-role="fieldcontain">
+                <label for="textinput1">
+                    Username
+                </label>
+                <input name="username" id="textinput1" placeholder="" value="" type="text">
+            </div>
+            <div data-role="fieldcontain">
+                <label for="textinput2">
+                    password
+                </label>
+                <input name="password" id="textinput2" placeholder="" value="" type="password">
+            </div>
+            <input type="submit" data-theme="a" value="Submit">
+        </form>
     </div>
 </div>
 </body>

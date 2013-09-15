@@ -29,7 +29,7 @@ function authorized($username, $inputPassword, $key){
         while ($row = mysql_fetch_assoc($query)){
             $dbusername = $row['username'];
             $dbpassword = $row['password'];
-            if ($dbusername == $username && $dbpassword == $inputPassword) {
+            if (strtolower($dbusername) == strtolower($username) && $dbpassword == $inputPassword) {
                 return true;
             }
             else

@@ -20,7 +20,7 @@ if (!empty($_GET['message'])) {
 
 //sign out
 
-echo "<div class='admin-link'><a href='signOut.php.php'  >sign out </a></div>";
+echo "<div class='admin-link'><a href='signOut.php'  >sign out </a></div>";
 
 
     $role = $_SESSION['role'];
