@@ -6,38 +6,57 @@ $title = "Add Event";
 $action = "model_addEvent.php";
 require_once("includes/form_header.php") ;
 ?>
+<script type="text/javascript" charset="utf-8">
+$(function(){
+    $('.date-pick').datePicker({
+        createButton:false,
+        displayClose:true,
+        closeOnSelect:false,
+        selectMultiple:true,
+        dateFormat: 'dd-mm-yy'
+    })
+    .bind('click',function(){
+        $(this).dpDisplay();
+        this.blur();
+        return false;
+    })
+    .bind('dateSelected', function(e, selectedDate, $td, state){
+        console.log('You ' + (state ? '' : 'un')  + 'selected ' + selectedDate);
+            var newDates = new Array();
+            for (i=0;i<selectedDates.length;i++){
+                selectedDate =selectedDates[i];
+                day = selectedDate.getDate();
+                month = selectedDate.getMonth()+1;
+                year = selectedDate.getFullYear();
+                newDate = year+"/"+month+"/"+day;
+                newDates[i]=newDate;
+            }
+            $("#date-label").text(newDates.toString());
+    })
+    .bind( 'dpClosed',function(e, selectedDates){
+        console.log('You closed the date picker and the currently selected dates are:'+selectedDates);
+        var newDates = new Array();
+        for (i=0;i<selectedDates.length;i++){
+            selectedDate =selectedDates[i];
+            day = selectedDate.getDate();
+            month = selectedDate.getMonth()+1;
+            year = selectedDate.getFullYear();
+            newDate = year+"/"+month+"/"+day;
+            newDates[i]=newDate;
+        }
+        $("#date-label").text(newDates.toString());
+        $("#dates").val(newDates);
+    });
+});
+</script>
 
-
-    <a href="noJs.html" class="date-pick dp-applied">Click here</a>
     <li id="li_9">
         <label class="description" for="element_9">Date * </label>
+        <span>Selected dates:</span> <span id="date-label"></span>
+        <p></p>
+        <p><a href="noJs.html" class="date-pick dp-applied" ><img src="images/calendar.gif"/></a></p>
+        <input type="hidden" id="dates" name="dates">
 
-    <span>
-        <input title="day is required" id="date_1" name="dd" class="required element text" size="2" maxlength="2" value="" type="text"> /
-        <label for="element_9_1">DD</label>
-    </span>
-    <span>
-        <input title="month is required" id="date_2" name="mm" class="required element text" size="2" maxlength="2" value="" type="text"> /
-        <label for="element_9_2">MM</label>
-    </span>
-    <span>
-        <input title="year is required" id="date_3" name="yyyy" class="required element text" size="4" maxlength="4" value="" type="text">
-        <label for="element_9_3">YYYY</label>
-    </span>
-
-    <span id="calendar_9">
-        <img id="cal_img_9" class="datepicker" src="images/calendar.gif" alt="Pick a date.">
-    </span>
-        <script type="text/javascript">
-            Calendar.setup({
-                inputField: "date_3",
-                baseField: "date",
-                displayArea: "calendar_9",
-                button: "cal_img_9",
-                ifFormat: "%B %e, %Y",
-                onSelect: selectEuropeDate
-            });
-        </script>
         <p class="guidelines" id="guide_9">
             <small>Date of the event for example 15/04/2013</small>
         </p>
@@ -157,4 +176,4 @@ require_once("includes/form_header.php") ;
         <input type="hidden" name="form_id" value="620316"/>
         <input id="saveForm" class="button_text" type="submit" name="submit" value="Submit"/>
     </li>
-<?php include("includes/form_footer.php");?>
+<?php //include("includes/form_footer.php");?>

@@ -25,29 +25,16 @@ function  validateImage($filePrefix, $file, $uploadDir, $size){
                 $message_array[0] = false;
                 $message_array[1]=("File size too big... Found =".($_FILES[$file]["size"] / 1000)."kb Expected= ".$size/1000.."kb");
                 $message_array[2]=($message);
-            }
-            else {
-
-                //chedck if file already exists
-                $fullFilename = $uploadDir .$filePrefix. $filename;
-                if (file_exists($fullFilename)){
-                    $message_array[0] = false;
-                    $message_array[1]=($fullFilename." already exists. Select a new file or rename your file before uploading ");
-                    $message_array[2]=($message);
-                }
-                else {
-                    $message_array[0] = true;
-                    $message_array[1]=("File type, size and duplication check , OK !!!");
-                    $message_array[2]=($message);
-                }
+            }else {
+                $message_array[0] = true;
+                $message_array[1]=("File type, size and duplication check , OK !!!");
+                $message_array[2]=($message);
             }
         }
-    }
-    else {
+    } else {
         $message_array[0] = false;
         $message_array[1]=("Invalid file");
         $message_array[2]=($message);
-
     }
 return $message_array;
 }
