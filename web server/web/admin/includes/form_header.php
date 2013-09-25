@@ -1,6 +1,4 @@
-<?php
-    include('header.php');
- ?>
+<?php include('header.php'); ?>
 <img id="top" src="../images/top.png" alt="">
 <div id="form_container">
     <h1>&nbsp;</h1>
