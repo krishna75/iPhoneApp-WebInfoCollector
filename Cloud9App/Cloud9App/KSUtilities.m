@@ -185,7 +185,7 @@ return btn;
 
 + (UIView *) getBadgeLikeView: (NSString *)strToDisplay showHide:(BOOL)show {
     int len = strToDisplay.length * 10;
-    UIView* v = [[UIView alloc] initWithFrame:CGRectMake(65-len,1,len+10,20)] ;
+    UIView* v = [[UIView alloc] initWithFrame:CGRectMake(30-len,30,len+10,20)] ;
     [v.layer setCornerRadius:8];
     [v.layer setBorderColor:[UIColor whiteColor].CGColor];
     [v.layer setBorderWidth:2];
