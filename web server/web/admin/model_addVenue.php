@@ -50,8 +50,8 @@ if ( !$logoValidated && !$photoValidated) {
     $photoUrl = $photoPrefix.preg_replace('!\s+!', '_',$_FILES[$photo]['name']);
 
     $query = " INSERT INTO Venues (
-      logo,     name,         address,    phone,    email,    web,    photo,        description )  VALUES (
-    '$logoUrl', '$venueName', '$address', '$phone', '$email', '$web', '$photoUrl', '$description') ";
+      logo,     name,         address,    phone,    email,    web,    photo,        description, added )  VALUES (
+    '$logoUrl', '$venueName', '$address', '$phone', '$email', '$web', '$photoUrl', '$description',CONVERT_TZ( UTC_TIMESTAMP(), 'UTC', 'Europe/London' )) ";
     $result = mysql_query($query);
    if ($result){
         //uploading

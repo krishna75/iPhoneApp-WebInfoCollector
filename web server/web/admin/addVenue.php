@@ -42,7 +42,7 @@ require_once("includes/form_header.php") ;
         <li id="li_6" >
             <label class="description" for="element_6">Web Site* </label>
             <div>
-                <input id="web" name="web" class="required element text medium" type="text" maxlength="255" value=""/>
+                <input id="web" name="web" class="element text medium" type="text" maxlength="255" value=""/>
             </div>
 		</li>
         <li id="li_7" >

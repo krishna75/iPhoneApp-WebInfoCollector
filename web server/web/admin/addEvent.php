@@ -55,7 +55,7 @@ $(function(){
         <span>Selected dates:</span> <span id="date-label"></span>
         <p></p>
         <p><a href="noJs.html" class="date-pick dp-applied" ><img src="images/calendar.gif"/></a></p>
-        <input type="hidden" id="dates" name="dates">
+        <input type="hidden" id="dates" name="dates" class="required" title="must select dates"/>
 
         <p class="guidelines" id="guide_9">
             <small>Date of the event for example 15/04/2013</small>
@@ -103,7 +103,7 @@ $(function(){
                 $result = mysql_query("SELECT * FROM Genres;") or die(mysql_error());
                 $count = 1;
                 while ($row = mysql_fetch_assoc($result)): ?>
-                    <input type="checkbox" name="genres[]" value="<?php echo $row['id']; ?>" /> <?php echo  $row['genre']; ?> &nbsp;
+                    <input type="checkbox" name="genres[]"  value="<?php echo $row['id']; ?>" class="g_genres" title="must select a genre" /> <?php echo  $row['genre']; ?> &nbsp;
                     <?php
                         if ($count % 6 == 0){
                             echo "<br/>";
@@ -122,7 +122,7 @@ $(function(){
         <p> Provide either a voucher image or voucher text </p>
         <div>
             <input type="hidden" name="voucherPhotoField" value="voucherPhoto"/>
-            <input id="voucherPhoto" name="voucherPhoto" class="required element file" type="file""/>
+            <input id="voucherPhoto" name="voucherPhoto" class=" element file" type="file""/>
 
         </div>
         <p class="guidelines" id="guide_11">
