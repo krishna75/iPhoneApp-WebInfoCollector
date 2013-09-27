@@ -49,6 +49,9 @@ $(function(){
     });
 });
 </script>
+    <div class='admin-link'><a href='portal.php'> << back to portal </a></div>
+    <br/> <br/>
+
 
     <li id="li_9">
         <label class="description" for="element_9">Date * </label>

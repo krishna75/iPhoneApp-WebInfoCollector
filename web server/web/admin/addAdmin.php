@@ -5,6 +5,10 @@ $title = "Add Admin";
 $action = "model_addUser.php";
 include("includes/form_header.php");
 ?>
+
+    <div class='admin-link'><a href='portal.php'> << back to portal </a></div>
+    <br/> <br/>
+
     <li id="li_1">
         <label class="description" for="element_1">Name * </label>
 		<span>

@@ -5,8 +5,11 @@ $title = "Add Venue";
 $action = "model_addVenue.php";
 require_once("includes/form_header.php") ;
 ?>
-			
-		<li id="li_4" >
+    <div class='admin-link'><a href='portal.php'> << back to portal </a></div>
+    <br/> <br/>
+
+
+    <li id="li_4" >
             <label class="description" for="element_4">Company logo * </label>
             <div>
                 <input type="hidden" name="logoField" value="logo" />

@@ -40,33 +40,33 @@ echo "<div class='admin-link'><a href='signOut.php'  >sign out </a></div>";
         }
 
         // add
-        echo "<div class='admin-link'><a href='addEvent.php'  >add an event </a></div>";
-        echo "<div class='admin-link'><a href='crud/crud_event_client.php?access=21285&venue_id=".$venueId."'>edit events </a></div>";
-        echo "<div class='admin-link'><a href='voucherUsed.php' ' >see used vouchers </a></div>";
+        echo "<div class='admin-link'><a href='addEvent.php' target='_blank' >add an event </a></div>";
+        echo "<div class='admin-link'><a href='crud/crud_event_client.php?access=21285&venue_id=".$venueId."' target='_blank'>edit events </a></div>";
+        echo "<div class='admin-link'><a href='voucherUsed.php' target='_blank' >see used vouchers </a></div>";
     }
     if ($role ==2){
         //add
-        echo "<div class='admin-link'><a href='addEvent.php'  >add an event </a></div>";
-        echo "<div class='admin-link'><a href='addVenue.php' >add a venue </a></div>";
+        echo "<div class='admin-link'><a href='addEvent.php' target='_blank'  >add an event </a></div>";
+        echo "<div class='admin-link'><a href='addVenue.php' target='_blank' >add a venue </a></div>";
         // edit
-        echo "<div class='admin-link'><a href='crud/crud.php?access=21285&table=Venues' >edit venues </a></div>";
-        echo "<div class='admin-link'><a href='crud/crud.php?access=21285&table=Events'' >edit events </a></div>";
+        echo "<div class='admin-link'><a href='crud/crud.php?access=21285&table=Venues' target='_blank' >edit venues </a></div>";
+        echo "<div class='admin-link'><a href='crud/crud.php?access=21285&table=Events'target='_blank' >edit events </a></div>";
     }
 
     if ($role == 1){
         //add
-        echo "<div class='admin-link'><a href='addEvent.php'  >add an event </a></div>";
-        echo "<div class='admin-link'><a href='addVenue.php' >add a venue </a></div>";
-        echo "<div class='admin-link'><a href='addClient.php' >add a client </a></div>";
-        echo "<div class='admin-link'><a href='addPromoter.php'>add a promoter </a></div>";
-        echo "<div class='admin-link'><a href='addAdmin.php' >add an admin </a></div>";
+        echo "<div class='admin-link'><a href='addEvent.php' target='_blank' >add an event </a></div>";
+        echo "<div class='admin-link'><a href='addVenue.php' target='_blank'>add a venue </a></div>";
+        echo "<div class='admin-link'><a href='addClient.php' target='_blank' >add a client </a></div>";
+        echo "<div class='admin-link'><a href='addPromoter.php' target='_blank'>add a promoter </a></div>";
+        echo "<div class='admin-link'><a href='addAdmin.php' target='_blank' >add an admin </a></div>";
         // edit
-        echo "<div class='admin-link'><a href='crud/crud.php?access=21285&table=Venues' >edit venues </a></div>";
-        echo "<div class='admin-link'><a href='crud/crud.php?access=21285&table=Events'' >edit events </a></div>";
-        echo "<div class='admin-link'><a href='crud/crud.php?access=21285&table=Users' >edit users </a></div>";
-        echo "<div class='admin-link'><a href='crud/crud.php?access=21285&table=Users_Venues' >edit users and venues </a></div>";
+        echo "<div class='admin-link'><a href='crud/crud.php?access=21285&table=Venues' target='_blank' >edit venues </a></div>";
+        echo "<div class='admin-link'><a href='crud/crud.php?access=21285&table=Events' target='_blank' >edit events </a></div>";
+        echo "<div class='admin-link'><a href='crud/crud.php?access=21285&table=Users' target='_blank' >edit users </a></div>";
+        echo "<div class='admin-link'><a href='crud/crud.php?access=21285&table=Users_Venues' target='_blank'>edit users and venues </a></div>";
         //extra
-        echo "<div class='admin-link'><a href='adminTasks.php'  >GoDaddy </a></div>";
+        echo "<div class='admin-link'><a href='adminTasks.php' target='_blank' >GoDaddy </a></div>";
     }
 
 
