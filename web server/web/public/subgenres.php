@@ -1,7 +1,7 @@
 <?php
 require_once("db_connection.php");
 include("utilities.php");
-$genre_id = $_GET["genre_id"];
+$genre_id = mysql_real_escape_string($_GET["genre_id"]);
  
 $result = mysql_query("SELECT 
 		g.id as genre_id,
