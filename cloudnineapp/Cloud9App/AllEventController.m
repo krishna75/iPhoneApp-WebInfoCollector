@@ -13,6 +13,7 @@
 #import "KSBadgeManager.h"
 #import "AppDelegate.h"
 #import "KSCell.h"
+#import "KSGuiUtilities.h"
 
 
 #define kjsonURL @"datesAndEvents.php"
@@ -29,7 +30,7 @@
 
 @implementation AllEventController {
     NSMutableArray *jsonResults;
-    NSMutableArray *coreDataResults;
+    NSArray *coreDataResults;
 }
 @synthesize managedObjectContext;
 
@@ -47,6 +48,7 @@
     [self launchLoadData];
     [self decorateView];
     [self addRefreshing];
+    NSLog(@" inside viewDidLoad: size of coreda results = %d",[coreDataResults count])  ;
 }
 
 #pragma mark - launchLoadData and loadData are for a new thread
@@ -64,12 +66,27 @@
 // the process also has spinner or loader
 - (void)processJson {
     KSJson * json = [[KSJson alloc] init];
-    jsonResults = [json toArray:kjsonURL];
-    [self createCoreData];
+    if ([json isConnectionAvailable]){
+        jsonResults = [json toArray:kjsonURL];
+        [self createCoreData];
+    } else {
+      coreDataResults = [self loadCoreData];
+    }
+}
+
+- (NSArray *) loadCoreData {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"AllEvents" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    return [context executeFetchRequest:fetchRequest error:&error];
 }
 
 - (void) createCoreData {
-    coreDataResults = [[NSMutableArray alloc] init] ;
+    NSArray *lastSaved = [self loadCoreData];
+    NSMutableArray *results = [[NSMutableArray alloc] init] ;
     for (NSDictionary * eventCountDict in jsonResults) {
 
         NSMutableString    *date = [eventCountDict objectForKey:@"date"];
@@ -91,12 +108,23 @@
         allEvents.eventCountDetails= countDetail;
         allEvents.numNewEvents = [NSNumber numberWithInt:newEventCount];
 
-//        NSError *error;
-//        if (![context save:&error]) {
-//            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-//        }
-        [coreDataResults addObject:allEvents];
+        BOOL saveOk = YES;
+        for (AllEvents * lastEvent in lastSaved ) {
+            if ([lastEvent.shortMonth isEqualToString:allEvents.shortMonth] ||
+                lastEvent.dateDay ==allEvents.dateDay){
+                saveOk = NO;
+            }
+        }
+        NSError *error = nil;
+        if (saveOk) {
+            if (![context save:&error]) {
+                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            }
+        }
+        [results addObject:allEvents];
+        NSLog(@"size=%d and dateDay = %@",[results count],allEvents.dateDay) ;
     }
+    coreDataResults = results;
 }
 
 - (void)decorateView {
@@ -150,7 +178,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [jsonResults count];
+    return [coreDataResults count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -161,8 +189,9 @@
     if (cell == nil) {
         cell = [[KSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier ] ;
     }
+    NSLog(@" inside cell: size of coreda results = %d",[coreDataResults count])  ;
     
-    AllEvents *allEvents =  [coreDataResults objectAtIndex:indexPath.row];
+    AllEvents *allEvents =  [coreDataResults objectAtIndex: indexPath.row ];
 
     NSLog(@"value of weekday is: %@", allEvents.weekDay);
     cell.titleLabel.text = allEvents.weekDay;

@@ -1,0 +1,39 @@
+AllEvents
+=======
+shortMonth
+weekDay
+dateDay
+numEvents
+numNewEvents
+#ref : dailyEvents
+
+
+
+DailyEvents
+==========
+Month (November)
+Day (11th Monday)
+---------
+venueLogo
+venueName
+EventName
+#ref : eventDetails
+
+
+
+EventDetails
+============
+eventName
+date (Monday, 11th November)
+venueName (Cellar)
+eventDescription
+#ref : voucher
+
+Voucher
+========
+voucherPhoto
+voucherDescription
+voucherDate
+
+
+

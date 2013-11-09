@@ -15,6 +15,6 @@
 }
 //- (id)initWithUrl:(NSString *) jsonUrlString;
 - (NSMutableArray *) toArray:(NSString *) jsonUrlString;
-
+- (BOOL) isConnectionAvailable;
 
 @end
