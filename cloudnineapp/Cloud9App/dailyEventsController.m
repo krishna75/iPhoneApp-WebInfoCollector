@@ -7,11 +7,8 @@
 //
 
 #import "dailyEventsController.h"
-
-#import <QuartzCore/QuartzCore.h>
 #import "KSJson.h"
 #import "eventDetailsController.h"
-#import "KSUtilities.h"
 #import "KSBadgeManager.h"
 #import "AppDelegate.h"
 #import "KSCell.h"

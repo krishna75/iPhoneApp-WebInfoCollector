@@ -112,7 +112,7 @@
         <!--Event Controller - Events-->
         <scene sceneID="zUQ-gL-67d">
             <objects>
-                <tableViewController storyboardIdentifier="event" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vOs-nA-ia0" customClass="eventController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="event" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vOs-nA-ia0" customClass="AllEventController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="73" sectionHeaderHeight="22" sectionFooterHeight="22" id="jk1-xU-KBL">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -235,10 +235,10 @@
             </objects>
             <point key="canvasLocation" x="784" y="-2949"/>
         </scene>
-        <!--Voucher-->
+        <!--VoucherDetailController-->
         <scene sceneID="tFA-By-cfT">
             <objects>
-                <viewController storyboardIdentifier="voucher" useStoryboardIdentifierAsRestorationIdentifier="YES" id="w7F-Cf-CIQ" customClass="Voucher" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="voucher" useStoryboardIdentifierAsRestorationIdentifier="YES" id="w7F-Cf-CIQ" customClass="VoucherDetailController" sceneMemberID="viewController">
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="J1G-qL-f0N">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

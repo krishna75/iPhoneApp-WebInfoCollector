@@ -8,12 +8,10 @@
 
 #import "eventDetailsController.h"
 #import "KSJson.h"
-#import "KSUtilities.h"
 #import "KSGuiUtilities.h"
 #import "KSBadgeManager.h"
 #import "AppDelegate.h"
-#import "KSSettings.h"
-#import "Voucher.h"
+#import "VoucherDetailController.h"
 
 
 #define kjsonURL @"eventDetail.php?event_id="
@@ -291,7 +289,7 @@
 }
 
 - (void)voucherAction {
-    Voucher *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"voucher"];
+    VoucherDetailController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"voucher"];
     nextViewController.eventDetailDict = eventDetailDict;
     [self.navigationController pushViewController:nextViewController animated: NO];
 }

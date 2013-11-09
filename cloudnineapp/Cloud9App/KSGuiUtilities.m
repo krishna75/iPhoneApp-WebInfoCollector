@@ -7,7 +7,6 @@
 //
 
 #import "KSGuiUtilities.h"
-#import "KSUtilities.h"
 
 
 @implementation KSGuiUtilities

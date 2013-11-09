@@ -1,22 +1,19 @@
 //
-//  eventController.m
+//  AllEventController.m
 //  Cloud9App
 //
 //  Created by Krishna Sapkota on 17/02/2013.
 //  Copyright (c) 2013 Krishna Sapkota. All rights reserved.
 //
 
-#import "eventController.h"
+#import "AllEventController.h"
 
-#import <QuartzCore/QuartzCore.h>
 #import "KSJson.h"
 #import "dailyEventsController.h"
-#import "KSUtilities.h"
-#import "FirstJsonLoader.h"
 #import "KSBadgeManager.h"
 #import "AppDelegate.h"
 #import "KSCell.h"
-#import "KSSettings.h"
+
 
 #define kjsonURL @"datesAndEvents.php"
 #define kTableBG @"bg_tableView.png"
@@ -26,16 +23,15 @@
 
 
 
-@interface eventController ()
+@interface AllEventController ()
 
 @end
 
-@implementation eventController {
-    
+@implementation AllEventController {
     NSMutableArray *jsonResults;
-
-
+    NSMutableArray *coreDataResults;
 }
+@synthesize managedObjectContext;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -69,6 +65,38 @@
 - (void)processJson {
     KSJson * json = [[KSJson alloc] init];
     jsonResults = [json toArray:kjsonURL];
+    [self createCoreData];
+}
+
+- (void) createCoreData {
+    coreDataResults = [[NSMutableArray alloc] init] ;
+    for (NSDictionary * eventCountDict in jsonResults) {
+
+        NSMutableString    *date = [eventCountDict objectForKey:@"date"];
+        NSString    *count = [eventCountDict objectForKey:@"quantity"];
+        if (count == nil) {count = @"No" ; }
+        NSMutableString *countDetail = [NSMutableString stringWithFormat:@"%@ Event(s)",count];
+        NSDictionary *dateDict = [KSUtilities getDateDict:date];
+        //computing and displaying new events as badge
+        int newEventCount = [KSBadgeManager countNewEventsOfDate:date];
+
+        //creating and adding a core data object
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+        AllEvents *allEvents = [NSEntityDescription insertNewObjectForEntityForName:@"AllEvents" inManagedObjectContext:context];
+
+        allEvents.dateDay = [NSNumber numberWithInt:[[dateDict objectForKey:@"dateDay"] intValue]];
+        allEvents.weekDay = [dateDict objectForKey:@"weekDay"];
+        allEvents.shortMonth = [dateDict objectForKey:@"shortMonth"];
+        allEvents.eventCountDetails= countDetail;
+        allEvents.numNewEvents = [NSNumber numberWithInt:newEventCount];
+
+//        NSError *error;
+//        if (![context save:&error]) {
+//            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+//        }
+        [coreDataResults addObject:allEvents];
+    }
 }
 
 - (void)decorateView {
@@ -134,20 +162,15 @@
         cell = [[KSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier ] ;
     }
     
-    NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
-    NSMutableString    *date = [eventCountDict objectForKey:@"date"];
-    NSString    *count = [eventCountDict objectForKey:@"quantity"];
-    if (count == nil) {count = @"No" ; }
-    NSMutableString *countDetail = [NSMutableString stringWithFormat:@"%@ Event(s)",count];
+    AllEvents *allEvents =  [coreDataResults objectAtIndex:indexPath.row];
 
-
-    NSDictionary *dateDict = [KSUtilities getDateDict:date];
-    cell.titleLabel.text = [dateDict objectForKey:@"weekDay"];
-    cell.descriptionLabel.text = countDetail;
-    [cell addSubview: [KSUtilities getCalendar:[dateDict objectForKey:@"shortMonth"] forDay:[dateDict objectForKey:@"dateDay"]]];
+    NSLog(@"value of weekday is: %@", allEvents.weekDay);
+    cell.titleLabel.text = allEvents.weekDay;
+    cell.descriptionLabel.text = allEvents.eventCountDetails;
+    [cell addSubview: [KSUtilities getCalendar:allEvents.shortMonth forDay:[allEvents.dateDay stringValue]]];
     
     //computing and displaying new events as badge
-    int newEventCount = [KSBadgeManager countNewEventsOfDate:date];
+    int newEventCount = allEvents.numNewEvents.intValue;
     if (newEventCount > 0) {
         if(app.setBadge) {
             UIView *badgeView = [KSUtilities getBadgeLikeView:[NSString stringWithFormat:@"%i", newEventCount] showHide:app.setBadge];

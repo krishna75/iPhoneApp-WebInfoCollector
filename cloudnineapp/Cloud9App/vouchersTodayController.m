@@ -8,7 +8,7 @@
 
 #import "vouchersTodayController.h"
 #import "KSJson.h"
-#import "voucher.h"
+#import "VoucherDetailController.h"
 #import "KSUtilities.h"
 #import "KSBadgeManager.h"
 #import "AppDelegate.h"
@@ -193,7 +193,7 @@
     [voucherDict setValue:todayString forKey:@"date"];
 
 
-    Voucher *voucher = [self.storyboard instantiateViewControllerWithIdentifier:@"voucher"];
+    VoucherDetailController *voucher = [self.storyboard instantiateViewControllerWithIdentifier:@"voucher"];
     voucher.eventDetailDict= voucherDict;
 
     [self.navigationController pushViewController:voucher animated:NO];

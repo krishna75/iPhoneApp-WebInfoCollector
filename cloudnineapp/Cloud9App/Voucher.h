@@ -2,21 +2,20 @@
 //  Voucher.h
 //  Cloud9App
 //
-//  Created by Krishna Sapkota on 03/07/2013.
+//  Created by Krishna Sapkota on 09/11/2013.
 //  Copyright (c) 2013 Krishna Sapkota. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "ZBarSDK.h"
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface Voucher : UIViewController <ZBarReaderDelegate> {
-    IBOutlet UIButton *scanButton;
-    NSDictionary *eventDetailDict;
-}
+@class EventDetail;
 
-@property (retain, nonatomic) NSDictionary *eventDetailDict;
-@property (nonatomic, retain) IBOutlet UIButton *scanButton;
+@interface Voucher : NSManagedObject
 
--(IBAction) scanButtonPress:sender;
+@property (nonatomic, retain) NSString * voucherPhoto;
+@property (nonatomic, retain) NSString * voucherDescription;
+@property (nonatomic, retain) NSDate * voucherDate;
+@property (nonatomic, retain) EventDetail *eventDeail;
 
 @end
