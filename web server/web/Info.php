@@ -3,7 +3,7 @@
 <div id="content_wrapper">
 
 <div id="content">
-<h1>Info </h1>
+<h1>Information </h1>
 <p>
 Cloud nine is the latest in mobile advertising, using a unique updating system it will be frequently updated to have all the best nights around in the Oxford area.
 </p>
