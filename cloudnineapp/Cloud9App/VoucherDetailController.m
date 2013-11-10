@@ -26,6 +26,7 @@
 
 @synthesize scanButton;
 @synthesize eventDetailDict;
+
 Boolean used = false;
 Boolean active = false;
 UILabel *warningLabel;
@@ -33,6 +34,7 @@ NSString *eventId ;
 NSString *venueId ;
 NSString *voucherDescription;
 NSString *date;
+NSString *voucherPhotoUrl;
 
 
 
@@ -42,11 +44,12 @@ NSString *date;
     [self setBackButton];
     self.navigationController.topViewController.title  = kTitle;
 
-    eventId = [eventDetailDict objectForKey:@"id"];
-    venueId = [eventDetailDict objectForKey:@"venue_id"];
-    voucherDescription = [eventDetailDict objectForKey:@"voucher"];
-    date = [eventDetailDict objectForKey:@"date"];
-    UIImage *voucherPhoto = [KSUtilities getImage:[eventDetailDict objectForKey:@"voucher_photo"]];
+    eventId = _eventDetail.eventId;
+    venueId = _eventDetail.venueId;  //todo venue id
+    voucherDescription = _eventDetail.voucherDescription; //todo
+    date = _eventDetail.date;
+    voucherPhotoUrl = _eventDetail.voucherPhoto; //todo
+    UIImage *voucherPhoto = [KSUtilities getImage:voucherPhotoUrl];
 
     CGRect voucherPhotoFrame = CGRectMake(5, 120, 310, 200);
     UIImageView *voucherView = [[UIImageView alloc] initWithFrame:voucherPhotoFrame] ;

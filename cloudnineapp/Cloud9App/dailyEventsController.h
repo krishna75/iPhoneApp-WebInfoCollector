@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class AllEvents;
+
 @interface dailyEventsController : UITableViewController
 
 @property (retain, nonatomic) NSMutableDictionary *eventDict;
+@property (retain, nonatomic) AllEvents *allEvents;
+
 
 @end

@@ -109,7 +109,7 @@
             </objects>
             <point key="canvasLocation" x="-1305" y="-2118"/>
         </scene>
-        <!--Event Controller - Events-->
+        <!--All Event Controller - Events-->
         <scene sceneID="zUQ-gL-67d">
             <objects>
                 <tableViewController storyboardIdentifier="event" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vOs-nA-ia0" customClass="AllEventController" sceneMemberID="viewController">
@@ -235,7 +235,7 @@
             </objects>
             <point key="canvasLocation" x="784" y="-2949"/>
         </scene>
-        <!--VoucherDetailController-->
+        <!--Voucher Detail Controller-->
         <scene sceneID="tFA-By-cfT">
             <objects>
                 <viewController storyboardIdentifier="voucher" useStoryboardIdentifierAsRestorationIdentifier="YES" id="w7F-Cf-CIQ" customClass="VoucherDetailController" sceneMemberID="viewController">
@@ -403,60 +403,6 @@
         <image name="first.png" width="30" height="30"/>
         <image name="voucher.png" width="30" height="30"/>
     </resources>
-    <classes>
-        <class className="PrefsEventsDetail" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrefsEventsDetail.h"/>
-        </class>
-        <class className="SettingsDetail" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsDetail.h"/>
-            <relationships>
-                <relationship kind="outlet" name="settingsWeb" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="Voucher" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Voucher.h"/>
-            <relationships>
-                <relationship kind="action" name="scanButtonPress:"/>
-                <relationship kind="outlet" name="scanButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="dailyEventsController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/dailyEventsController.h"/>
-        </class>
-        <class className="eventController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/eventController.h"/>
-        </class>
-        <class className="eventDetailsController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/eventDetailsController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="eventImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="subTitleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="eventsInAVenueController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/eventsInAVenueController.h"/>
-        </class>
-        <class className="preferencesController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/preferencesController.h"/>
-        </class>
-        <class className="settingsController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/settingsController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="settingsTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="tabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/tabBarController.h"/>
-        </class>
-        <class className="venuesAndEventsController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/venuesAndEventsController.h"/>
-        </class>
-        <class className="vouchersTodayController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/vouchersTodayController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

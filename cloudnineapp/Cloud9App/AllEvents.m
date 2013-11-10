@@ -12,11 +12,12 @@
 
 @implementation AllEvents
 
-@dynamic shortMonth;
 @dynamic dateDay;
-@dynamic weekDay;
 @dynamic eventCountDetails;
 @dynamic numNewEvents;
+@dynamic shortMonth;
+@dynamic weekDay;
+@dynamic eventDate;
 @dynamic dailyEvents;
 
 @end

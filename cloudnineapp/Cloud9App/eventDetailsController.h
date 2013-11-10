@@ -10,6 +10,8 @@
 #import <EventKit/EventKit.h>
 #import <EventKitUI/EventKitUI.h>
 
+@class DailyEvents;
+
 @interface eventDetailsController : UIViewController<EKEventViewDelegate> {
     
 }
@@ -19,6 +21,7 @@
 @property (retain, nonatomic) IBOutlet UILabel  *subTitleLabel;
 @property (retain, nonatomic) IBOutlet UILabel  *descriptionLabel;
 @property (retain, nonatomic) IBOutlet UIImageView  *eventImageView;
+@property (retain, nonatomic) DailyEvents  *dailyEvents;
 
 - (void) addToCalendar:(id) sender;
 //- (IBAction) createEvent;

@@ -13,11 +13,13 @@
 
 @implementation DailyEvents
 
-@dynamic month;
 @dynamic day;
+@dynamic eventName;
+@dynamic month;
 @dynamic venueLogo;
 @dynamic venueName;
-@dynamic eventName;
+@dynamic eventId;
+@dynamic date;
 @dynamic allEvents;
 @dynamic eventDetail;
 

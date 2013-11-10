@@ -12,7 +12,8 @@
 #import "KSBadgeManager.h"
 #import "AppDelegate.h"
 #import "KSCell.h"
-#import "KSSettings.h"
+#import "DailyEvents.h"
+#import "AllEvents.h"
 
 #define kjsonURL @"eventsOfADate.php?event_date="
 #define kTableBG @"bg_tableView.png"
@@ -25,9 +26,10 @@
 @end
 
 @implementation dailyEventsController {
-    
-    NSMutableArray *jsonResults;
+    NSArray *coreDataResults;
 }
+@synthesize eventDict;
+@synthesize allEvents;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -64,8 +66,75 @@
 // the process also has spinner or loader
 - (void)processJson {
     KSJson * json = [[KSJson alloc] init];
-    NSString *jsonURL  = [NSString stringWithFormat:@"%@%@",kjsonURL,[_eventDict  objectForKey:@"date"]];
-    jsonResults = [json toArray:jsonURL];
+    if ([json isConnectionAvailable]) {
+        NSString *jsonURL  = [NSString stringWithFormat:@"%@%@",kjsonURL,[eventDict  objectForKey:@"date"]];
+        NSArray *jsonResults = [json toArray:jsonURL];
+        [self createCoreData:jsonResults];
+    } else {
+        coreDataResults = [self loadCoreData];
+    }
+}
+
+- (NSArray *) loadCoreData {
+//    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+//    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"DailyEvents" inManagedObjectContext:context];
+//    [fetchRequest setEntity:entity];
+//    NSError *error;
+//    return [context executeFetchRequest:fetchRequest error:&error];
+    return [allEvents.dailyEvents allObjects];
+}
+
+- (void)createCoreData: (NSArray *)jsonResults {
+
+    NSArray *lastSaved = [self loadCoreData];
+    NSMutableArray *results = [[NSMutableArray alloc] init];
+    NSMutableArray *storableResults = [[NSMutableArray alloc] init];
+
+    //creating and adding a core data object
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+
+    for (NSDictionary *dailyEventDict in jsonResults) {
+        NSString *eventTitle = [dailyEventDict objectForKey:@"title"];
+        NSString *venue = [dailyEventDict objectForKey:@"venue"];
+        NSMutableString *strLogoUrl = [dailyEventDict objectForKey:@"venue_logo"];
+        NSString *eventId = [dailyEventDict objectForKey:@"id"];
+        NSString *date=[dailyEventDict objectForKey:@"date"];
+
+        //creating and adding a core data object
+        DailyEvents *dailyEvents = [NSEntityDescription insertNewObjectForEntityForName:@"DailyEvents" inManagedObjectContext:context];
+
+        dailyEvents.eventId = eventId;
+        dailyEvents.venueName = venue;
+        dailyEvents.eventName = eventTitle;
+        dailyEvents.venueLogo = strLogoUrl;
+        dailyEvents.date = date;
+        dailyEvents.allEvents = allEvents;
+        [results addObject:dailyEvents];
+
+        //checking if the  data already exists
+        BOOL saveOk = YES;
+        for (DailyEvents * lastEvent in lastSaved ) {
+            if ([lastEvent.eventId isEqualToString:dailyEvents.eventId]){
+                saveOk = NO;
+            }
+        }
+        if (saveOk) {
+            [storableResults addObject:dailyEvents];
+        }
+    }
+   
+    coreDataResults = results;
+    allEvents.dailyEvents = [NSSet setWithArray:storableResults];
+
+    //saving data
+    NSError *error = nil;
+
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
 }
 
 
@@ -120,7 +189,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [jsonResults count];
+    return [coreDataResults count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -130,19 +199,14 @@
     if (cell == nil) {
         cell = [[KSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier ] ;
     }
-    
-    NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
-    NSString    *eventTitle = [eventCountDict objectForKey:@"title"];
-    NSString    *venue = [eventCountDict objectForKey:@"venue"];
-    NSMutableString *logo = [eventCountDict objectForKey:@"venue_logo"];
-    
-    cell.titleLabel.text = eventTitle;
-    cell.descriptionLabel.text = venue;
-    [cell addSubview: [KSUtilities getImageViewOfUrl:logo]];
+    DailyEvents * dailyEvents = [coreDataResults objectAtIndex:indexPath.row];
+    cell.titleLabel.text = dailyEvents.eventName;
+    cell.descriptionLabel.text = dailyEvents.venueName;
+    [cell addSubview: [KSUtilities getImageViewOfUrl:dailyEvents.venueLogo]];
     
     //displaying new events as badge
-    NSString    *eventId = [eventCountDict objectForKey:@"id"];
-    NSString    *date= [eventCountDict objectForKey:@"date"];
+    NSString    *eventId = dailyEvents.eventId;
+    NSString    *date= dailyEvents.date;
     NSMutableString *eventIdDate = [NSString stringWithFormat:@"%@:%@",eventId,date];
     if ([KSBadgeManager isNewEvent:eventIdDate]) {
         if(app.setBadge) {
@@ -177,7 +241,7 @@
 #pragma mark - Table header for the view
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    NSDictionary *dateDict =[KSUtilities getDateDict:[_eventDict objectForKey:@"date"]] ;
+    NSDictionary *dateDict =[KSUtilities getDateDict:[eventDict objectForKey:@"date"]] ;
     NSMutableString *title = [dateDict objectForKey:@"longMonth"];
     NSString *description = [NSString stringWithFormat:@"%@%@ %@",[dateDict objectForKey:@"dateDay"],[
             dateDict objectForKey:@"suffix"], [dateDict objectForKey:@"weekDay"]];
@@ -193,14 +257,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *appsDict = [jsonResults objectAtIndex:indexPath.row];
-    NSString *eventId = [appsDict objectForKey:@"id"];
-    
+    DailyEvents *dailyEvents = [coreDataResults objectAtIndex:indexPath.row];
+
     eventDetailsController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventDetail"];
-    nextViewController.eventId = eventId;
-    
+    nextViewController.eventId = dailyEvents.eventId;
+    nextViewController.dailyEvents = dailyEvents;
+
     [self.navigationController pushViewController:nextViewController animated: NO];
-    
 }
 
 

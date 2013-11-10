@@ -13,7 +13,6 @@
 #import "KSBadgeManager.h"
 #import "AppDelegate.h"
 #import "KSCell.h"
-#import "KSGuiUtilities.h"
 
 
 #define kjsonURL @"datesAndEvents.php"
@@ -29,7 +28,6 @@
 @end
 
 @implementation AllEventController {
-    NSMutableArray *jsonResults;
     NSArray *coreDataResults;
 }
 @synthesize managedObjectContext;
@@ -48,7 +46,7 @@
     [self launchLoadData];
     [self decorateView];
     [self addRefreshing];
-    NSLog(@" inside viewDidLoad: size of coreda results = %d",[coreDataResults count])  ;
+    NSLog(@"AllEventsController/viewDidLoad: AllEvents size = %d",[coreDataResults count])  ;
 }
 
 #pragma mark - launchLoadData and loadData are for a new thread
@@ -67,8 +65,8 @@
 - (void)processJson {
     KSJson * json = [[KSJson alloc] init];
     if ([json isConnectionAvailable]){
-        jsonResults = [json toArray:kjsonURL];
-        [self createCoreData];
+        NSArray * jsonResults = [json toArray:kjsonURL];
+        [self createCoreData: jsonResults];
     } else {
       coreDataResults = [self loadCoreData];
     }
@@ -84,7 +82,7 @@
     return [context executeFetchRequest:fetchRequest error:&error];
 }
 
-- (void) createCoreData {
+- (void) createCoreData: (NSArray *) jsonResults {
     NSArray *lastSaved = [self loadCoreData];
     NSMutableArray *results = [[NSMutableArray alloc] init] ;
     for (NSDictionary * eventCountDict in jsonResults) {
@@ -105,16 +103,19 @@
         allEvents.dateDay = [NSNumber numberWithInt:[[dateDict objectForKey:@"dateDay"] intValue]];
         allEvents.weekDay = [dateDict objectForKey:@"weekDay"];
         allEvents.shortMonth = [dateDict objectForKey:@"shortMonth"];
+        allEvents.eventDate = date;
         allEvents.eventCountDetails= countDetail;
         allEvents.numNewEvents = [NSNumber numberWithInt:newEventCount];
 
+        //checking if the  data already exists
         BOOL saveOk = YES;
         for (AllEvents * lastEvent in lastSaved ) {
-            if ([lastEvent.shortMonth isEqualToString:allEvents.shortMonth] ||
-                lastEvent.dateDay ==allEvents.dateDay){
+            if ([lastEvent.eventDate isEqualToString:allEvents.eventDate]){
                 saveOk = NO;
             }
         }
+
+        //saving data
         NSError *error = nil;
         if (saveOk) {
             if (![context save:&error]) {
@@ -122,7 +123,6 @@
             }
         }
         [results addObject:allEvents];
-        NSLog(@"size=%d and dateDay = %@",[results count],allEvents.dateDay) ;
     }
     coreDataResults = results;
 }
@@ -149,8 +149,6 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//   the line below sets the font and size of the whole application. this has to be in the event controller since this is the first view controller.
-//    [[UILabel appearance] setFont:[UIFont fontWithName:[KSUtilities getDefaultFont] size:12.0]];
 
     UIImage *backgroundImage = [UIImage imageNamed:@"bg_top_nav.png"];
     [self.navigationController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
@@ -189,16 +187,13 @@
     if (cell == nil) {
         cell = [[KSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier ] ;
     }
-    NSLog(@" inside cell: size of coreda results = %d",[coreDataResults count])  ;
-    
-    AllEvents *allEvents =  [coreDataResults objectAtIndex: indexPath.row ];
 
-    NSLog(@"value of weekday is: %@", allEvents.weekDay);
+    AllEvents *allEvents =  [coreDataResults objectAtIndex: indexPath.row ];
     cell.titleLabel.text = allEvents.weekDay;
     cell.descriptionLabel.text = allEvents.eventCountDetails;
     [cell addSubview: [KSUtilities getCalendar:allEvents.shortMonth forDay:[allEvents.dateDay stringValue]]];
     
-    //computing and displaying new events as badge
+    //displaying new events as badge
     int newEventCount = allEvents.numNewEvents.intValue;
     if (newEventCount > 0) {
         if(app.setBadge) {
@@ -218,37 +213,30 @@
     return [KSSettings tableCellHeight];
 }
 
-
-
 - (void) tableView:(UITableViewCell *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     UIImageView *bgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:kCellBG] ];
-   cell.backgroundView = bgView;
+    cell.backgroundView = bgView;
 
-  UIImageView *selBGView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:kCellSelectedBG]];
-  cell.selectedBackgroundView = selBGView;
-    
+    UIImageView *selBGView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:kCellSelectedBG]];
+    cell.selectedBackgroundView = selBGView;
 }
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
-    NSString    *date = [eventCountDict objectForKey:@"date"];
-    NSString    *count = [eventCountDict objectForKey:@"quantity"];
-    if (count == nil) {count = @"No" ; }
-    NSMutableString *countDetail = [NSMutableString stringWithFormat:@"%@ Event(s)",count];
-    NSMutableString    *formattedDate = [KSUtilities getFormatedDate:date];
-    
+    AllEvents *allEvents = [coreDataResults objectAtIndex:indexPath.row];
+
+    NSMutableString    *formattedDate = [KSUtilities getFormatedDate:allEvents.eventDate];
     NSMutableDictionary *eventDict = [[NSMutableDictionary alloc]init];
-    [eventDict setObject:date forKey:@"date"];
+    [eventDict setObject:allEvents.eventDate forKey:@"date"];
     [eventDict setObject:formattedDate forKey:@"formattedDate"];
-    [eventDict setObject:countDetail forKey:@"countDetail"];
-    
-    
+    [eventDict setObject:allEvents.eventCountDetails forKey:@"countDetail"];
+
     dailyEventsController *nextController = [self.storyboard instantiateViewControllerWithIdentifier:@"dailyEvents"];
     nextController.eventDict = eventDict;
-    
-    [self.navigationController pushViewController:nextController  animated: NO]; 
+    nextController.allEvents = allEvents;
+
+    [self.navigationController pushViewController:nextController  animated: NO];
 }
 
 

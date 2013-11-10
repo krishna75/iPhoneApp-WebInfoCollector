@@ -13,11 +13,20 @@
 
 @interface AllEvents : NSManagedObject
 
-@property (nonatomic, retain) NSString * shortMonth;
 @property (nonatomic, retain) NSNumber * dateDay;
-@property (nonatomic, retain) NSString * weekDay;
 @property (nonatomic, retain) NSString * eventCountDetails;
 @property (nonatomic, retain) NSNumber * numNewEvents;
-@property (nonatomic, retain) DailyEvents *dailyEvents;
+@property (nonatomic, retain) NSString * shortMonth;
+@property (nonatomic, retain) NSString * weekDay;
+@property (nonatomic, retain) NSString * eventDate;
+@property (nonatomic, retain) NSSet *dailyEvents;
+@end
+
+@interface AllEvents (CoreDataGeneratedAccessors)
+
+- (void)addDailyEventsObject:(DailyEvents *)value;
+- (void)removeDailyEventsObject:(DailyEvents *)value;
+- (void)addDailyEvents:(NSSet *)values;
+- (void)removeDailyEvents:(NSSet *)values;
 
 @end

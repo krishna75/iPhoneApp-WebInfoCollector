@@ -69,7 +69,7 @@
 
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:imageName]];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:imageName];
 
     UIImage *image = [UIImage imageWithContentsOfFile:path];
     return image;

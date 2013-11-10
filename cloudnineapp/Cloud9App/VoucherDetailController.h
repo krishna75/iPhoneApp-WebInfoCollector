@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZBarSDK.h"
+#import "EventDetail.h"
 
 @interface VoucherDetailController : UIViewController <ZBarReaderDelegate> {
     IBOutlet UIButton *scanButton;
@@ -16,6 +17,7 @@
 
 @property (retain, nonatomic) NSDictionary *eventDetailDict;
 @property (nonatomic, retain) IBOutlet UIButton *scanButton;
+@property (nonatomic, retain) EventDetail *eventDetail;
 
 -(IBAction) scanButtonPress:sender;
 
