@@ -26,7 +26,7 @@ static NSMutableArray  *venueDictArray;
     KSJson * json = [[KSJson alloc] init];
     venues = [json toArray:kjsonVenueURL];
     events = [json toArray:kjsonEventURL];
-    NSLog(@"FirstJsonLoader processJson: venues: url %@",kjsonVenueURL);
+    NSLog(@"FirstJsonLoader processCoreData: venues: url %@",kjsonVenueURL);
 }
 
 + (void) processVenues{

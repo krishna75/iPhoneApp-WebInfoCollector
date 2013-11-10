@@ -2,7 +2,7 @@
 //  AllEvents.m
 //  Cloud9App
 //
-//  Created by Krishna Sapkota on 09/11/2013.
+//  Created by Krishna Sapkota on 10/11/2013.
 //  Copyright (c) 2013 Krishna Sapkota. All rights reserved.
 //
 
@@ -14,10 +14,10 @@
 
 @dynamic dateDay;
 @dynamic eventCountDetails;
+@dynamic eventDate;
 @dynamic numNewEvents;
 @dynamic shortMonth;
 @dynamic weekDay;
-@dynamic eventDate;
 @dynamic dailyEvents;
 
 @end

@@ -2,7 +2,7 @@
 //  AllEvents.h
 //  Cloud9App
 //
-//  Created by Krishna Sapkota on 09/11/2013.
+//  Created by Krishna Sapkota on 10/11/2013.
 //  Copyright (c) 2013 Krishna Sapkota. All rights reserved.
 //
 
@@ -15,10 +15,10 @@
 
 @property (nonatomic, retain) NSNumber * dateDay;
 @property (nonatomic, retain) NSString * eventCountDetails;
+@property (nonatomic, retain) NSString * eventDate;
 @property (nonatomic, retain) NSNumber * numNewEvents;
 @property (nonatomic, retain) NSString * shortMonth;
 @property (nonatomic, retain) NSString * weekDay;
-@property (nonatomic, retain) NSString * eventDate;
 @property (nonatomic, retain) NSSet *dailyEvents;
 @end
 

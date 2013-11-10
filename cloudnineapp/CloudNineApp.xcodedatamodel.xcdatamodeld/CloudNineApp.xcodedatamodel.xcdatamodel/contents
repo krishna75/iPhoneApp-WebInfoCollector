@@ -9,6 +9,16 @@
         <attribute name="weekDay" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="dailyEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DailyEvents" inverseName="allEvents" inverseEntity="DailyEvents" syncable="YES"/>
     </entity>
+    <entity name="AllVenues" representedClassName="AllVenues" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eventCountDetail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eventId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="venueAddress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="venueId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="venueLogo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="venueName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="eventsInVenue" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventsInVenue" inverseName="allVenues" inverseEntity="EventsInVenue" syncable="YES"/>
+    </entity>
     <entity name="DailyEvents" representedClassName="DailyEvents" syncable="YES">
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="day" optional="YES" attributeType="String" syncable="YES"/>
@@ -31,7 +41,15 @@
         <attribute name="voucherDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="voucherPhoto" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="dailyEvents" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DailyEvents" inverseName="eventDetail" inverseEntity="DailyEvents" syncable="YES"/>
+        <relationship name="eventsInVenue" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="EventsInVenue" inverseName="eventDetails" inverseEntity="EventsInVenue" syncable="YES"/>
         <relationship name="voucher" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="VoucherDetail" inverseName="eventDeail" inverseEntity="VoucherDetail" syncable="YES"/>
+    </entity>
+    <entity name="EventsInVenue" representedClassName="EventsInVenue" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eventId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eventName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="allVenues" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AllVenues" inverseName="eventsInVenue" inverseEntity="AllVenues" syncable="YES"/>
+        <relationship name="eventDetails" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="EventDetail" inverseName="eventsInVenue" inverseEntity="EventDetail" syncable="YES"/>
     </entity>
     <entity name="VoucherDetail" representedClassName="Voucher" syncable="YES">
         <attribute name="voucherDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -40,9 +58,11 @@
         <relationship name="eventDeail" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="EventDetail" inverseName="voucher" inverseEntity="EventDetail" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AllEvents" positionX="-3141" positionY="-279" width="128" height="148"/>
+        <element name="AllEvents" positionX="-3125" positionY="-256" width="128" height="148"/>
         <element name="DailyEvents" positionX="-2952" positionY="-280" width="128" height="178"/>
-        <element name="EventDetail" positionX="-2817" positionY="-114" width="128" height="208"/>
-        <element name="VoucherDetail" positionX="-2646" positionY="-108" width="128" height="103"/>
+        <element name="EventDetail" positionX="-2729" positionY="-114" width="128" height="223"/>
+        <element name="VoucherDetail" positionX="-2567" positionY="-103" width="128" height="103"/>
+        <element name="AllVenues" positionX="-3114" positionY="-45" width="128" height="163"/>
+        <element name="EventsInVenue" positionX="-2936" positionY="45" width="128" height="118"/>
     </elements>
 </model>

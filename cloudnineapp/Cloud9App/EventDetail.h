@@ -24,5 +24,6 @@
 @property (nonatomic, retain) NSString * voucherPhoto;
 @property (nonatomic, retain) DailyEvents *dailyEvents;
 @property (nonatomic, retain) Voucher *voucher;
+@property (nonatomic, retain) NSManagedObject *eventsInVenue;
 
 @end

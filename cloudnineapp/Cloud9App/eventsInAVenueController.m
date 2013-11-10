@@ -16,6 +16,7 @@
 #import "AppDelegate.h"
 #import "KSCell.h"
 #import "KSSettings.h"
+#import "EventsInVenue.h"
 
 #define kjsonURL @"eventsOfAVenue.php?venue_id="
 #define kTableBG @"bg_tableView.png"
@@ -29,7 +30,8 @@
 @end
 
 @implementation eventsInAVenueController {
-    NSMutableArray *jsonResults;
+    NSArray *coreDataResults;
+
 }
 - (void)viewDidLoad
 {
@@ -46,13 +48,13 @@
 
 
 - (void) loadData {
-    [self processJson];
+    [self processCoreData];
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil    waitUntilDone:NO];
     [app RemoveLoadingView];
 }
 
 // the process also has spinner or loader
-- (void)processJson {
+- (void)processCoreData {
     
     //loading... spinnner
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -60,14 +62,11 @@
     [self.view addSubview:spinner];
     [spinner startAnimating];
     
-    // the actuatl process
-    KSJson * json = [[KSJson alloc] init];
-    NSString *jsonURL  = [NSString stringWithFormat:@"%@%@",kjsonURL,[_venueDict objectForKey:@"venue_id" ]];
-    NSLog(@"Venue II processJson: url %@",jsonURL);
-    jsonResults = [json toArray:jsonURL];
-    
+    // converting the coredata set to array
+    coreDataResults = [_allVenues.eventsInVenue allObjects];
+    NSLog(@"eventsInAVenue/processCoreData: total events in a venue = %d",[coreDataResults count]) ;
+
     [spinner stopAnimating];
-    
 }
 
 - (void)decorateView{
@@ -110,7 +109,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [jsonResults count];
+    return [coreDataResults count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -120,18 +119,15 @@
     if (cell == nil) {
         cell = [[KSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier ] ;
     }
-    
-    NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
-    NSString    *date = [eventCountDict objectForKey:@"date"];
-    NSString    *eventTitle = [eventCountDict objectForKey:@"event_title"];
+    EventsInVenue *eventsInVenue = [coreDataResults objectAtIndex:indexPath.row];
 
-    cell.titleLabel.text = eventTitle;
-    NSDictionary *dateDict = [KSUtilities getDateDict:date];
+    cell.titleLabel.text = eventsInVenue.eventName;
+    NSDictionary *dateDict = [KSUtilities getDateDict:eventsInVenue.date];
    [cell addSubview: [KSUtilities getCalendar:[dateDict objectForKey:@"shortMonth"] forDay:[dateDict objectForKey:@"dateDay"]]];
     
     //displaying new events as badge
-    NSString    *eventId = [eventCountDict objectForKey:@"event_id"];
-    NSMutableString *eventIdDate = [NSString stringWithFormat:@"%@:%@",eventId,date];
+    NSString    *eventId = eventsInVenue.eventId;
+    NSMutableString *eventIdDate = [NSMutableString stringWithFormat:@"%@:%@",eventId, [NSMutableString stringWithString:eventsInVenue.date]];
     if ([KSBadgeManager isNewEvent:eventIdDate]) {
         if(app.setBadge) {
             UIView *badgeView = [KSUtilities getBadgeLikeView:[NSString stringWithFormat:@"new"] showHide:app.setBadge];
@@ -162,16 +158,9 @@
 
 // header for the table view controller
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
-    NSString *title =  [_venueDict objectForKey:@"name"];
-    NSString *description = [_venueDict objectForKey:@"address"];
-    
-    NSString *logo = [_venueDict objectForKey:@"logo"];
-    NSURL *imageURL = [NSURL URLWithString:logo];
-    NSData  *imageData = [NSData dataWithContentsOfURL:imageURL];
-    UIImage *logoImage = [[UIImage alloc] initWithData:imageData];
-    
-    return [KSUtilities getHeaderView:logoImage forTitle:title forDetail:description];
+
+    UIImage *logoImage = [KSUtilities getImage:_allVenues.venueLogo] ;
+    return [KSUtilities getHeaderView:logoImage forTitle:_allVenues.venueName forDetail:_allVenues.venueAddress];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -182,14 +171,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *appsDict = [jsonResults objectAtIndex:indexPath.row];
-    NSString *eventId = [appsDict objectForKey:@"event_id"];
-    
-    eventDetailsController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventDetail"];
-    nextViewController.eventId = eventId;
-    
-    [self.navigationController pushViewController:nextViewController animated: NO];
-    
+//    NSDictionary *appsDict = [jsonResults objectAtIndex:indexPath.row];
+//    NSString *eventId = [appsDict objectForKey:@"event_id"];
+//
+//    eventDetailsController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventDetail"];
+//    nextViewController.eventId = eventId;
+//
+//    [self.navigationController pushViewController:nextViewController animated: NO];
+//
 }
 
 #pragma mark - Back button;

@@ -24,5 +24,6 @@
 @dynamic voucherPhoto;
 @dynamic dailyEvents;
 @dynamic voucher;
+@dynamic eventsInVenue;
 
 @end

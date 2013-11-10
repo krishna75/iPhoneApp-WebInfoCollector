@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AllVenues.h"
 
 @interface eventsInAVenueController : UITableViewController
 
-@property (retain, nonatomic) NSMutableDictionary *venueDict;
+@property (retain, nonatomic) AllVenues *allVenues;
 - (void) addToCalendar:(id) sender;
 
 @end
