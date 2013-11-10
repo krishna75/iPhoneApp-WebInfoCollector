@@ -9,17 +9,16 @@
 #import "venuesAndEventsController.h"
 #import "KSJson.h"
 #import "eventsInAVenueController.h"
-#import "FirstJsonLoader.h"
-#import "KSUtilities.h"
 #import "KSBadgeManager.h"
 #import "AppDelegate.h"
 #import "KSCell.h"
-#import "KSSettings.h"
-#import "AllVenues.h"
 #import "EventsInVenue.h"
+#import "EventDetail.h"
+#import "DailyEvents.h"
 
 #define kAllVenuesUrl @"venuesAndEvents.php"
-#define kEventsOfVenue @"eventsOfAVenue.php?venue_id="
+#define kEventsOfVenueUrl @"eventsOfAVenue.php?venue_id="
+#define kEventDetailUrl @"eventDetail.php?event_id="
 #define kTableBG @"bg_tableView.png"
 #define kCellBG @"bg_cell.png"
 #define kCellSelectedBG @"bg_cellSelected.png"
@@ -107,15 +106,37 @@
         // events in a venue
         NSMutableArray *eventsInVenueArray = [[NSMutableArray alloc] init];
         KSJson * json = [[KSJson alloc] init];
-        NSString *jsonURL  = [NSString stringWithFormat:@"%@%@", kEventsOfVenue,allVenues.venueId];
+        NSString *jsonURL  = [NSString stringWithFormat:@"%@%@", kEventsOfVenueUrl, allVenues.venueId];
         NSLog(@"venuesAndEventsController/createCoreData: jsonUrl = %@", jsonURL) ;
-        for (NSDictionary * dict in [json toArray:jsonURL]) {
+        for (NSDictionary *eventsInVenueDict in [json toArray:jsonURL]) {
             EventsInVenue *eventsInVenue = [NSEntityDescription insertNewObjectForEntityForName:@"EventsInVenue" inManagedObjectContext:context];
-            eventsInVenue.eventId = [dict objectForKey:@"event_d"];
-            eventsInVenue.date = [dict objectForKey:@"date"];
-            eventsInVenue.eventName = [dict objectForKey:@"event_title"];
+            eventsInVenue.eventId = [eventsInVenueDict objectForKey:@"event_id"];
+            eventsInVenue.date = [eventsInVenueDict objectForKey:@"date"];
+            eventsInVenue.eventName = [eventsInVenueDict objectForKey:@"event_title"];
             eventsInVenue.allVenues = allVenues;
             [eventsInVenueArray addObject:eventsInVenue];
+
+            // event detail
+            NSString * eventDetailUrl = [NSString stringWithFormat:@"%@%@", kEventDetailUrl,eventsInVenue.eventId];
+            NSDictionary *eventDetailDict = [[json toArray:eventDetailUrl] objectAtIndex:0];
+
+            EventDetail *eventDetail = [NSEntityDescription insertNewObjectForEntityForName:@"EventDetail" inManagedObjectContext:context];
+            eventDetail.date = [eventDetailDict objectForKey:@"date"];
+            eventDetail.eventDescription = [eventDetailDict objectForKey:@"description"];
+            eventDetail.eventId= [eventDetailDict objectForKey:@"id"];
+            eventDetail.eventName = [eventDetailDict objectForKey:@"title"];
+            eventDetail.photo = [eventDetailDict objectForKey:@"photo"];
+
+            eventDetail.venueId = [eventDetailDict objectForKey:@"venue_id"];
+            eventDetail.venueName = [eventDetailDict objectForKey:@"venue"];
+
+            eventDetail.voucherDescription= [eventDetailDict objectForKey:@"voucher_description"];
+            eventDetail.voucherPhoto= [eventDetailDict objectForKey:@"voucher_photo"];
+
+            NSLog(@"venuesAndEventsController/createCoreData: eventName=%@",eventDetail.eventName);
+
+            eventDetail.eventsInVenue = eventsInVenue;
+            eventsInVenue.eventDetails = eventDetail;
         }
         NSLog(@"venuesAndEventsController/createCoreData: eventsInVenueArray.size = %d", [eventsInVenueArray count]) ;
         allVenues.eventsInVenue = [NSSet setWithArray:eventsInVenueArray] ;
@@ -248,7 +269,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     eventsInAVenueController *nextController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventsInAVenue"];
-    nextController.allVenues = [coreDataResults objectAtIndex:indexPath.row];;
+    AllVenues* allVenues = [coreDataResults objectAtIndex:indexPath.row];
+    nextController.eventInVenueArray= [allVenues.eventsInVenue allObjects];
+    nextController.venueLogo= allVenues.venueLogo;
+    nextController.venueName= allVenues.venueName;
+    nextController.venueAddress= allVenues.venueAddress;
 
     [self.navigationController pushViewController:nextController  animated: NO];
 }

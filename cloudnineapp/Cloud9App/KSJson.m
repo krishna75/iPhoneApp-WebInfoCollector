@@ -32,7 +32,9 @@
 }
 
 -(NSMutableArray *) toArray:(NSString *) jsonUrlString; {
-    jsonURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@",jsonHome,jsonUrlString]];
+    jsonUrlString =  [NSString stringWithFormat:@"%@%@",jsonHome,jsonUrlString];
+    NSLog(@"KSJson/toArray: url = %@", jsonUrlString);
+    jsonURL = [NSURL URLWithString: jsonUrlString];
 
     if ([self isConnectionAvailable] ){
         [self process];

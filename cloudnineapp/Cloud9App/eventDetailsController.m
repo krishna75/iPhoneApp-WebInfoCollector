@@ -7,14 +7,10 @@
 //
 
 #import "eventDetailsController.h"
-#import "KSJson.h"
 #import "KSGuiUtilities.h"
 #import "KSBadgeManager.h"
 #import "AppDelegate.h"
 #import "VoucherDetailController.h"
-#import "EventDetail.h"
-#import "DailyEvents.h"
-
 
 #define kjsonURL @"eventDetail.php?event_id="
 #define kTableBG @"bg_tableView.png"
@@ -24,9 +20,7 @@
 
 @end
 
-@implementation eventDetailsController {
-    EventDetail* eventDetail;
-}
+@implementation eventDetailsController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -51,59 +45,8 @@
 }
 
 - (void) loadData {
-    
-    [self processJson];
     [self decorateView];
     [self displayValues];
-}
-
-// the process also has spinner or loader
-- (void)processJson {
-    
-    // the actual process
-    KSJson * json = [[KSJson alloc] init];
-    if ([json isConnectionAvailable] ) {
-    NSString *jsonURL  = [NSString stringWithFormat:@"%@%@",kjsonURL,_eventId];
-    NSMutableArray *jsonResults = [json toArray:jsonURL];
-    [self createCoreData:jsonResults];
-    } else {
-      eventDetail = [self loadCoreData];
-    }
-}
-
-- (EventDetail *) loadCoreData {
-    return _dailyEvents.eventDetail;
-}
-
-- (void) createCoreData: (NSMutableArray *) jsonResults{
-    //creating and adding a core data object
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    EventDetail *newEventDetail = [NSEntityDescription insertNewObjectForEntityForName:@"EventDetail" inManagedObjectContext:context];
-
-    NSDictionary *eventDetailDict = [jsonResults objectAtIndex:0];
-    newEventDetail.date = [eventDetailDict objectForKey:@"date"];
-    newEventDetail.eventDescription = [eventDetailDict objectForKey:@"description"];
-    newEventDetail.eventId= [eventDetailDict objectForKey:@"id"];
-    newEventDetail.eventName = [eventDetailDict objectForKey:@"title"];
-    newEventDetail.photo = [eventDetailDict objectForKey:@"photo"];
-
-    newEventDetail.venueId = [eventDetailDict objectForKey:@"venue_id"];
-    newEventDetail.venueName = [eventDetailDict objectForKey:@"venue"];
-
-    newEventDetail.voucherDescription= [eventDetailDict objectForKey:@"voucher_description"];
-    newEventDetail.voucherPhoto= [eventDetailDict objectForKey:@"voucher_photo"];
-
-    newEventDetail.dailyEvents= _dailyEvents;
-    _dailyEvents.eventDetail = newEventDetail;
-    eventDetail = newEventDetail;
-
-    //saving data
-    NSError *error = nil;
-
-    if ( ![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }
 }
 
 - (void)decorateView{
@@ -122,14 +65,14 @@
 - (void)displayValues {
     
     //preparing values
-    NSString *dateDetail = [KSUtilities getFormatedDate:eventDetail.date];
-    NSString *subTitle = [NSString stringWithFormat:@"Date: %@\rVenue: %@",dateDetail,eventDetail.venueName];
-    UIImage *eventImage = [KSUtilities getImage:eventDetail.photo];
-    NSLog(@"eventDetail/displayValues: date= %@ id=%@",eventDetail.date,eventDetail.eventId);
-    [KSBadgeManager addViewedEvent:[NSMutableString stringWithString:eventDetail.eventId] onDate:[NSMutableString stringWithString:eventDetail.date]];
+    NSString *dateDetail = [KSUtilities getFormatedDate:_eventDetail.date];
+    NSString *subTitle = [NSString stringWithFormat:@"Date: %@\rVenue: %@",dateDetail,_eventDetail.venueName];
+    UIImage *eventImage = [KSUtilities getImage:_eventDetail.photo];
+    NSLog(@"eventDetail/displayValues: date= %@ id=%@",_eventDetail.date,_eventDetail.eventId);
+    [KSBadgeManager addViewedEvent:[NSMutableString stringWithString:_eventDetail.eventId] onDate:[NSMutableString stringWithString:_eventDetail.date]];
     
     // setting values
-    self.titleLabel.text = eventDetail.eventName;
+    self.titleLabel.text = _eventDetail.eventName;
     self.subTitleLabel.text = subTitle;
     self.eventImageView.image = eventImage;
  
@@ -139,7 +82,7 @@
     descLabel.textColor = [UIColor lightGrayColor];
     descLabel.backgroundColor = [UIColor clearColor];
    [descLabel setFont:[UIFont fontWithName:@"Helvetica" size:14]];
-    descLabel.text = eventDetail.eventDescription;
+    descLabel.text = _eventDetail.eventDescription;
     
     // Tell the label to use an unlimited number of lines
     [descLabel setNumberOfLines:0];
@@ -222,10 +165,10 @@
 
                     
                     //getting values
-                    NSString *title = eventDetail.eventName;
-                    NSString *venue = eventDetail.venueName;
-                    NSString *date = eventDetail.date;
-                    NSString *description = eventDetail.eventDescription;
+                    NSString *title = _eventDetail.eventName;
+                    NSString *venue = _eventDetail.venueName;
+                    NSString *date = _eventDetail.date;
+                    NSString *description = _eventDetail.eventDescription;
                     
                     // setting values to an event
                     event.title= title;
@@ -325,7 +268,7 @@
 
 - (void)voucherAction {
     VoucherDetailController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"voucher"];
-    nextViewController.eventDetail = eventDetail;
+    nextViewController.eventDetail = _eventDetail;
     [self.navigationController pushViewController:nextViewController animated: NO];
 }
 

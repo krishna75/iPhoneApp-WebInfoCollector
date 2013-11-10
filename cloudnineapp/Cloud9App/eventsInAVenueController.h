@@ -9,9 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "AllVenues.h"
 
+@class EventsInVenue;
+
 @interface eventsInAVenueController : UITableViewController
 
-@property (retain, nonatomic) AllVenues *allVenues;
+@property (retain, nonatomic) NSString* venueLogo;
+@property (retain, nonatomic) NSString* venueName;
+@property (retain, nonatomic) NSString* venueAddress;
+
+@property (retain, nonatomic) NSArray* eventInVenueArray;
 - (void) addToCalendar:(id) sender;
 
 @end

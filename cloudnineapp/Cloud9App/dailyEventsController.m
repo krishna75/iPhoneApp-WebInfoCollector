@@ -257,13 +257,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DailyEvents *dailyEvents = [coreDataResults objectAtIndex:indexPath.row];
-
-    eventDetailsController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventDetail"];
-    nextViewController.eventId = dailyEvents.eventId;
-    nextViewController.dailyEvents = dailyEvents;
-
-    [self.navigationController pushViewController:nextViewController animated: NO];
+//    DailyEvents *dailyEvents = [coreDataResults objectAtIndex:indexPath.row];
+//
+//    eventDetailsController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventDetail"];
+//    nextViewController.eventId = dailyEvents.eventId;
+//    nextViewController.dailyEvents = dailyEvents;
+//
+//    [self.navigationController pushViewController:nextViewController animated: NO];
 }
 
 
