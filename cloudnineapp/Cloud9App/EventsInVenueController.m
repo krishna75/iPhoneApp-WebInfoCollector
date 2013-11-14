@@ -96,6 +96,8 @@
     return [_eventInVenueArray count];
 }
 
+
+// The main method to display data
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"venueCell2";
@@ -143,8 +145,7 @@
 // header for the table view controller
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 
-    UIImage *logoImage = [KSUtilities getImage:_venueLogo] ;
-    return [KSUtilities getHeaderView:logoImage forTitle:_venueName forDetail:_venueAddress];
+    return [KSUtilities getHeaderView:[KSUtilities getImage:_venueLogo] forTitle:_venueName forDetail:_venueAddress];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

@@ -98,7 +98,7 @@
         //all genres
         AllGenres *allGenres = [NSEntityDescription insertNewObjectForEntityForName:@"AllGenres" inManagedObjectContext:context];
         allGenres.genreId = [jsonDict objectForKey:@"id"];
-        allGenres.genreName= [jsonDict objectForKey:@"name"];
+        allGenres.genreName= [jsonDict objectForKey:@"genre"];
         allGenres.genreDescription = [jsonDict objectForKey:@"description"];
         allGenres.genrePhoto = [jsonDict  objectForKey:@"photo"];
 
@@ -234,14 +234,6 @@
     cell.selectedBackgroundView = selBGView;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-//    NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
-//    EventsInGenreController *nextController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventsInGenre"];
-//    nextController.eventsDict = [eventCountDict mutableCopy];
-//    nextController.header = [eventCountDict objectForKey:@"genre"];
-//    [self.navigationController pushViewController:nextController  animated: NO];
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [KSSettings tableCellHeight];
@@ -253,6 +245,19 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 70;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    AllGenres*allGenres = [coreDataResults objectAtIndex:indexPath.row];
+
+    EventsInGenreController *nextController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventsInGenre"];
+    nextController.eventsInGenreArray= [allGenres.eventsInGenre allObjects];
+    nextController.genreName= allGenres.genreName;
+    nextController.genreDescription= allGenres.genreDescription;
+    nextController.genrePhoto= allGenres.genrePhoto;
+
+    [self.navigationController pushViewController:nextController  animated: NO];
 }
 
 @end

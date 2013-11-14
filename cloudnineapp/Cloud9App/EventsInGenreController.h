@@ -10,8 +10,10 @@
 
 @interface EventsInGenreController : UITableViewController
 
+@property (nonatomic,retain) NSArray *eventsInGenreArray;
 
-@property (retain, nonatomic) NSMutableDictionary *eventsDict;
-@property (nonatomic,retain) NSString *header;
+@property (nonatomic,retain) NSString *genreName;
+@property (nonatomic,retain) NSString *genreDescription;
+@property (nonatomic,retain) NSString *genrePhoto;
 
 @end

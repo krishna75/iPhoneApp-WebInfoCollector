@@ -269,8 +269,9 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    EventsInVenueController *nextController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventsInAVenue"];
     AllVenues* allVenues = [coreDataResults objectAtIndex:indexPath.row];
+
+    EventsInVenueController *nextController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventsInAVenue"];
     nextController.eventInVenueArray= [allVenues.eventsInVenue allObjects];
     nextController.venueLogo= allVenues.venueLogo;
     nextController.venueName= allVenues.venueName;

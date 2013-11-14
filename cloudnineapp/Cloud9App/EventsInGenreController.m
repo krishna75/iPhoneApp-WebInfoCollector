@@ -15,6 +15,7 @@
 #import "AppDelegate.h"
 #import "KSCell.h"
 #import "KSSettings.h"
+#import "EventsInGenre.h"
 
 #define kUrlEventsOfGenre @"eventsOfGenre.php?genre_id="
 #define kTableBG @"bg_tableView.png"
@@ -29,10 +30,7 @@
 
 @implementation EventsInGenreController {
     
-    NSMutableArray *jsonResults;
 }
-@synthesize eventsDict = _eventsDict;
-@synthesize header = _header;
 
 - (id)initWithStyle:(UITableViewStyle)style {
     
@@ -59,21 +57,11 @@
 }
 
 - (void) loadData {
-    
-    [self processJson];
     [self.tableView reloadData];
     [app RemoveLoadingView];
 }
 
-// the process also has spinner or loader
-- (void)processJson {
-    
-    KSJson * json = [[KSJson alloc] init];
-    NSString *url  = [NSString stringWithFormat:@"%@%@", kUrlEventsOfGenre,[_eventsDict  objectForKey:@"id"]];
-    NSLog(@"eventsInGenre: %@",url);
-    NSString *urlString = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    jsonResults = [json toArray:urlString];
-}
+
 
 - (void)decorateView{
     
@@ -114,7 +102,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [jsonResults count];
+    return [_eventsInGenreArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -124,12 +112,12 @@
     if (cell == nil) {
         cell = [[KSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier ] ;
     }
-    
-    cell.titleLabel.text=[NSString stringWithFormat:@"%@",[[jsonResults objectAtIndex:indexPath.row] objectForKey:@"event_title"]];
-    NSString *date = [NSString stringWithFormat:@"%@",[[jsonResults objectAtIndex:indexPath.row]
-                                                       objectForKey:@"date"]];
-    NSString *day = [NSString stringWithFormat:@"%@",[[jsonResults objectAtIndex:indexPath.row]
-                                                      objectForKey:@"day"]];
+
+    EventsInGenre *eventsInGenre = [_eventsInGenreArray objectAtIndex:indexPath.row];
+
+    cell.titleLabel.text = eventsInGenre.eventName;
+    NSString *date = eventsInGenre.date;
+    NSString *day = eventsInGenre.weekDay;
 
     NSDictionary *dateDict = [KSUtilities getDateDict:date];
     [cell addSubview: [KSUtilities getCalendar:[dateDict objectForKey:@"shortMonth"] forDay:[dateDict objectForKey:@"dateDay"]]];
@@ -156,8 +144,8 @@
 // header for the table view controller
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    NSString *title = [NSString stringWithFormat:@"%@",self.header];
-    return [KSUtilities getHeaderView:nil forTitle:title forDetail:@" "];
+
+    return [KSUtilities getHeaderView:[KSUtilities getImage:_genrePhoto] forTitle:_genreName forDetail:_genreDescription];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -165,19 +153,6 @@
     return 70;
 }
 
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSDictionary *appsDict = [jsonResults objectAtIndex:indexPath.row];
-    NSString *eventId = [appsDict objectForKey:@"event_id"];
-    
-    EventDetailsController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventDetail"];
-    nextViewController.eventId = eventId;
-    
-    [self.navigationController pushViewController:nextViewController animated: NO];
-    
-}
 
 #pragma mark - Back button;
 -(void) setBackButton {
@@ -187,10 +162,22 @@
 }
 
 -(void)goBack{
-    
+
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 
 
+#pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    NSDictionary *appsDict = [jsonResults objectAtIndex:indexPath.row];
+//    NSString *eventId = [appsDict objectForKey:@"event_id"];
+//
+//    EventDetailsController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventDetail"];
+//    nextViewController.eventId = eventId;
+//
+//    [self.navigationController pushViewController:nextViewController animated: NO];
+
+}
 @end
