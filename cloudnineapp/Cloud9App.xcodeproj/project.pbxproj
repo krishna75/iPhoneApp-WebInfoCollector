@@ -120,11 +120,14 @@
 		97528A2B17A56D8400AF6922 /* icon_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9F501716E94724009A9D1B /* icon_retina.png */; };
 		97528A2D17AD466000AF6922 /* bg_tableView.png in Resources */ = {isa = PBXBuildFile; fileRef = 97528A2C17AD466000AF6922 /* bg_tableView.png */; };
 		975C8D56182F93A3004A92EA /* DailyEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 975C8D55182F93A3004A92EA /* DailyEvents.m */; };
-		975C8D59182F93A4004A92EA /* EventDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 975C8D58182F93A4004A92EA /* EventDetail.m */; };
 		975C8D5C182F93A4004A92EA /* AllEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 975C8D5B182F93A4004A92EA /* AllEvents.m */; };
 		975C8D5F182F93A4004A92EA /* Voucher.m in Sources */ = {isa = PBXBuildFile; fileRef = 975C8D5E182F93A4004A92EA /* Voucher.m */; };
 		975C8D62182F93A4004A92EA /* AllVenues.m in Sources */ = {isa = PBXBuildFile; fileRef = 975C8D61182F93A4004A92EA /* AllVenues.m */; };
 		975C8D65182F93A4004A92EA /* EventsInVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 975C8D64182F93A4004A92EA /* EventsInVenue.m */; };
+		975C8D681834F522004A92EA /* EventDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 975C8D671834F522004A92EA /* EventDetail.m */; };
+		975C8D6B1834F523004A92EA /* EventsInGenre.m in Sources */ = {isa = PBXBuildFile; fileRef = 975C8D6A1834F523004A92EA /* EventsInGenre.m */; };
+		975C8D6E1834F523004A92EA /* AllGenres.m in Sources */ = {isa = PBXBuildFile; fileRef = 975C8D6D1834F523004A92EA /* AllGenres.m */; };
+		975C8D711834F7D1004A92EA /* VouchersToday.m in Sources */ = {isa = PBXBuildFile; fileRef = 975C8D701834F7D1004A92EA /* VouchersToday.m */; };
 		97AC29BF182E23E200C1FE90 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AC29BE182E23E200C1FE90 /* CoreData.framework */; };
 		97AE6F3217AD6E1C0069E971 /* cloud9_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 97AE6F3117AD6E1C0069E971 /* cloud9_icon.png */; };
 		97AE6F3417AD6E630069E971 /* cloud9_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 97AE6F3317AD6E630069E971 /* cloud9_icon.png */; };
@@ -260,8 +263,6 @@
 		97528A2C17AD466000AF6922 /* bg_tableView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_tableView.png; sourceTree = "<group>"; };
 		975C8D54182F93A3004A92EA /* DailyEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyEvents.h; sourceTree = "<group>"; };
 		975C8D55182F93A3004A92EA /* DailyEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyEvents.m; sourceTree = "<group>"; };
-		975C8D57182F93A4004A92EA /* EventDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetail.h; sourceTree = "<group>"; };
-		975C8D58182F93A4004A92EA /* EventDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetail.m; sourceTree = "<group>"; };
 		975C8D5A182F93A4004A92EA /* AllEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllEvents.h; sourceTree = "<group>"; };
 		975C8D5B182F93A4004A92EA /* AllEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllEvents.m; sourceTree = "<group>"; };
 		975C8D5D182F93A4004A92EA /* Voucher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Voucher.h; sourceTree = "<group>"; };
@@ -270,6 +271,14 @@
 		975C8D61182F93A4004A92EA /* AllVenues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllVenues.m; sourceTree = "<group>"; };
 		975C8D63182F93A4004A92EA /* EventsInVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsInVenue.h; sourceTree = "<group>"; };
 		975C8D64182F93A4004A92EA /* EventsInVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsInVenue.m; sourceTree = "<group>"; };
+		975C8D661834F522004A92EA /* EventDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetail.h; sourceTree = "<group>"; };
+		975C8D671834F522004A92EA /* EventDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetail.m; sourceTree = "<group>"; };
+		975C8D691834F523004A92EA /* EventsInGenre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsInGenre.h; sourceTree = "<group>"; };
+		975C8D6A1834F523004A92EA /* EventsInGenre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsInGenre.m; sourceTree = "<group>"; };
+		975C8D6C1834F523004A92EA /* AllGenres.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllGenres.h; sourceTree = "<group>"; };
+		975C8D6D1834F523004A92EA /* AllGenres.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllGenres.m; sourceTree = "<group>"; };
+		975C8D6F1834F7D1004A92EA /* VouchersToday.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VouchersToday.h; sourceTree = "<group>"; };
+		975C8D701834F7D1004A92EA /* VouchersToday.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VouchersToday.m; sourceTree = "<group>"; };
 		97AC29BE182E23E200C1FE90 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		97AE6F3117AD6E1C0069E971 /* cloud9_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud9_icon.png; sourceTree = "<group>"; };
 		97AE6F3317AD6E630069E971 /* cloud9_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud9_icon.png; sourceTree = "<group>"; };
@@ -371,7 +380,7 @@
 			children = (
 				4E57D11816D8B6EA00506E44 /* Event */,
 				4E57D11916D8B6FB00506E44 /* Venue */,
-				4E57D11A16D8B70400506E44 /* Preferences */,
+				4E57D11A16D8B70400506E44 /* Genres */,
 				97B8698D1784CB1B002FF0EA /* Voucher */,
 				4E57D11B16D8B71000506E44 /* Settings */,
 				9716929517D268E3001E48C9 /* TabBarController.h */,
@@ -404,7 +413,7 @@
 			name = Venue;
 			sourceTree = "<group>";
 		};
-		4E57D11A16D8B70400506E44 /* Preferences */ = {
+		4E57D11A16D8B70400506E44 /* Genres */ = {
 			isa = PBXGroup;
 			children = (
 				6325FF87171928730019DEDC /* AllGenresController.h */,
@@ -412,7 +421,7 @@
 				6325FF88171928730019DEDC /* AllGenresController.m */,
 				63FF350A1721925B004D7CB6 /* EventsInGenreController.m */,
 			);
-			name = Preferences;
+			name = Genres;
 			sourceTree = "<group>";
 		};
 		4E57D11B16D8B71000506E44 /* Settings */ = {
@@ -622,6 +631,14 @@
 		97AC29D0182E39DA00C1FE90 /* AppData */ = {
 			isa = PBXGroup;
 			children = (
+				975C8D6C1834F523004A92EA /* AllGenres.h */,
+				975C8D6D1834F523004A92EA /* AllGenres.m */,
+				975C8D6F1834F7D1004A92EA /* VouchersToday.h */,
+				975C8D701834F7D1004A92EA /* VouchersToday.m */,
+				975C8D691834F523004A92EA /* EventsInGenre.h */,
+				975C8D6A1834F523004A92EA /* EventsInGenre.m */,
+				975C8D661834F522004A92EA /* EventDetail.h */,
+				975C8D671834F522004A92EA /* EventDetail.m */,
 				975C8D63182F93A4004A92EA /* EventsInVenue.h */,
 				975C8D64182F93A4004A92EA /* EventsInVenue.m */,
 				975C8D60182F93A4004A92EA /* AllVenues.h */,
@@ -630,8 +647,6 @@
 				975C8D5E182F93A4004A92EA /* Voucher.m */,
 				975C8D5A182F93A4004A92EA /* AllEvents.h */,
 				975C8D5B182F93A4004A92EA /* AllEvents.m */,
-				975C8D57182F93A4004A92EA /* EventDetail.h */,
-				975C8D58182F93A4004A92EA /* EventDetail.m */,
 				975C8D54182F93A3004A92EA /* DailyEvents.h */,
 				975C8D55182F93A3004A92EA /* DailyEvents.m */,
 			);
@@ -985,11 +1000,14 @@
 				BD2DE35776F5B786C91F678D /* VouchersTodayController.m in Sources */,
 				BD2DE2D20714866C2E145E97 /* CloudNineApp.xcodedatamodel.xcdatamodeld in Sources */,
 				975C8D56182F93A3004A92EA /* DailyEvents.m in Sources */,
-				975C8D59182F93A4004A92EA /* EventDetail.m in Sources */,
 				975C8D5C182F93A4004A92EA /* AllEvents.m in Sources */,
 				975C8D5F182F93A4004A92EA /* Voucher.m in Sources */,
 				975C8D62182F93A4004A92EA /* AllVenues.m in Sources */,
 				975C8D65182F93A4004A92EA /* EventsInVenue.m in Sources */,
+				975C8D681834F522004A92EA /* EventDetail.m in Sources */,
+				975C8D6B1834F523004A92EA /* EventsInGenre.m in Sources */,
+				975C8D6E1834F523004A92EA /* AllGenres.m in Sources */,
+				975C8D711834F7D1004A92EA /* VouchersToday.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,12 +2,13 @@
 //  EventDetail.m
 //  Cloud9App
 //
-//  Created by Krishna Sapkota on 10/11/2013.
+//  Created by Krishna Sapkota on 14/11/2013.
 //  Copyright (c) 2013 Krishna Sapkota. All rights reserved.
 //
 
 #import "EventDetail.h"
 #import "DailyEvents.h"
+#import "EventsInVenue.h"
 #import "Voucher.h"
 
 
@@ -25,5 +26,6 @@
 @dynamic dailyEvents;
 @dynamic voucher;
 @dynamic eventsInVenue;
+@dynamic eventsInGenre;
 
 @end

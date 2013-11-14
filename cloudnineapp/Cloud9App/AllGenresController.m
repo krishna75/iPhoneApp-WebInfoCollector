@@ -7,18 +7,19 @@
 //
 
 #import "AllGenresController.h"
-#import <QuartzCore/QuartzCore.h>
 #import "KSJson.h"
-#import "DailyEventsController.h"
-#import "KSUtilities.h"
-#import "FirstJsonLoader.h"
-#import "KSBadgeManager.h"
 #import "AppDelegate.h"
 #import "EventsInGenreController.h"
 #import "KSCell.h"
-#import "KSSettings.h"
+#import "AllGenres.h"
+#import "EventsInGenre.h"
+#import "EventDetail.h"
 
-#define kjsonURL @"genres.php"
+
+#define kUrlGenres @"genres.php"
+#define kUrlEventsOfGenre @"eventsOfGenre.php?genre_id="
+#define kUrlEventDetail @"eventDetail.php?event_id="
+
 #define kTableBG @"bg_tableView.png"
 #define kCellBG @"bg_cell.png"
 #define kCellSelectedBG @"bg_cellSelected.png"
@@ -30,7 +31,7 @@
 
 @implementation AllGenresController {
     
-     NSMutableArray *jsonResults;
+     NSArray *coreDataResults;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -65,16 +66,19 @@
 
 // the process also has spinner or loader
 - (void)processJson {
-    
     KSJson * json = [[KSJson alloc] init];
-    jsonResults = [json toArray:kjsonURL];
+    if ([json isConnectionAvailable]){
+        [self createCoreData:[json toArray:kUrlGenres]];
+    } else {
+        coreDataResults = [self loadCoreData];
+    }
 }
 
 - (NSArray *) loadCoreData {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"AllGenresController" inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"AllGenres" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSError *error;
     return [context executeFetchRequest:fetchRequest error:&error];
@@ -92,31 +96,30 @@
     for (NSDictionary *jsonDict in jsonResults) {
 
         //all genres
-        AllVenues *allVenues = [NSEntityDescription insertNewObjectForEntityForName:@"AllGenresController" inManagedObjectContext:context];
-        allVenues.date = [jsonDict objectForKey:@"date"];
-        allVenues.venueId = [jsonDict objectForKey:@"venue_id"];
-        allVenues.venueName = [jsonDict objectForKey:@"name"];
-        allVenues.venueAddress = [jsonDict  objectForKey:@"address"];
-        allVenues.venueLogo = [jsonDict objectForKey:@"logo"];
-        NSMutableString *quantity = [jsonDict objectForKey:@"quantity"];
-        allVenues.eventCountDetail = [NSMutableString stringWithFormat:@"%@ Event(s)",quantity];
+        AllGenres *allGenres = [NSEntityDescription insertNewObjectForEntityForName:@"AllGenres" inManagedObjectContext:context];
+        allGenres.genreId = [jsonDict objectForKey:@"id"];
+        allGenres.genreName= [jsonDict objectForKey:@"name"];
+        allGenres.genreDescription = [jsonDict objectForKey:@"description"];
+        allGenres.genrePhoto = [jsonDict  objectForKey:@"photo"];
 
         // events in a genre
-        NSMutableArray *eventsInVenueArray = [[NSMutableArray alloc] init];
+        NSMutableArray *eventsInGenreArray = [[NSMutableArray alloc] init];
         KSJson * json = [[KSJson alloc] init];
-        NSString *jsonURL  = [NSString stringWithFormat:@"%@%@", kEventsOfVenueUrl, allVenues.venueId];
-        NSLog(@"AllVenuesController/createCoreData: jsonUrl = %@", jsonURL) ;
-        for (NSDictionary *eventsInVenueDict in [json toArray:jsonURL]) {
-            EventsInVenue *eventsInVenue = [NSEntityDescription insertNewObjectForEntityForName:@"EventsInVenue" inManagedObjectContext:context];
-            eventsInVenue.eventId = [eventsInVenueDict objectForKey:@"event_id"];
-            eventsInVenue.date = [eventsInVenueDict objectForKey:@"date"];
-            eventsInVenue.eventName = [eventsInVenueDict objectForKey:@"event_title"];
-            eventsInVenue.allVenues = allVenues;
-            [eventsInVenueArray addObject:eventsInVenue];
+        NSString *jsonURL  = [NSString stringWithFormat:@"%@%@", kUrlEventsOfGenre, allGenres.genreId];
+        NSLog(@"AllGrenresController/createCoreData: jsonUrl = %@", jsonURL) ;
+
+        for (NSDictionary *eventsInGenreDict in [json toArray:jsonURL]) {
+            EventsInGenre *eventsInGenre = [NSEntityDescription insertNewObjectForEntityForName:@"EventsInGenre" inManagedObjectContext:context];
+            eventsInGenre.eventId = [eventsInGenreDict objectForKey:@"event_id"];
+            eventsInGenre.date = [eventsInGenreDict objectForKey:@"date"];
+            eventsInGenre.eventName = [eventsInGenreDict objectForKey:@"event_title"];
+
+            //relationship
+            eventsInGenre.allGenres = allGenres;
+            [eventsInGenreArray addObject:eventsInGenre];
 
             // event detail
-            NSString * eventDetailUrl = [NSString stringWithFormat:@"%@%@", kEventDetailUrl,eventsInVenue.eventId];
-            NSDictionary *eventDetailDict = [[json toArray:eventDetailUrl] objectAtIndex:0];
+            NSDictionary *eventDetailDict = [[json toArray:[NSString stringWithFormat:@"%@%@", kUrlEventDetail, eventsInGenre.eventId]] objectAtIndex:0];
 
             EventDetail *eventDetail = [NSEntityDescription insertNewObjectForEntityForName:@"EventDetail" inManagedObjectContext:context];
             eventDetail.date = [eventDetailDict objectForKey:@"date"];
@@ -124,25 +127,26 @@
             eventDetail.eventId= [eventDetailDict objectForKey:@"id"];
             eventDetail.eventName = [eventDetailDict objectForKey:@"title"];
             eventDetail.photo = [eventDetailDict objectForKey:@"photo"];
-
             eventDetail.venueId = [eventDetailDict objectForKey:@"venue_id"];
             eventDetail.venueName = [eventDetailDict objectForKey:@"venue"];
-
             eventDetail.voucherDescription= [eventDetailDict objectForKey:@"voucher_description"];
             eventDetail.voucherPhoto= [eventDetailDict objectForKey:@"voucher_photo"];
 
-            NSLog(@"AllVenuesController/createCoreData: eventName=%@",eventDetail.eventName);
+            NSLog(@"AllGenreController/createCoreData: eventName=%@",eventDetail.eventName);
 
-            eventDetail.eventsInVenue = eventsInVenue;
-            eventsInVenue.eventDetails = eventDetail;
+            // relationship
+            eventDetail.eventsInGenre = eventsInGenre;
+            eventsInGenre.eventDetails = eventDetail;
         }
-        NSLog(@"AllVenuesController/createCoreData: eventsInVenueArray.size = %d", [eventsInVenueArray count]) ;
-        allVenues.eventsInVenue = [NSSet setWithArray:eventsInVenueArray] ;
+        NSLog(@"AllGenresController/createCoreData: eventsInGenreArray.size = %d", [eventsInGenreArray count]) ;
+
+        //relationship
+        allGenres.eventsInGenre = [NSSet setWithArray:eventsInGenreArray] ;
 
         //checking if the  data already exists
         BOOL saveOk = YES;
-        for (AllVenues * lastVenue in lastSaved ) {
-            if ([lastVenue.eventId isEqualToString:allVenues.eventId]){
+        for (AllGenres * lastVenue in lastSaved ) {
+            if ([lastVenue.genreId isEqualToString:allGenres.genreId]){
                 saveOk = NO;
             }
         }
@@ -154,7 +158,7 @@
                 NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
             }
         }
-        [results addObject:allVenues];
+        [results addObject:allGenres];
     }
     coreDataResults = results;
 }
@@ -204,7 +208,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return [jsonResults count];
+    return [coreDataResults count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -215,11 +219,10 @@
         cell = [[KSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier ] ;
     }
     
-    NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
-    NSMutableString    *genre = [eventCountDict objectForKey:@"genre"];
-    cell.titleLabel.text = [NSString stringWithFormat:@"%@", genre];
-    cell.descriptionLabel.text = [NSString stringWithFormat:@"%@",[eventCountDict objectForKey:@"description"]];
-    [cell addSubview: [KSUtilities getImageViewOfUrl:[eventCountDict objectForKey:@"photo"]]];
+    AllGenres *allGenres = [coreDataResults objectAtIndex:indexPath.row];
+    cell.titleLabel.text = allGenres.genreName;
+    cell.descriptionLabel.text = allGenres.genreDescription;
+    [cell addSubview: [KSUtilities getImageViewOfUrl:allGenres.genrePhoto]];
     return cell;
 }
 
@@ -233,11 +236,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
-    EventsInGenreController *nextController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventsInGenre"];
-    nextController.eventsDict = [eventCountDict mutableCopy];
-    nextController.header = [eventCountDict objectForKey:@"genre"];
-    [self.navigationController pushViewController:nextController  animated: NO];
+//    NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
+//    EventsInGenreController *nextController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventsInGenre"];
+//    nextController.eventsDict = [eventCountDict mutableCopy];
+//    nextController.header = [eventCountDict objectForKey:@"genre"];
+//    [self.navigationController pushViewController:nextController  animated: NO];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -246,12 +249,9 @@
 
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
-    NSMutableString *title = [NSString stringWithFormat:@"%@",@"Genres"];
-    return [KSUtilities getHeaderView:NULL forTitle:title forDetail:nil];
+    return [KSUtilities getHeaderView:NULL forTitle:@"Genres" forDetail:nil];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
     return 70;
 }
 

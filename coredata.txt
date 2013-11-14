@@ -63,3 +63,6 @@ eventDescription
 
 www.cnapp.co.uk/public/venuesAndEvents.php
 www.cnapp.co.uk/public/eventsOfAVenue.php?venue_id=14
+www.cnapp.co.uk/public/genres.php
+www.cnapp.co.uk/public/eventsOfGenre.php?id=1
+www.cnapp.co.uk/public/vouchers.php

@@ -15,7 +15,7 @@
 #import "DailyEvents.h"
 #import "AllEvents.h"
 
-#define kjsonURL @"eventsOfADate.php?event_date="
+#define kUrlGenres @"eventsOfADate.php?event_date="
 #define kTableBG @"bg_tableView.png"
 #define kCellBG @"bg_cell.png"
 #define kCellSelectedBG @"bg_cellSelected.png"
@@ -67,7 +67,7 @@
 - (void)processJson {
     KSJson * json = [[KSJson alloc] init];
     if ([json isConnectionAvailable]) {
-        NSString *jsonURL  = [NSString stringWithFormat:@"%@%@",kjsonURL,[eventDict  objectForKey:@"date"]];
+        NSString *jsonURL  = [NSString stringWithFormat:@"%@%@", kUrlGenres,[eventDict  objectForKey:@"date"]];
         NSArray *jsonResults = [json toArray:jsonURL];
         [self createCoreData:jsonResults];
     } else {

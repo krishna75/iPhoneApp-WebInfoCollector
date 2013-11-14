@@ -20,7 +20,7 @@
 #import "EventsInVenue.h"
 #import "EventDetail.h"
 
-#define kjsonURL @"eventsOfAVenue.php?venue_id="
+#define kUrlGenres @"eventsOfAVenue.php?venue_id="
 #define kTableBG @"bg_tableView.png"
 #define kCellBG @"bg_cell.png"
 #define kCellSelectedBG @"bg_cellSelected.png"

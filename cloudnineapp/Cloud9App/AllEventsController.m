@@ -15,7 +15,7 @@
 #import "KSCell.h"
 
 
-#define kjsonURL @"datesAndEvents.php"
+#define kUrlGenres @"datesAndEvents.php"
 #define kTableBG @"bg_tableView.png"
 #define kCellBG @"bg_cell.png"
 #define kCellSelectedBG @"bg_cellSelected.png"
@@ -65,7 +65,7 @@
 - (void)processJson {
     KSJson * json = [[KSJson alloc] init];
     if ([json isConnectionAvailable]){
-        NSArray * jsonResults = [json toArray:kjsonURL];
+        NSArray * jsonResults = [json toArray:kUrlGenres];
         [self createCoreData: jsonResults];
     } else {
       coreDataResults = [self loadCoreData];
