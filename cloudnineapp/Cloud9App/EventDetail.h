@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class DailyEvents, EventsInVenue, Voucher;
+@class DailyEvents, EventsInGenre, EventsInVenue, Voucher, VouchersToday;
 
 @interface EventDetail : NSManagedObject
 
@@ -23,8 +23,9 @@
 @property (nonatomic, retain) NSString * voucherDescription;
 @property (nonatomic, retain) NSString * voucherPhoto;
 @property (nonatomic, retain) DailyEvents *dailyEvents;
-@property (nonatomic, retain) Voucher *voucher;
+@property (nonatomic, retain) EventsInGenre *eventsInGenre;
 @property (nonatomic, retain) EventsInVenue *eventsInVenue;
-@property (nonatomic, retain) NSManagedObject *eventsInGenre;
+@property (nonatomic, retain) Voucher *voucher;
+@property (nonatomic, retain) VouchersToday *vouchersToday;
 
 @end

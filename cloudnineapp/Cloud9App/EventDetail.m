@@ -8,8 +8,10 @@
 
 #import "EventDetail.h"
 #import "DailyEvents.h"
+#import "EventsInGenre.h"
 #import "EventsInVenue.h"
 #import "Voucher.h"
+#import "VouchersToday.h"
 
 
 @implementation EventDetail
@@ -24,8 +26,9 @@
 @dynamic voucherDescription;
 @dynamic voucherPhoto;
 @dynamic dailyEvents;
-@dynamic voucher;
-@dynamic eventsInVenue;
 @dynamic eventsInGenre;
+@dynamic eventsInVenue;
+@dynamic voucher;
+@dynamic vouchersToday;
 
 @end

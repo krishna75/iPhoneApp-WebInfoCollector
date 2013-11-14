@@ -2,7 +2,7 @@
 //  EventsInVenue.h
 //  Cloud9App
 //
-//  Created by Krishna Sapkota on 10/11/2013.
+//  Created by Krishna Sapkota on 14/11/2013.
 //  Copyright (c) 2013 Krishna Sapkota. All rights reserved.
 //
 
@@ -13,8 +13,8 @@
 
 @interface EventsInVenue : NSManagedObject
 
-@property (nonatomic, retain) NSString * eventId;
 @property (nonatomic, retain) NSString * date;
+@property (nonatomic, retain) NSString * eventId;
 @property (nonatomic, retain) NSString * eventName;
 @property (nonatomic, retain) AllVenues *allVenues;
 @property (nonatomic, retain) EventDetail *eventDetails;

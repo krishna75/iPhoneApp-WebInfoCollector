@@ -13,9 +13,9 @@
 
 @interface AllGenres : NSManagedObject
 
+@property (nonatomic, retain) NSString * genreDescription;
 @property (nonatomic, retain) NSString * genreId;
 @property (nonatomic, retain) NSString * genreName;
-@property (nonatomic, retain) NSString * genreDescription;
 @property (nonatomic, retain) NSString * genrePhoto;
 @property (nonatomic, retain) NSSet *eventsInGenre;
 @end

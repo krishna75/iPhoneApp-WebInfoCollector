@@ -12,9 +12,9 @@
 
 @implementation AllGenres
 
+@dynamic genreDescription;
 @dynamic genreId;
 @dynamic genreName;
-@dynamic genreDescription;
 @dynamic genrePhoto;
 @dynamic eventsInGenre;
 

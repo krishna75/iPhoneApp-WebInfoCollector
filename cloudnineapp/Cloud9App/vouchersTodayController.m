@@ -14,8 +14,9 @@
 #import "AppDelegate.h"
 #import "KSCell.h"
 #import "KSSettings.h"
+#import "VouchersToday.h"
 
-#define kVoucherUrl @"vouchers.php"
+#define kUrlVoucher @"vouchers.php"
 #define kTableBG @"bg_tableView.png"
 #define kCellBG @"bg_cell.png"
 #define kCellSelectedBG @"bg_cellSelected.png"
@@ -26,14 +27,14 @@
 @end
 
 @implementation VouchersTodayController {
-    NSMutableArray *eventDictArray;
+    NSArray *coreDataResults;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -59,10 +60,85 @@
     [app RemoveLoadingView];
 }
 
-// the process also has spinner or loader
 - (void)processJson {
     KSJson * json = [[KSJson alloc] init];
-    eventDictArray = [json toArray:kVoucherUrl];
+    if ([json isConnectionAvailable]){
+        [self createCoreData:[json toArray:kUrlVoucher]];
+    } else {
+        coreDataResults = [self loadCoreData];
+    }
+}
+
+- (NSArray *) loadCoreData {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"VouchersToday" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    return [context executeFetchRequest:fetchRequest error:&error];
+}
+
+- (void) createCoreData: (NSArray *) jsonResults {
+
+    NSArray *lastSaved = [self loadCoreData];
+    NSMutableArray *results = [[NSMutableArray alloc] init] ;
+
+    // get the context
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+
+    for (NSDictionary *jsonDict in jsonResults) {
+
+        // vouchers today
+        VouchersToday *vouchersToday = [NSEntityDescription insertNewObjectForEntityForName:@"VouchersToday" inManagedObjectContext:context];
+        vouchersToday.venueId = [jsonDict objectForKey:@"venue_id"];
+        vouchersToday.venueName= [jsonDict objectForKey:@"name"];
+        vouchersToday.venueAddress = [jsonDict objectForKey:@"address"];
+        vouchersToday.venueLogo= [jsonDict  objectForKey:@"logo"];
+        vouchersToday.eventId= [jsonDict  objectForKey:@"event_id"];
+        vouchersToday.eventName= [jsonDict  objectForKey:@"event_title"];
+        vouchersToday.voucherDescription= [jsonDict  objectForKey:@"voucher_description"];
+        vouchersToday.voucherPhoto= [jsonDict  objectForKey:@"voucher_photo"];
+
+        // event details
+        EventDetail *eventDetail = [NSEntityDescription insertNewObjectForEntityForName:@"EventDetail" inManagedObjectContext:context];
+        eventDetail.venueId = vouchersToday.venueId;
+        eventDetail.venueName = vouchersToday.venueName;
+        eventDetail.eventId = vouchersToday.eventId;
+        eventDetail.eventName = vouchersToday.eventName;
+        eventDetail.voucherDescription = vouchersToday.voucherDescription ;
+        eventDetail.voucherPhoto = vouchersToday.voucherPhoto;
+
+        // adding today's date  to the event details
+        NSDate *today = [NSDate date];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+        [dateFormat setDateFormat:@"YYYY-MM-dd"];
+        NSString *todayString = [dateFormat stringFromDate:today];
+        eventDetail.date = todayString;
+
+        // relations
+        eventDetail.vouchersToday = vouchersToday;
+        vouchersToday.eventDetails = eventDetail;
+
+        // checking if the  data already exists
+        BOOL saveOk = YES;
+        for (VouchersToday *lastVoucher in lastSaved ) {
+            if ([lastVoucher.eventId isEqualToString:vouchersToday.eventId]){
+                saveOk = NO;
+            }
+        }
+
+        //saving data
+        NSError *error = nil;
+        if (saveOk) {
+            if (![context save:&error]) {
+                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            }
+        }
+        [results addObject:vouchersToday];
+    }
+    coreDataResults = results;
 }
 
 - (void)decorateView{
@@ -89,35 +165,19 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.topItem.title  = @"Venues";
+    self.navigationController.navigationBar.topItem.title  = @"Vouchers";
     [self.tableView reloadData];
 }
 
--(void)viewWillDisappear:(BOOL)animated {
-
-    [super viewWillDisappear:animated];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+-(void)viewWillDisappear:(BOOL)animated {[super viewWillDisappear:animated];}
+- (void)didReceiveMemoryWarning {[super didReceiveMemoryWarning];}
 
 #pragma mark - Table view data source
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {return 1;}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {return [coreDataResults count];}
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
-}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    return [eventDictArray count];
-}
-
+// data for the cells
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"venueCell1";
@@ -126,43 +186,17 @@
         cell = [[KSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier ] ;
     }
     
-    NSDictionary *eventDict = [eventDictArray objectAtIndex:indexPath.row];
+    VouchersToday *vouchersToday = [coreDataResults objectAtIndex:indexPath.row];
     
-    cell.titleLabel.text = [eventDict objectForKey:@"name"];
-    cell.moreLabel.text = [eventDict objectForKey:@"voucher_description"];
-    cell.descriptionLabel.text = [eventDict objectForKey:@"event_title"];
-    [cell addSubview: [KSUtilities getImageViewOfUrl:[eventDict objectForKey:@"logo"]]];
-    
-    // displaying events as a badge
-    NSMutableArray *eventIdList = [[NSMutableArray alloc] init];
-    KSJson * json = [[KSJson alloc] init];
-    NSString *jsonURL  = [NSString stringWithFormat:@"%@%@", kVoucherUrl,[eventDict objectForKey:@"venue_id" ]];
-    NSMutableArray *eventsForBadge = [json toArray:jsonURL];
-    for (int i = 0; i < [eventsForBadge count]; i++) {
-        NSDictionary *eventForBadgeDict = [eventsForBadge objectAtIndex:i];
-        NSMutableString   *eventId= [eventForBadgeDict objectForKey:@"event_id"];
-        NSMutableString *date = [eventForBadgeDict objectForKey:@"date"];
-        [eventIdList addObject:[NSMutableString stringWithFormat:@"%@:%@",eventId,date]];   
-    }
-    
-    //badges
-    int newEventCount = [KSBadgeManager countNewEvents:eventIdList];
-    if (newEventCount > 0) {
-        if(app.setBadge) {
-            UIView *badgeView = [KSUtilities getBadgeLikeView:[NSString stringWithFormat:@"%i", newEventCount] showHide:app.setBadge];
-            badgeView.tag = 111;
-            [cell.contentView addSubview:badgeView];
-        }
-        else {
-            UIView *badge = [cell.contentView viewWithTag:111];
-            [badge removeFromSuperview];
-        }
-    }
+    cell.titleLabel.text = vouchersToday.venueName;
+    cell.moreLabel.text = vouchersToday.voucherDescription;
+    cell.descriptionLabel.text = vouchersToday.eventName;
+    [cell addSubview: [KSUtilities getImageViewOfUrl:vouchersToday.venueLogo]];
+
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [KSSettings tableCellHeight]; 
 }
 
@@ -173,30 +207,17 @@
     
     UIImageView *selBGView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:kCellSelectedBG]];
     cell.selectedBackgroundView = selBGView;
-    
 }
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *eventDict = [eventDictArray objectAtIndex:indexPath.row];
 
-    NSDate *today = [NSDate date];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-    [dateFormat setDateFormat:@"YYYY-MM-dd"];
-    NSString *todayString = [dateFormat stringFromDate:today];
+    VouchersToday *vouchersToday = [coreDataResults objectAtIndex:indexPath.row];
 
-    NSMutableDictionary *voucherDict = [[NSMutableDictionary alloc] init];
-    [voucherDict setValue:[eventDict objectForKey:@"event_id"] forKey:@"id"];
-    [voucherDict setValue:[eventDict objectForKey:@"venue_id"] forKey:@"venue_id"];
-    [voucherDict setValue:[eventDict objectForKey:@"voucher"] forKey:@"voucher"];
-    [voucherDict setValue:[eventDict objectForKey:@"voucher_photo"] forKey:@"voucher_photo"];
-    [voucherDict setValue:todayString forKey:@"date"];
+    VoucherDetailController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"voucher"];
+    nextViewController.eventDetail= vouchersToday.eventDetails;
 
-
-    VoucherDetailController *voucher = [self.storyboard instantiateViewControllerWithIdentifier:@"voucher"];
-    voucher.eventDetailDict= voucherDict;
-
-    [self.navigationController pushViewController:voucher animated:NO];
+    [self.navigationController pushViewController:nextViewController animated:NO];
 }
 
 @end

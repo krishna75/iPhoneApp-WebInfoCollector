@@ -7,14 +7,15 @@
 //
 
 #import "EventsInGenre.h"
+#import "AllGenres.h"
 #import "EventDetail.h"
 
 
 @implementation EventsInGenre
 
+@dynamic date;
 @dynamic eventId;
 @dynamic eventName;
-@dynamic date;
 @dynamic weekDay;
 @dynamic allGenres;
 @dynamic eventDetails;

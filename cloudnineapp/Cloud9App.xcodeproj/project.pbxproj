@@ -119,15 +119,6 @@
 		97528A2117A5644300AF6922 /* Start_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 97528A2017A5644300AF6922 /* Start_up.png */; };
 		97528A2B17A56D8400AF6922 /* icon_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9F501716E94724009A9D1B /* icon_retina.png */; };
 		97528A2D17AD466000AF6922 /* bg_tableView.png in Resources */ = {isa = PBXBuildFile; fileRef = 97528A2C17AD466000AF6922 /* bg_tableView.png */; };
-		975C8D56182F93A3004A92EA /* DailyEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 975C8D55182F93A3004A92EA /* DailyEvents.m */; };
-		975C8D5C182F93A4004A92EA /* AllEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 975C8D5B182F93A4004A92EA /* AllEvents.m */; };
-		975C8D5F182F93A4004A92EA /* Voucher.m in Sources */ = {isa = PBXBuildFile; fileRef = 975C8D5E182F93A4004A92EA /* Voucher.m */; };
-		975C8D62182F93A4004A92EA /* AllVenues.m in Sources */ = {isa = PBXBuildFile; fileRef = 975C8D61182F93A4004A92EA /* AllVenues.m */; };
-		975C8D65182F93A4004A92EA /* EventsInVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 975C8D64182F93A4004A92EA /* EventsInVenue.m */; };
-		975C8D681834F522004A92EA /* EventDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 975C8D671834F522004A92EA /* EventDetail.m */; };
-		975C8D6B1834F523004A92EA /* EventsInGenre.m in Sources */ = {isa = PBXBuildFile; fileRef = 975C8D6A1834F523004A92EA /* EventsInGenre.m */; };
-		975C8D6E1834F523004A92EA /* AllGenres.m in Sources */ = {isa = PBXBuildFile; fileRef = 975C8D6D1834F523004A92EA /* AllGenres.m */; };
-		975C8D711834F7D1004A92EA /* VouchersToday.m in Sources */ = {isa = PBXBuildFile; fileRef = 975C8D701834F7D1004A92EA /* VouchersToday.m */; };
 		97AC29BF182E23E200C1FE90 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AC29BE182E23E200C1FE90 /* CoreData.framework */; };
 		97AE6F3217AD6E1C0069E971 /* cloud9_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 97AE6F3117AD6E1C0069E971 /* cloud9_icon.png */; };
 		97AE6F3417AD6E630069E971 /* cloud9_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 97AE6F3317AD6E630069E971 /* cloud9_icon.png */; };
@@ -148,6 +139,15 @@
 		97B869B91784CC79002FF0EA /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 97B869B41784CC79002FF0EA /* zbar-help.html */; };
 		97B869BA1784CC79002FF0EA /* zbar-helpicons.png in Resources */ = {isa = PBXBuildFile; fileRef = 97B869B51784CC79002FF0EA /* zbar-helpicons.png */; };
 		97B869BB1784CC79002FF0EA /* zbar-samples.png in Resources */ = {isa = PBXBuildFile; fileRef = 97B869B61784CC79002FF0EA /* zbar-samples.png */; };
+		97D53C661835473D00DC3B5B /* EventDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D53C651835473D00DC3B5B /* EventDetail.m */; };
+		97D53C691835473D00DC3B5B /* AllEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D53C681835473D00DC3B5B /* AllEvents.m */; };
+		97D53C6C1835473E00DC3B5B /* AllGenres.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D53C6B1835473E00DC3B5B /* AllGenres.m */; };
+		97D53C6F1835473E00DC3B5B /* Voucher.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D53C6E1835473E00DC3B5B /* Voucher.m */; };
+		97D53C721835473E00DC3B5B /* VouchersToday.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D53C711835473E00DC3B5B /* VouchersToday.m */; };
+		97D53C751835473E00DC3B5B /* EventsInVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D53C741835473E00DC3B5B /* EventsInVenue.m */; };
+		97D53C781835473E00DC3B5B /* DailyEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D53C771835473E00DC3B5B /* DailyEvents.m */; };
+		97D53C7B1835473E00DC3B5B /* EventsInGenre.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D53C7A1835473E00DC3B5B /* EventsInGenre.m */; };
+		97D53C7E1835473E00DC3B5B /* AllVenues.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D53C7D1835473E00DC3B5B /* AllVenues.m */; };
 		97F1ECBE17D386460011C391 /* Harabara.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 971692A317D3849B001E48C9 /* Harabara.ttf */; };
 		97F1ECC017D38C0A0011C391 /* Newchester.otf in Resources */ = {isa = PBXBuildFile; fileRef = 97F1ECBF17D38C0A0011C391 /* Newchester.otf */; };
 		97F1ECC417D3A55E0011C391 /* bg_table_cell.png in Resources */ = {isa = PBXBuildFile; fileRef = 97F1ECC317D3A55E0011C391 /* bg_table_cell.png */; };
@@ -261,24 +261,6 @@
 		9736CA9E182D42D4008E5A2E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		97528A2017A5644300AF6922 /* Start_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Start_up.png; sourceTree = "<group>"; };
 		97528A2C17AD466000AF6922 /* bg_tableView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_tableView.png; sourceTree = "<group>"; };
-		975C8D54182F93A3004A92EA /* DailyEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyEvents.h; sourceTree = "<group>"; };
-		975C8D55182F93A3004A92EA /* DailyEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyEvents.m; sourceTree = "<group>"; };
-		975C8D5A182F93A4004A92EA /* AllEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllEvents.h; sourceTree = "<group>"; };
-		975C8D5B182F93A4004A92EA /* AllEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllEvents.m; sourceTree = "<group>"; };
-		975C8D5D182F93A4004A92EA /* Voucher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Voucher.h; sourceTree = "<group>"; };
-		975C8D5E182F93A4004A92EA /* Voucher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Voucher.m; sourceTree = "<group>"; };
-		975C8D60182F93A4004A92EA /* AllVenues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllVenues.h; sourceTree = "<group>"; };
-		975C8D61182F93A4004A92EA /* AllVenues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllVenues.m; sourceTree = "<group>"; };
-		975C8D63182F93A4004A92EA /* EventsInVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsInVenue.h; sourceTree = "<group>"; };
-		975C8D64182F93A4004A92EA /* EventsInVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsInVenue.m; sourceTree = "<group>"; };
-		975C8D661834F522004A92EA /* EventDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetail.h; sourceTree = "<group>"; };
-		975C8D671834F522004A92EA /* EventDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetail.m; sourceTree = "<group>"; };
-		975C8D691834F523004A92EA /* EventsInGenre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsInGenre.h; sourceTree = "<group>"; };
-		975C8D6A1834F523004A92EA /* EventsInGenre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsInGenre.m; sourceTree = "<group>"; };
-		975C8D6C1834F523004A92EA /* AllGenres.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllGenres.h; sourceTree = "<group>"; };
-		975C8D6D1834F523004A92EA /* AllGenres.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllGenres.m; sourceTree = "<group>"; };
-		975C8D6F1834F7D1004A92EA /* VouchersToday.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VouchersToday.h; sourceTree = "<group>"; };
-		975C8D701834F7D1004A92EA /* VouchersToday.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VouchersToday.m; sourceTree = "<group>"; };
 		97AC29BE182E23E200C1FE90 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		97AE6F3117AD6E1C0069E971 /* cloud9_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud9_icon.png; sourceTree = "<group>"; };
 		97AE6F3317AD6E630069E971 /* cloud9_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud9_icon.png; sourceTree = "<group>"; };
@@ -317,6 +299,24 @@
 		97B869B41784CC79002FF0EA /* zbar-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "zbar-help.html"; sourceTree = "<group>"; };
 		97B869B51784CC79002FF0EA /* zbar-helpicons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-helpicons.png"; sourceTree = "<group>"; };
 		97B869B61784CC79002FF0EA /* zbar-samples.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-samples.png"; sourceTree = "<group>"; };
+		97D53C641835473D00DC3B5B /* EventDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetail.h; sourceTree = "<group>"; };
+		97D53C651835473D00DC3B5B /* EventDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetail.m; sourceTree = "<group>"; };
+		97D53C671835473D00DC3B5B /* AllEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllEvents.h; sourceTree = "<group>"; };
+		97D53C681835473D00DC3B5B /* AllEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllEvents.m; sourceTree = "<group>"; };
+		97D53C6A1835473E00DC3B5B /* AllGenres.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllGenres.h; sourceTree = "<group>"; };
+		97D53C6B1835473E00DC3B5B /* AllGenres.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllGenres.m; sourceTree = "<group>"; };
+		97D53C6D1835473E00DC3B5B /* Voucher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Voucher.h; sourceTree = "<group>"; };
+		97D53C6E1835473E00DC3B5B /* Voucher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Voucher.m; sourceTree = "<group>"; };
+		97D53C701835473E00DC3B5B /* VouchersToday.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VouchersToday.h; sourceTree = "<group>"; };
+		97D53C711835473E00DC3B5B /* VouchersToday.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VouchersToday.m; sourceTree = "<group>"; };
+		97D53C731835473E00DC3B5B /* EventsInVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsInVenue.h; sourceTree = "<group>"; };
+		97D53C741835473E00DC3B5B /* EventsInVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsInVenue.m; sourceTree = "<group>"; };
+		97D53C761835473E00DC3B5B /* DailyEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyEvents.h; sourceTree = "<group>"; };
+		97D53C771835473E00DC3B5B /* DailyEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyEvents.m; sourceTree = "<group>"; };
+		97D53C791835473E00DC3B5B /* EventsInGenre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsInGenre.h; sourceTree = "<group>"; };
+		97D53C7A1835473E00DC3B5B /* EventsInGenre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsInGenre.m; sourceTree = "<group>"; };
+		97D53C7C1835473E00DC3B5B /* AllVenues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllVenues.h; sourceTree = "<group>"; };
+		97D53C7D1835473E00DC3B5B /* AllVenues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllVenues.m; sourceTree = "<group>"; };
 		97F1ECBF17D38C0A0011C391 /* Newchester.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Newchester.otf; sourceTree = "<group>"; };
 		97F1ECC317D3A55E0011C391 /* bg_table_cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_table_cell.png; sourceTree = "<group>"; };
 		BD2DE2DDB7E2746D828C5A28 /* VouchersTodayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VouchersTodayController.h; sourceTree = "<group>"; };
@@ -631,24 +631,24 @@
 		97AC29D0182E39DA00C1FE90 /* AppData */ = {
 			isa = PBXGroup;
 			children = (
-				975C8D6C1834F523004A92EA /* AllGenres.h */,
-				975C8D6D1834F523004A92EA /* AllGenres.m */,
-				975C8D6F1834F7D1004A92EA /* VouchersToday.h */,
-				975C8D701834F7D1004A92EA /* VouchersToday.m */,
-				975C8D691834F523004A92EA /* EventsInGenre.h */,
-				975C8D6A1834F523004A92EA /* EventsInGenre.m */,
-				975C8D661834F522004A92EA /* EventDetail.h */,
-				975C8D671834F522004A92EA /* EventDetail.m */,
-				975C8D63182F93A4004A92EA /* EventsInVenue.h */,
-				975C8D64182F93A4004A92EA /* EventsInVenue.m */,
-				975C8D60182F93A4004A92EA /* AllVenues.h */,
-				975C8D61182F93A4004A92EA /* AllVenues.m */,
-				975C8D5D182F93A4004A92EA /* Voucher.h */,
-				975C8D5E182F93A4004A92EA /* Voucher.m */,
-				975C8D5A182F93A4004A92EA /* AllEvents.h */,
-				975C8D5B182F93A4004A92EA /* AllEvents.m */,
-				975C8D54182F93A3004A92EA /* DailyEvents.h */,
-				975C8D55182F93A3004A92EA /* DailyEvents.m */,
+				97D53C7C1835473E00DC3B5B /* AllVenues.h */,
+				97D53C7D1835473E00DC3B5B /* AllVenues.m */,
+				97D53C791835473E00DC3B5B /* EventsInGenre.h */,
+				97D53C7A1835473E00DC3B5B /* EventsInGenre.m */,
+				97D53C761835473E00DC3B5B /* DailyEvents.h */,
+				97D53C771835473E00DC3B5B /* DailyEvents.m */,
+				97D53C731835473E00DC3B5B /* EventsInVenue.h */,
+				97D53C741835473E00DC3B5B /* EventsInVenue.m */,
+				97D53C701835473E00DC3B5B /* VouchersToday.h */,
+				97D53C711835473E00DC3B5B /* VouchersToday.m */,
+				97D53C6D1835473E00DC3B5B /* Voucher.h */,
+				97D53C6E1835473E00DC3B5B /* Voucher.m */,
+				97D53C6A1835473E00DC3B5B /* AllGenres.h */,
+				97D53C6B1835473E00DC3B5B /* AllGenres.m */,
+				97D53C671835473D00DC3B5B /* AllEvents.h */,
+				97D53C681835473D00DC3B5B /* AllEvents.m */,
+				97D53C641835473D00DC3B5B /* EventDetail.h */,
+				97D53C651835473D00DC3B5B /* EventDetail.m */,
 			);
 			name = AppData;
 			sourceTree = "<group>";
@@ -999,15 +999,15 @@
 				9716929717D268E3001E48C9 /* TabBarController.m in Sources */,
 				BD2DE35776F5B786C91F678D /* VouchersTodayController.m in Sources */,
 				BD2DE2D20714866C2E145E97 /* CloudNineApp.xcodedatamodel.xcdatamodeld in Sources */,
-				975C8D56182F93A3004A92EA /* DailyEvents.m in Sources */,
-				975C8D5C182F93A4004A92EA /* AllEvents.m in Sources */,
-				975C8D5F182F93A4004A92EA /* Voucher.m in Sources */,
-				975C8D62182F93A4004A92EA /* AllVenues.m in Sources */,
-				975C8D65182F93A4004A92EA /* EventsInVenue.m in Sources */,
-				975C8D681834F522004A92EA /* EventDetail.m in Sources */,
-				975C8D6B1834F523004A92EA /* EventsInGenre.m in Sources */,
-				975C8D6E1834F523004A92EA /* AllGenres.m in Sources */,
-				975C8D711834F7D1004A92EA /* VouchersToday.m in Sources */,
+				97D53C661835473D00DC3B5B /* EventDetail.m in Sources */,
+				97D53C691835473D00DC3B5B /* AllEvents.m in Sources */,
+				97D53C6C1835473E00DC3B5B /* AllGenres.m in Sources */,
+				97D53C6F1835473E00DC3B5B /* Voucher.m in Sources */,
+				97D53C721835473E00DC3B5B /* VouchersToday.m in Sources */,
+				97D53C751835473E00DC3B5B /* EventsInVenue.m in Sources */,
+				97D53C781835473E00DC3B5B /* DailyEvents.m in Sources */,
+				97D53C7B1835473E00DC3B5B /* EventsInGenre.m in Sources */,
+				97D53C7E1835473E00DC3B5B /* AllVenues.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

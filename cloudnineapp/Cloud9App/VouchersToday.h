@@ -9,16 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class EventDetail;
 
 @interface VouchersToday : NSManagedObject
 
-@property (nonatomic, retain) NSString * venueId;
-@property (nonatomic, retain) NSString * venueName;
-@property (nonatomic, retain) NSString * venueAddress;
-@property (nonatomic, retain) NSString * venueLogo;
 @property (nonatomic, retain) NSString * eventId;
 @property (nonatomic, retain) NSString * eventName;
+@property (nonatomic, retain) NSString * venueAddress;
+@property (nonatomic, retain) NSString * venueId;
+@property (nonatomic, retain) NSString * venueLogo;
+@property (nonatomic, retain) NSString * venueName;
 @property (nonatomic, retain) NSString * voucherDescription;
 @property (nonatomic, retain) NSString * voucherPhoto;
+@property (nonatomic, retain) EventDetail *eventDetails;
 
 @end

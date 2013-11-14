@@ -2,7 +2,7 @@
 //  Voucher.h
 //  Cloud9App
 //
-//  Created by Krishna Sapkota on 10/11/2013.
+//  Created by Krishna Sapkota on 14/11/2013.
 //  Copyright (c) 2013 Krishna Sapkota. All rights reserved.
 //
 
@@ -16,6 +16,6 @@
 @property (nonatomic, retain) NSDate * voucherDate;
 @property (nonatomic, retain) NSString * voucherDescription;
 @property (nonatomic, retain) NSString * voucherPhoto;
-@property (nonatomic, retain) EventDetail *eventDeail;
+@property (nonatomic, retain) EventDetail *eventDetails;
 
 @end

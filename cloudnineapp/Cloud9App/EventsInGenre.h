@@ -9,15 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class EventDetail;
+@class AllGenres, EventDetail;
 
 @interface EventsInGenre : NSManagedObject
 
+@property (nonatomic, retain) NSString * date;
 @property (nonatomic, retain) NSString * eventId;
 @property (nonatomic, retain) NSString * eventName;
-@property (nonatomic, retain) NSString * date;
 @property (nonatomic, retain) NSString * weekDay;
-@property (nonatomic, retain) NSManagedObject *allGenres;
+@property (nonatomic, retain) AllGenres *allGenres;
 @property (nonatomic, retain) EventDetail *eventDetails;
 
 @end

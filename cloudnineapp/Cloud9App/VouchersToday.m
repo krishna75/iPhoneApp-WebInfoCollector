@@ -7,17 +7,19 @@
 //
 
 #import "VouchersToday.h"
+#import "EventDetail.h"
 
 
 @implementation VouchersToday
 
-@dynamic venueId;
-@dynamic venueName;
-@dynamic venueAddress;
-@dynamic venueLogo;
 @dynamic eventId;
 @dynamic eventName;
+@dynamic venueAddress;
+@dynamic venueId;
+@dynamic venueLogo;
+@dynamic venueName;
 @dynamic voucherDescription;
 @dynamic voucherPhoto;
+@dynamic eventDetails;
 
 @end

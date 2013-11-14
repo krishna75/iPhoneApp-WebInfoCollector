@@ -145,8 +145,8 @@
 
         //checking if the  data already exists
         BOOL saveOk = YES;
-        for (AllGenres * lastVenue in lastSaved ) {
-            if ([lastVenue.genreId isEqualToString:allGenres.genreId]){
+        for (AllGenres *lastGenre in lastSaved ) {
+            if ([lastGenre.genreId isEqualToString:allGenres.genreId]){
                 saveOk = NO;
             }
         }
