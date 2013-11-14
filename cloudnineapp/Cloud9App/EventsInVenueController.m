@@ -152,18 +152,6 @@
     return 70;
 }
 
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    EventsInVenue *eventsInVenue = [_eventInVenueArray objectAtIndex:indexPath.row];
-    EventDetailsController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventDetail"];
-    nextViewController.eventDetail = eventsInVenue.eventDetails;
-    NSLog(@"eventInVenueController/didSelect...: eventName=%@", eventsInVenue.eventDetails.eventName);
-
-    [self.navigationController pushViewController:nextViewController animated: NO];
-
-}
 
 #pragma mark - Back button;
 -(void) setBackButton {
@@ -174,5 +162,17 @@
 
 -(void)goBack{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    EventsInVenue *eventsInVenue = [_eventInVenueArray objectAtIndex:indexPath.row];
+    EventDetailsController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventDetail"];
+    nextViewController.eventDetail = eventsInVenue.eventDetails;
+    NSLog(@"eventInVenueController/didSelect...: eventName=%@", eventsInVenue.eventDetails.eventName);
+
+    [self.navigationController pushViewController:nextViewController animated: NO];
+
 }
 @end

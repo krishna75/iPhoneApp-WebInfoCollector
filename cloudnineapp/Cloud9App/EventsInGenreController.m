@@ -16,6 +16,7 @@
 #import "KSCell.h"
 #import "KSSettings.h"
 #import "EventsInGenre.h"
+#import "EventDetail.h"
 
 #define kUrlEventsOfGenre @"eventsOfGenre.php?genre_id="
 #define kTableBG @"bg_tableView.png"
@@ -171,13 +172,13 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSDictionary *appsDict = [jsonResults objectAtIndex:indexPath.row];
-//    NSString *eventId = [appsDict objectForKey:@"event_id"];
-//
-//    EventDetailsController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventDetail"];
-//    nextViewController.eventId = eventId;
-//
-//    [self.navigationController pushViewController:nextViewController animated: NO];
+    EventsInGenre *eventsInGenre = [_eventsInGenreArray objectAtIndex:indexPath.row];
+
+    EventDetailsController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventDetail"];
+    nextViewController.eventDetail = eventsInGenre.eventDetails;
+    NSLog(@"EventsInGenreController/didSelect...: eventName=%@", eventsInGenre.eventDetails.eventName);
+
+    [self.navigationController pushViewController:nextViewController animated: NO];
 
 }
 @end
