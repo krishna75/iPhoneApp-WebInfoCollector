@@ -1,5 +1,5 @@
 //
-//  eventsInAVenueController.h
+//  EventsInVenueController.h
 //  Cloud9App
 //
 //  Created by Krishna Sapkota on 24/02/2013.
@@ -11,7 +11,7 @@
 
 @class EventsInVenue;
 
-@interface eventsInAVenueController : UITableViewController
+@interface EventsInVenueController : UITableViewController
 
 @property (retain, nonatomic) NSString* venueLogo;
 @property (retain, nonatomic) NSString* venueName;

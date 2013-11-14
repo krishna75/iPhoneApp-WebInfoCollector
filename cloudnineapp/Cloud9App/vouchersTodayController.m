@@ -1,12 +1,12 @@
 //
-//  venuesAndEventsController.m
+//  AllVenuesController.m
 //  Cloud9App
 //
 //  Created by Krishna Sapkota on 24/02/2013.
 //  Copyright (c) 2013 Krishna Sapkota. All rights reserved.
 //
 
-#import "vouchersTodayController.h"
+#import "VouchersTodayController.h"
 #import "KSJson.h"
 #import "VoucherDetailController.h"
 #import "KSUtilities.h"
@@ -21,11 +21,11 @@
 #define kCellSelectedBG @"bg_cellSelected.png"
 
 
-@interface vouchersTodayController ()
+@interface VouchersTodayController ()
 
 @end
 
-@implementation vouchersTodayController {
+@implementation VouchersTodayController {
     NSMutableArray *eventDictArray;
 }
 

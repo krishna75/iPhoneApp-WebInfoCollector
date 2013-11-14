@@ -1,39 +1,40 @@
 //
-//  venuesAndEventsController.m
+//  AllGenresController.m
 //  Cloud9App
 //
-//  Created by Krishna Sapkota on 24/02/2013.
+//  Created by nerd on 11/04/13.
 //  Copyright (c) 2013 Krishna Sapkota. All rights reserved.
 //
 
-#import "venuesAndEventsController.h"
+#import "AllGenresController.h"
+#import <QuartzCore/QuartzCore.h>
 #import "KSJson.h"
-#import "eventsInAVenueController.h"
+#import "DailyEventsController.h"
+#import "KSUtilities.h"
+#import "FirstJsonLoader.h"
 #import "KSBadgeManager.h"
 #import "AppDelegate.h"
+#import "EventsInGenreController.h"
 #import "KSCell.h"
-#import "EventsInVenue.h"
-#import "EventDetail.h"
-#import "DailyEvents.h"
+#import "KSSettings.h"
 
-#define kAllVenuesUrl @"venuesAndEvents.php"
-#define kEventsOfVenueUrl @"eventsOfAVenue.php?venue_id="
-#define kEventDetailUrl @"eventDetail.php?event_id="
+#define kjsonURL @"genres.php"
 #define kTableBG @"bg_tableView.png"
 #define kCellBG @"bg_cell.png"
 #define kCellSelectedBG @"bg_cellSelected.png"
+#define kTitle @"Preferences"
 
-
-@interface venuesAndEventsController ()
+@interface AllGenresController ()
 
 @end
 
-@implementation venuesAndEventsController {
-    NSArray* coreDataResults;
+@implementation AllGenresController {
+    
+     NSMutableArray *jsonResults;
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
+    
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -41,22 +42,22 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
+    
     [super viewDidLoad];
     [app AddloadingView];
     [self launchLoadData];
     [self decorateView];
     [self addRefreshing];
-
 }
 
-#pragma mark - launchLoadData and loadData are for a new thread
 -(void)launchLoadData {
+
     [NSThread detachNewThreadSelector:@selector(loadData) toTarget:self withObject:nil];
 }
 
 - (void) loadData {
+
     [self processJson];
     [self.tableView reloadData];
     [app RemoveLoadingView];
@@ -64,20 +65,16 @@
 
 // the process also has spinner or loader
 - (void)processJson {
+    
     KSJson * json = [[KSJson alloc] init];
-    if ([json isConnectionAvailable]){
-        NSArray * jsonResults = [json toArray:kAllVenuesUrl];
-        [self createCoreData: jsonResults];
-    } else {
-        coreDataResults = [self loadCoreData];
-    }
+    jsonResults = [json toArray:kjsonURL];
 }
 
 - (NSArray *) loadCoreData {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"AllVenues" inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"AllGenresController" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSError *error;
     return [context executeFetchRequest:fetchRequest error:&error];
@@ -88,13 +85,14 @@
     NSArray *lastSaved = [self loadCoreData];
     NSMutableArray *results = [[NSMutableArray alloc] init] ;
 
+    //get the context
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
 
     for (NSDictionary *jsonDict in jsonResults) {
 
-        //all venues
-        AllVenues *allVenues = [NSEntityDescription insertNewObjectForEntityForName:@"AllVenues" inManagedObjectContext:context];
+        //all genres
+        AllVenues *allVenues = [NSEntityDescription insertNewObjectForEntityForName:@"AllGenresController" inManagedObjectContext:context];
         allVenues.date = [jsonDict objectForKey:@"date"];
         allVenues.venueId = [jsonDict objectForKey:@"venue_id"];
         allVenues.venueName = [jsonDict objectForKey:@"name"];
@@ -103,11 +101,11 @@
         NSMutableString *quantity = [jsonDict objectForKey:@"quantity"];
         allVenues.eventCountDetail = [NSMutableString stringWithFormat:@"%@ Event(s)",quantity];
 
-        // events in a venue
+        // events in a genre
         NSMutableArray *eventsInVenueArray = [[NSMutableArray alloc] init];
         KSJson * json = [[KSJson alloc] init];
         NSString *jsonURL  = [NSString stringWithFormat:@"%@%@", kEventsOfVenueUrl, allVenues.venueId];
-        NSLog(@"venuesAndEventsController/createCoreData: jsonUrl = %@", jsonURL) ;
+        NSLog(@"AllVenuesController/createCoreData: jsonUrl = %@", jsonURL) ;
         for (NSDictionary *eventsInVenueDict in [json toArray:jsonURL]) {
             EventsInVenue *eventsInVenue = [NSEntityDescription insertNewObjectForEntityForName:@"EventsInVenue" inManagedObjectContext:context];
             eventsInVenue.eventId = [eventsInVenueDict objectForKey:@"event_id"];
@@ -133,12 +131,12 @@
             eventDetail.voucherDescription= [eventDetailDict objectForKey:@"voucher_description"];
             eventDetail.voucherPhoto= [eventDetailDict objectForKey:@"voucher_photo"];
 
-            NSLog(@"venuesAndEventsController/createCoreData: eventName=%@",eventDetail.eventName);
+            NSLog(@"AllVenuesController/createCoreData: eventName=%@",eventDetail.eventName);
 
             eventDetail.eventsInVenue = eventsInVenue;
             eventsInVenue.eventDetails = eventDetail;
         }
-        NSLog(@"venuesAndEventsController/createCoreData: eventsInVenueArray.size = %d", [eventsInVenueArray count]) ;
+        NSLog(@"AllVenuesController/createCoreData: eventsInVenueArray.size = %d", [eventsInVenueArray count]) ;
         allVenues.eventsInVenue = [NSSet setWithArray:eventsInVenueArray] ;
 
         //checking if the  data already exists
@@ -161,15 +159,13 @@
     coreDataResults = results;
 }
 
-- (void)decorateView{
+- (void)decorateView {
     
-    // table view background image
     UIGraphicsBeginImageContext(self.view.frame.size);
     [[UIImage imageNamed:kTableBG] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
-   
 }
 
 - (void) addRefreshing {
@@ -185,97 +181,78 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.topItem.title  = @"Venues";
+    self.navigationController.navigationBar.topItem.title  = @"Preferences";
     [self.tableView reloadData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
-
+    
     [super viewWillDisappear:animated];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
+    
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    return [coreDataResults count];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return [jsonResults count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"venueCell1";
+    static NSString *CellIdentifier = @"PrefCell1";
     KSCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[KSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier ] ;
     }
     
-    AllVenues*allVenues= [coreDataResults objectAtIndex:indexPath.row];
-    cell.titleLabel.text = allVenues.venueName;
-    cell.moreLabel.text = allVenues.venueAddress;
-    cell.descriptionLabel.text = allVenues.eventCountDetail;
-    [cell addSubview: [KSUtilities getImageViewOfUrl:allVenues.venueLogo]];
-    
-    // displaying events as a badge
-    NSMutableArray *eventIdList = [[NSMutableArray alloc] init];
-    for (EventsInVenue *eventsInVenue in allVenues.eventsInVenue) {
-        [eventIdList addObject:[NSMutableString stringWithFormat:@"%@:%@",eventsInVenue.eventId,eventsInVenue.date]];
-    }
-    
-    //badges
-    int newEventCount = [KSBadgeManager countNewEvents:eventIdList];
-    if (newEventCount > 0) {
-        if(app.setBadge) {
-            UIView *badgeView = [KSUtilities getBadgeLikeView:[NSString stringWithFormat:@"%i", newEventCount] showHide:app.setBadge];
-            badgeView.tag = 111;
-            [cell.contentView addSubview:badgeView];
-        }
-        else {
-            UIView *badge = [cell.contentView viewWithTag:111];
-            [badge removeFromSuperview];
-        }
-    }
+    NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
+    NSMutableString    *genre = [eventCountDict objectForKey:@"genre"];
+    cell.titleLabel.text = [NSString stringWithFormat:@"%@", genre];
+    cell.descriptionLabel.text = [NSString stringWithFormat:@"%@",[eventCountDict objectForKey:@"description"]];
+    [cell addSubview: [KSUtilities getImageViewOfUrl:[eventCountDict objectForKey:@"photo"]]];
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return [KSSettings tableCellHeight]; 
 }
 
 - (void) tableView:(UITableViewCell *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UIImageView *bgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:kCellBG] ];
     cell.backgroundView = bgView;
-    
     UIImageView *selBGView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:kCellSelectedBG]];
     cell.selectedBackgroundView = selBGView;
-    
 }
 
-#pragma mark - Table view delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    eventsInAVenueController *nextController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventsInAVenue"];
-    AllVenues* allVenues = [coreDataResults objectAtIndex:indexPath.row];
-    nextController.eventInVenueArray= [allVenues.eventsInVenue allObjects];
-    nextController.venueLogo= allVenues.venueLogo;
-    nextController.venueName= allVenues.venueName;
-    nextController.venueAddress= allVenues.venueAddress;
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
+    EventsInGenreController *nextController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventsInGenre"];
+    nextController.eventsDict = [eventCountDict mutableCopy];
+    nextController.header = [eventCountDict objectForKey:@"genre"];
     [self.navigationController pushViewController:nextController  animated: NO];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [KSSettings tableCellHeight];
+}
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    NSMutableString *title = [NSString stringWithFormat:@"%@",@"Genres"];
+    return [KSUtilities getHeaderView:NULL forTitle:title forDetail:nil];
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return 70;
 }
 
 @end

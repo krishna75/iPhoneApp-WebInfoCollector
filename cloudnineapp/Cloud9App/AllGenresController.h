@@ -1,5 +1,5 @@
 //
-//  preferencesController.h
+//  AllGenresController.h
 //  Cloud9App
 //
 //  Created by nerd on 11/04/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface preferencesController : UITableViewController
+@interface AllGenresController : UITableViewController
 
 @end

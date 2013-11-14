@@ -1,43 +1,44 @@
 //
-//  preferencesController.m
+//  EventsInGenreController.m
 //  Cloud9App
 //
-//  Created by nerd on 11/04/13.
+//  Created by nerd on 19/04/13.
 //  Copyright (c) 2013 Krishna Sapkota. All rights reserved.
 //
 
-#import "preferencesController.h"
+#import "EventsInGenreController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "KSJson.h"
-#import "dailyEventsController.h"
+#import "EventDetailsController.h"
 #import "KSUtilities.h"
-#import "FirstJsonLoader.h"
 #import "KSBadgeManager.h"
 #import "AppDelegate.h"
-#import "PrefsEventsDetail.h"
 #import "KSCell.h"
 #import "KSSettings.h"
 
-#define kjsonURL @"genres.php"
+#define kjsonURL @"eventsOfGenre.php?genre_id="
 #define kTableBG @"bg_tableView.png"
 #define kCellBG @"bg_cell.png"
 #define kCellSelectedBG @"bg_cellSelected.png"
 #define kTitle @"Preferences"
 
-@interface preferencesController ()
+
+@interface EventsInGenreController ()
 
 @end
 
-@implementation preferencesController {
+@implementation EventsInGenreController {
     
-     NSMutableArray *jsonResults;
+    NSMutableArray *jsonResults;
 }
+@synthesize eventsDict = _eventsDict;
+@synthesize header = _header;
 
 - (id)initWithStyle:(UITableViewStyle)style {
     
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+    
     }
     return self;
 }
@@ -50,14 +51,15 @@
     [self decorateView];
     [self addRefreshing];
 }
+#pragma mark - launchLoadData and loadData are for a new thread
 
 -(void)launchLoadData {
-
+    
     [NSThread detachNewThreadSelector:@selector(loadData) toTarget:self withObject:nil];
 }
 
 - (void) loadData {
-
+    
     [self processJson];
     [self.tableView reloadData];
     [app RemoveLoadingView];
@@ -67,16 +69,22 @@
 - (void)processJson {
     
     KSJson * json = [[KSJson alloc] init];
-    jsonResults = [json toArray:kjsonURL];
+    NSString *url  = [NSString stringWithFormat:@"%@%@",kjsonURL,[_eventsDict  objectForKey:@"id"]];
+    NSLog(@"eventsInGenre: %@",url);
+    NSString *urlString = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    jsonResults = [json toArray:urlString];
 }
 
-- (void)decorateView {
+- (void)decorateView{
     
-    UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:kTableBG] drawInRect:self.view.bounds];
+    [self setBackButton];
+    
+    //tableview background image
+    UIGraphicsBeginImageContext(self.tableView.frame.size);
+    [[UIImage imageNamed:kTableBG] drawInRect:self.tableView.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:image];
 }
 
 - (void) addRefreshing {
@@ -92,29 +100,20 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.topItem.title  = @"Preferences";
+    self.navigationController.navigationBar.topItem.title  = kTitle;
     [self.tableView reloadData];
 }
 
--(void)viewWillDisappear:(BOOL)animated {
-    
-    [super viewWillDisappear:animated];
-}
-
 - (void)didReceiveMemoryWarning {
-    
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - Table view data source
-
+#pragma mark - table related
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     return [jsonResults count];
 }
 
@@ -126,11 +125,14 @@
         cell = [[KSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier ] ;
     }
     
-    NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
-    NSMutableString    *genre = [eventCountDict objectForKey:@"genre"];
-    cell.titleLabel.text = [NSString stringWithFormat:@"%@", genre];
-    cell.descriptionLabel.text = [NSString stringWithFormat:@"%@",[eventCountDict objectForKey:@"description"]];
-    [cell addSubview: [KSUtilities getImageViewOfUrl:[eventCountDict objectForKey:@"photo"]]];
+    cell.titleLabel.text=[NSString stringWithFormat:@"%@",[[jsonResults objectAtIndex:indexPath.row] objectForKey:@"event_title"]];
+    NSString *date = [NSString stringWithFormat:@"%@",[[jsonResults objectAtIndex:indexPath.row]
+                                                       objectForKey:@"date"]];
+    NSString *day = [NSString stringWithFormat:@"%@",[[jsonResults objectAtIndex:indexPath.row]
+                                                      objectForKey:@"day"]];
+
+    NSDictionary *dateDict = [KSUtilities getDateDict:date];
+    [cell addSubview: [KSUtilities getCalendar:[dateDict objectForKey:@"shortMonth"] forDay:[dateDict objectForKey:@"dateDay"]]];
     return cell;
 }
 
@@ -138,32 +140,57 @@
     
     UIImageView *bgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:kCellBG] ];
     cell.backgroundView = bgView;
+    
     UIImageView *selBGView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:kCellSelectedBG]];
     cell.selectedBackgroundView = selBGView;
+    
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    NSDictionary *eventCountDict = [jsonResults objectAtIndex:indexPath.row];
-    PrefsEventsDetail *nextController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventsInGenre"];
-    nextController.eventsDict = [eventCountDict mutableCopy];
-    nextController.header = [eventCountDict objectForKey:@"genre"];
-    [self.navigationController pushViewController:nextController  animated: NO];
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [KSSettings tableCellHeight];
 }
 
 
+
+// header for the table view controller
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    NSMutableString *title = [NSString stringWithFormat:@"%@",@"Genres"];
-    return [KSUtilities getHeaderView:NULL forTitle:title forDetail:nil];
+    NSString *title = [NSString stringWithFormat:@"%@",self.header];
+    return [KSUtilities getHeaderView:nil forTitle:title forDetail:@" "];
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
     return 70;
 }
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *appsDict = [jsonResults objectAtIndex:indexPath.row];
+    NSString *eventId = [appsDict objectForKey:@"event_id"];
+    
+    EventDetailsController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventDetail"];
+    nextViewController.eventId = eventId;
+    
+    [self.navigationController pushViewController:nextViewController animated: NO];
+    
+}
+
+#pragma mark - Back button;
+-(void) setBackButton {
+    UIButton *btn = [KSUtilities getBackButton];
+    [btn addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+}
+
+-(void)goBack{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 
 @end

@@ -1,19 +1,47 @@
+AllVenues
+=========
+- venueId
+name
+address
+countDetail
+logo
+eventId
+date
+
+
+EventsInVenue
+=============
+- eventId
+date
+eventName
+
+
+
+
+
+
+
+
+
+
 AllEvents
 =======
+- eventDate
 shortMonth
 weekDay
 dateDay
-numEvents
+eventCountDetails
 numNewEvents
+----------------
 #ref : dailyEvents
-
+-------------
 
 
 DailyEvents
 ==========
+-eventId
 Month (November)
 Day (11th Monday)
----------
 venueLogo
 venueName
 EventName
@@ -29,11 +57,9 @@ venueName (Cellar)
 eventDescription
 #ref : voucher
 
-Voucher
-========
-voucherPhoto
-voucherDescription
-voucherDate
 
 
 
+
+www.cnapp.co.uk/public/venuesAndEvents.php
+www.cnapp.co.uk/public/eventsOfAVenue.php?venue_id=14

@@ -1,5 +1,5 @@
 //
-//  PrefsEventsDetail.h
+//  EventsInGenreController.h
 //  Cloud9App
 //
 //  Created by nerd on 19/04/13.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PrefsEventsDetail : UITableViewController
+@interface EventsInGenreController : UITableViewController
 
 
 @property (retain, nonatomic) NSMutableDictionary *eventsDict;

@@ -1,12 +1,12 @@
 //
-//  eventDetailsController.m
+//  EventDetailsController.m
 //  Cloud9App
 //
 //  Created by Krishna Sapkota on 23/02/2013.
 //  Copyright (c) 2013 Krishna Sapkota. All rights reserved.
 //
 
-#import "eventDetailsController.h"
+#import "EventDetailsController.h"
 #import "KSGuiUtilities.h"
 #import "KSBadgeManager.h"
 #import "AppDelegate.h"
@@ -16,11 +16,11 @@
 #define kTableBG @"bg_tableView.png"
 #define kTitle @"Event Details"
 
-@interface eventDetailsController ()
+@interface EventDetailsController ()
 
 @end
 
-@implementation eventDetailsController
+@implementation EventDetailsController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

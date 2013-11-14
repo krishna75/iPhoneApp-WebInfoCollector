@@ -1,5 +1,5 @@
 //
-//  eventDetailsController.h
+//  EventDetailsController.h
 //  Cloud9App
 //
 //  Created by Krishna Sapkota on 23/02/2013.
@@ -13,7 +13,7 @@
 @class DailyEvents;
 @class EventDetail;
 
-@interface eventDetailsController : UIViewController<EKEventViewDelegate> {
+@interface EventDetailsController : UIViewController<EKEventViewDelegate> {
     
 }
 

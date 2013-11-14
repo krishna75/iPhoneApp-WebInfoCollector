@@ -1,15 +1,15 @@
 //
-//  AllEventController.m
+//  AllEventsController.m
 //  Cloud9App
 //
 //  Created by Krishna Sapkota on 17/02/2013.
 //  Copyright (c) 2013 Krishna Sapkota. All rights reserved.
 //
 
-#import "AllEventController.h"
+#import "AllEventsController.h"
 
 #import "KSJson.h"
-#import "dailyEventsController.h"
+#import "DailyEventsController.h"
 #import "KSBadgeManager.h"
 #import "AppDelegate.h"
 #import "KSCell.h"
@@ -23,11 +23,11 @@
 
 
 
-@interface AllEventController ()
+@interface AllEventsController ()
 
 @end
 
-@implementation AllEventController {
+@implementation AllEventsController {
     NSArray *coreDataResults;
 }
 @synthesize managedObjectContext;
@@ -232,7 +232,7 @@
     [eventDict setObject:formattedDate forKey:@"formattedDate"];
     [eventDict setObject:allEvents.eventCountDetails forKey:@"countDetail"];
 
-    dailyEventsController *nextController = [self.storyboard instantiateViewControllerWithIdentifier:@"dailyEvents"];
+    DailyEventsController *nextController = [self.storyboard instantiateViewControllerWithIdentifier:@"dailyEvents"];
     nextController.eventDict = eventDict;
     nextController.allEvents = allEvents;
 

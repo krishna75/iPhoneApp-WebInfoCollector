@@ -8,7 +8,7 @@
 #define kLoadingTag 101
 
 #import "AppDelegate.h"
-#import "AllEventController.h"
+#import "AllEventsController.h"
 
 @implementation AppDelegate
 @synthesize setBadge;
@@ -23,7 +23,7 @@
 
     // Override point for customization after application launch.
 //    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-//    AllEventController *controller = (AllEventController *)navigationController.topViewController;
+//    AllEventsController *controller = (AllEventsController *)navigationController.topViewController;
 //    controller.managedObjectContext = [self managedObjectContext];
 
     NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024 diskCapacity:20 * 1024 * 1024 diskPath:nil];

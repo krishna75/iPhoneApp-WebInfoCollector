@@ -1,5 +1,5 @@
 //
-//  settingsController.h
+//  SettingsController.h
 //  Cloud9App
 //
 //  Created by Krishna Sapkota on 21/02/2013.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface settingsController : UIViewController <UITableViewDelegate,UITableViewDataSource> {
+@interface SettingsController : UIViewController <UITableViewDelegate,UITableViewDataSource> {
     
     IBOutlet UITableView *settingsTable;
     NSDictionary *settingsDict;

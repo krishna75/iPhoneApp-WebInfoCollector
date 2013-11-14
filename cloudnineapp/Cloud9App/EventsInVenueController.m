@@ -1,16 +1,16 @@
 //
-//  eventsInAVenueController.m
+//  EventsInVenueController.m
 //  Cloud9App
 //
 //  Created by Krishna Sapkota on 24/02/2013.
 //  Copyright (c) 2013 Krishna Sapkota. All rights reserved.
 //
 
-#import "eventsInAVenueController.h"
+#import "EventsInVenueController.h"
 
 #import <QuartzCore/QuartzCore.h>
 #import "KSJson.h"
-#import "eventDetailsController.h"
+#import "EventDetailsController.h"
 #import "KSUtilities.h"
 #import "EventsInVenue.h"
 #import "KSBadgeManager.h"
@@ -27,11 +27,11 @@
 #define kTitle @"Events in a Venue"
 #define kBadgeTag 1111
 
-@interface eventsInAVenueController ()
+@interface EventsInVenueController ()
 
 @end
 
-@implementation eventsInAVenueController
+@implementation EventsInVenueController
 
 - (void)viewDidLoad
 {
@@ -156,7 +156,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     EventsInVenue *eventsInVenue = [_eventInVenueArray objectAtIndex:indexPath.row];
-    eventDetailsController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventDetail"];
+    EventDetailsController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventDetail"];
     nextViewController.eventDetail = eventsInVenue.eventDetails;
     NSLog(@"eventInVenueController/didSelect...: eventName=%@", eventsInVenue.eventDetails.eventName);
 

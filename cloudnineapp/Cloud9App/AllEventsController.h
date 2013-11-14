@@ -1,5 +1,5 @@
 //
-//  AllEventController.h
+//  AllEventsController.h
 //  Cloud9App
 //
 //  Created by Krishna Sapkota on 17/02/2013.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AllEvents.h"
 
-@interface AllEventController : UITableViewController {
+@interface AllEventsController : UITableViewController {
 
 }
 @property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;

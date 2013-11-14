@@ -1,12 +1,12 @@
 //
-//  settingsController.m
+//  SettingsController.m
 //  Cloud9App
 //
 //  Created by Krishna Sapkota on 21/02/2013.
 //  Copyright (c) 2013 Krishna Sapkota. All rights reserved.
 //
 
-#import "settingsController.h"
+#import "SettingsController.h"
 #import "KSJson.h"
 #import "SettingsDetail.h"
 #import "AppDelegate.h"
@@ -17,11 +17,11 @@
 #define kLabelTag 999
 #define kTableBG @"bg_tableView.png"
 
-@interface settingsController ()
+@interface SettingsController ()
 
 @end
 
-@implementation settingsController {
+@implementation SettingsController {
     NSMutableArray *jsonResults;
 }
 

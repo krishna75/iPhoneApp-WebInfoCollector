@@ -1,5 +1,5 @@
 //
-//  dailyEventsController.h
+//  DailyEventsController.h
 //  Cloud9App
 //
 //  Created by Krishna Sapkota on 23/02/2013.
@@ -10,7 +10,7 @@
 
 @class AllEvents;
 
-@interface dailyEventsController : UITableViewController
+@interface DailyEventsController : UITableViewController
 
 @property (retain, nonatomic) NSMutableDictionary *eventDict;
 @property (retain, nonatomic) AllEvents *allEvents;

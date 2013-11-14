@@ -1,5 +1,5 @@
 //
-//  vouchersTodayController.h
+//  VouchersTodayController.h
 //  Cloud9App
 //
 //  Created by Krishna Sapkota on 24/02/2013.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface vouchersTodayController : UITableViewController {
+@interface VouchersTodayController : UITableViewController {
     
 }
 

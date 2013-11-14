@@ -1,5 +1,5 @@
 //
-//  tabBarController.h
+//  TabBarController.h
 //  Cloud9App
 //
 //  Created by Krishna Sapkota on 31/08/2013.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface tabBarController : UITabBarController
+@interface TabBarController : UITabBarController
 - (UITabBar *)tabBar;
 @end
