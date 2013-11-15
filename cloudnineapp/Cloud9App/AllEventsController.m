@@ -15,6 +15,7 @@
 #import "KSCell.h"
 #import "DailyEvents.h"
 #import "EventDetail.h"
+#import "KSCoreDataManager.h"
 
 
 #define kUrlEvents @"datesAndEvents.php"
@@ -35,7 +36,7 @@
 @implementation AllEventsController {
     NSArray *coreDataResults;
 }
-@synthesize managedObjectContext;
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -67,107 +68,102 @@
 }
 
 - (void)processJson {
-    KSJson * json = [[KSJson alloc] init];
-    if ([json isConnectionAvailable]){
-        NSArray * jsonResults = [json toArray:kUrlEvents];
-        [self createCoreData: jsonResults];
-    } else {
-      coreDataResults = [self loadCoreData];
-    }
+    [KSCoreDataManager createEvents];
+     coreDataResults = [KSCoreDataManager getEvents];
 }
 
-- (NSArray *) loadCoreData {
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"AllEvents" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSError *error;
-    return [context executeFetchRequest:fetchRequest error:&error];
-}
-
-- (void) createCoreData: (NSArray *) jsonResults {
-    NSArray *lastSaved = [self loadCoreData];
-    NSMutableArray *results = [[NSMutableArray alloc] init] ;
-
-    // creating the context for the core data
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-
-    for (NSDictionary * eventCountDict in jsonResults) {
-
-        // all events
-        AllEvents *allEvents = [NSEntityDescription insertNewObjectForEntityForName:@"AllEvents" inManagedObjectContext:context];
-        allEvents.count = [eventCountDict objectForKey:@"quantity"] ;
-        allEvents.date = [eventCountDict objectForKey:@"date"] ;
-        allEvents.weekDay = [eventCountDict objectForKey:@"day"] ;
-
-        // daily events
-        NSMutableArray *dailyEventsArray = [[NSMutableArray alloc] init];
-        KSJson * json = [[KSJson alloc] init];
-        NSString *urlDailyEvents  = [NSString stringWithFormat:@"%@%@", kUrlDailyEvents, allEvents.date];
-        NSLog(@"AllEventsController/createCoreData: kUrlDailyEvents = %@", urlDailyEvents) ;
-
-        for (NSDictionary *dailyEventsDict in [json toArray:urlDailyEvents]) {
-            DailyEvents *dailyEvents = [NSEntityDescription insertNewObjectForEntityForName:@"DailyEvents" inManagedObjectContext:context];
-            dailyEvents.date = [dailyEventsDict objectForKey:@"date"];
-            dailyEvents.weekDay = [dailyEventsDict objectForKey:@"day"];
-
-            dailyEvents.eventId = [dailyEventsDict objectForKey:@"id"];
-            dailyEvents.eventName = [dailyEventsDict objectForKey:@"itle"];
-            dailyEvents.eventDescription = [dailyEventsDict objectForKey:@"description"];
-
-            dailyEvents.venueId = [dailyEventsDict objectForKey:@"venue_id"];
-            dailyEvents.venueName = [dailyEventsDict objectForKey:@"venue"];
-            dailyEvents.venueLogo = [dailyEventsDict objectForKey:@"venue_logo"] ;
-
-            // relations
-            dailyEvents.allEvents = allEvents;
-            [dailyEventsArray addObject:dailyEvents];
-
-            // event detail
-            NSString * eventDetailUrl = [NSString stringWithFormat:@"%@%@", kEventDetailUrl, dailyEvents.eventId];
-            NSDictionary *eventDetailDict = [[json toArray:eventDetailUrl] objectAtIndex:0];
-
-            EventDetail *eventDetail = [NSEntityDescription insertNewObjectForEntityForName:@"EventDetail" inManagedObjectContext:context];
-            eventDetail.date = [eventDetailDict objectForKey:@"date"];
-            eventDetail.eventDescription = [eventDetailDict objectForKey:@"description"];
-            eventDetail.eventId= [eventDetailDict objectForKey:@"id"];
-            eventDetail.eventName = [eventDetailDict objectForKey:@"title"];
-            eventDetail.photo = [eventDetailDict objectForKey:@"photo"];
-
-            eventDetail.venueId = [eventDetailDict objectForKey:@"venue_id"];
-            eventDetail.venueName = [eventDetailDict objectForKey:@"venue"];
-
-            eventDetail.voucherDescription= [eventDetailDict objectForKey:@"voucher_description"];
-            eventDetail.voucherPhoto= [eventDetailDict objectForKey:@"voucher_photo"];
-
-            // relations
-            eventDetail.dailyEvents = dailyEvents;
-            dailyEvents.eventDetail = eventDetail;
-        }
-        // relation
-        allEvents.dailyEvents= [NSSet setWithArray:dailyEventsArray] ;
-
-        //checking if the  data already exists
-        BOOL saveOk = YES;
-        for (AllEvents * lastEvent in lastSaved ) {
-            if ([lastEvent.date isEqualToString:allEvents.date]){
-                saveOk = NO;
-            }
-        }
-
-        //saving data
-        NSError *error = nil;
-        if (saveOk) {
-            if (![context save:&error]) {
-                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-            }
-        }
-        [results addObject:allEvents];
-    }
-    coreDataResults = results;
-}
+//- (NSArray *) loadCoreData {
+//    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+//    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"AllEvents" inManagedObjectContext:context];
+//    [fetchRequest setEntity:entity];
+//    NSError *error;
+//    return [context executeFetchRequest:fetchRequest error:&error];
+//}
+//
+//- (void) createCoreData: (NSArray *) jsonResults {
+//    NSArray *lastSaved = [self loadCoreData];
+//    NSMutableArray *results = [[NSMutableArray alloc] init] ;
+//
+//    // creating the context for the core data
+//    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+//    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+//
+//    for (NSDictionary * eventCountDict in jsonResults) {
+//
+//        // all events
+//        AllEvents *allEvents = [NSEntityDescription insertNewObjectForEntityForName:@"AllEvents" inManagedObjectContext:context];
+//        allEvents.count = [eventCountDict objectForKey:@"quantity"] ;
+//        allEvents.date = [eventCountDict objectForKey:@"date"] ;
+//        allEvents.weekDay = [eventCountDict objectForKey:@"day"] ;
+//
+//        // daily events
+//        NSMutableArray *dailyEventsArray = [[NSMutableArray alloc] init];
+//        KSJson * json = [[KSJson alloc] init];
+//        NSString *urlDailyEvents  = [NSString stringWithFormat:@"%@%@", kUrlDailyEvents, allEvents.date];
+//        NSLog(@"AllEventsController/createCoreData: kUrlDailyEvents = %@", urlDailyEvents) ;
+//
+//        for (NSDictionary *dailyEventsDict in [json toArray:urlDailyEvents]) {
+//            DailyEvents *dailyEvents = [NSEntityDescription insertNewObjectForEntityForName:@"DailyEvents" inManagedObjectContext:context];
+//            dailyEvents.date = [dailyEventsDict objectForKey:@"date"];
+//            dailyEvents.weekDay = [dailyEventsDict objectForKey:@"day"];
+//
+//            dailyEvents.eventId = [dailyEventsDict objectForKey:@"id"];
+//            dailyEvents.eventName = [dailyEventsDict objectForKey:@"itle"];
+//            dailyEvents.eventDescription = [dailyEventsDict objectForKey:@"description"];
+//
+//            dailyEvents.venueId = [dailyEventsDict objectForKey:@"venue_id"];
+//            dailyEvents.venueName = [dailyEventsDict objectForKey:@"venue"];
+//            dailyEvents.venueLogo = [dailyEventsDict objectForKey:@"venue_logo"] ;
+//
+//            // relations
+//            dailyEvents.allEvents = allEvents;
+//            [dailyEventsArray addObject:dailyEvents];
+//
+//            // event detail
+//            NSString * eventDetailUrl = [NSString stringWithFormat:@"%@%@", kEventDetailUrl, dailyEvents.eventId];
+//            NSDictionary *eventDetailDict = [[json toArray:eventDetailUrl] objectAtIndex:0];
+//
+//            EventDetail *eventDetail = [NSEntityDescription insertNewObjectForEntityForName:@"EventDetail" inManagedObjectContext:context];
+//            eventDetail.date = [eventDetailDict objectForKey:@"date"];
+//            eventDetail.eventDescription = [eventDetailDict objectForKey:@"description"];
+//            eventDetail.eventId= [eventDetailDict objectForKey:@"id"];
+//            eventDetail.eventName = [eventDetailDict objectForKey:@"title"];
+//            eventDetail.photo = [eventDetailDict objectForKey:@"photo"];
+//
+//            eventDetail.venueId = [eventDetailDict objectForKey:@"venue_id"];
+//            eventDetail.venueName = [eventDetailDict objectForKey:@"venue"];
+//
+//            eventDetail.voucherDescription= [eventDetailDict objectForKey:@"voucher_description"];
+//            eventDetail.voucherPhoto= [eventDetailDict objectForKey:@"voucher_photo"];
+//
+//            // relations
+//            eventDetail.dailyEvents = dailyEvents;
+//            dailyEvents.eventDetail = eventDetail;
+//        }
+//        // relation
+//        allEvents.dailyEvents= [NSSet setWithArray:dailyEventsArray] ;
+//
+//        //checking if the  data already exists
+//        BOOL saveOk = YES;
+//        for (AllEvents * lastEvent in lastSaved ) {
+//            if ([lastEvent.date isEqualToString:allEvents.date]){
+//                saveOk = NO;
+//            }
+//        }
+//
+//        //saving data
+//        NSError *error = nil;
+//        if (saveOk) {
+//            if (![context save:&error]) {
+//                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+//            }
+//        }
+//        [results addObject:allEvents];
+//    }
+//    coreDataResults = results;
+//}
 
 - (void)decorateView {
     UIGraphicsBeginImageContext(self.view.frame.size);
@@ -236,7 +232,7 @@
     cell.titleLabel.text = allEvents.weekDay;
 
     NSString    *count = allEvents.count;
-    if ([count isEqualToString:@"0"]) {count = @"No" ; }
+    if (count ==NULL) {count = @"No" ; }
     cell.descriptionLabel.text = ([NSMutableString stringWithFormat:@"%@ Event(s)", count]);
 
     NSDictionary *dateDict = [KSUtilities getDateDict:allEvents.date];

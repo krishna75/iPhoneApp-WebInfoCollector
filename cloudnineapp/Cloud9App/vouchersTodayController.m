@@ -15,6 +15,7 @@
 #import "KSCell.h"
 #import "KSSettings.h"
 #import "VouchersToday.h"
+#import "KSCoreDataManager.h"
 
 #define kUrlVoucher @"vouchers.php"
 #define kTableBG @"bg_tableView.png"
@@ -61,85 +62,10 @@
 }
 
 - (void)processJson {
-    KSJson * json = [[KSJson alloc] init];
-    if ([json isConnectionAvailable]){
-        [self createCoreData:[json toArray:kUrlVoucher]];
-    } else {
-        coreDataResults = [self loadCoreData];
-    }
+    [KSCoreDataManager createVouchers];
+    coreDataResults = [KSCoreDataManager getVouchers];
 }
 
-- (NSArray *) loadCoreData {
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"VouchersToday" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSError *error;
-    return [context executeFetchRequest:fetchRequest error:&error];
-}
-
-- (void) createCoreData: (NSArray *) jsonResults {
-
-    NSArray *lastSaved = [self loadCoreData];
-    NSMutableArray *results = [[NSMutableArray alloc] init] ;
-
-    // get the context
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-
-    for (NSDictionary *jsonDict in jsonResults) {
-
-        // vouchers today
-        VouchersToday *vouchersToday = [NSEntityDescription insertNewObjectForEntityForName:@"VouchersToday" inManagedObjectContext:context];
-        vouchersToday.venueId = [jsonDict objectForKey:@"venue_id"];
-        vouchersToday.venueName= [jsonDict objectForKey:@"name"];
-        vouchersToday.venueAddress = [jsonDict objectForKey:@"address"];
-        vouchersToday.venueLogo= [jsonDict  objectForKey:@"logo"];
-        vouchersToday.eventId= [jsonDict  objectForKey:@"event_id"];
-        vouchersToday.eventName= [jsonDict  objectForKey:@"event_title"];
-        vouchersToday.voucherDescription= [jsonDict  objectForKey:@"voucher_description"];
-        vouchersToday.voucherPhoto= [jsonDict  objectForKey:@"voucher_photo"];
-
-        // event details
-        EventDetail *eventDetail = [NSEntityDescription insertNewObjectForEntityForName:@"EventDetail" inManagedObjectContext:context];
-        eventDetail.venueId = vouchersToday.venueId;
-        eventDetail.venueName = vouchersToday.venueName;
-        eventDetail.eventId = vouchersToday.eventId;
-        eventDetail.eventName = vouchersToday.eventName;
-        eventDetail.voucherDescription = vouchersToday.voucherDescription ;
-        eventDetail.voucherPhoto = vouchersToday.voucherPhoto;
-
-        // adding today's date  to the event details
-        NSDate *today = [NSDate date];
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-        [dateFormat setDateFormat:@"YYYY-MM-dd"];
-        NSString *todayString = [dateFormat stringFromDate:today];
-        eventDetail.date = todayString;
-
-        // relations
-        eventDetail.vouchersToday = vouchersToday;
-        vouchersToday.eventDetails = eventDetail;
-
-        // checking if the  data already exists
-        BOOL saveOk = YES;
-        for (VouchersToday *lastVoucher in lastSaved ) {
-            if ([lastVoucher.eventId isEqualToString:vouchersToday.eventId]){
-                saveOk = NO;
-            }
-        }
-
-        //saving data
-        NSError *error = nil;
-        if (saveOk) {
-            if (![context save:&error]) {
-                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-            }
-        }
-        [results addObject:vouchersToday];
-    }
-    coreDataResults = results;
-}
 
 - (void)decorateView{
     

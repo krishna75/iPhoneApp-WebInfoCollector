@@ -15,6 +15,7 @@
 #import "EventsInVenue.h"
 #import "EventDetail.h"
 #import "DailyEvents.h"
+#import "KSCoreDataManager.h"
 
 #define kAllVenuesUrl @"venuesAndEvents.php"
 #define kEventsOfVenueUrl @"eventsOfAVenue.php?venue_id="
@@ -62,110 +63,9 @@
     [app RemoveLoadingView];
 }
 
-// the process also has spinner or loader
 - (void)processJson {
-    KSJson * json = [[KSJson alloc] init];
-    if ([json isConnectionAvailable]){
-        NSArray * jsonResults = [json toArray:kAllVenuesUrl];
-        [self createCoreData: jsonResults];
-    } else {
-        coreDataResults = [self loadCoreData];
-    }
-}
-
-- (NSArray *) loadCoreData {
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"AllVenues" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSError *error;
-    return [context executeFetchRequest:fetchRequest error:&error];
-}
-
-- (void) createCoreData: (NSArray *) jsonResults {
-
-    NSArray *lastSaved = [self loadCoreData];
-    NSMutableArray *results = [[NSMutableArray alloc] init] ;
-
-    //get the context
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-
-    for (NSDictionary *jsonDict in jsonResults) {
-
-        //all venues
-        AllVenues *allVenues = [NSEntityDescription insertNewObjectForEntityForName:@"AllVenues" inManagedObjectContext:context];
-        allVenues.date = [jsonDict objectForKey:@"date"];
-        allVenues.venueId = [jsonDict objectForKey:@"venue_id"];
-        allVenues.venueName = [jsonDict objectForKey:@"name"];
-        allVenues.venueAddress = [jsonDict  objectForKey:@"address"];
-        allVenues.venueLogo = [jsonDict objectForKey:@"logo"];
-        NSMutableString *quantity = [jsonDict objectForKey:@"quantity"];
-        allVenues.eventCountDetail = [NSMutableString stringWithFormat:@"%@ Event(s)",quantity];
-
-        // events in a venue
-        NSMutableArray *eventsInVenueArray = [[NSMutableArray alloc] init];
-        KSJson * json = [[KSJson alloc] init];
-        NSString *jsonURL  = [NSString stringWithFormat:@"%@%@", kEventsOfVenueUrl, allVenues.venueId];
-        NSLog(@"AllVenuesController/createCoreData: jsonUrl = %@", jsonURL) ;
-
-        for (NSDictionary *eventsInVenueDict in [json toArray:jsonURL]) {
-            EventsInVenue *eventsInVenue = [NSEntityDescription insertNewObjectForEntityForName:@"EventsInVenue" inManagedObjectContext:context];
-            eventsInVenue.eventId = [eventsInVenueDict objectForKey:@"event_id"];
-            eventsInVenue.date = [eventsInVenueDict objectForKey:@"date"];
-            eventsInVenue.eventName = [eventsInVenueDict objectForKey:@"event_title"];
-
-            // relations
-            eventsInVenue.allVenues = allVenues;
-            [eventsInVenueArray addObject:eventsInVenue];
-
-            // event detail
-            NSString * eventDetailUrl = [NSString stringWithFormat:@"%@%@", kEventDetailUrl,eventsInVenue.eventId];
-            NSDictionary *eventDetailDict = [[json toArray:eventDetailUrl] objectAtIndex:0];
-
-            EventDetail *eventDetail = [NSEntityDescription insertNewObjectForEntityForName:@"EventDetail" inManagedObjectContext:context];
-            eventDetail.date = [eventDetailDict objectForKey:@"date"];
-            eventDetail.eventDescription = [eventDetailDict objectForKey:@"description"];
-            eventDetail.eventId= [eventDetailDict objectForKey:@"id"];
-            eventDetail.eventName = [eventDetailDict objectForKey:@"title"];
-            eventDetail.photo = [eventDetailDict objectForKey:@"photo"];
-
-            eventDetail.venueId = [eventDetailDict objectForKey:@"venue_id"];
-            eventDetail.venueName = [eventDetailDict objectForKey:@"venue"];
-
-            eventDetail.voucherDescription= [eventDetailDict objectForKey:@"voucher_description"];
-            eventDetail.voucherPhoto= [eventDetailDict objectForKey:@"voucher_photo"];
-
-            NSLog(@"AllVenuesController/createCoreData: eventName=%@",eventDetail.eventName);
-
-            // relations
-            eventDetail.eventsInVenue = eventsInVenue;
-            eventsInVenue.eventDetails = eventDetail;
-        }
-        NSLog(@"AllVenuesController/createCoreData: eventsInVenueArray.size = %d", [eventsInVenueArray count]) ;
-
-        // relation
-        allVenues.eventsInVenue = [NSSet setWithArray:eventsInVenueArray] ;
-
-        //checking if the  data already exists
-        BOOL saveOk = YES;
-        for (AllVenues * lastVenue in lastSaved ) {
-            if ([lastVenue.eventId isEqualToString:allVenues.eventId]){
-                saveOk = NO;
-            }
-        }
-
-        // saving data
-        NSError *error = nil;
-        if (saveOk) {
-            if (![context save:&error]) {
-                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-            }
-        }
-        [results addObject:allVenues];
-    }
-    coreDataResults = results;
+    [KSCoreDataManager createVenues];
+    coreDataResults = [KSCoreDataManager getVenues];
 }
 
 - (void)decorateView{
@@ -209,26 +109,21 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
-}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {return 1;}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{ return [coreDataResults count];}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    return [coreDataResults count];
-}
-
+// populating the cells in the table
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
+    // get the cell
+
     static NSString *CellIdentifier = @"venueCell1";
     KSCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[KSCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier ] ;
     }
-    
+
+    // populate
     AllVenues*allVenues= [coreDataResults objectAtIndex:indexPath.row];
     cell.titleLabel.text = allVenues.venueName;
     cell.moreLabel.text = allVenues.venueAddress;
