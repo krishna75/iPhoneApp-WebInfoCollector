@@ -32,11 +32,12 @@ static NSArray *events;
 static NSArray *venues;
 static NSArray *genres;
 static NSArray *vouchers;
+static BOOL allProcessed = NO;
 @implementation KSCoreDataManager {
 
 }
 + (void)createEvents {
-    if ([[[KSJson alloc] init] isConnectionAvailable]){
+    if ([[[KSJson alloc] init] isConnectionAvailable] && !allProcessed){
 
         NSMutableArray *results = [[NSMutableArray alloc] init] ;
 
@@ -124,7 +125,7 @@ static NSArray *vouchers;
 }
 
 + (void)createVenues {
-    if ([[[KSJson alloc] init] isConnectionAvailable]){
+    if ([[[KSJson alloc] init] isConnectionAvailable] && !allProcessed){
 
         NSMutableArray *results = [[NSMutableArray alloc] init] ;
 
@@ -210,7 +211,7 @@ static NSArray *vouchers;
 }
 
 + (void)createGenres {
-    if ([[[KSJson alloc] init] isConnectionAvailable]){
+    if ([[[KSJson alloc] init] isConnectionAvailable] && !allProcessed){
 
         NSMutableArray *results = [[NSMutableArray alloc] init] ;
 
@@ -287,7 +288,7 @@ static NSArray *vouchers;
 }
 
 + (void)createVouchers {
-    if ([[[KSJson alloc] init] isConnectionAvailable]){
+    if ([[[KSJson alloc] init] isConnectionAvailable] && !allProcessed){
 
         NSMutableArray *results = [[NSMutableArray alloc] init] ;
 
@@ -355,6 +356,7 @@ static NSArray *vouchers;
     [self createVenues];
     [self createGenres];
     [self createVouchers];
+    allProcessed = YES;
 }
 
 + (NSArray *)loadEvents {

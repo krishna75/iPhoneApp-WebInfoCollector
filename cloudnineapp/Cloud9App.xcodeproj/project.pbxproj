@@ -171,6 +171,18 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9777FDE71836573100E3D0D1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = ExternalClasses;
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		4E13541516D7902300578F16 /* KSJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSJson.h; sourceTree = "<group>"; };
 		4E13541616D7902300578F16 /* KSJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSJson.m; sourceTree = "<group>"; };
@@ -262,6 +274,11 @@
 		9736CA9E182D42D4008E5A2E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		97528A2017A5644300AF6922 /* Start_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Start_up.png; sourceTree = "<group>"; };
 		97528A2C17AD466000AF6922 /* bg_tableView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_tableView.png; sourceTree = "<group>"; };
+		9777FDF3183657F600E3D0D1 /* ContextFilterLogFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContextFilterLogFormatter.h; sourceTree = "<group>"; };
+		9777FDF4183657F600E3D0D1 /* ContextFilterLogFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContextFilterLogFormatter.m; sourceTree = "<group>"; };
+		9777FDF5183657F600E3D0D1 /* DispatchQueueLogFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DispatchQueueLogFormatter.h; sourceTree = "<group>"; };
+		9777FDF6183657F600E3D0D1 /* DispatchQueueLogFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DispatchQueueLogFormatter.m; sourceTree = "<group>"; };
+		9777FDF7183657F600E3D0D1 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		97AC29BE182E23E200C1FE90 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		97AE6F3117AD6E1C0069E971 /* cloud9_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud9_icon.png; sourceTree = "<group>"; };
 		97AE6F3317AD6E630069E971 /* cloud9_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud9_icon.png; sourceTree = "<group>"; };
@@ -519,6 +536,7 @@
 		4E874E0C16D1218E00CFDA27 = {
 			isa = PBXGroup;
 			children = (
+				9777FDF2183657F600E3D0D1 /* Extensions */,
 				97AC29BE182E23E200C1FE90 /* CoreData.framework */,
 				9736CA9E182D42D4008E5A2E /* SystemConfiguration.framework */,
 				4E874E1E16D1218E00CFDA27 /* Cloud9App */,
@@ -631,6 +649,18 @@
 				971692A317D3849B001E48C9 /* Harabara.ttf */,
 			);
 			name = fonts;
+			sourceTree = "<group>";
+		};
+		9777FDF2183657F600E3D0D1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9777FDF3183657F600E3D0D1 /* ContextFilterLogFormatter.h */,
+				9777FDF4183657F600E3D0D1 /* ContextFilterLogFormatter.m */,
+				9777FDF5183657F600E3D0D1 /* DispatchQueueLogFormatter.h */,
+				9777FDF6183657F600E3D0D1 /* DispatchQueueLogFormatter.m */,
+				9777FDF7183657F600E3D0D1 /* README.txt */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		97AC29D0182E39DA00C1FE90 /* AppData */ = {
@@ -761,6 +791,7 @@
 				4E874E1116D1218E00CFDA27 /* Sources */,
 				4E874E1216D1218E00CFDA27 /* Frameworks */,
 				4E874E1316D1218E00CFDA27 /* Resources */,
+				9777FDE71836573100E3D0D1 /* CopyFiles */,
 			);
 			buildRules = (
 			);
