@@ -64,7 +64,7 @@ static BOOL allProcessed = NO;
                 dailyEvents.weekDay = [dailyEventsDict objectForKey:@"day"];
 
                 dailyEvents.eventId = [dailyEventsDict objectForKey:@"id"];
-                dailyEvents.eventName = [dailyEventsDict objectForKey:@"itle"];
+                dailyEvents.eventName = [dailyEventsDict objectForKey:@"title"];
                 dailyEvents.eventDescription = [dailyEventsDict objectForKey:@"description"];
 
                 dailyEvents.venueId = [dailyEventsDict objectForKey:@"venue_id"];
@@ -76,7 +76,7 @@ static BOOL allProcessed = NO;
                 [dailyEventsArray addObject:dailyEvents];
 
                 // event detail
-                NSString * eventDetailUrl = [NSString stringWithFormat:@"%@%@", kUrlDailyEvents, dailyEvents.eventId];
+                NSString * eventDetailUrl = [NSString stringWithFormat:@"%@%@", kUrlEventDetails, dailyEvents.eventId];
                 NSDictionary *eventDetailDict = [[json toArray:eventDetailUrl] objectAtIndex:0];
 
                 EventDetail *eventDetail = [NSEntityDescription insertNewObjectForEntityForName:@"EventDetail" inManagedObjectContext:context];

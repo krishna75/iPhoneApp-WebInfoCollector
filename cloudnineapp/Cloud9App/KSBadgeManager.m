@@ -24,6 +24,9 @@ static NSMutableDictionary *eventViewedDict = nil;
 }
 
 
++ (void)saveDict {
+
+}
 
 + (void) updateEvents {
     [KSBadgeManager removePastEvents:eventViewedDict];
