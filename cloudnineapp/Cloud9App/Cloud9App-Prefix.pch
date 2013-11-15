@@ -14,5 +14,6 @@
     #import <CoreData/CoreData.h>
     #import "KSUtilities.h"
     #import "KSSettings.h"
+    #import "Macros"
 
 #endif

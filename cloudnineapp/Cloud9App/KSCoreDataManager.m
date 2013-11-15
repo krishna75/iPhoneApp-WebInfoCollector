@@ -96,7 +96,7 @@ static BOOL allProcessed = NO;
                 eventDetail.dailyEvents = dailyEvents;
                 dailyEvents.eventDetail = eventDetail;
             }
-            NSLog(@"KSCoreDataManager/createEvents: dailyEventsArray.size = %d", [dailyEventsArray count]) ;
+            ALog(@"KSCoreDataManager/createEvents: dailyEventsArray.size = %d", [dailyEventsArray count]) ;
 
             // relation
             allEvents.dailyEvents= [NSSet setWithArray:dailyEventsArray] ;
@@ -114,7 +114,7 @@ static BOOL allProcessed = NO;
             NSError *error = nil;
             if (saveOk) {
                 if (![context save:&error]) {
-                    NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                    ALog(@"Whoops, couldn't save: %@", [error localizedDescription]);
                 }
             }
             [results addObject:allEvents];
@@ -177,13 +177,13 @@ static BOOL allProcessed = NO;
                 eventDetail.voucherDescription= [eventDetailDict objectForKey:@"voucher_description"];
                 eventDetail.voucherPhoto= [eventDetailDict objectForKey:@"voucher_photo"];
 
-                NSLog(@"AllVenuesController/createCoreData: eventName=%@",eventDetail.eventName);
+                ALog(@"AllVenuesController/createCoreData: eventName=%@",eventDetail.eventName);
 
                 // relations
                 eventDetail.eventsInVenue = eventsInVenue;
                 eventsInVenue.eventDetails = eventDetail;
             }
-            NSLog(@"KSCoreDataManager/createVenues: eventsInVenueArray.size = %d", [eventsInVenueArray count]) ;
+            ALog(@"KSCoreDataManager/createVenues: eventsInVenueArray.size = %d", [eventsInVenueArray count]) ;
 
             // relation
             allVenues.eventsInVenue = [NSSet setWithArray:eventsInVenueArray] ;
@@ -201,7 +201,7 @@ static BOOL allProcessed = NO;
             NSError *error = nil;
             if (saveOk) {
                 if (![context save:&error]) {
-                    NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                    ALog(@"Whoops, couldn't save: %@", [error localizedDescription]);
                 }
             }
             [results addObject:allVenues];
@@ -260,7 +260,7 @@ static BOOL allProcessed = NO;
             eventDetail.eventsInGenre = eventsInGenre;
             eventsInGenre.eventDetails = eventDetail;
         }
-        NSLog(@"KSCoreDataManager/createGenres: eventsInGenreArray.size = %d", [eventsInGenreArray count]) ;
+        ALog(@"KSCoreDataManager/createGenres: eventsInGenreArray.size = %d", [eventsInGenreArray count]) ;
 
         //relationship
         allGenres.eventsInGenre = [NSSet setWithArray:eventsInGenreArray] ;
@@ -278,7 +278,7 @@ static BOOL allProcessed = NO;
         NSError *error = nil;
         if (saveOk) {
             if (![context save:&error]) {
-                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                ALog(@"Whoops, couldn't save: %@", [error localizedDescription]);
             }
         }
         [results addObject:allGenres];
@@ -342,7 +342,7 @@ static BOOL allProcessed = NO;
             NSError *error = nil;
             if (saveOk) {
                 if (![context save:&error]) {
-                    NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                    ALog(@"Whoops, couldn't save: %@", [error localizedDescription]);
                 }
             }
             [results addObject:vouchersToday];

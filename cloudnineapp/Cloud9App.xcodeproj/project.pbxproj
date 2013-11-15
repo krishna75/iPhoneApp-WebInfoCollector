@@ -157,6 +157,7 @@
 		BD2DE2D20714866C2E145E97 /* CloudNineApp.xcodedatamodel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BD2DEACE895CEF98C728EBD7 /* CloudNineApp.xcodedatamodel.xcdatamodeld */; };
 		BD2DE35776F5B786C91F678D /* VouchersTodayController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD2DE44A1C11F083553C5A79 /* VouchersTodayController.m */; };
 		BD2DE622CDB70BDD89EE90AE /* KSCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BD2DEECAA81BFDC58E7BDC15 /* KSCoreDataManager.m */; };
+		BD2DEC01482F5A6831C7A6A4 /* Macros in Resources */ = {isa = PBXBuildFile; fileRef = BD2DE3650CB7C934DCA4AB32 /* Macros */; };
 		BD2DEC187F1A6D83A91F8768 /* buttonScan.png in Resources */ = {isa = PBXBuildFile; fileRef = BD2DEFB6AC6EA27E5BBA00C9 /* buttonScan.png */; };
 		BD2DED2F95F1C27A7B37C072 /* table_header.png in Resources */ = {isa = PBXBuildFile; fileRef = BD2DE6FBD4DA6DB5F7D8A018 /* table_header.png */; };
 /* End PBXBuildFile section */
@@ -339,6 +340,7 @@
 		97F1ECC317D3A55E0011C391 /* bg_table_cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_table_cell.png; sourceTree = "<group>"; };
 		BD2DE2DDB7E2746D828C5A28 /* VouchersTodayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VouchersTodayController.h; sourceTree = "<group>"; };
 		BD2DE323C29644847C829DF2 /* KSCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSCoreDataManager.h; sourceTree = "<group>"; };
+		BD2DE3650CB7C934DCA4AB32 /* Macros */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Macros; sourceTree = "<group>"; };
 		BD2DE44A1C11F083553C5A79 /* VouchersTodayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VouchersTodayController.m; sourceTree = "<group>"; };
 		BD2DE5F7775BDF0261702655 /* buttonVoucher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonVoucher.png; sourceTree = "<group>"; };
 		BD2DE66B71CE43C015A917CD /* CloudNineApp.xcodedatamodel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CloudNineApp.xcodedatamodel.xcdatamodel; sourceTree = "<group>"; };
@@ -509,6 +511,7 @@
 				972BBE8C17CE955100A68128 /* KSGuiUtilities.m */,
 				BD2DE323C29644847C829DF2 /* KSCoreDataManager.h */,
 				BD2DEECAA81BFDC58E7BDC15 /* KSCoreDataManager.m */,
+				BD2DE3650CB7C934DCA4AB32 /* Macros */,
 			);
 			name = "Reusable Files";
 			sourceTree = "<group>";
@@ -911,6 +914,7 @@
 				9729F85617DA6E0C008BA022 /* Default-568h@2x.png in Resources */,
 				9729F85817DA71C1008BA022 /* icon.png in Resources */,
 				9707F4C217F88CA0000AAC9A /* voucher.png in Resources */,
+				BD2DEC01482F5A6831C7A6A4 /* Macros in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
