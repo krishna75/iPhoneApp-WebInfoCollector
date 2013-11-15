@@ -11,9 +11,8 @@
 @class AllEvents;
 
 @interface DailyEventsController : UITableViewController
-
-@property (retain, nonatomic) NSMutableDictionary *eventDict;
-@property (retain, nonatomic) AllEvents *allEvents;
+@property (retain, nonatomic) NSArray *dailyEventsArray;
+@property (retain, nonatomic) NSString *date;
 
 
 @end

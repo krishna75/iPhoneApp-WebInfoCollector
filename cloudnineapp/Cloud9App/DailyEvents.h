@@ -2,7 +2,7 @@
 //  DailyEvents.h
 //  Cloud9App
 //
-//  Created by Krishna Sapkota on 14/11/2013.
+//  Created by Krishna Sapkota on 15/11/2013.
 //  Copyright (c) 2013 Krishna Sapkota. All rights reserved.
 //
 
@@ -14,12 +14,13 @@
 @interface DailyEvents : NSManagedObject
 
 @property (nonatomic, retain) NSString * date;
-@property (nonatomic, retain) NSString * day;
+@property (nonatomic, retain) NSString * weekDay;
 @property (nonatomic, retain) NSString * eventId;
 @property (nonatomic, retain) NSString * eventName;
-@property (nonatomic, retain) NSString * month;
 @property (nonatomic, retain) NSString * venueLogo;
 @property (nonatomic, retain) NSString * venueName;
+@property (nonatomic, retain) NSString * eventDescription;
+@property (nonatomic, retain) NSString * venueId;
 @property (nonatomic, retain) AllEvents *allEvents;
 @property (nonatomic, retain) EventDetail *eventDetail;
 

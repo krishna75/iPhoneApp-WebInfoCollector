@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12A269" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AllEvents" representedClassName="AllEvents" syncable="YES">
-        <attribute name="dateDay" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="eventCountDetails" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="eventDate" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="numNewEvents" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="shortMonth" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="count" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weekDay" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="dailyEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DailyEvents" inverseName="allEvents" inverseEntity="DailyEvents" syncable="YES"/>
     </entity>
@@ -28,12 +25,13 @@
     </entity>
     <entity name="DailyEvents" representedClassName="DailyEvents" syncable="YES">
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="day" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eventDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="month" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="venueId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="venueLogo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="venueName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="weekDay" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="allEvents" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="AllEvents" inverseName="dailyEvents" inverseEntity="AllEvents" syncable="YES"/>
         <relationship name="eventDetail" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="EventDetail" inverseName="dailyEvents" inverseEntity="EventDetail" syncable="YES"/>
     </entity>
@@ -86,10 +84,10 @@
         <relationship name="eventDetails" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="EventDetail" inverseName="vouchersToday" inverseEntity="EventDetail" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AllEvents" positionX="-3168" positionY="-256" width="128" height="148"/>
+        <element name="AllEvents" positionX="-3168" positionY="-256" width="128" height="103"/>
         <element name="AllGenres" positionX="-3177" positionY="90" width="128" height="118"/>
         <element name="AllVenues" positionX="-3170" positionY="-91" width="128" height="163"/>
-        <element name="DailyEvents" positionX="-2952" positionY="-280" width="128" height="178"/>
+        <element name="DailyEvents" positionX="-2952" positionY="-280" width="128" height="193"/>
         <element name="EventDetail" positionX="-2745" positionY="-171" width="128" height="253"/>
         <element name="EventsInGenre" positionX="-2952" positionY="83" width="128" height="133"/>
         <element name="EventsInVenue" positionX="-2954" positionY="-81" width="128" height="118"/>

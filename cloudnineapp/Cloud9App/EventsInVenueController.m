@@ -165,14 +165,11 @@
 }
 
 #pragma mark - Table view delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     EventsInVenue *eventsInVenue = [_eventInVenueArray objectAtIndex:indexPath.row];
     EventDetailsController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventDetail"];
     nextViewController.eventDetail = eventsInVenue.eventDetails;
-    NSLog(@"eventInVenueController/didSelect...: eventName=%@", eventsInVenue.eventDetails.eventName);
 
     [self.navigationController pushViewController:nextViewController animated: NO];
-
 }
 @end

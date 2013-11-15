@@ -109,11 +109,14 @@
         KSJson * json = [[KSJson alloc] init];
         NSString *jsonURL  = [NSString stringWithFormat:@"%@%@", kEventsOfVenueUrl, allVenues.venueId];
         NSLog(@"AllVenuesController/createCoreData: jsonUrl = %@", jsonURL) ;
+
         for (NSDictionary *eventsInVenueDict in [json toArray:jsonURL]) {
             EventsInVenue *eventsInVenue = [NSEntityDescription insertNewObjectForEntityForName:@"EventsInVenue" inManagedObjectContext:context];
             eventsInVenue.eventId = [eventsInVenueDict objectForKey:@"event_id"];
             eventsInVenue.date = [eventsInVenueDict objectForKey:@"date"];
             eventsInVenue.eventName = [eventsInVenueDict objectForKey:@"event_title"];
+
+            // relations
             eventsInVenue.allVenues = allVenues;
             [eventsInVenueArray addObject:eventsInVenue];
 
@@ -136,10 +139,13 @@
 
             NSLog(@"AllVenuesController/createCoreData: eventName=%@",eventDetail.eventName);
 
+            // relations
             eventDetail.eventsInVenue = eventsInVenue;
             eventsInVenue.eventDetails = eventDetail;
         }
         NSLog(@"AllVenuesController/createCoreData: eventsInVenueArray.size = %d", [eventsInVenueArray count]) ;
+
+        // relation
         allVenues.eventsInVenue = [NSSet setWithArray:eventsInVenueArray] ;
 
         //checking if the  data already exists
@@ -150,7 +156,7 @@
             }
         }
 
-        //saving data
+        // saving data
         NSError *error = nil;
         if (saveOk) {
             if (![context save:&error]) {
