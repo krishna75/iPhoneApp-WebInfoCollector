@@ -31,4 +31,6 @@
 + (NSArray *) getGenres;
 + (NSArray *) getVouchers;
 
++ (void) deleteCoreData;
+
 @end

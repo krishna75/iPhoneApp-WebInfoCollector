@@ -32,15 +32,18 @@ static NSArray *events;
 static NSArray *venues;
 static NSArray *genres;
 static NSArray *vouchers;
-static BOOL allProcessed = NO;
+static BOOL eventsProcessed = NO;
+static BOOL venuesProcessed = NO;
+static BOOL genresProcessed = NO;
+static BOOL vouchersProcessed = NO;
 @implementation KSCoreDataManager {
 
 }
 + (void)createEvents {
-    if ([[[KSJson alloc] init] isConnectionAvailable] && !allProcessed){
+    NSDate* startTime = [NSDate date];
+    if ([[[KSJson alloc] init] isConnectionAvailable] && !eventsProcessed){
 
         NSMutableArray *results = [[NSMutableArray alloc] init] ;
-
         // creating the context for the core data
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
         NSManagedObjectContext *context = [appDelegate managedObjectContext];
@@ -96,36 +99,30 @@ static BOOL allProcessed = NO;
                 eventDetail.dailyEvents = dailyEvents;
                 dailyEvents.eventDetail = eventDetail;
             }
-            ALog(@"KSCoreDataManager/createEvents: dailyEventsArray.size = %d", [dailyEventsArray count]) ;
 
             // relation
             allEvents.dailyEvents= [NSSet setWithArray:dailyEventsArray] ;
 
-            //checking if the  data already exists
-            BOOL saveOk = YES;
-            NSArray *lastSaved = [self loadEvents];
-            for (AllEvents * lastEvent in lastSaved ) {
-                if ([lastEvent.date isEqualToString:allEvents.date]){
-                    saveOk = NO;
-                }
-            }
-
             //saving data
             NSError *error = nil;
-            if (saveOk) {
                 if (![context save:&error]) {
                     ALog(@"Whoops, couldn't save: %@", [error localizedDescription]);
                 }
-            }
             [results addObject:allEvents];
         }
 
+        ALog(@" events size = %d", [results count] );
        events = results;
+
+       int timeTaken = (int) [[NSDate date] timeIntervalSinceDate:startTime];
+       ALog(@" time taken to process (download) all the events = %d seconds",timeTaken) ;
+       eventsProcessed = YES;
     }
 }
 
 + (void)createVenues {
-    if ([[[KSJson alloc] init] isConnectionAvailable] && !allProcessed){
+    NSDate* startTime = [NSDate date];
+    if ([[[KSJson alloc] init] isConnectionAvailable] && !venuesProcessed){
 
         NSMutableArray *results = [[NSMutableArray alloc] init] ;
 
@@ -177,41 +174,33 @@ static BOOL allProcessed = NO;
                 eventDetail.voucherDescription= [eventDetailDict objectForKey:@"voucher_description"];
                 eventDetail.voucherPhoto= [eventDetailDict objectForKey:@"voucher_photo"];
 
-                ALog(@"AllVenuesController/createCoreData: eventName=%@",eventDetail.eventName);
-
                 // relations
                 eventDetail.eventsInVenue = eventsInVenue;
                 eventsInVenue.eventDetails = eventDetail;
             }
-            ALog(@"KSCoreDataManager/createVenues: eventsInVenueArray.size = %d", [eventsInVenueArray count]) ;
 
             // relation
             allVenues.eventsInVenue = [NSSet setWithArray:eventsInVenueArray] ;
 
-            //checking if the  data already exists
-            BOOL saveOk = YES;
-            NSArray *lastSaved = [self loadVenues];
-            for (AllVenues * lastVenue in lastSaved ) {
-                if ([lastVenue.eventId isEqualToString:allVenues.eventId]){
-                    saveOk = NO;
-                }
-            }
-
             // saving data
             NSError *error = nil;
-            if (saveOk) {
                 if (![context save:&error]) {
                     ALog(@"Whoops, couldn't save: %@", [error localizedDescription]);
                 }
-            }
             [results addObject:allVenues];
         }
+        ALog(@"KSCoreDataManager/createVenues: venues size = %d", [results count]) ;
         venues = results;
+        venuesProcessed = YES;
+
+        int timeTaken = (int) [[NSDate date] timeIntervalSinceDate:startTime];
+        ALog(@" time taken to process (download) all the venues = %d seconds",timeTaken) ;
     }
 }
 
 + (void)createGenres {
-    if ([[[KSJson alloc] init] isConnectionAvailable] && !allProcessed){
+    NSDate* startTime = [NSDate date];
+    if ([[[KSJson alloc] init] isConnectionAvailable] && !genresProcessed){
 
         NSMutableArray *results = [[NSMutableArray alloc] init] ;
 
@@ -260,35 +249,28 @@ static BOOL allProcessed = NO;
             eventDetail.eventsInGenre = eventsInGenre;
             eventsInGenre.eventDetails = eventDetail;
         }
-        ALog(@"KSCoreDataManager/createGenres: eventsInGenreArray.size = %d", [eventsInGenreArray count]) ;
 
-        //relationship
-        allGenres.eventsInGenre = [NSSet setWithArray:eventsInGenreArray] ;
+            //relationship
+            allGenres.eventsInGenre = [NSSet setWithArray:eventsInGenreArray] ;
 
-        //checking if the  data already exists
-        BOOL saveOk = YES;
-        NSArray *lastSaved = [self loadGenres];
-        for (AllGenres *lastGenre in lastSaved ) {
-            if ([lastGenre.genreId isEqualToString:allGenres.genreId]){
-                saveOk = NO;
-            }
+            //saving data
+            NSError *error = nil;
+                if (![context save:&error]) {
+                    ALog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                }
+            [results addObject:allGenres];
         }
-
-        //saving data
-        NSError *error = nil;
-        if (saveOk) {
-            if (![context save:&error]) {
-                ALog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-            }
-        }
-        [results addObject:allGenres];
+        ALog(@" genres size = %d", [results count]) ;
+        genres = results;
+    genresProcessed = YES;
     }
-    genres = results;
-    }
+    int timeTaken = (int) [[NSDate date] timeIntervalSinceDate:startTime];
+    ALog(@" time taken to process (download) all the Genres = %d seconds",timeTaken) ;
 }
 
 + (void)createVouchers {
-    if ([[[KSJson alloc] init] isConnectionAvailable] && !allProcessed){
+    NSDate* startTime = [NSDate date];
+    if ([[[KSJson alloc] init] isConnectionAvailable] && !vouchersProcessed){
 
         NSMutableArray *results = [[NSMutableArray alloc] init] ;
 
@@ -329,34 +311,35 @@ static BOOL allProcessed = NO;
             eventDetail.vouchersToday = vouchersToday;
             vouchersToday.eventDetails = eventDetail;
 
-            // checking if the  data already exists
-            BOOL saveOk = YES;
-            NSArray *lastSaved = [self loadVouchers];
-            for (VouchersToday *lastVoucher in lastSaved ) {
-                if ([lastVoucher.eventId isEqualToString:vouchersToday.eventId]){
-                    saveOk = NO;
-                }
-            }
-
             //saving data
             NSError *error = nil;
-            if (saveOk) {
                 if (![context save:&error]) {
                     ALog(@"Whoops, couldn't save: %@", [error localizedDescription]);
                 }
-            }
             [results addObject:vouchersToday];
         }
+        ALog(@" genres size = %d", [results count]) ;
         vouchers = results;
+        vouchersProcessed = YES;
+        int timeTaken = (int) [[NSDate date] timeIntervalSinceDate:startTime];
+        ALog(@" time taken to process (download) all the vouchers = %d seconds",timeTaken) ;
     }
 }
 
 + (void)createAll {
+    NSDate* startTime = [NSDate date];
+    if ([[[KSJson alloc] init] isConnectionAvailable]){
+
+    [self deleteCoreData];
+
     [self createEvents];
     [self createVenues];
     [self createGenres];
     [self createVouchers];
-    allProcessed = YES;
+    }
+
+    int timeTaken = (int) [[NSDate date] timeIntervalSinceDate:startTime];
+    ALog(@" time taken to process (download) all the data = %d seconds",timeTaken) ;
 }
 
 + (NSArray *)loadEvents {
@@ -429,6 +412,19 @@ static BOOL allProcessed = NO;
     } else {
         return [self loadVouchers];
     }
+}
+
++(void) deleteCoreData {
+//    ALog(@" deleting object: %@ ",entityDescription);
+    ALog(@"deleting all the coredata ");
+    AppDelegate *appDelegate = [[AppDelegate alloc]init];
+    NSArray *stores = [appDelegate.persistentStoreCoordinator persistentStores];
+
+    for(NSPersistentStore *store in stores) {
+        [appDelegate.persistentStoreCoordinator removePersistentStore:store error:nil];
+        [[NSFileManager defaultManager] removeItemAtPath:store.URL.path error:nil];
+    }
+
 }
 
 

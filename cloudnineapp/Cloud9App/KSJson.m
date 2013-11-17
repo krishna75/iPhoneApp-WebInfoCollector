@@ -33,7 +33,7 @@
 
 -(NSMutableArray *) toArray:(NSString *) jsonUrlString; {
     jsonUrlString =  [NSString stringWithFormat:@"%@%@",jsonHome,jsonUrlString];
-    NSLog(@"KSJson/toArray: url = %@", jsonUrlString);
+//    NSLog(@"KSJson/toArray: url = %@", jsonUrlString);
     jsonURL = [NSURL URLWithString: jsonUrlString];
 
     if ([self isConnectionAvailable] ){
@@ -48,14 +48,14 @@
 {
     char *hostname;
     struct hostent *hostinfo;
-    hostname = "google.com";
+    hostname = "cnapp.co.uk";
     hostinfo = gethostbyname (hostname);
     if (hostinfo == NULL){
         NSLog(@"-> no connection!\n");
         return NO;
     }
     else{
-        NSLog(@"-> connection established!\n");
+//        NSLog(@"-> connection established!\n");
         return YES;
     }
 }

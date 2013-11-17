@@ -5,7 +5,7 @@
 <div id="content">
 <h1>Information </h1>
 <p>
-Cloud nine is the latest in mobile advertising, using a unique updating system it will be frequently updated to have all the best nights around in the Oxford area.
+Welcome !!! Cloud nine is the latest in mobile advertising, using a unique updating system it will be frequently updated to have all the best nights around in the Oxford area.
 </p>
 <p>
 The App is Free to download and works on a 30 day live calender.
