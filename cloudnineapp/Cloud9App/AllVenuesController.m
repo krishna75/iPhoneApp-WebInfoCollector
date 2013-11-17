@@ -171,9 +171,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     AllVenues* allVenues = [coreDataResults objectAtIndex:indexPath.row];
-
     EventsInVenueController *nextController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventsInAVenue"];
-    nextController.eventInVenueArray= [allVenues.eventsInVenue allObjects];
+
+    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
+    nextController.eventInVenueArray = [[allVenues.eventsInVenue allObjects] sortedArrayUsingDescriptors:sortDescriptors];
+
     nextController.venueLogo= allVenues.venueLogo;
     nextController.venueName= allVenues.venueName;
     nextController.venueAddress= allVenues.venueAddress;

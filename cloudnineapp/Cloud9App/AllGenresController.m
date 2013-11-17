@@ -148,7 +148,10 @@
     AllGenres*allGenres = [coreDataResults objectAtIndex:indexPath.row];
 
     EventsInGenreController *nextController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventsInGenre"];
-    nextController.eventsInGenreArray= [allGenres.eventsInGenre allObjects];
+
+    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
+    nextController.eventsInGenreArray = [[allGenres.eventsInGenre allObjects] sortedArrayUsingDescriptors:sortDescriptors];
+
     nextController.genreName= allGenres.genreName;
     nextController.genreDescription= allGenres.genreDescription;
     nextController.genrePhoto= allGenres.genrePhoto;
