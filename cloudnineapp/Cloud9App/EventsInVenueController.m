@@ -46,11 +46,11 @@
     [NSThread detachNewThreadSelector:@selector(loadData) toTarget:self withObject:nil];
 }
 
-
 - (void) loadData {
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil    waitUntilDone:NO];
     [app RemoveLoadingView];
 }
+
 
 
 - (void)decorateView{
@@ -112,6 +112,8 @@
    [cell addSubview: [KSUtilities getCalendar:[dateDict objectForKey:@"shortMonth"] forDay:[dateDict objectForKey:@"dateDay"]]];
     
     //displaying new events as badge
+    UIView *badge = [cell viewWithTag:111];
+    [badge removeFromSuperview];
     NSString    *eventId = eventsInVenue.eventId;
     NSMutableString *eventIdDate = [NSMutableString stringWithFormat:@"%@:%@",eventId, [NSMutableString stringWithString:eventsInVenue.date]];
     if ([KSBadgeManager isNewEvent:eventIdDate]) {

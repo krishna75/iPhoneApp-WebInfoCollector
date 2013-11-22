@@ -115,6 +115,8 @@
     [cell addSubview: [KSUtilities getImageViewOfUrl:dailyEvents.venueLogo]];
     
     // displaying new events as badge
+    UIView *badge = [cell viewWithTag:111];
+    [badge removeFromSuperview];
     NSString    *eventId = dailyEvents.eventId;
     NSString    *date= dailyEvents.date;
     NSMutableString *eventIdDate = [NSString stringWithFormat:@"%@:%@",eventId,date];

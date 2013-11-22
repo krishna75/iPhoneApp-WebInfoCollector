@@ -327,19 +327,20 @@ static BOOL vouchersProcessed = NO;
 }
 
 + (void)createAll {
-    NSDate* startTime = [NSDate date];
     if ([[[KSJson alloc] init] isConnectionAvailable]){
+        NSDate* startTime = [NSDate date];
 
-    [self deleteCoreData];
+        [self deleteCoreData];
 
-    [self createEvents];
-    [self createVenues];
-    [self createGenres];
-    [self createVouchers];
+        [self createEvents];
+        [self createVenues];
+        [self createGenres];
+        [self createVouchers];
+
+
+        int timeTaken = (int) [[NSDate date] timeIntervalSinceDate:startTime];
+        ALog(@" time taken to process (download) all the data = %d seconds",timeTaken) ;
     }
-
-    int timeTaken = (int) [[NSDate date] timeIntervalSinceDate:startTime];
-    ALog(@" time taken to process (download) all the data = %d seconds",timeTaken) ;
 }
 
 + (NSArray *)loadEvents {

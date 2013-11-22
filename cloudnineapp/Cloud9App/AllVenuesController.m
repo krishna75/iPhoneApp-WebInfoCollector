@@ -137,6 +137,8 @@
     }
     
     //badges
+    UIView *badge = [cell viewWithTag:111];
+    [badge removeFromSuperview];
     int newEventCount = [KSBadgeManager countNewEvents:eventIdList];
     if (newEventCount > 0) {
         if(app.setBadge) {

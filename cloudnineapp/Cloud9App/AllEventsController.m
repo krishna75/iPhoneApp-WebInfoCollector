@@ -103,6 +103,9 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    for(UIView *subview in [self.view subviews]) {
+        [subview removeFromSuperview];
+    }
 }
 
 
@@ -146,6 +149,8 @@
     [cell addSubview:[KSUtilities getCalendar:[dateDict objectForKey:@"shortMonth"] forDay:[dateDict objectForKey:@"dateDay"]]];
 
     // displaying new events as badge
+    UIView *badge = [cell viewWithTag:111];
+    [badge removeFromSuperview];
     int newEventCount = [KSBadgeManager countNewEventsOfDate:[NSMutableString stringWithString:allEvents.date] ] ;
     if (newEventCount > 0) {
         if(app.setBadge) {
