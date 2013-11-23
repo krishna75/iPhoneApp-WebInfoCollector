@@ -16,6 +16,8 @@
 #import "AllGenres.h"
 #import "EventsInGenre.h"
 #import "VouchersToday.h"
+#import "KSInternetManager.h"
+#import "UsedVoucherManager.h"
 
 
 #define kUrlEvents @"datesAndEvents.php"
@@ -332,11 +334,15 @@ static BOOL vouchersProcessed = NO;
 
         [self deleteCoreData];
 
+        // creating core data
         [self createEvents];
         [self createVenues];
         [self createGenres];
         [self createVouchers];
 
+        // processing other initial stuff
+        [KSInternetManager downloadVoucherImages];
+        [[[UsedVoucherManager alloc] init] updateOnline];
 
         int timeTaken = (int) [[NSDate date] timeIntervalSinceDate:startTime];
         ALog(@" time taken to process (download) all the data = %d seconds",timeTaken) ;

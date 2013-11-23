@@ -203,12 +203,7 @@ return btn;
     int len = strToDisplay.length * 10;
     UIView* v = [[UIView alloc] initWithFrame:CGRectMake(280-len,25,len+30,30)] ;
     [v.layer setCornerRadius:8];
-//    [v.layer setBorderColor:[UIColor whiteColor].CGColor];
     [v.layer setBorderWidth:0];
-//    [v.layer setShadowRadius:3.0];
-//    [v.layer setShadowColor:[UIColor blackColor].CGColor];
-//    [v.layer setShadowOpacity:0.8];
-//    [v.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
 
     UILabel *label = [[UILabel alloc]init];
     label.frame = CGRectInset(v.bounds, 2, 2);

@@ -10,6 +10,8 @@
 #import "KSJson.h"
 #import "KSGuiUtilities.h"
 #import "KSUtilities.h"
+#import "UsedVoucher.h"
+#import "UsedVoucherManager.h"
 
 #define kTitle @"Voucher"
 
@@ -173,12 +175,6 @@ NSString *voucherPhotoUrl;
             && [venue isEqualToString:venueId ]
             && [action isEqualToString:@"cancel"]){
 
-            // updating the voucher used
-            KSJson * json = [[KSJson alloc] init];
-            NSString *url =  @"model_addVoucher.php?user_id=cloudnineapp-voucher&password=App@Cloud9&event_id=";
-            NSString *jsonURL  = [url stringByAppendingString:eventId];
-            NSLog(@"voucher url = %@" ,jsonURL);
-            [json toArray:jsonURL];
 
             // showing confirmation pop up
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!!!" message:[NSString stringWithFormat:@"Thank you for using  CNAPP voucher"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
@@ -187,6 +183,13 @@ NSString *voucherPhotoUrl;
             used = true;
             [scanButton removeFromSuperview];
             [self addWarningLabel:@"VoucherDetailController used !!!"];
+
+            // updates the used voucher
+            UsedVoucherManager * usedVoucherManager = [[UsedVoucherManager alloc] init];
+            UsedVoucher * usedVoucher = [[UsedVoucher alloc]init];
+            usedVoucher.eventId = eventId;
+            [usedVoucherManager addUsedVoucher:usedVoucher];
+
             [self addUsed:eventId];
         } else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!!" message:[NSString stringWithFormat:@"Wrong QR Code"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
