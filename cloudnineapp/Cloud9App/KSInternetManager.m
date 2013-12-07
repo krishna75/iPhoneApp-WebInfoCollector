@@ -8,8 +8,8 @@
 
 #import "KSInternetManager.h"
 #import "KSCoreDataManager.h"
-#import "Voucher.h"
-#import "EventDetail.h"
+#import "KSVoucher.h"
+#import "KSEventDetail.h"
 
 
 @implementation KSInternetManager {
@@ -19,7 +19,7 @@
 
 + (void)downloadVoucherImages {
     [KSCoreDataManager createVouchers];
-    for (Voucher *voucher in [KSCoreDataManager getVouchers]){
+    for (KSVoucher *voucher in [KSCoreDataManager getVouchers]){
         [KSUtilities getImage:voucher.eventDetails.voucherPhoto];
     }
 }

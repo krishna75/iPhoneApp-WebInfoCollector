@@ -9,6 +9,7 @@
 #import "MyAppLogicTests.h"
 #import "KSBadgeManager.h"
 #import "KSUtilities.h"
+#import "KSUsedVoucherManager.h"
 
 @implementation MyAppLogicTests
 
@@ -76,7 +77,18 @@
 
 - (void) testCountNewEventsOfDate {
     int newEventCount = [KSBadgeManager countNewEventsOfDate:@"2013-04-28"];
-    STAssertEquals(6, newEventCount, @"must be 6 new events");
+    STAssertEquals(7, newEventCount, @"must be 6 new events");
+}
+
+- (void) testUsedVoucher {
+     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    [dict setValue:@"cat" forKey:@"animal"];
+    NSString *filename = @"voucher-test-file";
+    KSUsedVoucherManager *usedVoucherManager = [[KSUsedVoucherManager alloc] init];
+    [usedVoucherManager writeToPlistFile:filename forDict:dict];
+
+
+
 }
 
 

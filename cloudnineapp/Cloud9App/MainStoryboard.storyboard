@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12A269" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="xFe-Nh-1M9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="xFe-Nh-1M9">
     <dependencies>
         <deployment version="1280" identifier="iOS"/>
         <development version="4300" identifier="xcode"/>
@@ -9,7 +9,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="15">
             <objects>
-                <tabBarController storyboardIdentifier="root" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4" customClass="TabBarController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="root" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4" customClass="KSTabBarController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Y2K-5j-Ilj"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5">
@@ -31,7 +31,7 @@
         <!--Settings Controller - Utilities-->
         <scene sceneID="Auw-hy-CWp">
             <objects>
-                <viewController storyboardIdentifier="settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9rZ-FP-3aN" customClass="SettingsController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9rZ-FP-3aN" customClass="KSSettingsController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R6G-8X-MgE">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -60,10 +60,10 @@
             </objects>
             <point key="canvasLocation" x="86" y="-346"/>
         </scene>
-        <!--Venues And Events Controller - Venues and Events-->
+        <!--All Venues Controller - Venues and Events-->
         <scene sceneID="He2-nT-5NW">
             <objects>
-                <tableViewController storyboardIdentifier="venues" useStoryboardIdentifierAsRestorationIdentifier="YES" id="j8q-d3-av7" customClass="AllVenuesController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="venues" useStoryboardIdentifierAsRestorationIdentifier="YES" id="j8q-d3-av7" customClass="KSAllVenuesController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" id="yi9-nR-c8y">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -109,10 +109,10 @@
             </objects>
             <point key="canvasLocation" x="-1305" y="-2118"/>
         </scene>
-        <!--All Event Controller - Events-->
+        <!--All Events Controller - Events-->
         <scene sceneID="zUQ-gL-67d">
             <objects>
-                <tableViewController storyboardIdentifier="event" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vOs-nA-ia0" customClass="AllEventsController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="event" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vOs-nA-ia0" customClass="KSAllEventsController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="73" sectionHeaderHeight="22" sectionFooterHeight="22" id="jk1-xU-KBL">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -129,10 +129,10 @@
             </objects>
             <point key="canvasLocation" x="74" y="-2955"/>
         </scene>
-        <!--Preferences Controller - Genres-->
+        <!--All Genres Controller - Genres-->
         <scene sceneID="J74-UE-vHW">
             <objects>
-                <tableViewController storyboardIdentifier="genres" id="P3M-9o-WBK" customClass="AllGenresController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="genres" id="P3M-9o-WBK" customClass="KSAllGenresController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="68" sectionHeaderHeight="22" sectionFooterHeight="22" id="kHF-WD-XSQ">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -165,7 +165,7 @@
         <!--Daily Events Controller - Events-->
         <scene sceneID="BsK-WW-9h9">
             <objects>
-                <tableViewController storyboardIdentifier="dailyEvents" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XdP-TQ-ULO" customClass="DailyEventsController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="dailyEvents" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XdP-TQ-ULO" customClass="KSDailyEventsController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="73" sectionHeaderHeight="22" sectionFooterHeight="22" id="c8G-r7-5f9">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -185,7 +185,7 @@
         <!--Event Details Controller - Event Details-->
         <scene sceneID="KUO-V5-1yA">
             <objects>
-                <viewController storyboardIdentifier="eventDetail" autoresizesArchivedViewToFullSize="NO" title="Event Details" id="X3P-D7-1RG" customClass="EventDetailsController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="eventDetail" autoresizesArchivedViewToFullSize="NO" title="Event Details" id="X3P-D7-1RG" customClass="KSEventDetailsController" sceneMemberID="viewController">
                     <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="eventDetailScroll" id="FlI-GU-Old">
                         <rect key="frame" x="0.0" y="64" width="320" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -238,7 +238,7 @@
         <!--Voucher Detail Controller-->
         <scene sceneID="tFA-By-cfT">
             <objects>
-                <viewController storyboardIdentifier="voucher" useStoryboardIdentifierAsRestorationIdentifier="YES" id="w7F-Cf-CIQ" customClass="VoucherDetailController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="voucher" useStoryboardIdentifierAsRestorationIdentifier="YES" id="w7F-Cf-CIQ" customClass="KSVoucherDetailController" sceneMemberID="viewController">
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="J1G-qL-f0N">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -270,10 +270,10 @@
             </objects>
             <point key="canvasLocation" x="1144" y="-2941"/>
         </scene>
-        <!--Events InA Venue Controller - Events-->
+        <!--Events In Venue Controller - Events-->
         <scene sceneID="Pj4-Kq-UZX">
             <objects>
-                <tableViewController storyboardIdentifier="eventsInAVenue" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PCr-vb-GAA" customClass="EventsInVenueController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="eventsInAVenue" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PCr-vb-GAA" customClass="KSEventsInVenueController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="73" sectionHeaderHeight="22" sectionFooterHeight="22" id="fea-lw-nQN">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -310,10 +310,10 @@
             </objects>
             <point key="canvasLocation" x="423" y="-1600"/>
         </scene>
-        <!--Prefs Events Detail - Events-->
+        <!--Events In Genre Controller - Events-->
         <scene sceneID="nGU-L4-lon">
             <objects>
-                <tableViewController storyboardIdentifier="eventsInGenre" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EJC-ga-JMd" customClass="EventsInGenreController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="eventsInGenre" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EJC-ga-JMd" customClass="KSEventsInGenreController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="73" sectionHeaderHeight="22" sectionFooterHeight="22" id="boV-uo-j29">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -333,7 +333,7 @@
         <!--Settings Detail - Settings-->
         <scene sceneID="fza-IT-kFI">
             <objects>
-                <viewController storyboardIdentifier="settingsDetail" title="Settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oXd-CU-wpG" customClass="SettingsDetail" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settingsDetail" title="Settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oXd-CU-wpG" customClass="KSSettingsDetail" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AbO-3w-shI">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -363,7 +363,7 @@
         <!--Vouchers Today Controller - Vouchers-->
         <scene sceneID="bSb-9s-6SE">
             <objects>
-                <tableViewController storyboardIdentifier="vouchersToday" id="xcV-kd-PG2" customClass="VouchersTodayController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="vouchersToday" id="xcV-kd-PG2" customClass="KSVouchersTodayController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="68" sectionHeaderHeight="22" sectionFooterHeight="22" id="qZ3-QD-Rah">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

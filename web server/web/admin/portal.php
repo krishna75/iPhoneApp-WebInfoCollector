@@ -51,9 +51,11 @@ echo "<div class='admin-link'><a href='signOut.php'  >sign out </a></div>";
         // edit
         echo "<div class='admin-link'><a href='crud/crud.php?access=21285&table=Venues' target='_blank' >edit venues </a></div>";
         echo "<div class='admin-link'><a href='crud/crud.php?access=21285&table=Events'target='_blank' >edit events </a></div>";
+        echo "<div class='admin-link'><a href='voucherUsed.php' target='_blank' >see used vouchers </a></div>";
     }
 
     if ($role == 1){
+        echo "<div class='admin-link'><a href='voucherUsed.php' target='_blank' >see used vouchers </a></div>";
         //add
         echo "<div class='admin-link'><a href='addEvent.php' target='_blank' >add an event </a></div>";
         echo "<div class='admin-link'><a href='addVenue.php' target='_blank'>add a venue </a></div>";

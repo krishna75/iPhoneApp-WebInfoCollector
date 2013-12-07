@@ -7,17 +7,17 @@
 
 #import "AppDelegate.h"
 #import "KSCoreDataManager.h"
-#import "EventDetail.h"
+#import "KSEventDetail.h"
 #import "KSJson.h"
-#import "AllEvents.h"
-#import "DailyEvents.h"
-#import "AllVenues.h"
-#import "EventsInVenue.h"
-#import "AllGenres.h"
-#import "EventsInGenre.h"
-#import "VouchersToday.h"
+#import "KSAllEvents.h"
+#import "KSDailyEvents.h"
+#import "KSAllVenues.h"
+#import "KSEventsInVenue.h"
+#import "KSAllGenres.h"
+#import "KSEventsInGenre.h"
+#import "KSVouchersToday.h"
 #import "KSInternetManager.h"
-#import "UsedVoucherManager.h"
+#import "KSUsedVoucherManager.h"
 
 
 #define kUrlEvents @"datesAndEvents.php"
@@ -53,7 +53,7 @@ static BOOL vouchersProcessed = NO;
         for (NSDictionary * eventCountDict in [[[KSJson alloc] init] toArray:kUrlEvents]) {
 
             // all events
-            AllEvents *allEvents = [NSEntityDescription insertNewObjectForEntityForName:@"AllEvents" inManagedObjectContext:context];
+            KSAllEvents *allEvents = [NSEntityDescription insertNewObjectForEntityForName:@"KSAllEvents" inManagedObjectContext:context];
             allEvents.count = [eventCountDict objectForKey:@"quantity"] ;
             allEvents.date = [eventCountDict objectForKey:@"date"] ;
             allEvents.weekDay = [eventCountDict objectForKey:@"day"] ;
@@ -64,7 +64,7 @@ static BOOL vouchersProcessed = NO;
             NSString *urlDailyEvents  = [NSString stringWithFormat:@"%@%@", kUrlDailyEvents, allEvents.date];
 
             for (NSDictionary *dailyEventsDict in [json toArray:urlDailyEvents]) {
-                DailyEvents *dailyEvents = [NSEntityDescription insertNewObjectForEntityForName:@"DailyEvents" inManagedObjectContext:context];
+                KSDailyEvents *dailyEvents = [NSEntityDescription insertNewObjectForEntityForName:@"KSDailyEvents" inManagedObjectContext:context];
                 dailyEvents.date = [dailyEventsDict objectForKey:@"date"];
                 dailyEvents.weekDay = [dailyEventsDict objectForKey:@"day"];
 
@@ -84,7 +84,7 @@ static BOOL vouchersProcessed = NO;
                 NSString * eventDetailUrl = [NSString stringWithFormat:@"%@%@", kUrlEventDetails, dailyEvents.eventId];
                 NSDictionary *eventDetailDict = [[json toArray:eventDetailUrl] objectAtIndex:0];
 
-                EventDetail *eventDetail = [NSEntityDescription insertNewObjectForEntityForName:@"EventDetail" inManagedObjectContext:context];
+                KSEventDetail *eventDetail = [NSEntityDescription insertNewObjectForEntityForName:@"KSEventDetail" inManagedObjectContext:context];
                 eventDetail.date = [eventDetailDict objectForKey:@"date"];
                 eventDetail.eventDescription = [eventDetailDict objectForKey:@"description"];
                 eventDetail.eventId= [eventDetailDict objectForKey:@"id"];
@@ -135,7 +135,7 @@ static BOOL vouchersProcessed = NO;
         for (NSDictionary *jsonDict in [[[KSJson alloc] init] toArray:kUrlVenues]) {
 
             //all venues
-            AllVenues *allVenues = [NSEntityDescription insertNewObjectForEntityForName:@"AllVenues" inManagedObjectContext:context];
+            KSAllVenues *allVenues = [NSEntityDescription insertNewObjectForEntityForName:@"KSAllVenues" inManagedObjectContext:context];
             allVenues.date = [jsonDict objectForKey:@"date"];
             allVenues.venueId = [jsonDict objectForKey:@"venue_id"];
             allVenues.venueName = [jsonDict objectForKey:@"name"];
@@ -150,7 +150,7 @@ static BOOL vouchersProcessed = NO;
             NSString *jsonURL  = [NSString stringWithFormat:@"%@%@", kUrlEventsOfVenue, allVenues.venueId];
 
             for (NSDictionary *eventsInVenueDict in [json toArray:jsonURL]) {
-                EventsInVenue *eventsInVenue = [NSEntityDescription insertNewObjectForEntityForName:@"EventsInVenue" inManagedObjectContext:context];
+                KSEventsInVenue *eventsInVenue = [NSEntityDescription insertNewObjectForEntityForName:@"KSEventsInVenue" inManagedObjectContext:context];
                 eventsInVenue.eventId = [eventsInVenueDict objectForKey:@"event_id"];
                 eventsInVenue.date = [eventsInVenueDict objectForKey:@"date"];
                 eventsInVenue.eventName = [eventsInVenueDict objectForKey:@"event_title"];
@@ -163,7 +163,7 @@ static BOOL vouchersProcessed = NO;
                 NSString * eventDetailUrl = [NSString stringWithFormat:@"%@%@", kUrlEventDetails,eventsInVenue.eventId];
                 NSDictionary *eventDetailDict = [[json toArray:eventDetailUrl] objectAtIndex:0];
 
-                EventDetail *eventDetail = [NSEntityDescription insertNewObjectForEntityForName:@"EventDetail" inManagedObjectContext:context];
+                KSEventDetail *eventDetail = [NSEntityDescription insertNewObjectForEntityForName:@"KSEventDetail" inManagedObjectContext:context];
                 eventDetail.date = [eventDetailDict objectForKey:@"date"];
                 eventDetail.eventDescription = [eventDetailDict objectForKey:@"description"];
                 eventDetail.eventId= [eventDetailDict objectForKey:@"id"];
@@ -213,7 +213,7 @@ static BOOL vouchersProcessed = NO;
         for (NSDictionary *jsonDict in [[[KSJson alloc] init] toArray:kUrlGenres]) {
 
         // all genres
-        AllGenres *allGenres = [NSEntityDescription insertNewObjectForEntityForName:@"AllGenres" inManagedObjectContext:context];
+        KSAllGenres *allGenres = [NSEntityDescription insertNewObjectForEntityForName:@"KSAllGenres" inManagedObjectContext:context];
         allGenres.genreId = [jsonDict objectForKey:@"id"];
         allGenres.genreName= [jsonDict objectForKey:@"genre"];
         allGenres.genreDescription = [jsonDict objectForKey:@"description"];
@@ -224,7 +224,7 @@ static BOOL vouchersProcessed = NO;
         KSJson * json = [[KSJson alloc] init];
 
             for (NSDictionary *eventsInGenreDict in [json toArray:[NSString stringWithFormat:@"%@%@", kUrlEventsOfGenre, allGenres.genreId]]) {
-            EventsInGenre *eventsInGenre = [NSEntityDescription insertNewObjectForEntityForName:@"EventsInGenre" inManagedObjectContext:context];
+            KSEventsInGenre *eventsInGenre = [NSEntityDescription insertNewObjectForEntityForName:@"KSEventsInGenre" inManagedObjectContext:context];
             eventsInGenre.eventId = [eventsInGenreDict objectForKey:@"event_id"];
             eventsInGenre.date = [eventsInGenreDict objectForKey:@"date"];
             eventsInGenre.eventName = [eventsInGenreDict objectForKey:@"event_title"];
@@ -236,7 +236,7 @@ static BOOL vouchersProcessed = NO;
             // event detail
             NSDictionary *eventDetailDict = [[json toArray:[NSString stringWithFormat:@"%@%@", kUrlEventDetails, eventsInGenre.eventId]] objectAtIndex:0];
 
-            EventDetail *eventDetail = [NSEntityDescription insertNewObjectForEntityForName:@"EventDetail" inManagedObjectContext:context];
+            KSEventDetail *eventDetail = [NSEntityDescription insertNewObjectForEntityForName:@"KSEventDetail" inManagedObjectContext:context];
             eventDetail.date = [eventDetailDict objectForKey:@"date"];
             eventDetail.eventDescription = [eventDetailDict objectForKey:@"description"];
             eventDetail.eventId= [eventDetailDict objectForKey:@"id"];
@@ -283,7 +283,7 @@ static BOOL vouchersProcessed = NO;
         for (NSDictionary *jsonDict in [[[KSJson alloc] init] toArray:kUrlVoucher]) {
 
             // vouchers today
-            VouchersToday *vouchersToday = [NSEntityDescription insertNewObjectForEntityForName:@"VouchersToday" inManagedObjectContext:context];
+            KSVouchersToday *vouchersToday = [NSEntityDescription insertNewObjectForEntityForName:@"KSVouchersToday" inManagedObjectContext:context];
             vouchersToday.venueId = [jsonDict objectForKey:@"venue_id"];
             vouchersToday.venueName= [jsonDict objectForKey:@"name"];
             vouchersToday.venueAddress = [jsonDict objectForKey:@"address"];
@@ -294,7 +294,7 @@ static BOOL vouchersProcessed = NO;
             vouchersToday.voucherPhoto= [jsonDict  objectForKey:@"voucher_photo"];
 
             // event details
-            EventDetail *eventDetail = [NSEntityDescription insertNewObjectForEntityForName:@"EventDetail" inManagedObjectContext:context];
+            KSEventDetail *eventDetail = [NSEntityDescription insertNewObjectForEntityForName:@"KSEventDetail" inManagedObjectContext:context];
             eventDetail.venueId = vouchersToday.venueId;
             eventDetail.venueName = vouchersToday.venueName;
             eventDetail.eventId = vouchersToday.eventId;
@@ -342,7 +342,7 @@ static BOOL vouchersProcessed = NO;
 
         // processing other initial stuff
         [KSInternetManager downloadVoucherImages];
-        [[[UsedVoucherManager alloc] init] updateOnline];
+        [[[KSUsedVoucherManager alloc] init] updateOnline];
 
         int timeTaken = (int) [[NSDate date] timeIntervalSinceDate:startTime];
         ALog(@" time taken to process (download) all the data = %d seconds",timeTaken) ;
@@ -353,7 +353,7 @@ static BOOL vouchersProcessed = NO;
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"AllEvents" inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"KSAllEvents" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSError *error;
     return [context executeFetchRequest:fetchRequest error:&error];
@@ -363,7 +363,7 @@ static BOOL vouchersProcessed = NO;
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"AllVenues" inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"KSAllVenues" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSError *error;
     return [context executeFetchRequest:fetchRequest error:&error];
@@ -373,7 +373,7 @@ static BOOL vouchersProcessed = NO;
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"AllGenres" inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"KSAllGenres" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSError *error;
     return [context executeFetchRequest:fetchRequest error:&error];
@@ -383,7 +383,7 @@ static BOOL vouchersProcessed = NO;
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"VouchersToday" inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"KSVouchersToday" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSError *error;
     return [context executeFetchRequest:fetchRequest error:&error];

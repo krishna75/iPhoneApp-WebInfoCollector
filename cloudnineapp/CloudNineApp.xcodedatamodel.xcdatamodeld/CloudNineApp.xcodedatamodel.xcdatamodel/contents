@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12A269" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="AllEvents" representedClassName="AllEvents" syncable="YES">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="KSAllEvents" representedClassName="KSAllEvents" syncable="YES">
         <attribute name="count" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weekDay" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="dailyEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DailyEvents" inverseName="allEvents" inverseEntity="DailyEvents" syncable="YES"/>
+        <relationship name="dailyEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="KSDailyEvents" inverseName="allEvents" inverseEntity="KSDailyEvents" syncable="YES"/>
     </entity>
-    <entity name="AllGenres" representedClassName="AllGenres" syncable="YES">
+    <entity name="KSAllGenres" representedClassName="KSAllGenres" syncable="YES">
         <attribute name="genreDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="genreId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="genreName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="genrePhoto" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="eventsInGenre" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventsInGenre" inverseName="allGenres" inverseEntity="EventsInGenre" syncable="YES"/>
+        <relationship name="eventsInGenre" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="KSEventsInGenre" inverseName="allGenres" inverseEntity="KSEventsInGenre" syncable="YES"/>
     </entity>
-    <entity name="AllVenues" representedClassName="AllVenues" syncable="YES">
+    <entity name="KSAllVenues" representedClassName="KSAllVenues" syncable="YES">
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventCountDetail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventId" optional="YES" attributeType="String" syncable="YES"/>
@@ -21,9 +21,9 @@
         <attribute name="venueId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="venueLogo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="venueName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="eventsInVenue" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventsInVenue" inverseName="allVenues" inverseEntity="EventsInVenue" syncable="YES"/>
+        <relationship name="eventsInVenue" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="KSEventsInVenue" inverseName="allVenues" inverseEntity="KSEventsInVenue" syncable="YES"/>
     </entity>
-    <entity name="DailyEvents" representedClassName="DailyEvents" syncable="YES">
+    <entity name="KSDailyEvents" representedClassName="KSDailyEvents" syncable="YES">
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventId" optional="YES" attributeType="String" syncable="YES"/>
@@ -32,10 +32,10 @@
         <attribute name="venueLogo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="venueName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weekDay" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="allEvents" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="AllEvents" inverseName="dailyEvents" inverseEntity="AllEvents" syncable="YES"/>
-        <relationship name="eventDetail" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="EventDetail" inverseName="dailyEvents" inverseEntity="EventDetail" syncable="YES"/>
+        <relationship name="allEvents" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="KSAllEvents" inverseName="dailyEvents" inverseEntity="KSAllEvents" syncable="YES"/>
+        <relationship name="eventDetail" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="KSEventDetail" inverseName="dailyEvents" inverseEntity="KSEventDetail" syncable="YES"/>
     </entity>
-    <entity name="EventDetail" representedClassName="EventDetail" syncable="YES">
+    <entity name="KSEventDetail" representedClassName="KSEventDetail" syncable="YES">
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventId" optional="YES" attributeType="String" syncable="YES"/>
@@ -45,34 +45,34 @@
         <attribute name="venueName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="voucherDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="voucherPhoto" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="dailyEvents" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DailyEvents" inverseName="eventDetail" inverseEntity="DailyEvents" syncable="YES"/>
-        <relationship name="eventsInGenre" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="EventsInGenre" inverseName="eventDetails" inverseEntity="EventsInGenre" syncable="YES"/>
-        <relationship name="eventsInVenue" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="EventsInVenue" inverseName="eventDetails" inverseEntity="EventsInVenue" syncable="YES"/>
-        <relationship name="voucher" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="VoucherDetail" inverseName="eventDetails" inverseEntity="VoucherDetail" syncable="YES"/>
-        <relationship name="vouchersToday" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="VouchersToday" inverseName="eventDetails" inverseEntity="VouchersToday" syncable="YES"/>
+        <relationship name="dailyEvents" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="KSDailyEvents" inverseName="eventDetail" inverseEntity="KSDailyEvents" syncable="YES"/>
+        <relationship name="eventsInGenre" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="KSEventsInGenre" inverseName="eventDetails" inverseEntity="KSEventsInGenre" syncable="YES"/>
+        <relationship name="eventsInVenue" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="KSEventsInVenue" inverseName="eventDetails" inverseEntity="KSEventsInVenue" syncable="YES"/>
+        <relationship name="voucher" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="KSVoucherDetail" inverseName="eventDetails" inverseEntity="KSVoucherDetail" syncable="YES"/>
+        <relationship name="vouchersToday" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="KSVouchersToday" inverseName="eventDetails" inverseEntity="KSVouchersToday" syncable="YES"/>
     </entity>
-    <entity name="EventsInGenre" representedClassName="EventsInGenre" syncable="YES">
+    <entity name="KSEventsInGenre" representedClassName="KSEventsInGenre" syncable="YES">
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weekDay" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="allGenres" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="AllGenres" inverseName="eventsInGenre" inverseEntity="AllGenres" syncable="YES"/>
-        <relationship name="eventDetails" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="EventDetail" inverseName="eventsInGenre" inverseEntity="EventDetail" syncable="YES"/>
+        <relationship name="allGenres" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="KSAllGenres" inverseName="eventsInGenre" inverseEntity="KSAllGenres" syncable="YES"/>
+        <relationship name="eventDetails" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="KSEventDetail" inverseName="eventsInGenre" inverseEntity="KSEventDetail" syncable="YES"/>
     </entity>
-    <entity name="EventsInVenue" representedClassName="EventsInVenue" syncable="YES">
+    <entity name="KSEventsInVenue" representedClassName="KSEventsInVenue" syncable="YES">
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="allVenues" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AllVenues" inverseName="eventsInVenue" inverseEntity="AllVenues" syncable="YES"/>
-        <relationship name="eventDetails" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="EventDetail" inverseName="eventsInVenue" inverseEntity="EventDetail" syncable="YES"/>
+        <relationship name="allVenues" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="KSAllVenues" inverseName="eventsInVenue" inverseEntity="KSAllVenues" syncable="YES"/>
+        <relationship name="eventDetails" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="KSEventDetail" inverseName="eventsInVenue" inverseEntity="KSEventDetail" syncable="YES"/>
     </entity>
-    <entity name="VoucherDetail" representedClassName="Voucher" syncable="YES">
+    <entity name="KSVoucherDetail" representedClassName="KSVoucher" syncable="YES">
         <attribute name="voucherDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="voucherDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="voucherPhoto" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="eventDetails" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="EventDetail" inverseName="voucher" inverseEntity="EventDetail" syncable="YES"/>
+        <relationship name="eventDetails" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="KSEventDetail" inverseName="voucher" inverseEntity="KSEventDetail" syncable="YES"/>
     </entity>
-    <entity name="VouchersToday" representedClassName="VouchersToday" syncable="YES">
+    <entity name="KSVouchersToday" representedClassName="KSVouchersToday" syncable="YES">
         <attribute name="eventId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="venueAddress" optional="YES" attributeType="String" syncable="YES"/>
@@ -81,17 +81,17 @@
         <attribute name="venueName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="voucherDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="voucherPhoto" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="eventDetails" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="EventDetail" inverseName="vouchersToday" inverseEntity="EventDetail" syncable="YES"/>
+        <relationship name="eventDetails" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="KSEventDetail" inverseName="vouchersToday" inverseEntity="KSEventDetail" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AllEvents" positionX="-3168" positionY="-256" width="128" height="103"/>
-        <element name="AllGenres" positionX="-3177" positionY="90" width="128" height="118"/>
-        <element name="AllVenues" positionX="-3170" positionY="-91" width="128" height="163"/>
-        <element name="DailyEvents" positionX="-2952" positionY="-280" width="128" height="193"/>
-        <element name="EventDetail" positionX="-2745" positionY="-171" width="128" height="253"/>
-        <element name="EventsInGenre" positionX="-2952" positionY="83" width="128" height="133"/>
-        <element name="EventsInVenue" positionX="-2954" positionY="-81" width="128" height="118"/>
-        <element name="VoucherDetail" positionX="-2567" positionY="-99" width="128" height="103"/>
-        <element name="VouchersToday" positionX="-3177" positionY="227" width="128" height="178"/>
+        <element name="KSAllEvents" positionX="-3168" positionY="-256" width="128" height="103"/>
+        <element name="KSAllGenres" positionX="-3177" positionY="90" width="128" height="118"/>
+        <element name="KSAllVenues" positionX="-3170" positionY="-91" width="128" height="163"/>
+        <element name="KSDailyEvents" positionX="-2952" positionY="-280" width="128" height="193"/>
+        <element name="KSEventDetail" positionX="-2745" positionY="-171" width="128" height="253"/>
+        <element name="KSEventsInGenre" positionX="-2952" positionY="83" width="128" height="133"/>
+        <element name="KSEventsInVenue" positionX="-2954" positionY="-81" width="128" height="118"/>
+        <element name="KSVoucherDetail" positionX="-2567" positionY="-99" width="128" height="103"/>
+        <element name="KSVouchersToday" positionX="-3177" positionY="227" width="128" height="178"/>
     </elements>
 </model>

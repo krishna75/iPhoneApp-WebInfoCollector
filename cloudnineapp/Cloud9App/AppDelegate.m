@@ -7,7 +7,9 @@
 //
 #define kLoadingTag 101
 
+#import <CoreData/CoreData.h>
 #import "AppDelegate.h"
+#import "QuartzCore/QuartzCore.h"
 
 
 @implementation AppDelegate
