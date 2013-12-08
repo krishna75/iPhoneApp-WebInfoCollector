@@ -2,7 +2,7 @@
 //  KSEventDetail.m
 //  Cloud9App
 //
-//  Created by Krishna Sapkota on 14/11/2013.
+//  Created by Krishna Sapkota on 08/12/2013.
 //  Copyright (c) 2013 Krishna Sapkota. All rights reserved.
 //
 
@@ -25,6 +25,7 @@
 @dynamic venueName;
 @dynamic voucherDescription;
 @dynamic voucherPhoto;
+@dynamic logo;
 @dynamic dailyEvents;
 @dynamic eventsInGenre;
 @dynamic eventsInVenue;

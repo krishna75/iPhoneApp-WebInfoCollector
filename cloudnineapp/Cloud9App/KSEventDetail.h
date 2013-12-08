@@ -2,7 +2,7 @@
 //  KSEventDetail.h
 //  Cloud9App
 //
-//  Created by Krishna Sapkota on 14/11/2013.
+//  Created by Krishna Sapkota on 08/12/2013.
 //  Copyright (c) 2013 Krishna Sapkota. All rights reserved.
 //
 
@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSString * venueName;
 @property (nonatomic, retain) NSString * voucherDescription;
 @property (nonatomic, retain) NSString * voucherPhoto;
+@property (nonatomic, retain) NSString * logo;
 @property (nonatomic, retain) KSDailyEvents *dailyEvents;
 @property (nonatomic, retain) KSEventsInGenre *eventsInGenre;
 @property (nonatomic, retain) KSEventsInVenue *eventsInVenue;

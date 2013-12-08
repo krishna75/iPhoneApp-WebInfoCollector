@@ -57,7 +57,7 @@ KSUsedVoucherManager *usedVoucherManager ;
     UIImage *voucherPhoto = [KSUtilities getImage:voucherPhotoUrl];
 
     venueName = _eventDetail.venueName;
-    UIImage *photo = [KSUtilities getImage:_eventDetail.photo];
+    UIImage *photo = [KSUtilities getImage:_eventDetail.logo];
     
     // venue logo 
     CGRect photoFrame = CGRectMake(5, 20, 72, 72);
@@ -74,7 +74,7 @@ KSUsedVoucherManager *usedVoucherManager ;
     venueNameLabel.text = venueName;
     [self.view addSubview:venueNameLabel]; 
     
-    // venue name 
+    // event title
     CGRect eventTitleFrame = CGRectMake(90, 55, 213, 35);
     UILabel *eventTitleLabel = [[UILabel alloc] initWithFrame:eventTitleFrame];
     eventTitleLabel.textColor = [UIColor whiteColor];

@@ -40,6 +40,7 @@
         <attribute name="eventDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="venueId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="venueName" optional="YES" attributeType="String" syncable="YES"/>
@@ -88,7 +89,7 @@
         <element name="KSAllGenres" positionX="-3177" positionY="90" width="128" height="118"/>
         <element name="KSAllVenues" positionX="-3170" positionY="-91" width="128" height="163"/>
         <element name="KSDailyEvents" positionX="-2952" positionY="-280" width="128" height="193"/>
-        <element name="KSEventDetail" positionX="-2745" positionY="-171" width="128" height="253"/>
+        <element name="KSEventDetail" positionX="-2745" positionY="-171" width="128" height="268"/>
         <element name="KSEventsInGenre" positionX="-2952" positionY="83" width="128" height="133"/>
         <element name="KSEventsInVenue" positionX="-2954" positionY="-81" width="128" height="118"/>
         <element name="KSVoucherDetail" positionX="-2567" positionY="-99" width="128" height="103"/>

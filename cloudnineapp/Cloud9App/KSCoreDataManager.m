@@ -90,6 +90,7 @@ static BOOL vouchersProcessed = NO;
                 eventDetail.eventId= [eventDetailDict objectForKey:@"id"];
                 eventDetail.eventName = [eventDetailDict objectForKey:@"title"];
                 eventDetail.photo = [eventDetailDict objectForKey:@"photo"];
+                eventDetail.logo = [eventDetailDict objectForKey:@"logo"];
 
                 eventDetail.venueId = [eventDetailDict objectForKey:@"venue_id"];
                 eventDetail.venueName = [eventDetailDict objectForKey:@"venue"];
@@ -169,6 +170,7 @@ static BOOL vouchersProcessed = NO;
                 eventDetail.eventId= [eventDetailDict objectForKey:@"id"];
                 eventDetail.eventName = [eventDetailDict objectForKey:@"title"];
                 eventDetail.photo = [eventDetailDict objectForKey:@"photo"];
+                eventDetail.logo = [eventDetailDict objectForKey:@"logo"];
 
                 eventDetail.venueId = [eventDetailDict objectForKey:@"venue_id"];
                 eventDetail.venueName = [eventDetailDict objectForKey:@"venue"];
@@ -242,6 +244,8 @@ static BOOL vouchersProcessed = NO;
             eventDetail.eventId= [eventDetailDict objectForKey:@"id"];
             eventDetail.eventName = [eventDetailDict objectForKey:@"title"];
             eventDetail.photo = [eventDetailDict objectForKey:@"photo"];
+            eventDetail.logo = [eventDetailDict objectForKey:@"logo"];
+
             eventDetail.venueId = [eventDetailDict objectForKey:@"venue_id"];
             eventDetail.venueName = [eventDetailDict objectForKey:@"venue"];
             eventDetail.voucherDescription= [eventDetailDict objectForKey:@"voucher_description"];
@@ -301,7 +305,7 @@ static BOOL vouchersProcessed = NO;
             eventDetail.eventName = vouchersToday.eventName;
             eventDetail.voucherDescription = vouchersToday.voucherDescription ;
             eventDetail.voucherPhoto = vouchersToday.voucherPhoto;
-            eventDetail.photo = vouchersToday.venueLogo;
+            eventDetail.logo = vouchersToday.venueLogo;
 
             // adding today's date  to the event details
             NSDate *today = [NSDate date];
