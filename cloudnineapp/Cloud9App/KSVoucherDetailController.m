@@ -34,6 +34,7 @@ Boolean active = false;
 UILabel *warningLabel;
 NSString *eventId ;
 NSString *venueId ;
+NSString *venueName ;
 NSString *voucherDescription;
 NSString *date;
 NSString *voucherPhotoUrl;
@@ -55,12 +56,43 @@ KSUsedVoucherManager *usedVoucherManager ;
     voucherPhotoUrl = _eventDetail.voucherPhoto; //todo
     UIImage *voucherPhoto = [KSUtilities getImage:voucherPhotoUrl];
 
+    venueName = _eventDetail.venueName;
+    UIImage *photo = [KSUtilities getImage:_eventDetail.photo];
+    
+    // venue logo 
+    CGRect photoFrame = CGRectMake(5, 20, 72, 72);
+    UIImageView *photoView = [[UIImageView alloc] initWithFrame:photoFrame] ;
+    [photoView setImage:photo];
+    [self.view addSubview:photoView ];
+    
+    // venue name 
+    CGRect venueNameFrame = CGRectMake(90, 20, 213, 35);
+    UILabel *venueNameLabel = [[UILabel alloc] initWithFrame:venueNameFrame];
+    venueNameLabel.textColor = [UIColor whiteColor];
+    venueNameLabel.backgroundColor = [UIColor clearColor];
+    [venueNameLabel setFont:[UIFont fontWithName:@"Harabara" size:16]];
+    venueNameLabel.text = venueName;
+    [self.view addSubview:venueNameLabel]; 
+    
+    // venue name 
+    CGRect eventTitleFrame = CGRectMake(90, 55, 213, 35);
+    UILabel *eventTitleLabel = [[UILabel alloc] initWithFrame:eventTitleFrame];
+    eventTitleLabel.textColor = [UIColor whiteColor];
+    eventTitleLabel.backgroundColor = [UIColor clearColor];
+    [eventTitleLabel setFont:[UIFont fontWithName:@"Harabara" size:16]];
+    eventTitleLabel.text = _eventDetail.eventName;
+    [self.view addSubview:eventTitleLabel];
+
+
+    // vhoucher photo
     CGRect voucherPhotoFrame = CGRectMake(5, 120, 310, 200);
     UIImageView *voucherView = [[UIImageView alloc] initWithFrame:voucherPhotoFrame] ;
     [voucherView setImage:voucherPhoto];
     [self.view addSubview:voucherView ];
 
-//    create voucher description
+
+
+    // voucher description
     NSString * description = @"If you present this voucher to the venue, you will be able to get 5% discount. Please note that it  can be used only once.";
     CGRect descFrame = CGRectMake(12, 330, 290, 350);
     UILabel *descLabel = [[UILabel alloc] initWithFrame:descFrame];

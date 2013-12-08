@@ -301,6 +301,7 @@ static BOOL vouchersProcessed = NO;
             eventDetail.eventName = vouchersToday.eventName;
             eventDetail.voucherDescription = vouchersToday.voucherDescription ;
             eventDetail.voucherPhoto = vouchersToday.voucherPhoto;
+            eventDetail.photo = vouchersToday.venueLogo;
 
             // adding today's date  to the event details
             NSDate *today = [NSDate date];
