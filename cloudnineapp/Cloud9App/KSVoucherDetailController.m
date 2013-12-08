@@ -90,8 +90,6 @@ KSUsedVoucherManager *usedVoucherManager ;
     [voucherView setImage:voucherPhoto];
     [self.view addSubview:voucherView ];
 
-
-
     // voucher description
     NSString * description = @"If you present this voucher to the venue, you will be able to get 5% discount. Please note that it  can be used only once.";
     CGRect descFrame = CGRectMake(12, 330, 290, 350);
