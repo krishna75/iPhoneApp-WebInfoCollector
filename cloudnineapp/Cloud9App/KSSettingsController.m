@@ -10,6 +10,7 @@
 #import "KSJson.h"
 #import "KSSettingsDetail.h"
 #import "AppDelegate.h"
+#import "KSInternetManager.h"
 
 
 #define kUrlGenres @"events.php"
@@ -34,9 +35,19 @@
 }
 
 - (void)viewDidLoad {
+    NSString *connectionText = @"Working Offline ....." ;
+    if ([KSInternetManager isConnectionAvailable]) {
+        connectionText = @"Working Online...." ;
+    }
+
     NSArray *contactInfo = [[NSArray alloc]initWithObjects:@"Login",@"Contact us", nil];
     NSArray *appSettings = [[NSArray alloc]initWithObjects:@"Display badges", nil];
-    settingsDict = [[NSDictionary alloc]initWithObjectsAndKeys:contactInfo,@"Contact Information",appSettings,@"Application Settings", nil];
+    NSArray *connectivity = [[NSArray alloc]initWithObjects:connectionText, nil];
+    settingsDict = [[NSDictionary alloc]initWithObjectsAndKeys:
+            contactInfo,@"Contact Information",
+                    appSettings,@"Application Settings",
+                    connectivity,@"Connectivity",
+                    nil];
     settingsTable.scrollEnabled = NO;
 }
 
@@ -73,25 +84,33 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
  
-    return [settingsDict count];
+//    return [settingsDict count];
+    return 3;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
- 
-    if(section == 0)
-        return @"Contact Information";
-    else
-        return @"Application Settings";
+    switch (section) {
+        case 0:
+            return @"Contact Information" ;
+        case 1:
+            return @"Application Settings";
+        case 2:
+            return @"Connectivity";
+    }
 }
 
 
 #pragma mark - Table
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
  
-    if(section == 0)
-        return [[settingsDict objectForKey:@"Contact Information"]count];
-    else
-        return [[settingsDict objectForKey:@"Application Settings"] count];
+    switch (section)  {
+        case 0:
+            return [[settingsDict objectForKey:@"Contact Information"]count];
+        case 1:
+            return [[settingsDict objectForKey:@"Application Settings"] count];
+        case 2:
+            return [[settingsDict objectForKey:@"Connectivity"] count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -100,10 +119,8 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    else {
+    } else {
         UILabel *txtLbl = (UILabel *)[cell.contentView viewWithTag:kLabelTag];
         [txtLbl removeFromSuperview];
     }
@@ -115,12 +132,19 @@
     textLabel.backgroundColor = [UIColor clearColor];
     textLabel.tag = kLabelTag;
     [cell.contentView addSubview:textLabel];
-    if(indexPath.section == 0) {
-        textLabel.text = [[settingsDict objectForKey:@"Contact Information"] objectAtIndex:indexPath.row];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+    switch (indexPath.section) {
+        case 0:
+            textLabel.text = [[settingsDict objectForKey:@"Contact Information"] objectAtIndex:indexPath.row];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            break;
+        case 1:
+            textLabel.text = [[settingsDict objectForKey:@"Application Settings"] objectAtIndex:indexPath.row];
+            break;
+        case 2:
+            textLabel.text = [[settingsDict objectForKey:@"Connectivity"] objectAtIndex:indexPath.row];
+            break;
     }
-    else
-        textLabel.text = [[settingsDict objectForKey:@"Application Settings"] objectAtIndex:indexPath.row];
 
     return cell;
 }

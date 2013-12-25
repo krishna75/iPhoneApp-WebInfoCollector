@@ -388,6 +388,60 @@
         <image name="voucher.png" width="30" height="30"/>
         <image name="voucher_header.png" width="320" height="100"/>
     </resources>
+    <classes>
+        <class className="KSAllEventsController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/KSAllEventsController.h"/>
+        </class>
+        <class className="KSAllGenresController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/KSAllGenresController.h"/>
+        </class>
+        <class className="KSAllVenuesController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/KSAllVenuesController.h"/>
+        </class>
+        <class className="KSDailyEventsController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/KSDailyEventsController.h"/>
+        </class>
+        <class className="KSEventDetailsController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/KSEventDetailsController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="eventImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="subTitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="KSEventsInGenreController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/KSEventsInGenreController.h"/>
+        </class>
+        <class className="KSEventsInVenueController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/KSEventsInVenueController.h"/>
+        </class>
+        <class className="KSSettingsController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/KSSettingsController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="settingsTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="KSSettingsDetail" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/KSSettingsDetail.h"/>
+            <relationships>
+                <relationship kind="outlet" name="settingsWeb" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="KSTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/KSTabBarController.h"/>
+        </class>
+        <class className="KSVoucherDetailController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/KSVoucherDetailController.h"/>
+            <relationships>
+                <relationship kind="action" name="scanButtonPress:"/>
+                <relationship kind="outlet" name="scanButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="KSVouchersTodayController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/KSVouchersTodayController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
