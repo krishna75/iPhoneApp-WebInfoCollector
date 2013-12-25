@@ -1,6 +1,6 @@
 <?php
 
- 
+
 $today = today();
 $oneMonthLater = oneMonthLater();
 
@@ -18,8 +18,16 @@ function changeDays($date, $days){
 
 // returns the date of today
 function today(){
- $date =  new DateTime();
- return (String) $date->format('Y-m-d');
+    date_default_timezone_set("Europe/London");
+    $DISPLAY_EVENT_UNTIL = 6 ;
+    $date_array = getDate();
+    $currentHour = $date_array['hours'];
+    $date =  new DateTime();
+    $strDate =$date->format('Y-m-d');
+ if ($currentHour < $DISPLAY_EVENT_UNTIL) {
+     $strDate = changeDays($strDate, -1);
+ }
+ return $strDate;
 }
 
 function containsDate($date,$assocArray, $field){
